@@ -1,6 +1,6 @@
 package com.incquerylabs.magicdraw.benchmark.queries
 
-import "http://www.nomagic.com/magicdraw/UML/2.5.0"
+import "http://www.nomagic.com/magicdraw/UML/2.5.1"
 
 // All these patterns are used to warm up the JVM before the real performance queries.
 

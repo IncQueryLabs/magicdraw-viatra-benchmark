@@ -25,7 +25,7 @@
 			<artifactId>com.nomagic.ci.binary_17.0.5</artifactId>
 			<version>17.0.5</version>
 			<scope>system</scope>
-			<systemPath>${md.home}/lib/bundles/com.nomagic.ci.binary_17.0.5.v20170426-1207.jar</systemPath>
+			<systemPath>${md.home}/lib/bundles/com.nomagic.ci.binary_17.0.5.v20190308-2012.jar</systemPath>
 		</dependency>
 
 		<dependency>
@@ -33,15 +33,15 @@
 			<artifactId>com.nomagic.ci.services_17.0.5</artifactId>
 			<version>17.0.5</version>
 			<scope>system</scope>
-			<systemPath>${md.home}/lib/bundles/com.nomagic.ci.services_17.0.5.v20170426-1207.jar</systemPath>
+			<systemPath>${md.home}/lib/bundles/com.nomagic.ci.services_17.0.5.v20190308-2012.jar</systemPath>
 		</dependency>
 
 		<dependency>
 			<groupId>com.nomagic</groupId>
 			<artifactId>magicdraw.uml2</artifactId>
-			<version>2.5.0</version>
+			<version>2.5.1</version>
 			<scope>system</scope>
-			<systemPath>${md.home}/lib/bundles/com.nomagic.magicdraw.uml2_2.5.0.201704261213.jar</systemPath>
+			<systemPath>${md.home}/lib/bundles/com.nomagic.magicdraw.uml2_2.5.1.201903082028.jar</systemPath>
 		</dependency>
 		
 		<dependency>
@@ -49,7 +49,7 @@
 			<artifactId>magicdraw.diagram</artifactId>
 			<version>18.1.0</version>
 			<scope>system</scope>
-			<systemPath>${md.home}/lib/bundles/com.nomagic.magicdraw.core.diagram_18.1.0.201704261213.jar</systemPath>
+			<systemPath>${md.home}/lib/bundles/com.nomagic.magicdraw.core.diagram_18.1.0.201903082028.jar</systemPath>
 		</dependency>
 		
 		<dependency>
@@ -57,7 +57,15 @@
 			<artifactId>magicdraw.foundation</artifactId>
 			<version>2.0.0</version>
 			<scope>system</scope>
-			<systemPath>${md.home}/lib/bundles/com.nomagic.magicdraw.foundation_2.0.0.201704261213.jar</systemPath>
+			<systemPath>${md.home}/lib/bundles/com.nomagic.magicdraw.foundation_2.0.0.201903082028.jar</systemPath>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.nomagic</groupId>
+			<artifactId>magicdraw.annotation</artifactId>
+			<version>2.0.0</version>
+			<scope>system</scope>
+			<systemPath>${md.home}/lib/bundles/com.nomagic.annotations_1.0.0/com.nomagic.annotation-1.0.jar</systemPath>
 		</dependency>
 		
 		<dependency>
@@ -65,7 +73,7 @@
 			<artifactId>jmi</artifactId>
 			<version>1.0</version>
 			<scope>system</scope>
-			<systemPath>${md.home}/lib/bundles/javax.jmi_1.0.0.201704261213/javax_jmi-1_0-fr.jar</systemPath>
+			<systemPath>${md.home}/lib/bundles/javax.jmi_1.0.0.201903082028/javax_jmi-1_0-fr.jar</systemPath>
 		</dependency>
 		
 	</dependencies>

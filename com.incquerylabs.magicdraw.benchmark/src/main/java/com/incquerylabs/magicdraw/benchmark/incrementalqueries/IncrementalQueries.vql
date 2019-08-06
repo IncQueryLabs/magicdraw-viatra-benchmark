@@ -1,6 +1,6 @@
 package com.incquerylabs.magicdraw.benchmark.incrementalqueries
 
-import "http://www.nomagic.com/magicdraw/UML/2.5.0"
+import "http://www.nomagic.com/magicdraw/UML/2.5.1"
 import com.incquerylabs.magicdraw.benchmark.queries.statesWithShortNames
 import com.incquerylabs.magicdraw.benchmark.queries.incomingTransitions
 import com.incquerylabs.magicdraw.benchmark.queries.statesWithMoreIncomingTransitions

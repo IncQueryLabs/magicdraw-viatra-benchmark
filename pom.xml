@@ -11,8 +11,8 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<emf.version>2.10.1-v20140901-1043</emf.version>
-		<viatra.version>1.7.0-SNAPSHOT</viatra.version>
-		<xtend.version>2.11.0</xtend.version>
+		<viatra.version>2.2.0</viatra.version>
+		<xtend.version>2.16.0</xtend.version>
 		<mondo.sam.version>0.1.0-SNAPSHOT</mondo.sam.version>
 		<release.base.dir>${project.build.directory}/plugin-release/</release.base.dir>
 		<release.output.dir>${project.build.directory}/plugin-release/files/plugins/${project.groupId}.${project.artifactId}</release.output.dir>
@@ -58,13 +58,13 @@
 	<repositories>
 		<repository>
 			<id>repo.eclipse.org.viatra</id>
-			<url>https://repo.eclipse.org/content/repositories/viatra2-snapshots/</url>
+			<url>https://repo.eclipse.org/content/repositories/viatra2-releases/</url>
 		</repository>
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
 			<id>repo.eclipse.org.viatra</id>
-			<url>https://repo.eclipse.org/content/repositories/viatra2-snapshots/</url>
+			<url>https://repo.eclipse.org/content/repositories/viatra2-releases/</url>
 		</pluginRepository>
 	</pluginRepositories>
 </project>

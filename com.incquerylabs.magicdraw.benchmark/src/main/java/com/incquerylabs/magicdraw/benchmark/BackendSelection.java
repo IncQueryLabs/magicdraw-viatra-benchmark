@@ -14,10 +14,10 @@ import org.eclipse.viatra.query.runtime.matchers.psystem.PConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PQuery;
 
 import com.incquerylabs.magicdraw.benchmark.incrementalqueries.IncrementalQueries;
-import com.incquerylabs.magicdraw.benchmark.incrementalqueries.util.ParentStateQuerySpecification;
+import com.incquerylabs.magicdraw.benchmark.incrementalqueries.ParentState;
 import com.incquerylabs.magicdraw.benchmark.queries.APerformanceQueries;
-import com.incquerylabs.magicdraw.benchmark.queries.util.IncomingTransitionsQuerySpecification;
-import com.incquerylabs.magicdraw.benchmark.queries.util.TransitiveSubstatesWithCheck3QuerySpecification;
+import com.incquerylabs.magicdraw.benchmark.queries.IncomingTransitions;
+import com.incquerylabs.magicdraw.benchmark.queries.TransitiveSubstatesWithCheck3;
 
 public enum BackendSelection {
 
@@ -78,9 +78,9 @@ public enum BackendSelection {
 		case HYBRID:
 			return LocalSearchHints.getDefault().build();
 		case LOCAL_SEARCH_HINTS_TC_FIRST:
-			return createMinimalCostCallHint(IncomingTransitionsQuerySpecification.instance());
+			return createMinimalCostCallHint(IncomingTransitions.instance());
 		case LOCAL_SEARCH_HINTS_CONDITION_FIRST:
-			return createMinimalCostCallHint(ParentStateQuerySpecification.instance());
+			return createMinimalCostCallHint(ParentState.instance());
 		default:
 			return null;
 		}
@@ -107,7 +107,7 @@ public enum BackendSelection {
 		switch(this) {
 		case LOCAL_SEARCH_HINTS_CONDITION_FIRST:
 		case LOCAL_SEARCH_HINTS_TC_FIRST:
-			return (parameters.getQueryName().equals(getName(TransitiveSubstatesWithCheck3QuerySpecification.instance())));
+			return (parameters.getQueryName().equals(getName(TransitiveSubstatesWithCheck3.instance())));
 		default:
 			return true;
 		}

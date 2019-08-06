@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.apache.log4j.Level;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EReference;
@@ -36,7 +37,7 @@ import org.eclipse.viatra.query.runtime.emf.types.EDataTypeInSlotsKey;
 import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
 import org.eclipse.viatra.query.runtime.localsearch.matcher.integration.LocalSearchBackend;
-import org.eclipse.viatra.query.runtime.localsearch.matcher.integration.LocalSearchBackendFactory;
+import org.eclipse.viatra.query.runtime.localsearch.matcher.integration.LocalSearchGenericBackendFactory;
 import org.eclipse.viatra.query.runtime.localsearch.matcher.integration.LocalSearchHints;
 import org.eclipse.viatra.query.runtime.localsearch.planner.cost.IConstraintEvaluationContext;
 import org.eclipse.viatra.query.runtime.localsearch.planner.cost.impl.IndexerBasedConstraintCostFunction;
@@ -53,15 +54,18 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
 import com.google.common.base.Stopwatch;
 import com.incquerylabs.magicdraw.benchmark.incrementalqueries.IncrementalQueries;
 import com.incquerylabs.magicdraw.benchmark.queries.APerformanceQueries;
+import com.incquerylabs.magicdraw.benchmark.queries.TransitiveSubstatesWithCheck3;
 import com.incquerylabs.magicdraw.benchmark.queries.WarmUpQueries;
-import com.incquerylabs.magicdraw.benchmark.queries.util.TransitiveSubstatesWithCheck3QuerySpecification;
+import com.incquerylabs.magicdraw.benchmark.queries.Sysml_validation_queries;
 import com.nomagic.actions.AMConfigurator;
+import com.nomagic.actions.ActionsCategory;
 import com.nomagic.actions.ActionsManager;
 import com.nomagic.magicdraw.actions.ActionsConfiguratorsManager;
 import com.nomagic.magicdraw.actions.MDAction;
-import com.nomagic.magicdraw.actions.MDActionsCategory;
 import com.nomagic.magicdraw.commandline.CommandLineActionManager;
 import com.nomagic.magicdraw.core.Application;
+
+import eu.mondo.sam.core.BenchmarkEngine;
 
 public class MagicDrawPerformancePlugin extends com.nomagic.magicdraw.plugins.Plugin {
 
@@ -75,7 +79,7 @@ public class MagicDrawPerformancePlugin extends com.nomagic.magicdraw.plugins.Pl
 	}
 
 	private void initializeActions() {
-		ActionsConfiguratorsManager.getInstance().addMainToolbarConfigurator(new AMConfigurator() {
+		ActionsConfiguratorsManager.getInstance().addMainMenuConfigurator(new AMConfigurator() {
 
 			@Override
 			public int getPriority() {
@@ -84,14 +88,24 @@ public class MagicDrawPerformancePlugin extends com.nomagic.magicdraw.plugins.Pl
 
 			@Override
 			public void configure(ActionsManager manager) {
-				MDActionsCategory category = new MDActionsCategory("", "");
+				ActionsCategory category = (ActionsCategory) manager.getActionFor("Benchmark");
+
+				if (category == null) {
+					// creating new category
+					category = new ActionsCategory("Benchmark", "Benchmark");
+					category.setNested(true);
+					manager.addCategory(category);
+				}
+				
 				category.addAction(new MDAction("Query_Benchmark", "Query_Benchmark", null, null) {
 					@SuppressWarnings("unchecked")
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						try {
+							BenchmarkEngine engine = new BenchmarkEngine();
+							
 							ViatraQueryLoggingUtil.getDefaultLogger().setLevel(Level.ERROR);
-							final String resultFilePath = "F:\\git\\magicdraw-tools\\com.incquerylabs.instaschema.performance\\results\\rete_results.txt";
+							final String resultFilePath = "D:\\git\\magicdraw-viatra-benchmark\\com.incquerylabs.magicdraw.benchmark\\results\\rete_results.txt";
 							warmUpJvm();
 							List<MeasurementData> measurementData = measureReteTimeAll();
 							print(measurementData, MeasurementData.getTimeCSVFields(), resultFilePath);
@@ -107,7 +121,7 @@ public class MagicDrawPerformancePlugin extends com.nomagic.magicdraw.plugins.Pl
 					public void actionPerformed(ActionEvent e) {
 						try {							
 							ViatraQueryLoggingUtil.getDefaultLogger().setLevel(Level.ERROR);
-							final String resultFilePath = "F:\\git\\magicdraw-tools\\com.incquerylabs.instaschema.performance\\results\\local_results.txt";
+							final String resultFilePath = "D:\\git\\magicdraw-viatra-benchmark\\com.incquerylabs.magicdraw.benchmark\\results\\local_results.txt";
 							warmUpJvm();
 							List<MeasurementData> measurementData = measureLocalSearchTimeAll();
 							print(measurementData, MeasurementData.getTimeCSVFields(), resultFilePath);
@@ -123,7 +137,7 @@ public class MagicDrawPerformancePlugin extends com.nomagic.magicdraw.plugins.Pl
 					public void actionPerformed(ActionEvent e) {
 						try {							
 							ViatraQueryLoggingUtil.getDefaultLogger().setLevel(Level.ERROR);
-							final String resultFilePath = "F:\\git\\magicdraw-tools\\com.incquerylabs.instaschema.performance\\results\\hybrid_results.txt";
+							final String resultFilePath = "D:\\git\\magicdraw-viatra-benchmark\\com.incquerylabs.magicdraw.benchmark\\results\\hybrid_results.txt";
 							warmUpJvm();
 							List<MeasurementData> measurementData = measureHybridTimeAll();
 							print(measurementData, MeasurementData.getTimeCSVFields(), resultFilePath);
@@ -137,10 +151,10 @@ public class MagicDrawPerformancePlugin extends com.nomagic.magicdraw.plugins.Pl
 				category.addAction(new MDAction("Single Query", "Single Query", null, null) {
 					@Override
 					public void actionPerformed(ActionEvent e) {
-						final String planFilePath = "F:\\git\\magicdraw-tools\\com.incquerylabs.instaschema.performance\\results\\single_query_plan.txt";
+						final String planFilePath = "D:\\git\\magicdraw-viatra-benchmark\\com.incquerylabs.magicdraw.benchmark\\results\\single_query_plan.txt";
 						try {
 							ViatraQueryLoggingUtil.getDefaultLogger().setLevel(Level.ERROR);
-							IQuerySpecification<?> specification = TransitiveSubstatesWithCheck3QuerySpecification.instance();
+							IQuerySpecification<?> specification = TransitiveSubstatesWithCheck3.instance();
 							MeasurementData measurementData = measureSingleQuery(specification, Collections.emptyList());
 							print(Collections.singletonList(measurementData), MeasurementData.getTimeCSVFields(), planFilePath);
 						} catch (Exception e1) {
@@ -148,7 +162,6 @@ public class MagicDrawPerformancePlugin extends com.nomagic.magicdraw.plugins.Pl
 						}
 					}	
 				});
-				manager.addCategory(category);
 			}
 		});
 
@@ -282,7 +295,7 @@ public class MagicDrawPerformancePlugin extends com.nomagic.magicdraw.plugins.Pl
 					}
 				}).withStrictNotificationMode(false);
 		ViatraQueryEngineOptions engineOptions = ViatraQueryEngineOptions.defineOptions()
-				.withDefaultBackend(LocalSearchBackendFactory.INSTANCE).build();
+				.withDefaultBackend(LocalSearchGenericBackendFactory.INSTANCE).build();
 		AdvancedViatraQueryEngine engine = AdvancedViatraQueryEngine.createUnmanagedEngine(
 				new EMFScope(Application.getInstance().getProject().getModel(), baseIndexOptions), engineOptions);
 		return engine;
@@ -300,7 +313,7 @@ public class MagicDrawPerformancePlugin extends com.nomagic.magicdraw.plugins.Pl
 				}).withStrictNotificationMode(false);
 		QueryEvaluationHint hints = getHints(patternNames);
 		ViatraQueryEngineOptions engineOptions = ViatraQueryEngineOptions.defineOptions()
-				.withDefaultBackend(LocalSearchBackendFactory.INSTANCE).withDefaultHint(hints).build();
+				.withDefaultBackend(LocalSearchGenericBackendFactory.INSTANCE).withDefaultHint(hints).build();
 		AdvancedViatraQueryEngine engine = AdvancedViatraQueryEngine.createUnmanagedEngine(
 				new EMFScope(Application.getInstance().getProject().getModel(), baseIndexOptions), engineOptions);
 		return engine;
@@ -338,7 +351,7 @@ public class MagicDrawPerformancePlugin extends com.nomagic.magicdraw.plugins.Pl
 	}
 	
 	private LocalSearchProfilerAdapter createProfiler(AdvancedViatraQueryEngine engine) throws ViatraQueryException {
-		LocalSearchBackend queryBackend = (LocalSearchBackend) engine.getQueryBackend(LocalSearchBackendFactory.INSTANCE);
+		LocalSearchBackend queryBackend = (LocalSearchBackend) engine.getQueryBackend(LocalSearchGenericBackendFactory.INSTANCE);
 		LocalSearchProfilerAdapter profiler = new LocalSearchProfilerAdapter();
 		queryBackend.addAdapter(profiler);
 		return profiler;
@@ -430,6 +443,14 @@ public class MagicDrawPerformancePlugin extends com.nomagic.magicdraw.plugins.Pl
 	public void warmUpJvm() throws ViatraQueryException {
 		AdvancedViatraQueryEngine engine = createReteEngine();
 		for (IQuerySpecification<?> specification : WarmUpQueries.instance().getSpecifications()) {
+			specification.getMatcher(engine).getAllMatches();
+		}
+		engine.dispose();
+	}
+	
+	public void sysmlValidationJvm() throws ViatraQueryException {
+		AdvancedViatraQueryEngine engine = createReteEngine();
+		for (IQuerySpecification<?> specification : Sysml_validation_queries.instance().getSpecifications()) {
 			specification.getMatcher(engine).getAllMatches();
 		}
 		engine.dispose();

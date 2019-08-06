@@ -3,7 +3,10 @@ export MD_HOME=<MagicDraw Installation folder>
 export WORKSPACE=<The directory path that contains this file>
 
 # compile and execute benchmark
-mvn clean install -Dmd.home=$MD_HOME
+cd com.incquerylabs.magicdraw.benchmark
+./gradlew installDist
+./run.sh
+cd ..
 
 # clone and checkout MONDO-SAM for reporting scripts
 ./benchmark/dep-mondo-sam.sh
