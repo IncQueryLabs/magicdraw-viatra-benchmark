@@ -20,7 +20,7 @@ pipeline {
 				    cd com.incquerylabs.magicdraw.benchmark
 				    rm -rf build/dependency-cache
 				    ./gradlew clean
-				    ./gradlew installDist
+				    ./gradlew build assemble
 				'''
 			}
 		}
