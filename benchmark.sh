@@ -1,6 +1,7 @@
 #!/bin/bash
-export MD_HOME="D:\\git\magicdraw-viatra-benchmark-fork\\com.incquerylabs.magicdraw.benchmark\\build\\install"
-export WORKSPACE="D:\\git\\magicdraw-viatra-benchmark-fork"
+export WORKSPACE=<The directory path that contains this file>
+# MagicDraw Installation folder by default is "$WORKSPACE/com.incquerylabs.magicdraw.benchmark/build/install"
+export MD_HOME=<MagicDraw Installation folder>
 
 # compile and execute benchmark
 cd com.incquerylabs.magicdraw.benchmark
