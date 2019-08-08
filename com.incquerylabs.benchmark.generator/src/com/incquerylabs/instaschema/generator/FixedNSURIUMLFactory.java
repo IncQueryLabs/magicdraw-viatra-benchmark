@@ -1,5 +1,6 @@
 package com.incquerylabs.instaschema.generator;
 
+import com.nomagic.annotation.InternalApi;
 import com.nomagic.uml2.ext.jmi.reflect.AbstractRepository;
 import com.nomagic.uml2.ext.magicdraw.actions.mdbasicactions.CallBehaviorAction;
 import com.nomagic.uml2.ext.magicdraw.actions.mdbasicactions.CallOperationAction;
@@ -233,18 +234,22 @@ import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
+@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+@Deprecated
 public class FixedNSURIUMLFactory extends EFactoryImpl implements UMLFactory {
 	private volatile AbstractRepository repository;
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public static synchronized UMLFactory init() {
 		try {
-			UMLFactory exception = (UMLFactory) Registry.INSTANCE
-					.getEFactory("http://www.nomagic.com/magicdraw/UML/2.5.0");
-			if (exception != null) {
-				return exception;
+			UMLFactory theUMLFactory = (UMLFactory) Registry.INSTANCE
+					.getEFactory("http://www.nomagic.com/magicdraw/UML/2.5.1");
+			if (theUMLFactory != null) {
+				return theUMLFactory;
 			}
-		} catch (Exception arg0) {
-			EcorePlugin.INSTANCE.log(arg0);
+		} catch (Exception var1) {
+			EcorePlugin.INSTANCE.log(var1);
 		}
 
 		return new FixedNSURIUMLFactory();
@@ -254,549 +259,551 @@ public class FixedNSURIUMLFactory extends EFactoryImpl implements UMLFactory {
 		this.repository = repository;
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public AbstractRepository getRepository() {
 		return (AbstractRepository) (this.repository == null ? DummyRepository.DUMMY_REPOSITORY : this.repository);
 	}
 
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case 0:
-			return this.createVariable();
-		case 1:
-		case 2:
-		case 3:
-		case 4:
-		case 7:
-		case 8:
-		case 9:
-		case 12:
-		case 14:
-		case 15:
-		case 17:
-		case 18:
-		case 24:
-		case 25:
-		case 27:
-		case 28:
-		case 30:
-		case 32:
-		case 33:
-		case 34:
-		case 35:
-		case 37:
-		case 38:
-		case 42:
-		case 43:
-		case 45:
-		case 58:
-		case 59:
-		case 61:
-		case 64:
-		case 66:
-		case 72:
-		case 73:
-		case 78:
-		case 79:
-		case 83:
-		case 84:
-		case 96:
-		case 101:
-		case 104:
-		case 111:
-		case 114:
-		case 129:
-		case 149:
-		case 161:
-		case 171:
-		case 173:
-		case 208:
-		case 218:
-		default:
-			throw new IllegalArgumentException("The class \'" + eClass.getName() + "\' is not a valid classifier");
-		case 5:
-			return this.createComment();
-		case 6:
-			return this.createInstanceSpecification();
-		case 10:
-			return this.createTemplateParameter();
-		case 11:
-			return this.createTemplateSignature();
-		case 13:
-			return this.createTemplateBinding();
-		case 16:
-			return this.createInformationFlow();
-		case 19:
-			return this.createElementImport();
-		case 20:
-			return this.createProfile();
-		case 21:
-			return this.createPackage();
-		case 22:
-			return this.createStereotype();
-		case 23:
-			return this.createClass();
-		case 26:
-			return this.createParameter();
-		case 29:
-			return this.createLifeline();
-		case 31:
-			return this.createInteraction();
-		case 36:
-			return this.createActivity();
-		case 39:
-			return this.createActivityPartition();
-		case 40:
-			return this.createStructuredActivityNode();
-		case 41:
-			return this.createInputPin();
-		case 44:
-			return this.createState();
-		case 46:
-			return this.createRegion();
-		case 47:
-			return this.createStateMachine();
-		case 48:
-			return this.createPseudostate();
-		case 49:
-			return this.createConnectionPointReference();
-		case 50:
-			return this.createTransition();
-		case 51:
-			return this.createConstraint();
-		case 52:
-			return this.createExtend();
-		case 53:
-			return this.createUseCase();
-		case 54:
-			return this.createExtensionPoint();
-		case 55:
-			return this.createInclude();
-		case 56:
-			return this.createProtocolTransition();
-		case 57:
-			return this.createOperation();
-		case 60:
-			return this.createParameterSet();
-		case 62:
-			return this.createAssociation();
-		case 63:
-			return this.createProperty();
-		case 65:
-			return this.createSlot();
-		case 67:
-			return this.createDataType();
-		case 68:
-			return this.createInterface();
-		case 69:
-			return this.createReception();
-		case 70:
-			return this.createSignal();
-		case 71:
-			return this.createSignalEvent();
-		case 74:
-			return this.createTrigger();
-		case 75:
-			return this.createPort();
-		case 76:
-			return this.createProtocolStateMachine();
-		case 77:
-			return this.createProtocolConformance();
-		case 80:
-			return this.createConnector();
-		case 81:
-			return this.createConnectorEnd();
-		case 82:
-			return this.createMessage();
-		case 85:
-			return this.createAcceptEventAction();
-		case 86:
-			return this.createOutputPin();
-		case 87:
-			return this.createReadExtentAction();
-		case 88:
-			return this.createConditionalNode();
-		case 89:
-			return this.createClause();
-		case 90:
-			return this.createLoopNode();
-		case 91:
-			return this.createReduceAction();
-		case 92:
-			return this.createCreateObjectAction();
-		case 93:
-			return this.createUnmarshallAction();
-		case 94:
-			return this.createOpaqueAction();
-		case 95:
-			return this.createReadLinkAction();
-		case 97:
-			return this.createLinkEndData();
-		case 98:
-			return this.createQualifierValue();
-		case 99:
-			return this.createReadLinkObjectEndAction();
-		case 100:
-			return this.createAcceptCallAction();
-		case 102:
-			return this.createCreateLinkObjectAction();
-		case 103:
-			return this.createCreateLinkAction();
-		case 105:
-			return this.createLinkEndCreationData();
-		case 106:
-			return this.createReadStructuralFeatureAction();
-		case 107:
-			return this.createClearStructuralFeatureAction();
-		case 108:
-			return this.createValueSpecificationAction();
-		case 109:
-			return this.createTestIdentityAction();
-		case 110:
-			return this.createReadIsClassifiedObjectAction();
-		case 112:
-			return this.createReadSelfAction();
-		case 113:
-			return this.createReadVariableAction();
-		case 115:
-			return this.createReadLinkObjectEndQualifierAction();
-		case 116:
-			return this.createReplyAction();
-		case 117:
-			return this.createSendSignalAction();
-		case 118:
-			return this.createBroadcastSignalAction();
-		case 119:
-			return this.createInterfaceRealization();
-		case 120:
-			return this.createRealization();
-		case 121:
-			return this.createAbstraction();
-		case 122:
-			return this.createDependency();
-		case 123:
-			return this.createCollaborationUse();
-		case 124:
-			return this.createCollaboration();
-		case 125:
-			return this.createOpaqueExpression();
-		case 126:
-			return this.createComponent();
-		case 127:
-			return this.createComponentRealization();
-		case 128:
-			return this.createArtifact();
-		case 130:
-			return this.createDeployment();
-		case 131:
-			return this.createDeploymentSpecification();
-		case 132:
-			return this.createManifestation();
-		case 133:
-			return this.createInteractionUse();
-		case 134:
-			return this.createGate();
-		case 135:
-			return this.createCombinedFragment();
-		case 136:
-			return this.createInteractionOperand();
-		case 137:
-			return this.createInteractionConstraint();
-		case 138:
-			return this.createClearAssociationAction();
-		case 139:
-			return this.createOperationTemplateParameter();
-		case 140:
-			return this.createCallOperationAction();
-		case 141:
-			return this.createCallEvent();
-		case 142:
-			return this.createStateInvariant();
-		case 143:
-			return this.createExceptionHandler();
-		case 144:
-			return this.createSendObjectAction();
-		case 145:
-			return this.createAddStructuralFeatureValueAction();
-		case 146:
-			return this.createRemoveStructuralFeatureValueAction();
-		case 147:
-			return this.createStartObjectBehaviorAction();
-		case 148:
-			return this.createRemoveVariableValueAction();
-		case 150:
-			return this.createDestroyObjectAction();
-		case 151:
-			return this.createReclassifyObjectAction();
-		case 152:
-			return this.createRaiseExceptionAction();
-		case 153:
-			return this.createLinkEndDestructionData();
-		case 154:
-			return this.createDestroyLinkAction();
-		case 155:
-			return this.createAddVariableValueAction();
-		case 156:
-			return this.createStartClassifierBehaviorAction();
-		case 157:
-			return this.createInterruptibleActivityRegion();
-		case 158:
-			return this.createSequenceNode();
-		case 159:
-			return this.createActionInputPin();
-		case 160:
-			return this.createActionExecutionSpecification();
-		case 162:
-			return this.createOccurrenceSpecification();
-		case 163:
-			return this.createGeneralOrdering();
-		case 164:
-			return this.createExecutionOccurrenceSpecification();
-		case 165:
-			return this.createPartDecomposition();
-		case 166:
-			return this.createValuePin();
-		case 167:
-			return this.createInterval();
-		case 168:
-			return this.createIntervalConstraint();
-		case 169:
-			return this.createChangeEvent();
-		case 170:
-			return this.createJoinNode();
-		case 172:
-			return this.createDuration();
-		case 174:
-			return this.createTimeExpression();
-		case 175:
-			return this.createTimeInterval();
-		case 176:
-			return this.createTimeConstraint();
-		case 177:
-			return this.createTimeEvent();
-		case 178:
-			return this.createDurationInterval();
-		case 179:
-			return this.createDurationConstraint();
-		case 180:
-			return this.createExpression();
-		case 181:
-			return this.createActivityParameterNode();
-		case 182:
-			return this.createObjectFlow();
-		case 183:
-			return this.createDecisionNode();
-		case 184:
-			return this.createBehaviorExecutionSpecification();
-		case 185:
-			return this.createCallBehaviorAction();
-		case 186:
-			return this.createExtension();
-		case 187:
-			return this.createExtensionEnd();
-		case 188:
-			return this.createImage();
-		case 189:
-			return this.createPackageMerge();
-		case 190:
-			return this.createProfileApplication();
-		case 191:
-			return this.createPackageImport();
-		case 192:
-			return this.createDiagram();
-		case 193:
-			return this.createGeneralization();
-		case 194:
-			return this.createGeneralizationSet();
-		case 195:
-			return this.createRedefinableTemplateSignature();
-		case 196:
-			return this.createSubstitution();
-		case 197:
-			return this.createClassifierTemplateParameter();
-		case 198:
-			return this.createInformationItem();
-		case 199:
-			return this.createTemplateParameterSubstitution();
-		case 200:
-			return this.createInstanceValue();
-		case 201:
-			return this.createElementValue();
-		case 202:
-			return this.createStringExpression();
-		case 203:
-			return this.createConsiderIgnoreFragment();
-		case 204:
-			return this.createTimeObservation();
-		case 205:
-			return this.createDurationObservation();
-		case 206:
-			return this.createConnectableElementTemplateParameter();
-		case 207:
-			return this.createLiteralInteger();
-		case 209:
-			return this.createEnumerationLiteral();
-		case 210:
-			return this.createEnumeration();
-		case 211:
-			return this.createFinalState();
-		case 212:
-			return this.createInitialNode();
-		case 213:
-			return this.createFunctionBehavior();
-		case 214:
-			return this.createOpaqueBehavior();
-		case 215:
-			return this.createDestructionOccurrenceSpecification();
-		case 216:
-			return this.createMessageOccurrenceSpecification();
-		case 217:
-			return this.createLiteralString();
-		case 219:
-			return this.createExecutionEnvironment();
-		case 220:
-			return this.createNode();
-		case 221:
-			return this.createDataStoreNode();
-		case 222:
-			return this.createCentralBufferNode();
-		case 223:
-			return this.createActivityFinalNode();
-		case 224:
-			return this.createLiteralBoolean();
-		case 225:
-			return this.createModel();
-		case 226:
-			return this.createCommunicationPath();
-		case 227:
-			return this.createContinuation();
-		case 228:
-			return this.createExpansionNode();
-		case 229:
-			return this.createExpansionRegion();
-		case 230:
-			return this.createLiteralNull();
-		case 231:
-			return this.createLiteralUnlimitedNatural();
-		case 232:
-			return this.createLiteralReal();
-		case 233:
-			return this.createAnyReceiveEvent();
-		case 234:
-			return this.createForkNode();
-		case 235:
-			return this.createControlFlow();
-		case 236:
-			return this.createPrimitiveType();
-		case 237:
-			return this.createUsage();
-		case 238:
-			return this.createFlowFinalNode();
-		case 239:
-			return this.createActor();
-		case 240:
-			return this.createAssociationClass();
-		case 241:
-			return this.createDevice();
-		case 242:
-			return this.createMergeNode();
-		case 243:
-			return this.createClearVariableAction();
+			case 0 :
+				return this.createVariable();
+			case 1 :
+			case 2 :
+			case 3 :
+			case 4 :
+			case 7 :
+			case 8 :
+			case 9 :
+			case 12 :
+			case 14 :
+			case 15 :
+			case 17 :
+			case 18 :
+			case 24 :
+			case 25 :
+			case 27 :
+			case 28 :
+			case 30 :
+			case 32 :
+			case 33 :
+			case 34 :
+			case 35 :
+			case 37 :
+			case 38 :
+			case 42 :
+			case 43 :
+			case 45 :
+			case 58 :
+			case 59 :
+			case 61 :
+			case 64 :
+			case 66 :
+			case 72 :
+			case 73 :
+			case 78 :
+			case 79 :
+			case 83 :
+			case 84 :
+			case 96 :
+			case 101 :
+			case 104 :
+			case 111 :
+			case 114 :
+			case 129 :
+			case 149 :
+			case 161 :
+			case 171 :
+			case 173 :
+			case 208 :
+			case 218 :
+			default :
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			case 5 :
+				return this.createComment();
+			case 6 :
+				return this.createInstanceSpecification();
+			case 10 :
+				return this.createTemplateParameter();
+			case 11 :
+				return this.createTemplateSignature();
+			case 13 :
+				return this.createTemplateBinding();
+			case 16 :
+				return this.createInformationFlow();
+			case 19 :
+				return this.createElementImport();
+			case 20 :
+				return this.createProfile();
+			case 21 :
+				return this.createPackage();
+			case 22 :
+				return this.createStereotype();
+			case 23 :
+				return this.createClass();
+			case 26 :
+				return this.createParameter();
+			case 29 :
+				return this.createLifeline();
+			case 31 :
+				return this.createInteraction();
+			case 36 :
+				return this.createActivity();
+			case 39 :
+				return this.createActivityPartition();
+			case 40 :
+				return this.createStructuredActivityNode();
+			case 41 :
+				return this.createInputPin();
+			case 44 :
+				return this.createState();
+			case 46 :
+				return this.createRegion();
+			case 47 :
+				return this.createStateMachine();
+			case 48 :
+				return this.createPseudostate();
+			case 49 :
+				return this.createConnectionPointReference();
+			case 50 :
+				return this.createTransition();
+			case 51 :
+				return this.createConstraint();
+			case 52 :
+				return this.createExtend();
+			case 53 :
+				return this.createUseCase();
+			case 54 :
+				return this.createExtensionPoint();
+			case 55 :
+				return this.createInclude();
+			case 56 :
+				return this.createProtocolTransition();
+			case 57 :
+				return this.createOperation();
+			case 60 :
+				return this.createParameterSet();
+			case 62 :
+				return this.createAssociation();
+			case 63 :
+				return this.createProperty();
+			case 65 :
+				return this.createSlot();
+			case 67 :
+				return this.createDataType();
+			case 68 :
+				return this.createInterface();
+			case 69 :
+				return this.createReception();
+			case 70 :
+				return this.createSignal();
+			case 71 :
+				return this.createSignalEvent();
+			case 74 :
+				return this.createTrigger();
+			case 75 :
+				return this.createPort();
+			case 76 :
+				return this.createProtocolStateMachine();
+			case 77 :
+				return this.createProtocolConformance();
+			case 80 :
+				return this.createConnector();
+			case 81 :
+				return this.createConnectorEnd();
+			case 82 :
+				return this.createMessage();
+			case 85 :
+				return this.createAcceptEventAction();
+			case 86 :
+				return this.createOutputPin();
+			case 87 :
+				return this.createReadExtentAction();
+			case 88 :
+				return this.createConditionalNode();
+			case 89 :
+				return this.createClause();
+			case 90 :
+				return this.createLoopNode();
+			case 91 :
+				return this.createReduceAction();
+			case 92 :
+				return this.createCreateObjectAction();
+			case 93 :
+				return this.createUnmarshallAction();
+			case 94 :
+				return this.createOpaqueAction();
+			case 95 :
+				return this.createReadLinkAction();
+			case 97 :
+				return this.createLinkEndData();
+			case 98 :
+				return this.createQualifierValue();
+			case 99 :
+				return this.createReadLinkObjectEndAction();
+			case 100 :
+				return this.createAcceptCallAction();
+			case 102 :
+				return this.createCreateLinkObjectAction();
+			case 103 :
+				return this.createCreateLinkAction();
+			case 105 :
+				return this.createLinkEndCreationData();
+			case 106 :
+				return this.createReadStructuralFeatureAction();
+			case 107 :
+				return this.createClearStructuralFeatureAction();
+			case 108 :
+				return this.createValueSpecificationAction();
+			case 109 :
+				return this.createTestIdentityAction();
+			case 110 :
+				return this.createReadIsClassifiedObjectAction();
+			case 112 :
+				return this.createReadSelfAction();
+			case 113 :
+				return this.createReadVariableAction();
+			case 115 :
+				return this.createReadLinkObjectEndQualifierAction();
+			case 116 :
+				return this.createReplyAction();
+			case 117 :
+				return this.createSendSignalAction();
+			case 118 :
+				return this.createBroadcastSignalAction();
+			case 119 :
+				return this.createInterfaceRealization();
+			case 120 :
+				return this.createRealization();
+			case 121 :
+				return this.createAbstraction();
+			case 122 :
+				return this.createDependency();
+			case 123 :
+				return this.createCollaborationUse();
+			case 124 :
+				return this.createCollaboration();
+			case 125 :
+				return this.createOpaqueExpression();
+			case 126 :
+				return this.createComponent();
+			case 127 :
+				return this.createComponentRealization();
+			case 128 :
+				return this.createArtifact();
+			case 130 :
+				return this.createDeployment();
+			case 131 :
+				return this.createDeploymentSpecification();
+			case 132 :
+				return this.createManifestation();
+			case 133 :
+				return this.createInteractionUse();
+			case 134 :
+				return this.createGate();
+			case 135 :
+				return this.createCombinedFragment();
+			case 136 :
+				return this.createInteractionOperand();
+			case 137 :
+				return this.createInteractionConstraint();
+			case 138 :
+				return this.createClearAssociationAction();
+			case 139 :
+				return this.createOperationTemplateParameter();
+			case 140 :
+				return this.createCallOperationAction();
+			case 141 :
+				return this.createCallEvent();
+			case 142 :
+				return this.createStateInvariant();
+			case 143 :
+				return this.createExceptionHandler();
+			case 144 :
+				return this.createSendObjectAction();
+			case 145 :
+				return this.createAddStructuralFeatureValueAction();
+			case 146 :
+				return this.createRemoveStructuralFeatureValueAction();
+			case 147 :
+				return this.createStartObjectBehaviorAction();
+			case 148 :
+				return this.createRemoveVariableValueAction();
+			case 150 :
+				return this.createDestroyObjectAction();
+			case 151 :
+				return this.createReclassifyObjectAction();
+			case 152 :
+				return this.createRaiseExceptionAction();
+			case 153 :
+				return this.createLinkEndDestructionData();
+			case 154 :
+				return this.createDestroyLinkAction();
+			case 155 :
+				return this.createAddVariableValueAction();
+			case 156 :
+				return this.createStartClassifierBehaviorAction();
+			case 157 :
+				return this.createInterruptibleActivityRegion();
+			case 158 :
+				return this.createSequenceNode();
+			case 159 :
+				return this.createActionInputPin();
+			case 160 :
+				return this.createActionExecutionSpecification();
+			case 162 :
+				return this.createOccurrenceSpecification();
+			case 163 :
+				return this.createGeneralOrdering();
+			case 164 :
+				return this.createExecutionOccurrenceSpecification();
+			case 165 :
+				return this.createPartDecomposition();
+			case 166 :
+				return this.createValuePin();
+			case 167 :
+				return this.createInterval();
+			case 168 :
+				return this.createIntervalConstraint();
+			case 169 :
+				return this.createChangeEvent();
+			case 170 :
+				return this.createJoinNode();
+			case 172 :
+				return this.createDuration();
+			case 174 :
+				return this.createTimeExpression();
+			case 175 :
+				return this.createTimeInterval();
+			case 176 :
+				return this.createTimeConstraint();
+			case 177 :
+				return this.createTimeEvent();
+			case 178 :
+				return this.createDurationInterval();
+			case 179 :
+				return this.createDurationConstraint();
+			case 180 :
+				return this.createExpression();
+			case 181 :
+				return this.createActivityParameterNode();
+			case 182 :
+				return this.createObjectFlow();
+			case 183 :
+				return this.createDecisionNode();
+			case 184 :
+				return this.createBehaviorExecutionSpecification();
+			case 185 :
+				return this.createCallBehaviorAction();
+			case 186 :
+				return this.createExtension();
+			case 187 :
+				return this.createExtensionEnd();
+			case 188 :
+				return this.createImage();
+			case 189 :
+				return this.createPackageMerge();
+			case 190 :
+				return this.createProfileApplication();
+			case 191 :
+				return this.createPackageImport();
+			case 192 :
+				return this.createDiagram();
+			case 193 :
+				return this.createGeneralization();
+			case 194 :
+				return this.createGeneralizationSet();
+			case 195 :
+				return this.createRedefinableTemplateSignature();
+			case 196 :
+				return this.createSubstitution();
+			case 197 :
+				return this.createClassifierTemplateParameter();
+			case 198 :
+				return this.createInformationItem();
+			case 199 :
+				return this.createTemplateParameterSubstitution();
+			case 200 :
+				return this.createInstanceValue();
+			case 201 :
+				return this.createElementValue();
+			case 202 :
+				return this.createStringExpression();
+			case 203 :
+				return this.createConsiderIgnoreFragment();
+			case 204 :
+				return this.createTimeObservation();
+			case 205 :
+				return this.createDurationObservation();
+			case 206 :
+				return this.createConnectableElementTemplateParameter();
+			case 207 :
+				return this.createLiteralInteger();
+			case 209 :
+				return this.createEnumerationLiteral();
+			case 210 :
+				return this.createEnumeration();
+			case 211 :
+				return this.createFinalState();
+			case 212 :
+				return this.createInitialNode();
+			case 213 :
+				return this.createFunctionBehavior();
+			case 214 :
+				return this.createOpaqueBehavior();
+			case 215 :
+				return this.createDestructionOccurrenceSpecification();
+			case 216 :
+				return this.createMessageOccurrenceSpecification();
+			case 217 :
+				return this.createLiteralString();
+			case 219 :
+				return this.createExecutionEnvironment();
+			case 220 :
+				return this.createNode();
+			case 221 :
+				return this.createDataStoreNode();
+			case 222 :
+				return this.createCentralBufferNode();
+			case 223 :
+				return this.createActivityFinalNode();
+			case 224 :
+				return this.createLiteralBoolean();
+			case 225 :
+				return this.createModel();
+			case 226 :
+				return this.createCommunicationPath();
+			case 227 :
+				return this.createContinuation();
+			case 228 :
+				return this.createExpansionNode();
+			case 229 :
+				return this.createExpansionRegion();
+			case 230 :
+				return this.createLiteralNull();
+			case 231 :
+				return this.createLiteralUnlimitedNatural();
+			case 232 :
+				return this.createLiteralReal();
+			case 233 :
+				return this.createAnyReceiveEvent();
+			case 234 :
+				return this.createForkNode();
+			case 235 :
+				return this.createControlFlow();
+			case 236 :
+				return this.createPrimitiveType();
+			case 237 :
+				return this.createUsage();
+			case 238 :
+				return this.createFlowFinalNode();
+			case 239 :
+				return this.createActor();
+			case 240 :
+				return this.createAssociationClass();
+			case 241 :
+				return this.createDevice();
+			case 242 :
+				return this.createMergeNode();
+			case 243 :
+				return this.createClearVariableAction();
 		}
 	}
 
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-		case 245:
-			return this.createVisibilityKindFromString(eDataType, initialValue);
-		case 246:
-			return this.createPseudostateKindFromString(eDataType, initialValue);
-		case 247:
-			return this.createCallConcurrencyKindFromString(eDataType, initialValue);
-		case 248:
-			return this.createAggregationKindFromString(eDataType, initialValue);
-		case 249:
-			return this.createConnectorKindFromString(eDataType, initialValue);
-		case 250:
-			return this.createMessageKindFromString(eDataType, initialValue);
-		case 251:
-			return this.createMessageSortFromString(eDataType, initialValue);
-		case 252:
-			return this.createInteractionOperatorKindFromString(eDataType, initialValue);
-		case 253:
-			return this.createTransitionKindFromString(eDataType, initialValue);
-		case 254:
-			return this.createObjectNodeOrderingKindFromString(eDataType, initialValue);
-		case 255:
-			return this.createParameterDirectionKindFromString(eDataType, initialValue);
-		case 256:
-			return this.createParameterEffectKindFromString(eDataType, initialValue);
-		case 257:
-			return this.createExpansionKindFromString(eDataType, initialValue);
-		case 258:
-			return this.createStringFromString(eDataType, initialValue);
-		case 259:
-			return this.createBooleanFromString(eDataType, initialValue);
-		case 260:
-			return this.createIntegerFromString(eDataType, initialValue);
-		case 261:
-			return this.createUnlimitedNaturalFromString(eDataType, initialValue);
-		case 262:
-			return this.createRealFromString(eDataType, initialValue);
-		case 263:
-			return this.createParameterParameterEffectKindFromString(eDataType, initialValue);
-		case 264:
-			return this.createNamedElementVisibilityKindFromString(eDataType, initialValue);
-		default:
-			throw new IllegalArgumentException(
-					"The datatype \'" + eDataType.getName() + "\' is not a valid classifier");
+			case 245 :
+				return this.createVisibilityKindFromString(eDataType, initialValue);
+			case 246 :
+				return this.createPseudostateKindFromString(eDataType, initialValue);
+			case 247 :
+				return this.createCallConcurrencyKindFromString(eDataType, initialValue);
+			case 248 :
+				return this.createAggregationKindFromString(eDataType, initialValue);
+			case 249 :
+				return this.createConnectorKindFromString(eDataType, initialValue);
+			case 250 :
+				return this.createMessageKindFromString(eDataType, initialValue);
+			case 251 :
+				return this.createMessageSortFromString(eDataType, initialValue);
+			case 252 :
+				return this.createInteractionOperatorKindFromString(eDataType, initialValue);
+			case 253 :
+				return this.createTransitionKindFromString(eDataType, initialValue);
+			case 254 :
+				return this.createObjectNodeOrderingKindFromString(eDataType, initialValue);
+			case 255 :
+				return this.createParameterDirectionKindFromString(eDataType, initialValue);
+			case 256 :
+				return this.createParameterEffectKindFromString(eDataType, initialValue);
+			case 257 :
+				return this.createExpansionKindFromString(eDataType, initialValue);
+			case 258 :
+				return this.createStringFromString(eDataType, initialValue);
+			case 259 :
+				return this.createBooleanFromString(eDataType, initialValue);
+			case 260 :
+				return this.createIntegerFromString(eDataType, initialValue);
+			case 261 :
+				return this.createUnlimitedNaturalFromString(eDataType, initialValue);
+			case 262 :
+				return this.createRealFromString(eDataType, initialValue);
+			case 263 :
+				return this.createParameterParameterEffectKindFromString(eDataType, initialValue);
+			case 264 :
+				return this.createNamedElementVisibilityKindFromString(eDataType, initialValue);
+			default :
+				throw new IllegalArgumentException(
+						"The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-		case 245:
-			return this.convertVisibilityKindToString(eDataType, instanceValue);
-		case 246:
-			return this.convertPseudostateKindToString(eDataType, instanceValue);
-		case 247:
-			return this.convertCallConcurrencyKindToString(eDataType, instanceValue);
-		case 248:
-			return this.convertAggregationKindToString(eDataType, instanceValue);
-		case 249:
-			return this.convertConnectorKindToString(eDataType, instanceValue);
-		case 250:
-			return this.convertMessageKindToString(eDataType, instanceValue);
-		case 251:
-			return this.convertMessageSortToString(eDataType, instanceValue);
-		case 252:
-			return this.convertInteractionOperatorKindToString(eDataType, instanceValue);
-		case 253:
-			return this.convertTransitionKindToString(eDataType, instanceValue);
-		case 254:
-			return this.convertObjectNodeOrderingKindToString(eDataType, instanceValue);
-		case 255:
-			return this.convertParameterDirectionKindToString(eDataType, instanceValue);
-		case 256:
-			return this.convertParameterEffectKindToString(eDataType, instanceValue);
-		case 257:
-			return this.convertExpansionKindToString(eDataType, instanceValue);
-		case 258:
-			return this.convertStringToString(eDataType, instanceValue);
-		case 259:
-			return this.convertBooleanToString(eDataType, instanceValue);
-		case 260:
-			return this.convertIntegerToString(eDataType, instanceValue);
-		case 261:
-			return this.convertUnlimitedNaturalToString(eDataType, instanceValue);
-		case 262:
-			return this.convertRealToString(eDataType, instanceValue);
-		case 263:
-			return this.convertParameterParameterEffectKindToString(eDataType, instanceValue);
-		case 264:
-			return this.convertNamedElementVisibilityKindToString(eDataType, instanceValue);
-		default:
-			throw new IllegalArgumentException(
-					"The datatype \'" + eDataType.getName() + "\' is not a valid classifier");
+			case 245 :
+				return this.convertVisibilityKindToString(eDataType, instanceValue);
+			case 246 :
+				return this.convertPseudostateKindToString(eDataType, instanceValue);
+			case 247 :
+				return this.convertCallConcurrencyKindToString(eDataType, instanceValue);
+			case 248 :
+				return this.convertAggregationKindToString(eDataType, instanceValue);
+			case 249 :
+				return this.convertConnectorKindToString(eDataType, instanceValue);
+			case 250 :
+				return this.convertMessageKindToString(eDataType, instanceValue);
+			case 251 :
+				return this.convertMessageSortToString(eDataType, instanceValue);
+			case 252 :
+				return this.convertInteractionOperatorKindToString(eDataType, instanceValue);
+			case 253 :
+				return this.convertTransitionKindToString(eDataType, instanceValue);
+			case 254 :
+				return this.convertObjectNodeOrderingKindToString(eDataType, instanceValue);
+			case 255 :
+				return this.convertParameterDirectionKindToString(eDataType, instanceValue);
+			case 256 :
+				return this.convertParameterEffectKindToString(eDataType, instanceValue);
+			case 257 :
+				return this.convertExpansionKindToString(eDataType, instanceValue);
+			case 258 :
+				return this.convertStringToString(eDataType, instanceValue);
+			case 259 :
+				return this.convertBooleanToString(eDataType, instanceValue);
+			case 260 :
+				return this.convertIntegerToString(eDataType, instanceValue);
+			case 261 :
+				return this.convertUnlimitedNaturalToString(eDataType, instanceValue);
+			case 262 :
+				return this.convertRealToString(eDataType, instanceValue);
+			case 263 :
+				return this.convertParameterParameterEffectKindToString(eDataType, instanceValue);
+			case 264 :
+				return this.convertNamedElementVisibilityKindToString(eDataType, instanceValue);
+			default :
+				throw new IllegalArgumentException(
+						"The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -1580,252 +1587,332 @@ public class FixedNSURIUMLFactory extends EFactoryImpl implements UMLFactory {
 		return this.getRepository().getElementsFactory().createClearVariableActionInstance();
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public VisibilityKind createVisibilityKindFromString(EDataType eDataType, String initialValue) {
 		VisibilityKindEnum result = VisibilityKindEnum.get(initialValue);
 		if (result == null) {
 			throw new IllegalArgumentException(
-					"The value \'" + initialValue + "\' is not a valid enumerator of \'" + eDataType.getName() + "\'");
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		} else {
 			return result;
 		}
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public String convertVisibilityKindToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public PseudostateKind createPseudostateKindFromString(EDataType eDataType, String initialValue) {
 		PseudostateKindEnum result = PseudostateKindEnum.get(initialValue);
 		if (result == null) {
 			throw new IllegalArgumentException(
-					"The value \'" + initialValue + "\' is not a valid enumerator of \'" + eDataType.getName() + "\'");
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		} else {
 			return result;
 		}
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public String convertPseudostateKindToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public CallConcurrencyKind createCallConcurrencyKindFromString(EDataType eDataType, String initialValue) {
 		CallConcurrencyKindEnum result = CallConcurrencyKindEnum.get(initialValue);
 		if (result == null) {
 			throw new IllegalArgumentException(
-					"The value \'" + initialValue + "\' is not a valid enumerator of \'" + eDataType.getName() + "\'");
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		} else {
 			return result;
 		}
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public String convertCallConcurrencyKindToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public MessageKind createMessageKindFromString(EDataType eDataType, String initialValue) {
 		MessageKindEnum result = MessageKindEnum.get(initialValue);
 		if (result == null) {
 			throw new IllegalArgumentException(
-					"The value \'" + initialValue + "\' is not a valid enumerator of \'" + eDataType.getName() + "\'");
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		} else {
 			return result;
 		}
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public String convertMessageKindToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public MessageSort createMessageSortFromString(EDataType eDataType, String initialValue) {
 		MessageSortEnum result = MessageSortEnum.get(initialValue);
 		if (result == null) {
 			throw new IllegalArgumentException(
-					"The value \'" + initialValue + "\' is not a valid enumerator of \'" + eDataType.getName() + "\'");
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		} else {
 			return result;
 		}
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public String convertMessageSortToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public InteractionOperatorKind createInteractionOperatorKindFromString(EDataType eDataType, String initialValue) {
 		InteractionOperatorKindEnum result = InteractionOperatorKindEnum.get(initialValue);
 		if (result == null) {
 			throw new IllegalArgumentException(
-					"The value \'" + initialValue + "\' is not a valid enumerator of \'" + eDataType.getName() + "\'");
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		} else {
 			return result;
 		}
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public String convertInteractionOperatorKindToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public ConnectorKind createConnectorKindFromString(EDataType eDataType, String initialValue) {
 		ConnectorKindEnum result = ConnectorKindEnum.get(initialValue);
 		if (result == null) {
 			throw new IllegalArgumentException(
-					"The value \'" + initialValue + "\' is not a valid enumerator of \'" + eDataType.getName() + "\'");
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		} else {
 			return result;
 		}
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public String convertConnectorKindToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public TransitionKind createTransitionKindFromString(EDataType eDataType, String initialValue) {
 		TransitionKindEnum result = TransitionKindEnum.get(initialValue);
 		if (result == null) {
 			throw new IllegalArgumentException(
-					"The value \'" + initialValue + "\' is not a valid enumerator of \'" + eDataType.getName() + "\'");
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		} else {
 			return result;
 		}
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public String convertTransitionKindToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public ObjectNodeOrderingKind createObjectNodeOrderingKindFromString(EDataType eDataType, String initialValue) {
 		ObjectNodeOrderingKindEnum result = ObjectNodeOrderingKindEnum.get(initialValue);
 		if (result == null) {
 			throw new IllegalArgumentException(
-					"The value \'" + initialValue + "\' is not a valid enumerator of \'" + eDataType.getName() + "\'");
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		} else {
 			return result;
 		}
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public String convertObjectNodeOrderingKindToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public AggregationKind createAggregationKindFromString(EDataType eDataType, String initialValue) {
 		AggregationKindEnum result = AggregationKindEnum.get(initialValue);
 		if (result == null) {
 			throw new IllegalArgumentException(
-					"The value \'" + initialValue + "\' is not a valid enumerator of \'" + eDataType.getName() + "\'");
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		} else {
 			return result;
 		}
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public String convertAggregationKindToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public ParameterDirectionKind createParameterDirectionKindFromString(EDataType eDataType, String initialValue) {
 		ParameterDirectionKindEnum result = ParameterDirectionKindEnum.get(initialValue);
 		if (result == null) {
 			throw new IllegalArgumentException(
-					"The value \'" + initialValue + "\' is not a valid enumerator of \'" + eDataType.getName() + "\'");
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		} else {
 			return result;
 		}
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public String convertParameterDirectionKindToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public ParameterEffectKind createParameterEffectKindFromString(EDataType eDataType, String initialValue) {
 		ParameterEffectKindEnum result = ParameterEffectKindEnum.get(initialValue);
 		if (result == null) {
 			throw new IllegalArgumentException(
-					"The value \'" + initialValue + "\' is not a valid enumerator of \'" + eDataType.getName() + "\'");
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		} else {
 			return result;
 		}
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public String convertParameterEffectKindToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public ExpansionKind createExpansionKindFromString(EDataType eDataType, String initialValue) {
 		ExpansionKindEnum result = ExpansionKindEnum.get(initialValue);
 		if (result == null) {
 			throw new IllegalArgumentException(
-					"The value \'" + initialValue + "\' is not a valid enumerator of \'" + eDataType.getName() + "\'");
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		} else {
 			return result;
 		}
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public String convertExpansionKindToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public String createStringFromString(EDataType eDataType, String initialValue) {
 		return (String) super.createFromString(eDataType, initialValue);
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public String convertStringToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public Boolean createBooleanFromString(EDataType eDataType, String initialValue) {
 		return (Boolean) super.createFromString(eDataType, initialValue);
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public String convertBooleanToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public Integer createIntegerFromString(EDataType eDataType, String initialValue) {
 		return (Integer) super.createFromString(eDataType, initialValue);
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public String convertIntegerToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public Integer createUnlimitedNaturalFromString(EDataType eDataType, String initialValue) {
 		return (Integer) super.createFromString(eDataType, initialValue);
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public String convertUnlimitedNaturalToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public Double createRealFromString(EDataType eDataType, String initialValue) {
 		return (Double) super.createFromString(eDataType, initialValue);
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public String convertRealToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public VisibilityKind createNamedElementVisibilityKindFromString(EDataType eDataType, String initialValue) {
 		VisibilityKindEnum result = VisibilityKindEnum.get(initialValue);
 		if (result == null) {
 			throw new IllegalArgumentException(
-					"The value \'" + initialValue + "\' is not a valid enumerator of \'" + eDataType.getName() + "\'");
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		} else {
 			return result;
 		}
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public String convertNamedElementVisibilityKindToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public ParameterEffectKind createParameterParameterEffectKindFromString(EDataType eDataType, String initialValue) {
 		ParameterEffectKindEnum result = ParameterEffectKindEnum.get(initialValue);
 		if (result == null) {
 			throw new IllegalArgumentException(
-					"The value \'" + initialValue + "\' is not a valid enumerator of \'" + eDataType.getName() + "\'");
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
 		} else {
 			return result;
 		}
 	}
 
+	@InternalApi(reason = "No Magic internal API. This code can change without any notification.")
+	@Deprecated
 	public String convertParameterParameterEffectKindToString(EDataType eDataType, Object instanceValue) {
 		return super.convertToString(eDataType, instanceValue);
 	}
@@ -1834,10 +1921,12 @@ public class FixedNSURIUMLFactory extends EFactoryImpl implements UMLFactory {
 		return (UMLPackage) this.getEPackage();
 	}
 
+	@Deprecated
 	public static UMLPackage getPackage() {
 		return UMLPackage.eINSTANCE;
 	}
 
+	@Deprecated
 	public static TASRepositoryImpl getDummyRepository() {
 		return DummyRepository.DUMMY_REPOSITORY;
 	}

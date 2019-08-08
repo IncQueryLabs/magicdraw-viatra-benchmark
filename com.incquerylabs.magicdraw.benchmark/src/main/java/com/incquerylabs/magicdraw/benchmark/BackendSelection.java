@@ -17,6 +17,7 @@ import com.incquerylabs.magicdraw.benchmark.incrementalqueries.IncrementalQuerie
 import com.incquerylabs.magicdraw.benchmark.incrementalqueries.ParentState;
 import com.incquerylabs.magicdraw.benchmark.queries.APerformanceQueries;
 import com.incquerylabs.magicdraw.benchmark.queries.IncomingTransitions;
+import com.incquerylabs.magicdraw.benchmark.queries.Sysml_validation_queries;
 import com.incquerylabs.magicdraw.benchmark.queries.TransitiveSubstatesWithCheck3;
 
 public enum BackendSelection {
@@ -30,7 +31,7 @@ public enum BackendSelection {
 	public IQuerySpecification<?> findQuery(BenchmarkParameters parameters) throws ViatraQueryException {
 		switch(this) {
 		case RETE:
-			return findQueryBySimpleName(APerformanceQueries.instance(), parameters.getQueryName());
+			return findQueryBySimpleName(Sysml_validation_queries.instance(), parameters.getQueryName());
 		case LOCALSEARCH:
 		case LOCAL_SEARCH_HINTS_CONDITION_FIRST:
 		case LOCAL_SEARCH_HINTS_TC_FIRST:

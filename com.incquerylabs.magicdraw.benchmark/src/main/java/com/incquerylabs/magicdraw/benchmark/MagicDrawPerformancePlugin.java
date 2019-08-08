@@ -16,7 +16,6 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.apache.log4j.Level;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EReference;
@@ -65,8 +64,6 @@ import com.nomagic.magicdraw.actions.MDAction;
 import com.nomagic.magicdraw.commandline.CommandLineActionManager;
 import com.nomagic.magicdraw.core.Application;
 
-import eu.mondo.sam.core.BenchmarkEngine;
-
 public class MagicDrawPerformancePlugin extends com.nomagic.magicdraw.plugins.Plugin {
 
 	public static boolean initialized = false;	
@@ -96,14 +93,29 @@ public class MagicDrawPerformancePlugin extends com.nomagic.magicdraw.plugins.Pl
 					category.setNested(true);
 					manager.addCategory(category);
 				}
-				
+
+				category.addAction(new MDAction("SysML_Benchmark", "SysML_Benchmark", null, null) {
+					@SuppressWarnings("unchecked")
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						try {
+							ViatraQueryLoggingUtil.getDefaultLogger().setLevel(Level.INFO);
+							final String resultFilePath = "D:\\git\\magicdraw-viatra-benchmark\\com.incquerylabs.magicdraw.benchmark\\results\\sysml_results.txt";
+							sysmlValidationJvm();
+							List<MeasurementData> measurementData = measureSysMLTimeAll();
+							print(measurementData, MeasurementData.getTimeCSVFields(), resultFilePath);
+//							final String memoryResultFilePath = "F:\\git\\magicdraw-tools\\com.incquerylabs.instaschema.performance\\results\\rete_results_memory.txt";
+//							measureReteMemoryAll(memoryResultFilePath);
+						} catch (Exception e1) {
+							e1.printStackTrace();
+						}
+					}
+				});
 				category.addAction(new MDAction("Query_Benchmark", "Query_Benchmark", null, null) {
 					@SuppressWarnings("unchecked")
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						try {
-							BenchmarkEngine engine = new BenchmarkEngine();
-							
 							ViatraQueryLoggingUtil.getDefaultLogger().setLevel(Level.ERROR);
 							final String resultFilePath = "D:\\git\\magicdraw-viatra-benchmark\\com.incquerylabs.magicdraw.benchmark\\results\\rete_results.txt";
 							warmUpJvm();
@@ -165,6 +177,14 @@ public class MagicDrawPerformancePlugin extends com.nomagic.magicdraw.plugins.Pl
 			}
 		});
 
+	}
+	
+	public List<MeasurementData> measureSysMLMemoryAll() throws ViatraQueryException {
+		return measureMemoryAll(returnSysMLQuerySpecifications(), EngineImpl.RETE);
+	}
+	
+	public List<MeasurementData> measureSysMLTimeAll() throws Exception {
+		return measureTimeAll(returnSysMLQuerySpecifications(), EngineImpl.RETE);
 	}
 	
 	public List<MeasurementData> measureReteMemoryAll() throws ViatraQueryException {
@@ -335,6 +355,13 @@ public class MagicDrawPerformancePlugin extends com.nomagic.magicdraw.plugins.Pl
 			}
 		}).build();
 	}	
+
+	private List<IQuerySpecification<?>> returnSysMLQuerySpecifications() throws ViatraQueryException {
+		final Set<IQuerySpecification<?>> specifications = Sysml_validation_queries.instance().getSpecifications();
+		List<IQuerySpecification<?>> specificationList = specifications.stream().collect(Collectors.toList());
+		specificationList.sort((a, b) -> a.getFullyQualifiedName().compareTo(b.getFullyQualifiedName()));
+		return specificationList;
+	}
 
 	private List<IQuerySpecification<?>> returnQuerySpecifications() throws ViatraQueryException {
 		final Set<IQuerySpecification<?>> specifications = APerformanceQueries.instance().getSpecifications();
