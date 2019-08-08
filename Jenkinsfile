@@ -1,7 +1,7 @@
 // Tell Jenkins how to build projects from this repository
 pipeline {
 	agent {
-		label 'magicdraw'
+		label 'performance'
 	} 
 
     // Keep only the last 15 builds
