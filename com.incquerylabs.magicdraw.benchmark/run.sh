@@ -1,8 +1,7 @@
 #!/bin/bash
 
 if [ -z "$MD_HOME" ]; then
-    echo "MD_HOME environment variable not set, please set it to the MagicDraw installation folder"
-    exit 1
+    export MD_HOME=$(pwd)/com.incquerylabs.magicdraw.benchmark/build/install
 fi
  
 if [ "$OS" = Windows_NT ]; then
@@ -73,6 +72,18 @@ BENCHMARK_RUNS=1
 fi
 echo "Number of runs: ${BENCHMARK_RUNS}"
 
+if [ -z "$BENCHMARK_TWC" ]; then
+BENCHMARK_TWC="localhost"
+fi
+
+if [ -z "$BENCHMARK_USER" ]; then
+BENCHMARK_USER="Administrator"
+fi
+
+if [ -z "$BENCHMARK_PASSWORD" ]; then
+BENCHMARK_PASSWORD="Administrator"
+fi
+
 if [ -z $WORKSPACE ]; then 
     OUTPUT_DIR="results"
 else 
@@ -109,7 +120,15 @@ do
 					-Dcom.nomagic.magicdraw.launcher=com.nomagic.magicdraw.commandline.CommandLineActionLauncher \
 					-Dcom.nomagic.magicdraw.commandline.action=com.incquerylabs.magicdraw.benchmark.PerformanceBenchmarkRunner \
 					-cp "$CP" \
-					com.nomagic.osgi.launcher.ProductionFrameworkLauncher "$@ -engine $engine -query $query -index $runIndex -size $size -model '${MD_HOME}/performance/inputs/TMT$size.mdzip' -warmup '${MD_HOME}/performance/inputs/Warmup.mdzip' -output '${OUTPUT_DIR}'"
+					com.nomagic.osgi.launcher.ProductionFrameworkLauncher \
+					"$@ -server $BENCHMARK_TWC \
+						-user $BENCHMARK_USER \
+						-password $BENCHMARK_PASSWORD \
+						-engine $engine \
+						-query $query -index $runIndex -size $size \
+						-model 'TMT' \
+						-warmup 'SysML_Validation_Test_Cases' \
+						-output '${OUTPUT_DIR}'"
 			done
 		done
 	done

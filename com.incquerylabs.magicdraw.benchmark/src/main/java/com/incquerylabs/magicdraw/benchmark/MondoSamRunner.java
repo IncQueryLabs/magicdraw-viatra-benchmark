@@ -9,6 +9,8 @@ import com.incquerylabs.magicdraw.benchmark.mondo.sam.SingleQueryScenario;
 import com.nomagic.magicdraw.core.Application;
 import com.nomagic.magicdraw.core.project.ProjectDescriptor;
 import com.nomagic.magicdraw.core.project.ProjectDescriptorsFactory;
+import com.nomagic.magicdraw.esi.EsiUtils;
+import com.nomagic.magicdraw.teamwork2.ServerLoginInfo;
 
 import eu.mondo.sam.core.BenchmarkEngine;
 import eu.mondo.sam.core.metrics.MemoryMetric;
@@ -23,13 +25,31 @@ public class MondoSamRunner {
 		this.parameters = parameters;
 	}
 
-	private static void openProject(String projectPath) {
+	private static void openProject(String projectPath, String server, String user, String password) {
+		
+		System.out.println("Logging into Teamwork Cloud");
+		EsiUtils.getTeamworkService().login(new ServerLoginInfo(server, user, password, false), true);
+		
 		System.out.println("Opening "+projectPath+" project...");
 		File file = new File(projectPath);
 		ProjectDescriptor descriptor = ProjectDescriptorsFactory.createProjectDescriptor(file.toURI());
+
+		try {
+			for (ProjectDescriptor projectDescriptor : EsiUtils.getRemoteProjectDescriptors())
+			{
+				if((projectDescriptor.getRepresentationString() + File.separator).equals(projectPath)) {
+					descriptor = projectDescriptor;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		Application.getInstance().getProjectsManager().loadProject(descriptor, true);
 		System.out.println("Project opened.");
 	}
+	
+	
 
 	@SuppressWarnings("deprecation")
 	public void runPerformanceMeasurement(boolean isWarmup) throws Exception {
@@ -42,7 +62,10 @@ public class MondoSamRunner {
 	    if (!queryBackend.canHandleParameters(parameters)) {
 	    		throw new InvalidBenchmarkParameterizationException("Invalid parameter configuration");
 	    }
-	    openProject(modelPath);
+	    String server = parameters.getServer();
+	    String user = parameters.getUser();
+	    String password = parameters.getPassword();
+	    openProject(modelPath, server, user, password);
 	    runBenchmark(queryBackend, resultPath, size, runIndex);
 	    Application.getInstance().getProjectsManager().closeProjectNoSave();
 	}
