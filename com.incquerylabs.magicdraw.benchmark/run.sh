@@ -1,8 +1,7 @@
 #!/bin/bash
- 
+
 if [ -z "$MD_HOME" ]; then
-    echo "MD_HOME environment variable not set, please set it to the MagicDraw installation folder"
-    exit 1
+    export MD_HOME=$(pwd)/com.incquerylabs.magicdraw.benchmark/build/install
 fi
  
 if [ "$OS" = Windows_NT ]; then
