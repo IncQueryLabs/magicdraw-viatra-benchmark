@@ -18,7 +18,7 @@ pipeline {
 		)
 
 		string( 
-			defaultValue: 300000,
+			defaultValue: '300000',
 			description: 'Comma separated list of model sizes to test (with a single space after each comma).',
 			name: 'BENCHMARK_SIZES' 
 		)
