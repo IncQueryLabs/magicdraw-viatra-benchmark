@@ -7,9 +7,7 @@ pipeline {
 	parameters {
 		string( 
 			defaultValue: 'RETE',
-			description: 'Comma separated list of engines to test (with a single space after each comma).
-Possible values:
-RETE, LOCAL_SEARCH, LOCAL_SEARCH_HINTS-CONDITION_FIRST, LOCAL_SEARCH_HINTS-TC_FIRST, HYBRID',
+			description: 'Comma separated list of engines to test (with a single space after each comma).',
 			name: 'BENCHMARK_ENGINES' 
 		)
 
@@ -21,9 +19,7 @@ RETE, LOCAL_SEARCH, LOCAL_SEARCH_HINTS-CONDITION_FIRST, LOCAL_SEARCH_HINTS-TC_FI
 
 		string( 
 			defaultValue: 300000,
-			description: 'Comma separated list of model sizes to test (with a single space after each comma).
-Possible values:
-300000, 540000, 780000, 1040000, 1200000',
+			description: 'Comma separated list of model sizes to test (with a single space after each comma).',
 			name: 'BENCHMARK_SIZES' 
 		)
 
