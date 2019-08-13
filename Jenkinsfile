@@ -63,7 +63,7 @@ pipeline {
 		stage('Benchmark') {
             steps {
             	wrap([$class: 'Xvnc']) {
-					withCredentials([usernamePassword(credentialsId: 'leonard_twc', passwordVariable: 'BENCHMARK_PASSWORD', usernameVariable: 'BENCHMARK_USER')]) {
+					withCredentials([usernamePassword(credentialsId: 'benchmark_twc', passwordVariable: 'BENCHMARK_PASSWORD', usernameVariable: 'BENCHMARK_USER')]) {
 						sh './com.incquerylabs.magicdraw.benchmark/run.sh'
 					}
             	}
