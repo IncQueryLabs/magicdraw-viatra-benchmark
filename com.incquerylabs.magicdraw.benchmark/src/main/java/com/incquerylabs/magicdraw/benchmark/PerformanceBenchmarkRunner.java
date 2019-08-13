@@ -93,10 +93,25 @@ public class PerformanceBenchmarkRunner implements CommandLineAction{
 				parameters.setModelSize(arguments[argIndex + 1]);
 				argIndex+=2;
 			} else if (Objects.equals("-model", arguments[argIndex])) {
-				parameters.setProjectPath(arguments[argIndex + 1].replaceAll("'", "").replaceAll("\"", ""));
+				if (arguments[argIndex + 1].contains("/")) {
+					String[] model = arguments[argIndex + 1].split("/");
+					parameters.setProjectName(model[0]);
+					parameters.setProjectRevision(model[1]);
+				}
+				else {
+					parameters.setProjectName(arguments[argIndex + 1]);
+				}
 				argIndex+=2;
 			} else if (Objects.equals("-warmup", arguments[argIndex])) {
-				parameters.setWarmupProjectPath(arguments[argIndex + 1].replaceAll("'", "").replaceAll("\"", ""));
+				if (arguments[argIndex + 1].contains("/")) {
+					String[] model = arguments[argIndex + 1].split("/");
+					parameters.setWarmupProjectName(model[0]);
+					parameters.setWarmupProjectRevision(model[1]);
+					
+				}
+				else {
+					parameters.setWarmupProjectName(arguments[argIndex + 1]);
+				}
 				argIndex+=2;
 			} else if (Objects.equals("-output", arguments[argIndex])) {
 				parameters.setResultPath(arguments[argIndex + 1].replaceAll("'", "").replaceAll("\"", ""));
