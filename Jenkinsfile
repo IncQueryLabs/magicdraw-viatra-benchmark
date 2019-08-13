@@ -50,8 +50,11 @@ pipeline {
         stage('Build') { 
 			steps {
 				sh '''
+					rm -rf benchmark/results
+					rm -rf benchmark/diagrams
 				    cd com.incquerylabs.magicdraw.benchmark
 				    rm -rf build/dependency-cache
+					rm -rf build/install/results
 				    ./gradlew clean
 				    ./gradlew installDist
 				'''
