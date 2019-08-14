@@ -1,7 +1,7 @@
 // Tell Jenkins how to build projects from this repository
 pipeline {
 	agent {
-		label 'performance'
+		label 'incquery-server'
 	} 
 	
 	parameters {
