@@ -244,10 +244,10 @@ task runBenchmark(type: JavaExec) {
 	if(project.hasProperty('server')) {
 		args += ["-server", "${benchmarkServer}"]
 	}
-	if(project.hasProperty('output')) {
+	if(project.hasProperty('user')) {
 		args += ["-user", "${benchmarkUser}"]
 	}
-	if(project.hasProperty('output')) {
+	if(project.hasProperty('password')) {
 		args += ["-password", "${benchmarkPassword}"]
 	}
 	jvmArgs += benchmarkArgs

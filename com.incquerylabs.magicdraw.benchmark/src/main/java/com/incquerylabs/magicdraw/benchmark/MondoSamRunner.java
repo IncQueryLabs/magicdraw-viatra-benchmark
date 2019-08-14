@@ -48,7 +48,7 @@ public class MondoSamRunner {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			boolean logout = teamworkService.logout();
+			teamworkService.logout();
 		}
 	}
 
