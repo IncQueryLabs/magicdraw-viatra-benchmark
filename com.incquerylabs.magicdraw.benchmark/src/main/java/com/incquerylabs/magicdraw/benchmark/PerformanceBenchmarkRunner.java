@@ -101,6 +101,15 @@ public class PerformanceBenchmarkRunner implements CommandLineAction{
 			} else if (Objects.equals("-output", arguments[argIndex])) {
 				parameters.setResultPath(arguments[argIndex + 1].replaceAll("'", "").replaceAll("\"", ""));
 				argIndex+=2;
+			} else if (Objects.equals("-server", arguments[argIndex])) {
+				parameters.setServer(arguments[argIndex + 1]);
+				argIndex+=2;
+			} else if (Objects.equals("-user", arguments[argIndex])) {
+				parameters.setUser(arguments[argIndex + 1]);
+				argIndex+=2;
+			} else if (Objects.equals("-password", arguments[argIndex])) {
+				parameters.setPassword(arguments[argIndex + 1]);
+				argIndex+=2;
 			} else {
 				System.err.println("Unexpected parameter " + arguments[argIndex]);
 				argIndex++; // Skip unknown parameter

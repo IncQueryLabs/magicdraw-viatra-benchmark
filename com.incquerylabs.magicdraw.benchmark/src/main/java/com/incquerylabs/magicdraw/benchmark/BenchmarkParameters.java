@@ -17,6 +17,10 @@ public class BenchmarkParameters {
 		private int runIndex = 1;
 		int modelSize = 300000;
 		
+		private String server;
+		private String user;
+		private String password;
+		
 		public String getResultPath() {
 			return resultPath;
 		}
@@ -96,5 +100,29 @@ public class BenchmarkParameters {
 	    public void setModelSize(String modelSize) {
 	    		this.modelSize = Integer.parseInt(modelSize);
 	    }
+
+		public String getServer() {
+			return server;
+		}
+
+		public void setServer(String server) {
+			this.server = server;
+		}
+
+		public String getUser() {
+			return user;
+		}
+
+		public void setUser(String user) {
+			this.user = user;
+		}
+
+		public String getPassword() {
+			return password;
+		}
+
+		public void setPassword(String password) {
+			this.password = password;
+		}
 	    
 	}

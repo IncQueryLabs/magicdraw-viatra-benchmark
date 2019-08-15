@@ -209,6 +209,9 @@ String benchmarkSize = project.hasProperty('size') ? project.getProperty('size')
 String benchmarkModel = project.hasProperty('model') ? project.getProperty('model') : ''
 String benchmarkWarmup = project.hasProperty('warmup') ? project.getProperty('warmup') : ''
 String benchmarkOutput = project.hasProperty('output') ? project.getProperty('output') : ''
+String benchmarkServer = project.hasProperty('server') ? project.getProperty('server') : ''
+String benchmarkUser = project.hasProperty('user') ? project.getProperty('user') : ''
+String benchmarkPassword = project.hasProperty('password') ? project.getProperty('password') : ''
 
 def benchmarkArgs = [
 	'-Dcom.nomagic.magicdraw.launcher=com.nomagic.magicdraw.commandline.CommandLineActionLauncher',
@@ -237,6 +240,15 @@ task runBenchmark(type: JavaExec) {
 	}
 	if(project.hasProperty('output')) {
 		args += ["-output", "${benchmarkOutput}"]
+	}
+	if(project.hasProperty('server')) {
+		args += ["-server", "${benchmarkServer}"]
+	}
+	if(project.hasProperty('user')) {
+		args += ["-user", "${benchmarkUser}"]
+	}
+	if(project.hasProperty('password')) {
+		args += ["-password", "${benchmarkPassword}"]
 	}
 	jvmArgs += benchmarkArgs
 }
