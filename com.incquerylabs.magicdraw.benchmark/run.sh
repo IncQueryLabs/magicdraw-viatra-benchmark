@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ -z "$MD_HOME" ]; then
-    export MD_HOME=$(pwd)/com.incquerylabs.magicdraw.benchmark/build/install
+    export MD_HOME=$(pwd)/build/install
 fi
  
 if [ "$OS" = Windows_NT ]; then
