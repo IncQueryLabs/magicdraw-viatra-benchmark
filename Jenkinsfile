@@ -30,7 +30,7 @@ pipeline {
 		)
 
 		string( 
-			defaultValue: 'leonard.internal.incquerylabs.com:3579',
+			defaultValue: 'twc.benchmark.iqs.beta.internal.incquerylabs.com:8111',
 			description: 'Address of Teamwork Cloud',
 			name: 'BENCHMARK_TWC' 
 		)
@@ -60,7 +60,7 @@ pipeline {
 		stage('Benchmark') {
             steps {
             	wrap([$class: 'Xvnc']) {
-					withCredentials([usernamePassword(credentialsId: 'leonard_twc', passwordVariable: 'BENCHMARK_PASSWORD', usernameVariable: 'BENCHMARK_USER')]) {
+					withCredentials([usernamePassword(credentialsId: 'benchmark_twc', passwordVariable: 'BENCHMARK_PASSWORD', usernameVariable: 'BENCHMARK_USER')]) {
 				    	sh './com.incquerylabs.magicdraw.benchmark/run.sh'
 					}
             	}
