@@ -1,7 +1,8 @@
 #!/bin/bash
 
 if [ -z "$MD_HOME" ]; then
-    export MD_HOME=$(pwd)/com.incquerylabs.magicdraw.benchmark/build/install
+    echo "MD_HOME environment variable not set, please set it to the MagicDraw installation folder"
+    exit 1
 fi
  
 if [ "$OS" = Windows_NT ]; then
@@ -72,18 +73,6 @@ BENCHMARK_RUNS=1
 fi
 echo "Number of runs: ${BENCHMARK_RUNS}"
 
-if [ -z "$BENCHMARK_TWC" ]; then
-BENCHMARK_TWC="localhost"
-fi
-
-if [ -z "$BENCHMARK_USER" ]; then
-BENCHMARK_USER="Administrator"
-fi
-
-if [ -z "$BENCHMARK_PASSWORD" ]; then
-BENCHMARK_PASSWORD="Administrator"
-fi
-
 if [ -z $WORKSPACE ]; then 
     OUTPUT_DIR="results"
 else 
@@ -111,9 +100,16 @@ do
 				echo "Query: $query"
 				echo "Running measurement on $query with $engine (model size: $size ; runIndex: $runIndex )"
 				# Call MD
-				cd com.incquerylabs.magicdraw.benchmark
-				./gradlew -Pquery="$query" -Pmodel="TMT$size" -Pwarmup="TMT300000" -Pindex="$runIndex" -Psize="$size" \
-				-Pserver="$BENCHMARK_TWC" -Puser="$BENCHMARK_USER" -Ppassword="$BENCHMARK_PASSWORD" -Poutput="${OUTPUT_DIR}" runBenchmark
+				java -Xmx8G -Xms4G -Xss1024K \
+					-Dmd.class.path=$md_cp_url \
+					-Dcom.nomagic.osgi.config.dir="$MD_HOME/configuration" \
+					-Desi.system.config="$MD_HOME/data/application.conf" \
+					-Dlogback.configurationFile="$MD_HOME/data/logback.xml" \
+					-Dmd.plugins.dir="$MD_HOME/plugins${cp_delim}$WORKSPACE/com.incquerylabs.magicdraw.benchmark/target/plugin-release/files/plugins${cp_delim}" \
+					-Dcom.nomagic.magicdraw.launcher=com.nomagic.magicdraw.commandline.CommandLineActionLauncher \
+					-Dcom.nomagic.magicdraw.commandline.action=com.incquerylabs.magicdraw.benchmark.PerformanceBenchmarkRunner \
+					-cp "$CP" \
+					com.nomagic.osgi.launcher.ProductionFrameworkLauncher "$@ -engine $engine -query $query -index $runIndex -size $size -model '${MD_HOME}/performance/inputs/TMT$size.mdzip' -warmup '${MD_HOME}/performance/inputs/Warmup.mdzip' -output '${OUTPUT_DIR}'"
 			done
 		done
 	done

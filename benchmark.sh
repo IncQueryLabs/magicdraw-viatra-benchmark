@@ -15,7 +15,7 @@ cd ..
 # converts results from individual JSON files to CSV
 ./benchmark/convert_results.sh
 
-#python3 ${WORKSPACE}/benchmark/merge_csv.py
+python3 ${WORKSPACE}/benchmark/merge_csv.py
 
 # generates diagrams with R
 ./benchmark/report.sh
