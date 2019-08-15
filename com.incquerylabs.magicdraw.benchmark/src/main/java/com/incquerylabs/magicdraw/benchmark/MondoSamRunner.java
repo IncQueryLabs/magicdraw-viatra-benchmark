@@ -1,6 +1,7 @@
 package com.incquerylabs.magicdraw.benchmark;
 
 import java.io.File;
+import java.util.List;
 
 import org.eclipse.viatra.query.runtime.api.IQuerySpecification;
 
@@ -30,21 +31,26 @@ public class MondoSamRunner {
 	private static void openProject(String projectName, String revision, String server, String user, String password) {
 
 		ITeamworkService teamworkService = EsiUtils.getTeamworkService();
+		System.out.println("Project: " + projectName + ", revision: " + revision);
 		try {
 			System.out.println("Logging in...");
 			teamworkService.login(new ServerLoginInfo(server, user, password, true), true);
 			System.out.println("Logged in");
 			
-			for(ProjectDescriptor descriptor : EsiUtils.getRemoteProjectDescriptors()) {
+			List<ProjectDescriptor> projects = EsiUtils.getRemoteProjectDescriptors();
+			System.out.println("projects: " + projects);
+			for(ProjectDescriptor descriptor : projects) {
 				System.out.println("Project: " + descriptor.getRepresentationString());
 			}
 			
+			System.out.println("Finding project " + projectName);
 			ProjectDescriptor projectDescriptor = teamworkService.getProjectDescriptorByQualifiedName(projectName);
 			System.out.println("Project exists: " + projectDescriptor != null);
 
 			ProjectDescriptor revisionDescriptor = null;
 
 			if (revision != null) {
+				System.out.println("Finding revision " + revision);
 				revisionDescriptor = teamworkService.getProjectDescriptorById(teamworkService.getProjectIdByQualifiedName(projectName) + "/" + revision);
 			}
 			else {
