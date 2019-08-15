@@ -1,7 +1,7 @@
 // Tell Jenkins how to build projects from this repository
 pipeline {
 	agent {
-		label 'incquery-server'
+		label 'performance'
 	} 
 	
 	parameters {
@@ -30,7 +30,7 @@ pipeline {
 		)
 
 		string( 
-			defaultValue: 'twc.benchmark.iqs.beta.internal.incquerylabs.com:8111',
+			defaultValue: 'https://twc.benchmark.iqs.beta.incquerylabs.com:8111',
 			description: 'Address of Teamwork Cloud',
 			name: 'BENCHMARK_TWC' 
 		)
@@ -54,7 +54,7 @@ pipeline {
 					rm -rf benchmark/diagrams
 				    cd com.incquerylabs.magicdraw.benchmark
 				    rm -rf build/dependency-cache
-					rm -rf build/install/results
+					rm -rf results
 				    ./gradlew clean
 				    ./gradlew installDist
 				'''
@@ -71,7 +71,7 @@ pipeline {
 		}
 		stage('Report') {
 			steps {
-			    sh './benchmark/dep-mondo-sam.sh'
+				sh './benchmark/dep-mondo-sam.sh'
 				sh './benchmark/convert_results.sh'
 				sh 'python3 ./benchmark/merge_csv.py'
 				sh './benchmark/report.sh'
