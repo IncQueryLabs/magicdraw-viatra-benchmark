@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ -z "$MD_HOME" ]; then
-    export MD_HOME=$(pwd)/com.incquerylabs.magicdraw.benchmark/build/install
+    export MD_HOME=/home/jenkins/workspace/cdraw-benchmark_sysml-validation/com.incquerylabs.magicdraw.benchmark/build/install
 fi
  
 if [ "$OS" = Windows_NT ]; then
