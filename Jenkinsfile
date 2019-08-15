@@ -61,18 +61,9 @@ pipeline {
             steps {
             	wrap([$class: 'Xvnc']) {
 					withCredentials([usernamePassword(credentialsId: 'leonard_twc', passwordVariable: 'BENCHMARK_PASSWORD', usernameVariable: 'BENCHMARK_USER')]) {
-						sh 'cd com.incquerylabs.magicdraw.benchmark'
-				    	sh './run.sh'
+				    	sh './com.incquerylabs.magicdraw.benchmark/run.sh'
 					}
             	}
-			}
-		}
-		stage('Report') {
-			steps {
-				sh './benchmark/dep-mondo-sam.sh'
-				sh './benchmark/convert_results.sh'
-				sh 'python3 ./benchmark/merge_csv.py'
-				sh './benchmark/report.sh'
 			}
 		}
     }

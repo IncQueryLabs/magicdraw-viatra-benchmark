@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ -z "$MD_HOME" ]; then
-    export MD_HOME=$(pwd)/build/install
+    export MD_HOME=$(pwd)/com.incquerylabs.magicdraw.benchmark/build/install
 fi
  
 if [ "$OS" = Windows_NT ]; then
@@ -85,10 +85,9 @@ BENCHMARK_PASSWORD="Administrator"
 fi
 
 if [ -z $WORKSPACE ]; then 
-    OUTPUT_DIR="results"
-else 
-    OUTPUT_DIR="$WORKSPACE/com.incquerylabs.magicdraw.benchmark/results"
+	export WORKSPACE=$(pwd)
 fi
+OUTPUT_DIR="$WORKSPACE/com.incquerylabs.magicdraw.benchmark/results"
 
 IFS=', ' read -r -a engines <<< "$BENCHMARK_ENGINES"
 IFS=', ' read -r -a queries <<< "$BENCHMARK_QUERIES"
@@ -111,6 +110,7 @@ do
 				echo "Query: $query"
 				echo "Running measurement on $query with $engine (model size: $size ; runIndex: $runIndex )"
 				# Call MD
+				cd com.incquerylabs.magicdraw.benchmark
 				./gradlew -Pquery="$query" -Pmodel="TMT" -Pwarmup="TMT" -Pindex="$runIndex" -Psize="$size" \
 				-Pserver="$BENCHMARK_TWC" -Puser="$BENCHMARK_USER" -Ppassword="$BENCHMARK_PASSWORD" -Poutput="${OUTPUT_DIR}" runBenchmark
 			done
