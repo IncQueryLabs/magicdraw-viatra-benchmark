@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ -z "$MD_HOME" ]; then
-    export MD_HOME=/home/jenkins/workspace/cdraw-benchmark_sysml-validation/com.incquerylabs.magicdraw.benchmark/build/install
+    export MD_HOME=$(pwd)/com.incquerylabs.magicdraw.benchmark/build/install
 fi
  
 if [ "$OS" = Windows_NT ]; then
@@ -112,8 +112,27 @@ do
 				echo "Running measurement on $query with $engine (model size: $size ; runIndex: $runIndex )"
 				# Call MD
 				cd com.incquerylabs.magicdraw.benchmark
-				./gradlew -Pquery="$query" -Pmodel="TMT$size" -Pwarmup="TMT300000" -Pindex="$runIndex" -Psize="$size" \
-				-Pserver="$BENCHMARK_TWC" -Puser="$BENCHMARK_USER" -Ppassword="$BENCHMARK_PASSWORD" -Poutput="${OUTPUT_DIR}" runBenchmark
+				#./gradlew -Pquery="$query" -Pmodel="TMT$size" -Pwarmup="TMT300000" -Pindex="$runIndex" -Psize="$size" \
+				#-Pserver="$BENCHMARK_TWC" -Puser="$BENCHMARK_USER" -Ppassword="$BENCHMARK_PASSWORD" -Poutput="${OUTPUT_DIR}" runBenchmark
+				
+				java -Xmx8G -Xms4G -Xss1024K \
+					-Dmd.class.path=$md_cp_url \
+					-Dcom.nomagic.osgi.config.dir="$MD_HOME/configuration" \
+					-Desi.system.config="$MD_HOME/data/application.conf" \
+					-Dlogback.configurationFile="$MD_HOME/data/logback.xml" \
+					-Dmd.plugins.dir="$MD_HOME/plugins${cp_delim}$WORKSPACE/com.incquerylabs.magicdraw.benchmark/target/plugin-release/files/plugins${cp_delim}" \
+					-Dcom.nomagic.magicdraw.launcher=com.nomagic.magicdraw.commandline.CommandLineActionLauncher \
+					-Dcom.nomagic.magicdraw.commandline.action=com.incquerylabs.magicdraw.benchmark.PerformanceBenchmarkRunner \
+					-cp "$CP" \
+					com.nomagic.osgi.launcher.ProductionFrameworkLauncher \
+					"$@ -server $BENCHMARK_TWC \
+						-user $BENCHMARK_USER \
+						-password $BENCHMARK_PASSWORD \
+						-engine $engine \
+						-query $query -index $runIndex -size $size \
+						-model 'TMT$size' \
+						-warmup 'Warmup' \
+						-output '${OUTPUT_DIR}'"
 			done
 		done
 	done
