@@ -31,7 +31,7 @@ public class MondoSamRunner {
 
 		ITeamworkService teamworkService = EsiUtils.getTeamworkService();
 		try {
-			teamworkService.login(new ServerLoginInfo(server, user, password, false), true);
+			teamworkService.login(new ServerLoginInfo(server, user, password, true), true);
 			
 			ProjectDescriptor projectDescriptor = teamworkService.getProjectDescriptorByQualifiedName(projectName);
 
