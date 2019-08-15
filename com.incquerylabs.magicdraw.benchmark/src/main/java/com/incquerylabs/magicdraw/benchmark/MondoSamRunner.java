@@ -28,7 +28,7 @@ public class MondoSamRunner {
 	private static void openProject(String projectPath, String server, String user, String password) {
 		
 		System.out.println("Logging into Teamwork Cloud");
-		EsiUtils.getTeamworkService().login(new ServerLoginInfo(server, user, password, true), true);
+		EsiUtils.getTeamworkService().login(new ServerLoginInfo(server, user, password, false), true);
 		
 		System.out.println("Opening "+projectPath+" project...");
 		File file = new File(projectPath);
