@@ -30,7 +30,7 @@ pipeline {
 		)
 
 		string( 
-			defaultValue: 'twc.benchmark.iqs.beta.internal.incquerylabs.com:8111',
+			defaultValue: 'https://twc.benchmark.iqs.beta.incquerylabs.com:8111',
 			description: 'Address of Teamwork Cloud',
 			name: 'BENCHMARK_TWC' 
 		)
