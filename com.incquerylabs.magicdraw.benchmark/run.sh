@@ -112,7 +112,7 @@ do
 				echo "Running measurement on $query with $engine (model size: $size ; runIndex: $runIndex )"
 				# Call MD
 				cd com.incquerylabs.magicdraw.benchmark
-				./gradlew -Pquery="$query" -Pmodel="TMT$size" -Pwarmup="Warmup" -Pindex="$runIndex" -Psize="$size" \
+				./gradlew -Pquery="$query" -Pmodel="TMT$size" -Pwarmup="TMT300000" -Pindex="$runIndex" -Psize="$size" \
 				-Pserver="$BENCHMARK_TWC" -Puser="$BENCHMARK_USER" -Ppassword="$BENCHMARK_PASSWORD" -Poutput="${OUTPUT_DIR}" runBenchmark
 			done
 		done
