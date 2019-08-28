@@ -25,6 +25,15 @@ public class MondoSamRunner {
 		this.parameters = parameters;
 	}
 
+	// TODO Load from TWC when available
+	private static void openProject(String projectPath) {
+		System.out.println("Opening "+projectPath+" project...");
+		File file = new File(projectPath);
+		ProjectDescriptor descriptor = ProjectDescriptorsFactory.createProjectDescriptor(file.toURI());
+		Application.getInstance().getProjectsManager().loadProject(descriptor, true);
+		System.out.println("Project opened.");
+	}
+	/*
 	private static void openProject(String projectPath, String server, String user, String password) {
 		
 		System.out.println("Logging into Teamwork Cloud");
@@ -49,7 +58,7 @@ public class MondoSamRunner {
 		Application.getInstance().getProjectsManager().loadProject(descriptor, true);
 		System.out.println("Project opened.");
 	}
-	
+	*/
 	
 
 	@SuppressWarnings("deprecation")
@@ -63,10 +72,15 @@ public class MondoSamRunner {
 	    if (!queryBackend.canHandleParameters(parameters)) {
 	    		throw new InvalidBenchmarkParameterizationException("Invalid parameter configuration");
 	    }
-	    String server = parameters.getServer();
-	    String user = parameters.getUser();
-	    String password = parameters.getPassword();
-	    openProject(modelPath, server, user, password);
+	    
+
+	    // TODO load TWC project when available
+	    //String server = parameters.getServer();
+	    //String user = parameters.getUser();
+	    //String password = parameters.getPassword();
+	    
+	    openProject(modelPath);
+	    //openProject(modelPath, server, user, password);
 	    runBenchmark(queryBackend, resultPath, size, runIndex);
 	    Application.getInstance().getProjectsManager().closeProjectNoSave();
 	}

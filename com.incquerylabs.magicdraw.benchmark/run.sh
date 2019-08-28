@@ -57,7 +57,7 @@ BENCHMARK_QUERIES="rateNotStreaming, boundReferenceNotReferenceOrValueProperty, 
  connectionPropertyDifferentName, optionalLowerZero, requirementHasAttribute, adjunctPropertyConnectorPropertyInconsistent, probabilityInvalidStereotype, boundReferenceUnique, copyCycle,\
  boundReferenceOpposite, connectorPropertyNotComposite, requirementAsType, participantPropertyIsMemberEndOfAssociation, connectionPropertyNotTypedByAssociationBlock,\
  valuePropertyNotValueType, fullPortBoundToFullPort, probabilityAllOutgoingEdges"
-BENCHMARK_QUERIES="optionalLowerZero"
+#BENCHMARK_QUERIES="optionalLowerZero"
 fi
 echo "Selected queries: ${BENCHMARK_QUERIES}"
 
@@ -111,8 +111,13 @@ do
 				echo "Running measurement on $query with $engine (model size: $size ; runIndex: $runIndex )"
 				# Call MD
 				cd com.incquerylabs.magicdraw.benchmark
-				./gradlew -Pquery="$query" -Pmodel="TMT" -Pwarmup="TMT" -Pindex="$runIndex" -Psize="$size" \
-				-Pserver="$BENCHMARK_TWC" -Puser="$BENCHMARK_USER" -Ppassword="$BENCHMARK_PASSWORD" -Poutput="${OUTPUT_DIR}" runBenchmark
+				
+				./gradlew -Pquery="$query" -Pmodel='/home/jenkins/models-tmt/TMT$size.mdzip' -Pwarmup='/home/jenkins/models-tmt/Warmup.mdzip' -Pindex="$runIndex" -Psize="$size" \
+				-Poutput="${OUTPUT_DIR}" runBenchmark
+				
+				# TODO Load from TWC when available
+				#./gradlew -Pquery="$query" -Pmodel="TMT" -Pwarmup="TMT" -Pindex="$runIndex" -Psize="$size" \
+				#-Pserver="$BENCHMARK_TWC" -Puser="$BENCHMARK_USER" -Ppassword="$BENCHMARK_PASSWORD" -Poutput="${OUTPUT_DIR}" runBenchmark
 			done
 		done
 	done

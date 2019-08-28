@@ -50,7 +50,10 @@ pipeline {
         stage('Build') { 
 			steps {
 				sh '''
+					rm -rf benhmark/results
+					rm -rf benhmark/diagrams
 				    cd com.incquerylabs.magicdraw.benchmark
+				    rm -rf results
 				    rm -rf build/dependency-cache
 				    ./gradlew clean
 				    ./gradlew installDist
@@ -60,10 +63,16 @@ pipeline {
 		stage('Benchmark') {
             steps {
             	wrap([$class: 'Xvnc']) {
-					withCredentials([usernamePassword(credentialsId: 'benchmark_twc', passwordVariable: 'BENCHMARK_PASSWORD', usernameVariable: 'BENCHMARK_USER')]) {
-				    	sh './com.incquerylabs.magicdraw.benchmark/run.sh'
-					}
+				    sh './com.incquerylabs.magicdraw.benchmark/run.sh'
             	}
+			}
+		}
+		stage('Report') {
+			steps {
+				sh './benchmark/dep-mondo-sam.sh'
+				sh './benchmark/convert_results.sh'
+				sh 'python3 ./benchmark/merge_csv.py'
+				sh './benchmark/report.sh'
 			}
 		}
     }
