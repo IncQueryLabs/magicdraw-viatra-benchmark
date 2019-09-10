@@ -85,8 +85,18 @@ public final class AllocateActivityPartitionActionsOnClientEnds extends BaseGene
     
     @Override
     public Object get(final String parameterName) {
-      if ("activityPartition".equals(parameterName)) return this.fActivityPartition;
-      return null;
+      switch(parameterName) {
+          case "activityPartition": return this.fActivityPartition;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fActivityPartition;
+          default: return null;
+      }
     }
     
     public ActivityPartition getActivityPartition() {
@@ -476,9 +486,9 @@ public final class AllocateActivityPartitionActionsOnClientEnds extends BaseGene
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.AllocateActivityPartitionActionsOnClientEnds (visibility: PUBLIC, simpleName: AllocateActivityPartitionActionsOnClientEnds, identifier: com.incquerylabs.magicdraw.benchmark.queries.AllocateActivityPartitionActionsOnClientEnds, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link AllocateActivityPartitionActionsOnClientEnds} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.AllocateActivityPartitionActionsOnClientEnds (visibility: PUBLIC, simpleName: AllocateActivityPartitionActionsOnClientEnds, identifier: com.incquerylabs.magicdraw.benchmark.queries.AllocateActivityPartitionActionsOnClientEnds, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link AllocateActivityPartitionActionsOnClientEnds#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

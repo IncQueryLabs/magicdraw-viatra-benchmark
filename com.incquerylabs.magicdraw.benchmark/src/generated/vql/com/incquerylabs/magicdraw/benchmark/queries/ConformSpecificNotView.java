@@ -83,8 +83,18 @@ public final class ConformSpecificNotView extends BaseGeneratedEMFQuerySpecifica
     
     @Override
     public Object get(final String parameterName) {
-      if ("conform".equals(parameterName)) return this.fConform;
-      return null;
+      switch(parameterName) {
+          case "conform": return this.fConform;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fConform;
+          default: return null;
+      }
     }
     
     public Generalization getConform() {
@@ -472,9 +482,9 @@ public final class ConformSpecificNotView extends BaseGeneratedEMFQuerySpecifica
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.ConformSpecificNotView (visibility: PUBLIC, simpleName: ConformSpecificNotView, identifier: com.incquerylabs.magicdraw.benchmark.queries.ConformSpecificNotView, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link ConformSpecificNotView} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.ConformSpecificNotView (visibility: PUBLIC, simpleName: ConformSpecificNotView, identifier: com.incquerylabs.magicdraw.benchmark.queries.ConformSpecificNotView, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link ConformSpecificNotView#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

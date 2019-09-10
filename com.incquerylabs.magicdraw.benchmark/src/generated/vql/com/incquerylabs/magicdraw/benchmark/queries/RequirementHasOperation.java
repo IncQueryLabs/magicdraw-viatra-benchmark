@@ -80,8 +80,18 @@ public final class RequirementHasOperation extends BaseGeneratedEMFQuerySpecific
     
     @Override
     public Object get(final String parameterName) {
-      if ("operation".equals(parameterName)) return this.fOperation;
-      return null;
+      switch(parameterName) {
+          case "operation": return this.fOperation;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fOperation;
+          default: return null;
+      }
     }
     
     public Operation getOperation() {
@@ -468,9 +478,9 @@ public final class RequirementHasOperation extends BaseGeneratedEMFQuerySpecific
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.RequirementHasOperation (visibility: PUBLIC, simpleName: RequirementHasOperation, identifier: com.incquerylabs.magicdraw.benchmark.queries.RequirementHasOperation, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link RequirementHasOperation} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.RequirementHasOperation (visibility: PUBLIC, simpleName: RequirementHasOperation, identifier: com.incquerylabs.magicdraw.benchmark.queries.RequirementHasOperation, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link RequirementHasOperation#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

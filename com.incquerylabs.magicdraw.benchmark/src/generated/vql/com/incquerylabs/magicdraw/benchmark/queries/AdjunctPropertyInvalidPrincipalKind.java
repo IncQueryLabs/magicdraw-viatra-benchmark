@@ -89,8 +89,18 @@ public final class AdjunctPropertyInvalidPrincipalKind extends BaseGeneratedEMFQ
     
     @Override
     public Object get(final String parameterName) {
-      if ("property".equals(parameterName)) return this.fProperty;
-      return null;
+      switch(parameterName) {
+          case "property": return this.fProperty;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fProperty;
+          default: return null;
+      }
     }
     
     public Property getProperty() {
@@ -484,9 +494,9 @@ public final class AdjunctPropertyInvalidPrincipalKind extends BaseGeneratedEMFQ
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.AdjunctPropertyInvalidPrincipalKind (visibility: PUBLIC, simpleName: AdjunctPropertyInvalidPrincipalKind, identifier: com.incquerylabs.magicdraw.benchmark.queries.AdjunctPropertyInvalidPrincipalKind, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link AdjunctPropertyInvalidPrincipalKind} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.AdjunctPropertyInvalidPrincipalKind (visibility: PUBLIC, simpleName: AdjunctPropertyInvalidPrincipalKind, identifier: com.incquerylabs.magicdraw.benchmark.queries.AdjunctPropertyInvalidPrincipalKind, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link AdjunctPropertyInvalidPrincipalKind#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -516,18 +526,18 @@ public final class AdjunctPropertyInvalidPrincipalKind extends BaseGeneratedEMFQ
     
     private final List<PParameter> parameters = Arrays.asList(parameter_property);
     
-    private class EmbeddedQuery80852793 extends BaseGeneratedEMFPQuery {
+    private class Embedded_1_Connector extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.compositestructures.mdinternalstructures.Connector", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Connector")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0);
       
-      public EmbeddedQuery80852793() {
+      public Embedded_1_Connector() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$80852793";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_6_Connector";
       }
       
       @Override
@@ -548,18 +558,18 @@ public final class AdjunctPropertyInvalidPrincipalKind extends BaseGeneratedEMFQ
       }
     }
     
-    private class EmbeddedQuery1314323423 extends BaseGeneratedEMFPQuery {
+    private class Embedded_2_CallAction extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.actions.mdbasicactions.CallAction", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "CallAction")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0);
       
-      public EmbeddedQuery1314323423() {
+      public Embedded_2_CallAction() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$1314323423";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_6_CallAction";
       }
       
       @Override
@@ -580,18 +590,18 @@ public final class AdjunctPropertyInvalidPrincipalKind extends BaseGeneratedEMFQ
       }
     }
     
-    private class EmbeddedQuery782818754 extends BaseGeneratedEMFPQuery {
+    private class Embedded_3_ObjectNode extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.activities.mdbasicactivities.ObjectNode", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "ObjectNode")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0);
       
-      public EmbeddedQuery782818754() {
+      public Embedded_3_ObjectNode() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$782818754";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_6_ObjectNode";
       }
       
       @Override
@@ -612,18 +622,18 @@ public final class AdjunctPropertyInvalidPrincipalKind extends BaseGeneratedEMFQ
       }
     }
     
-    private class EmbeddedQuery867617742 extends BaseGeneratedEMFPQuery {
+    private class Embedded_4_Variable extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.activities.mdstructuredactivities.Variable", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Variable")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0);
       
-      public EmbeddedQuery867617742() {
+      public Embedded_4_Variable() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$867617742";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_6_Variable";
       }
       
       @Override
@@ -644,18 +654,18 @@ public final class AdjunctPropertyInvalidPrincipalKind extends BaseGeneratedEMFQ
       }
     }
     
-    private class EmbeddedQuery1901650897 extends BaseGeneratedEMFPQuery {
+    private class Embedded_5_Parameter extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Parameter", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Parameter")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0);
       
-      public EmbeddedQuery1901650897() {
+      public Embedded_5_Parameter() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$1901650897";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_6_Parameter";
       }
       
       @Override
@@ -676,18 +686,18 @@ public final class AdjunctPropertyInvalidPrincipalKind extends BaseGeneratedEMFQ
       }
     }
     
-    private class EmbeddedQuery1924033237 extends BaseGeneratedEMFPQuery {
+    private class Embedded_6_InteractionUse extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.interactions.mdfragments.InteractionUse", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "InteractionUse")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0);
       
-      public EmbeddedQuery1924033237() {
+      public Embedded_6_InteractionUse() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$1924033237";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_6_InteractionUse";
       }
       
       @Override
@@ -745,17 +755,17 @@ public final class AdjunctPropertyInvalidPrincipalKind extends BaseGeneratedEMFQ
           // 	find sysml.AdjunctProperty_principal(property, principal)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_property, var_principal), AdjunctProperty_principal.instance().getInternalQueryRepresentation());
           // 	neg Connector(principal)
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_principal), new AdjunctPropertyInvalidPrincipalKind.GeneratedPQuery.EmbeddedQuery80852793());
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_principal), new AdjunctPropertyInvalidPrincipalKind.GeneratedPQuery.Embedded_1_Connector());
           // 	neg CallAction(principal)
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_principal), new AdjunctPropertyInvalidPrincipalKind.GeneratedPQuery.EmbeddedQuery1314323423());
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_principal), new AdjunctPropertyInvalidPrincipalKind.GeneratedPQuery.Embedded_2_CallAction());
           // 	neg ObjectNode(principal)
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_principal), new AdjunctPropertyInvalidPrincipalKind.GeneratedPQuery.EmbeddedQuery782818754());
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_principal), new AdjunctPropertyInvalidPrincipalKind.GeneratedPQuery.Embedded_3_ObjectNode());
           // 	neg Variable(principal)
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_principal), new AdjunctPropertyInvalidPrincipalKind.GeneratedPQuery.EmbeddedQuery867617742());
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_principal), new AdjunctPropertyInvalidPrincipalKind.GeneratedPQuery.Embedded_4_Variable());
           // 	neg Parameter(principal)
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_principal), new AdjunctPropertyInvalidPrincipalKind.GeneratedPQuery.EmbeddedQuery1901650897());
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_principal), new AdjunctPropertyInvalidPrincipalKind.GeneratedPQuery.Embedded_5_Parameter());
           // 	neg InteractionUse(principal)
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_principal), new AdjunctPropertyInvalidPrincipalKind.GeneratedPQuery.EmbeddedQuery1924033237());
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_principal), new AdjunctPropertyInvalidPrincipalKind.GeneratedPQuery.Embedded_6_InteractionUse());
           // 	neg find submachineState(principal)
           new NegativePatternCall(body, Tuples.flatTupleOf(var_principal), SubmachineState.instance().getInternalQueryRepresentation());
           bodies.add(body);

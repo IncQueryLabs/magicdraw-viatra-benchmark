@@ -83,8 +83,18 @@ public final class RateNotStreaming extends BaseGeneratedEMFQuerySpecification<R
     
     @Override
     public Object get(final String parameterName) {
-      if ("rate".equals(parameterName)) return this.fRate;
-      return null;
+      switch(parameterName) {
+          case "rate": return this.fRate;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fRate;
+          default: return null;
+      }
     }
     
     public Parameter getRate() {
@@ -471,9 +481,9 @@ public final class RateNotStreaming extends BaseGeneratedEMFQuerySpecification<R
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.RateNotStreaming (visibility: PUBLIC, simpleName: RateNotStreaming, identifier: com.incquerylabs.magicdraw.benchmark.queries.RateNotStreaming, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link RateNotStreaming} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.RateNotStreaming (visibility: PUBLIC, simpleName: RateNotStreaming, identifier: com.incquerylabs.magicdraw.benchmark.queries.RateNotStreaming, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link RateNotStreaming#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

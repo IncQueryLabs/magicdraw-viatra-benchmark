@@ -85,9 +85,20 @@ public final class NumberOfTransitiveSubstates extends BaseGeneratedEMFQuerySpec
     
     @Override
     public Object get(final String parameterName) {
-      if ("state".equals(parameterName)) return this.fState;
-      if ("transitiveSubstateCount".equals(parameterName)) return this.fTransitiveSubstateCount;
-      return null;
+      switch(parameterName) {
+          case "state": return this.fState;
+          case "transitiveSubstateCount": return this.fTransitiveSubstateCount;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fState;
+          case 1: return this.fTransitiveSubstateCount;
+          default: return null;
+      }
     }
     
     public State getState() {
@@ -619,9 +630,9 @@ public final class NumberOfTransitiveSubstates extends BaseGeneratedEMFQuerySpec
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.NumberOfTransitiveSubstates (visibility: PUBLIC, simpleName: NumberOfTransitiveSubstates, identifier: com.incquerylabs.magicdraw.benchmark.queries.NumberOfTransitiveSubstates, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link NumberOfTransitiveSubstates} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.NumberOfTransitiveSubstates (visibility: PUBLIC, simpleName: NumberOfTransitiveSubstates, identifier: com.incquerylabs.magicdraw.benchmark.queries.NumberOfTransitiveSubstates, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link NumberOfTransitiveSubstates#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

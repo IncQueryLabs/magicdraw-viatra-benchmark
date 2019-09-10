@@ -89,8 +89,18 @@ public final class ItemFlowInvalidType extends BaseGeneratedEMFQuerySpecificatio
     
     @Override
     public Object get(final String parameterName) {
-      if ("itemFlow".equals(parameterName)) return this.fItemFlow;
-      return null;
+      switch(parameterName) {
+          case "itemFlow": return this.fItemFlow;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fItemFlow;
+          default: return null;
+      }
     }
     
     public InformationFlow getItemFlow() {
@@ -481,9 +491,9 @@ public final class ItemFlowInvalidType extends BaseGeneratedEMFQuerySpecificatio
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.ItemFlowInvalidType (visibility: PUBLIC, simpleName: ItemFlowInvalidType, identifier: com.incquerylabs.magicdraw.benchmark.queries.ItemFlowInvalidType, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link ItemFlowInvalidType} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.ItemFlowInvalidType (visibility: PUBLIC, simpleName: ItemFlowInvalidType, identifier: com.incquerylabs.magicdraw.benchmark.queries.ItemFlowInvalidType, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link ItemFlowInvalidType#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -513,18 +523,18 @@ public final class ItemFlowInvalidType extends BaseGeneratedEMFQuerySpecificatio
     
     private final List<PParameter> parameters = Arrays.asList(parameter_itemFlow);
     
-    private class EmbeddedQuery815431523 extends BaseGeneratedEMFPQuery {
+    private class Embedded_1_Signal extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.commonbehaviors.mdcommunications.Signal", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Signal")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0);
       
-      public EmbeddedQuery815431523() {
+      public Embedded_1_Signal() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$815431523";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_1_Signal";
       }
       
       @Override
@@ -595,7 +605,7 @@ public final class ItemFlowInvalidType extends BaseGeneratedEMFQuerySpecificatio
           // 	neg find sysml.Block(type, _)
           new NegativePatternCall(body, Tuples.flatTupleOf(var_type, var___2_), Block.instance().getInternalQueryRepresentation());
           // 	neg Signal(type)
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_type), new ItemFlowInvalidType.GeneratedPQuery.EmbeddedQuery815431523());
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_type), new ItemFlowInvalidType.GeneratedPQuery.Embedded_1_Signal());
           bodies.add(body);
       }
       return bodies;

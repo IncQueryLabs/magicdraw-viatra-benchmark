@@ -86,8 +86,18 @@ public final class RefineNotSingleClient extends BaseGeneratedEMFQuerySpecificat
     
     @Override
     public Object get(final String parameterName) {
-      if ("abstraction".equals(parameterName)) return this.fAbstraction;
-      return null;
+      switch(parameterName) {
+          case "abstraction": return this.fAbstraction;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fAbstraction;
+          default: return null;
+      }
     }
     
     public Abstraction getAbstraction() {
@@ -475,9 +485,9 @@ public final class RefineNotSingleClient extends BaseGeneratedEMFQuerySpecificat
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.RefineNotSingleClient (visibility: PUBLIC, simpleName: RefineNotSingleClient, identifier: com.incquerylabs.magicdraw.benchmark.queries.RefineNotSingleClient, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link RefineNotSingleClient} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.RefineNotSingleClient (visibility: PUBLIC, simpleName: RefineNotSingleClient, identifier: com.incquerylabs.magicdraw.benchmark.queries.RefineNotSingleClient, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link RefineNotSingleClient#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -507,20 +517,20 @@ public final class RefineNotSingleClient extends BaseGeneratedEMFQuerySpecificat
     
     private final List<PParameter> parameters = Arrays.asList(parameter_abstraction);
     
-    private class EmbeddedQuery318181152 extends BaseGeneratedEMFPQuery {
+    private class Embedded_1_Abstraction_client extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.classes.mddependencies.Abstraction", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Abstraction")), PParameterDirection.INOUT);
       
       private final PParameter parameter_p1 = new PParameter("p1", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.NamedElement", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "NamedElement")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
       
-      public EmbeddedQuery318181152() {
+      public Embedded_1_Abstraction_client() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$318181152";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_1_Abstraction_client";
       }
       
       @Override
@@ -584,7 +594,7 @@ public final class RefineNotSingleClient extends BaseGeneratedEMFQuerySpecificat
           new PositivePatternCall(body, Tuples.flatTupleOf(var_abstraction, var___0_), Refine.instance().getInternalQueryRepresentation());
           // 	clients == count Abstraction.client(abstraction, _)
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new PatternMatchCounter(body, Tuples.flatTupleOf(var_abstraction, var___1_), new RefineNotSingleClient.GeneratedPQuery.EmbeddedQuery318181152(), var__virtual_0_);
+          new PatternMatchCounter(body, Tuples.flatTupleOf(var_abstraction, var___1_), new RefineNotSingleClient.GeneratedPQuery.Embedded_1_Abstraction_client(), var__virtual_0_);
           new Equality(body, var_clients, var__virtual_0_);
           // 	check(clients != 1)
           new ExpressionEvaluation(body, new IExpressionEvaluator() {

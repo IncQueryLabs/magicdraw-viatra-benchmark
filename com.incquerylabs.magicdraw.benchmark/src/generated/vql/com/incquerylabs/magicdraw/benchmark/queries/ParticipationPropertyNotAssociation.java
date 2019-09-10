@@ -87,9 +87,20 @@ public final class ParticipationPropertyNotAssociation extends BaseGeneratedEMFQ
     
     @Override
     public Object get(final String parameterName) {
-      if ("class".equals(parameterName)) return this.fClass;
-      if ("property".equals(parameterName)) return this.fProperty;
-      return null;
+      switch(parameterName) {
+          case "class": return this.fClass;
+          case "property": return this.fProperty;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fClass;
+          case 1: return this.fProperty;
+          default: return null;
+      }
     }
     
     public com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class getValueOfClass() {
@@ -622,9 +633,9 @@ public final class ParticipationPropertyNotAssociation extends BaseGeneratedEMFQ
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.ParticipationPropertyNotAssociation (visibility: PUBLIC, simpleName: ParticipationPropertyNotAssociation, identifier: com.incquerylabs.magicdraw.benchmark.queries.ParticipationPropertyNotAssociation, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link ParticipationPropertyNotAssociation} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.ParticipationPropertyNotAssociation (visibility: PUBLIC, simpleName: ParticipationPropertyNotAssociation, identifier: com.incquerylabs.magicdraw.benchmark.queries.ParticipationPropertyNotAssociation, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link ParticipationPropertyNotAssociation#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -656,18 +667,18 @@ public final class ParticipationPropertyNotAssociation extends BaseGeneratedEMFQ
     
     private final List<PParameter> parameters = Arrays.asList(parameter_class, parameter_property);
     
-    private class EmbeddedQuery677273657 extends BaseGeneratedEMFPQuery {
+    private class Embedded_1_AssociationClass extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.classes.mdassociationclasses.AssociationClass", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "AssociationClass")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0);
       
-      public EmbeddedQuery677273657() {
+      public Embedded_1_AssociationClass() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$677273657";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_1_AssociationClass";
       }
       
       @Override
@@ -731,7 +742,7 @@ public final class ParticipationPropertyNotAssociation extends BaseGeneratedEMFQ
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")));
           new Equality(body, var__virtual_0_, var_property);
           // 	neg AssociationClass(class)
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_class), new ParticipationPropertyNotAssociation.GeneratedPQuery.EmbeddedQuery677273657());
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_class), new ParticipationPropertyNotAssociation.GeneratedPQuery.Embedded_1_AssociationClass());
           bodies.add(body);
       }
       return bodies;

@@ -73,9 +73,9 @@ public final class CheckEmptiness extends BaseGeneratedEMFQuerySpecificationWith
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.internal.CheckEmptiness (visibility: PUBLIC, simpleName: CheckEmptiness, identifier: com.incquerylabs.magicdraw.benchmark.queries.internal.CheckEmptiness, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries.internal) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link CheckEmptiness} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.internal.CheckEmptiness (visibility: PUBLIC, simpleName: CheckEmptiness, identifier: com.incquerylabs.magicdraw.benchmark.queries.internal.CheckEmptiness, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries.internal) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link CheckEmptiness#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -105,20 +105,20 @@ public final class CheckEmptiness extends BaseGeneratedEMFQuerySpecificationWith
     
     private final List<PParameter> parameters = Arrays.asList(parameter_property);
     
-    private class EmbeddedQuery1785725046 extends BaseGeneratedEMFPQuery {
+    private class Embedded_1_Operation_method extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Operation", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Operation")), PParameterDirection.INOUT);
       
       private final PParameter parameter_p1 = new PParameter("p1", "com.nomagic.uml2.ext.magicdraw.commonbehaviors.mdbasicbehaviors.Behavior", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Behavior")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
       
-      public EmbeddedQuery1785725046() {
+      public Embedded_1_Operation_method() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$1785725046";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_2_Operation_method";
       }
       
       @Override
@@ -145,20 +145,20 @@ public final class CheckEmptiness extends BaseGeneratedEMFQuerySpecificationWith
       }
     }
     
-    private class EmbeddedQuery1023775015 extends BaseGeneratedEMFPQuery {
+    private class Embedded_2_Property_type extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")), PParameterDirection.INOUT);
       
       private final PParameter parameter_p1 = new PParameter("p1", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Type", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Type")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
       
-      public EmbeddedQuery1023775015() {
+      public Embedded_2_Property_type() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$1023775015";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_2_Property_type";
       }
       
       @Override
@@ -230,9 +230,9 @@ public final class CheckEmptiness extends BaseGeneratedEMFQuerySpecificationWith
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Operation")));
           new Equality(body, var__virtual_0_, var_operation);
           // 	neg Operation.method(operation, _)
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_operation, var___0_), new CheckEmptiness.GeneratedPQuery.EmbeddedQuery1785725046());
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_operation, var___0_), new CheckEmptiness.GeneratedPQuery.Embedded_1_Operation_method());
           // 	neg Property.type(property, _)
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_property, var___1_), new CheckEmptiness.GeneratedPQuery.EmbeddedQuery1023775015());
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_property, var___1_), new CheckEmptiness.GeneratedPQuery.Embedded_2_Property_type());
           bodies.add(body);
       }
       {

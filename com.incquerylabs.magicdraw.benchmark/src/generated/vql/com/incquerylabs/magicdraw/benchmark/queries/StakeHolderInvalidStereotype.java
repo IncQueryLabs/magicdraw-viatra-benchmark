@@ -82,8 +82,18 @@ public final class StakeHolderInvalidStereotype extends BaseGeneratedEMFQuerySpe
     
     @Override
     public Object get(final String parameterName) {
-      if ("stakeholder".equals(parameterName)) return this.fStakeholder;
-      return null;
+      switch(parameterName) {
+          case "stakeholder": return this.fStakeholder;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fStakeholder;
+          default: return null;
+      }
     }
     
     public Classifier getStakeholder() {
@@ -471,9 +481,9 @@ public final class StakeHolderInvalidStereotype extends BaseGeneratedEMFQuerySpe
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.StakeHolderInvalidStereotype (visibility: PUBLIC, simpleName: StakeHolderInvalidStereotype, identifier: com.incquerylabs.magicdraw.benchmark.queries.StakeHolderInvalidStereotype, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link StakeHolderInvalidStereotype} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.StakeHolderInvalidStereotype (visibility: PUBLIC, simpleName: StakeHolderInvalidStereotype, identifier: com.incquerylabs.magicdraw.benchmark.queries.StakeHolderInvalidStereotype, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link StakeHolderInvalidStereotype#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -503,18 +513,18 @@ public final class StakeHolderInvalidStereotype extends BaseGeneratedEMFQuerySpe
     
     private final List<PParameter> parameters = Arrays.asList(parameter_stakeholder);
     
-    private class EmbeddedQuery1975334044 extends BaseGeneratedEMFPQuery {
+    private class Embedded_1_Actor extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.mdusecases.Actor", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Actor")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0);
       
-      public EmbeddedQuery1975334044() {
+      public Embedded_1_Actor() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$1975334044";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_1_Actor";
       }
       
       @Override
@@ -569,7 +579,7 @@ public final class StakeHolderInvalidStereotype extends BaseGeneratedEMFQuerySpe
           // 	find sysml.Stakeholder(stakeholder, _)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_stakeholder, var___0_), Stakeholder.instance().getInternalQueryRepresentation());
           // 	neg Actor(stakeholder)
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_stakeholder), new StakeHolderInvalidStereotype.GeneratedPQuery.EmbeddedQuery1975334044());
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_stakeholder), new StakeHolderInvalidStereotype.GeneratedPQuery.Embedded_1_Actor());
           // 	neg find classNotAssociation(stakeholder)
           new NegativePatternCall(body, Tuples.flatTupleOf(var_stakeholder), ClassNotAssociation.instance().getInternalQueryRepresentation());
           bodies.add(body);

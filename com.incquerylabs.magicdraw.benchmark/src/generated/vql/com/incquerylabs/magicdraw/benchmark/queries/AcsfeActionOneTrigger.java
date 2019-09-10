@@ -86,8 +86,18 @@ public final class AcsfeActionOneTrigger extends BaseGeneratedEMFQuerySpecificat
     
     @Override
     public Object get(final String parameterName) {
-      if ("action".equals(parameterName)) return this.fAction;
-      return null;
+      switch(parameterName) {
+          case "action": return this.fAction;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fAction;
+          default: return null;
+      }
     }
     
     public AcceptEventAction getAction() {
@@ -475,9 +485,9 @@ public final class AcsfeActionOneTrigger extends BaseGeneratedEMFQuerySpecificat
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.AcsfeActionOneTrigger (visibility: PUBLIC, simpleName: AcsfeActionOneTrigger, identifier: com.incquerylabs.magicdraw.benchmark.queries.AcsfeActionOneTrigger, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link AcsfeActionOneTrigger} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.AcsfeActionOneTrigger (visibility: PUBLIC, simpleName: AcsfeActionOneTrigger, identifier: com.incquerylabs.magicdraw.benchmark.queries.AcsfeActionOneTrigger, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link AcsfeActionOneTrigger#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -507,20 +517,20 @@ public final class AcsfeActionOneTrigger extends BaseGeneratedEMFQuerySpecificat
     
     private final List<PParameter> parameters = Arrays.asList(parameter_action);
     
-    private class EmbeddedQuery336359162 extends BaseGeneratedEMFPQuery {
+    private class Embedded_1_AcceptEventAction_trigger extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.actions.mdcompleteactions.AcceptEventAction", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "AcceptEventAction")), PParameterDirection.INOUT);
       
       private final PParameter parameter_p1 = new PParameter("p1", "com.nomagic.uml2.ext.magicdraw.commonbehaviors.mdcommunications.Trigger", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Trigger")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
       
-      public EmbeddedQuery336359162() {
+      public Embedded_1_AcceptEventAction_trigger() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$336359162";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_1_AcceptEventAction_trigger";
       }
       
       @Override
@@ -584,7 +594,7 @@ public final class AcsfeActionOneTrigger extends BaseGeneratedEMFQuerySpecificat
           new PositivePatternCall(body, Tuples.flatTupleOf(var_action, var___0_), AcceptChangeStructuralFeatureEventAction.instance().getInternalQueryRepresentation());
           // 	size == count AcceptEventAction.trigger(action, _)
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new PatternMatchCounter(body, Tuples.flatTupleOf(var_action, var___1_), new AcsfeActionOneTrigger.GeneratedPQuery.EmbeddedQuery336359162(), var__virtual_0_);
+          new PatternMatchCounter(body, Tuples.flatTupleOf(var_action, var___1_), new AcsfeActionOneTrigger.GeneratedPQuery.Embedded_1_AcceptEventAction_trigger(), var__virtual_0_);
           new Equality(body, var_size, var__virtual_0_);
           // 	check(size != 1)
           new ExpressionEvaluation(body, new IExpressionEvaluator() {

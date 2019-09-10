@@ -71,9 +71,9 @@ public final class Correct extends BaseGeneratedEMFQuerySpecificationWithGeneric
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.internal.Correct (visibility: PUBLIC, simpleName: Correct, identifier: com.incquerylabs.magicdraw.benchmark.queries.internal.Correct, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries.internal) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link Correct} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.internal.Correct (visibility: PUBLIC, simpleName: Correct, identifier: com.incquerylabs.magicdraw.benchmark.queries.internal.Correct, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries.internal) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link Correct#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -103,20 +103,20 @@ public final class Correct extends BaseGeneratedEMFQuerySpecificationWithGeneric
     
     private final List<PParameter> parameters = Arrays.asList(parameter_property);
     
-    private class EmbeddedQuery1567191376 extends BaseGeneratedEMFPQuery {
+    private class Embedded_1_Property_type extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")), PParameterDirection.INOUT);
       
       private final PParameter parameter_p1 = new PParameter("p1", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Type", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Type")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
       
-      public EmbeddedQuery1567191376() {
+      public Embedded_1_Property_type() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$1567191376";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_1_Property_type";
       }
       
       @Override
@@ -181,7 +181,7 @@ public final class Correct extends BaseGeneratedEMFQuerySpecificationWithGeneric
           // 	neg find principalBehavior(principal, _)
           new NegativePatternCall(body, Tuples.flatTupleOf(var_principal, var___0_), PrincipalBehavior.instance().getInternalQueryRepresentation());
           // 	neg Property.type(property, _)
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_property, var___1_), new Correct.GeneratedPQuery.EmbeddedQuery1567191376());
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_property, var___1_), new Correct.GeneratedPQuery.Embedded_1_Property_type());
           bodies.add(body);
       }
       {

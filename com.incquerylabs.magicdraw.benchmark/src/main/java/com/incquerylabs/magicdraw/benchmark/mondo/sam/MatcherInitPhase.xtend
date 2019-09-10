@@ -27,16 +27,19 @@ import org.eclipse.viatra.query.runtime.matchers.psystem.PConstraint
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PQuery
 import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil
+import java.util.Collection
 
 class MatcherInitPhase extends AtomicPhase {
 	
-	private IQuerySpecification<?> querySpecification
-	private boolean setIndex
+	Collection<IQuerySpecification<?>> querySpecifications
+	boolean setIndex	
+	String caseName
 	
-	new(String phaseName, IQuerySpecification<?> querySpecification, boolean setIndex) {
+	new(String phaseName, String caseName, Collection<IQuerySpecification<?>> querySpecification, boolean setIndex) {
 		super(phaseName)
-		this.querySpecification = querySpecification
-		this.setIndex = setIndex		
+		this.querySpecifications = querySpecification
+		this.setIndex = setIndex	
+		this.caseName = caseName	
 	}
 	
 	override execute(DataToken token, PhaseResult phaseResult) {
@@ -47,20 +50,23 @@ class MatcherInitPhase extends AtomicPhase {
 		val memory = new MemoryMetric("Memory")
 		prememory.measure
 		
-		ViatraQueryLoggingUtil.defaultLogger. info("Measuring " + querySpecification.name + "...")
-		println("Measuring " + querySpecification.name + "...")
+		ViatraQueryLoggingUtil.defaultLogger. info("Measuring " + caseName + "...")
+		println("Measuring " + caseName + "...")
 		timer.startMeasure
 		
 		// Setting the indexes if needed  (decreases traversal time in case of local search)
 		if (setIndex) {
 			val indexingTimer = new TimeMetric("IndexingTime")
 			indexingTimer.startMeasure
-			this.setIndex(querySpecification, dataToken.engine)
+			for(IQuerySpecification<?> spec : querySpecifications) {
+				this.setIndex(spec, dataToken.engine);
+			}
 			indexingTimer.stopMeasure
 			phaseResult.addMetrics(indexingTimer)
 		}
-				
-		dataToken.matcher = querySpecification.getMatcher(dataToken.engine)
+		for(IQuerySpecification<?> spec : querySpecifications) {
+			dataToken.addMatcher(spec.getMatcher(dataToken.engine))
+		}
 		
 		timer.stopMeasure
 		memory.measure
@@ -70,10 +76,6 @@ class MatcherInitPhase extends AtomicPhase {
         memoryDelta.value = Math.max(Long.parseLong(memory.value)-Long.parseLong(prememory.value), 1)
         
 		phaseResult.addMetrics(timer, prememory, memory, memoryDelta)
-	}
-	
-	private def getName(IQuerySpecification<?> querySpecification) {
-		querySpecification.getFullyQualifiedName().substring(querySpecification.getFullyQualifiedName().lastIndexOf(".") + 1)
 	}
 	
 	/**

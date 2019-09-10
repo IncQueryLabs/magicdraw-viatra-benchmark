@@ -93,8 +93,18 @@ public final class AdjunctPropertyNotComposite extends BaseGeneratedEMFQuerySpec
     
     @Override
     public Object get(final String parameterName) {
-      if ("property".equals(parameterName)) return this.fProperty;
-      return null;
+      switch(parameterName) {
+          case "property": return this.fProperty;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fProperty;
+          default: return null;
+      }
     }
     
     public Property getProperty() {
@@ -488,9 +498,9 @@ public final class AdjunctPropertyNotComposite extends BaseGeneratedEMFQuerySpec
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.AdjunctPropertyNotComposite (visibility: PUBLIC, simpleName: AdjunctPropertyNotComposite, identifier: com.incquerylabs.magicdraw.benchmark.queries.AdjunctPropertyNotComposite, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link AdjunctPropertyNotComposite} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.AdjunctPropertyNotComposite (visibility: PUBLIC, simpleName: AdjunctPropertyNotComposite, identifier: com.incquerylabs.magicdraw.benchmark.queries.AdjunctPropertyNotComposite, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link AdjunctPropertyNotComposite#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -520,20 +530,20 @@ public final class AdjunctPropertyNotComposite extends BaseGeneratedEMFQuerySpec
     
     private final List<PParameter> parameters = Arrays.asList(parameter_property);
     
-    private class EmbeddedQuery2031837883 extends BaseGeneratedEMFPQuery {
+    private class Embedded_1_Property_aggregation extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")), PParameterDirection.INOUT);
       
       private final PParameter parameter_p1 = new PParameter("p1", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.AggregationKind", new EDataTypeInSlotsKey((EDataType)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "AggregationKind")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
       
-      public EmbeddedQuery2031837883() {
+      public Embedded_1_Property_aggregation() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$2031837883";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_2_Property_aggregation";
       }
       
       @Override
@@ -560,20 +570,20 @@ public final class AdjunctPropertyNotComposite extends BaseGeneratedEMFQuerySpec
       }
     }
     
-    private class EmbeddedQuery500416663 extends BaseGeneratedEMFPQuery {
+    private class Embedded_2_Property_aggregation extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")), PParameterDirection.INOUT);
       
       private final PParameter parameter_p1 = new PParameter("p1", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.AggregationKind", new EDataTypeInSlotsKey((EDataType)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "AggregationKind")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
       
-      public EmbeddedQuery500416663() {
+      public Embedded_2_Property_aggregation() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$500416663";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_2_Property_aggregation";
       }
       
       @Override
@@ -641,7 +651,7 @@ public final class AdjunctPropertyNotComposite extends BaseGeneratedEMFQuerySpec
           // 	neg Property.aggregation(property, ::composite)
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
           new ConstantValue(body, var__virtual_0_, com.nomagic.uml2.ext.magicdraw.classes.mdkernel.AggregationKindEnum.get("composite"));
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_property, var__virtual_0_), new AdjunctPropertyNotComposite.GeneratedPQuery.EmbeddedQuery2031837883());
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_property, var__virtual_0_), new AdjunctPropertyNotComposite.GeneratedPQuery.Embedded_1_Property_aggregation());
           bodies.add(body);
       }
       {
@@ -662,7 +672,7 @@ public final class AdjunctPropertyNotComposite extends BaseGeneratedEMFQuerySpec
           // 	neg Property.aggregation(property, ::composite)
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
           new ConstantValue(body, var__virtual_0_, com.nomagic.uml2.ext.magicdraw.classes.mdkernel.AggregationKindEnum.get("composite"));
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_property, var__virtual_0_), new AdjunctPropertyNotComposite.GeneratedPQuery.EmbeddedQuery500416663());
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_property, var__virtual_0_), new AdjunctPropertyNotComposite.GeneratedPQuery.Embedded_2_Property_aggregation());
           bodies.add(body);
       }
       return bodies;

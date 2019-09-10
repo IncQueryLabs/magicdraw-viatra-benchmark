@@ -87,8 +87,18 @@ public final class NotBinaryConnector extends BaseGeneratedEMFQuerySpecification
     
     @Override
     public Object get(final String parameterName) {
-      if ("connector".equals(parameterName)) return this.fConnector;
-      return null;
+      switch(parameterName) {
+          case "connector": return this.fConnector;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fConnector;
+          default: return null;
+      }
     }
     
     public Connector getConnector() {
@@ -477,9 +487,9 @@ public final class NotBinaryConnector extends BaseGeneratedEMFQuerySpecification
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.NotBinaryConnector (visibility: PUBLIC, simpleName: NotBinaryConnector, identifier: com.incquerylabs.magicdraw.benchmark.queries.NotBinaryConnector, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link NotBinaryConnector} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.NotBinaryConnector (visibility: PUBLIC, simpleName: NotBinaryConnector, identifier: com.incquerylabs.magicdraw.benchmark.queries.NotBinaryConnector, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link NotBinaryConnector#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -509,20 +519,20 @@ public final class NotBinaryConnector extends BaseGeneratedEMFQuerySpecification
     
     private final List<PParameter> parameters = Arrays.asList(parameter_connector);
     
-    private class EmbeddedQuery516197431 extends BaseGeneratedEMFPQuery {
+    private class Embedded_1_Connector_end extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.compositestructures.mdinternalstructures.Connector", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Connector")), PParameterDirection.INOUT);
       
       private final PParameter parameter_p1 = new PParameter("p1", "com.nomagic.uml2.ext.magicdraw.compositestructures.mdinternalstructures.ConnectorEnd", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "ConnectorEnd")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
       
-      public EmbeddedQuery516197431() {
+      public Embedded_1_Connector_end() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$516197431";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_1_Connector_end";
       }
       
       @Override
@@ -593,7 +603,7 @@ public final class NotBinaryConnector extends BaseGeneratedEMFQuerySpecification
           new Equality(body, var__virtual_0_, var_connector);
           // 	ends == count Connector.end(connector, _)
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-          new PatternMatchCounter(body, Tuples.flatTupleOf(var_connector, var___1_), new NotBinaryConnector.GeneratedPQuery.EmbeddedQuery516197431(), var__virtual_1_);
+          new PatternMatchCounter(body, Tuples.flatTupleOf(var_connector, var___1_), new NotBinaryConnector.GeneratedPQuery.Embedded_1_Connector_end(), var__virtual_1_);
           new Equality(body, var_ends, var__virtual_1_);
           // 	check(ends != 2)
           new ExpressionEvaluation(body, new IExpressionEvaluator() {

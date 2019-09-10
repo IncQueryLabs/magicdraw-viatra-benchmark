@@ -1,6 +1,7 @@
 package com.incquerylabs.magicdraw.benchmark;
 
 import java.io.File;
+import java.util.Collection;
 
 import org.eclipse.viatra.query.runtime.api.IQuerySpecification;
 
@@ -86,8 +87,8 @@ public class MondoSamRunner {
 	}
 
 	private void runBenchmark(BackendSelection backend, String resultPath, Integer size, int runIndex) throws Exception {
-		IQuerySpecification<?> querySpecification = backend.findQuery(parameters);
-		String path = resultPath+getName(querySpecification)+File.separator;
+		Collection<IQuerySpecification<?>> querySpecifications = backend.findQueries(parameters);
+		String path = resultPath+parameters.getQueryName()+File.separator;
 		new File(path).mkdirs();
 		
 		BenchmarkEngine engine = new BenchmarkEngine();
@@ -95,8 +96,8 @@ public class MondoSamRunner {
 		MemoryMetric.setNumberOfGC(5);
 		
 		QueryMatcherToken token = new QueryMatcherToken();
-		SingleQueryScenario scenario = new SingleQueryScenario(getName(querySpecification),
-				querySpecification, backend.getEngineImplementation(), backend.getEngineDefaultHints(), backend.isPreindexingRequired(), runIndex, backend.getToolName());
+		SingleQueryScenario scenario = new SingleQueryScenario(parameters.getQueryName(),
+				querySpecifications, backend.getEngineImplementation(), backend.getEngineDefaultHints(), backend.isPreindexingRequired(), runIndex, backend.getToolName());
 		scenario.setSize(size);
 		engine.runBenchmark(scenario, token);
 	}

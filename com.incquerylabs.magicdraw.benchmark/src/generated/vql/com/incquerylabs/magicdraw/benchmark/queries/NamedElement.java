@@ -85,9 +85,20 @@ public final class NamedElement extends BaseGeneratedEMFQuerySpecification<Named
     
     @Override
     public Object get(final String parameterName) {
-      if ("element".equals(parameterName)) return this.fElement;
-      if ("name".equals(parameterName)) return this.fName;
-      return null;
+      switch(parameterName) {
+          case "element": return this.fElement;
+          case "name": return this.fName;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fElement;
+          case 1: return this.fName;
+          default: return null;
+      }
     }
     
     public com.nomagic.uml2.ext.magicdraw.classes.mdkernel.NamedElement getElement() {
@@ -619,9 +630,9 @@ public final class NamedElement extends BaseGeneratedEMFQuerySpecification<Named
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.NamedElement (visibility: PUBLIC, simpleName: NamedElement, identifier: com.incquerylabs.magicdraw.benchmark.queries.NamedElement, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link NamedElement} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.NamedElement (visibility: PUBLIC, simpleName: NamedElement, identifier: com.incquerylabs.magicdraw.benchmark.queries.NamedElement, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link NamedElement#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

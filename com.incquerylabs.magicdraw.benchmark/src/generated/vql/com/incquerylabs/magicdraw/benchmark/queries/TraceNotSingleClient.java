@@ -86,8 +86,18 @@ public final class TraceNotSingleClient extends BaseGeneratedEMFQuerySpecificati
     
     @Override
     public Object get(final String parameterName) {
-      if ("trace".equals(parameterName)) return this.fTrace;
-      return null;
+      switch(parameterName) {
+          case "trace": return this.fTrace;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fTrace;
+          default: return null;
+      }
     }
     
     public Abstraction getTrace() {
@@ -475,9 +485,9 @@ public final class TraceNotSingleClient extends BaseGeneratedEMFQuerySpecificati
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.TraceNotSingleClient (visibility: PUBLIC, simpleName: TraceNotSingleClient, identifier: com.incquerylabs.magicdraw.benchmark.queries.TraceNotSingleClient, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link TraceNotSingleClient} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.TraceNotSingleClient (visibility: PUBLIC, simpleName: TraceNotSingleClient, identifier: com.incquerylabs.magicdraw.benchmark.queries.TraceNotSingleClient, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link TraceNotSingleClient#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -507,20 +517,20 @@ public final class TraceNotSingleClient extends BaseGeneratedEMFQuerySpecificati
     
     private final List<PParameter> parameters = Arrays.asList(parameter_trace);
     
-    private class EmbeddedQuery1024680654 extends BaseGeneratedEMFPQuery {
+    private class Embedded_1_Abstraction_client extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.classes.mddependencies.Abstraction", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Abstraction")), PParameterDirection.INOUT);
       
       private final PParameter parameter_p1 = new PParameter("p1", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.NamedElement", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "NamedElement")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
       
-      public EmbeddedQuery1024680654() {
+      public Embedded_1_Abstraction_client() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$1024680654";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_1_Abstraction_client";
       }
       
       @Override
@@ -584,7 +594,7 @@ public final class TraceNotSingleClient extends BaseGeneratedEMFQuerySpecificati
           new PositivePatternCall(body, Tuples.flatTupleOf(var_trace, var___0_), Trace.instance().getInternalQueryRepresentation());
           // 	size == count Abstraction.client(trace, _)
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new PatternMatchCounter(body, Tuples.flatTupleOf(var_trace, var___1_), new TraceNotSingleClient.GeneratedPQuery.EmbeddedQuery1024680654(), var__virtual_0_);
+          new PatternMatchCounter(body, Tuples.flatTupleOf(var_trace, var___1_), new TraceNotSingleClient.GeneratedPQuery.Embedded_1_Abstraction_client(), var__virtual_0_);
           new Equality(body, var_size, var__virtual_0_);
           // 	check(size != 1)
           new ExpressionEvaluation(body, new IExpressionEvaluator() {

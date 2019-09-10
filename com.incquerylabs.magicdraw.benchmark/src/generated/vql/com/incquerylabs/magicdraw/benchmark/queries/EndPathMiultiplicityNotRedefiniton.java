@@ -86,8 +86,18 @@ public final class EndPathMiultiplicityNotRedefiniton extends BaseGeneratedEMFQu
     
     @Override
     public Object get(final String parameterName) {
-      if ("endPathMultiplicity".equals(parameterName)) return this.fEndPathMultiplicity;
-      return null;
+      switch(parameterName) {
+          case "endPathMultiplicity": return this.fEndPathMultiplicity;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fEndPathMultiplicity;
+          default: return null;
+      }
     }
     
     public Property getEndPathMultiplicity() {
@@ -477,9 +487,9 @@ public final class EndPathMiultiplicityNotRedefiniton extends BaseGeneratedEMFQu
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.EndPathMiultiplicityNotRedefiniton (visibility: PUBLIC, simpleName: EndPathMiultiplicityNotRedefiniton, identifier: com.incquerylabs.magicdraw.benchmark.queries.EndPathMiultiplicityNotRedefiniton, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link EndPathMiultiplicityNotRedefiniton} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.EndPathMiultiplicityNotRedefiniton (visibility: PUBLIC, simpleName: EndPathMiultiplicityNotRedefiniton, identifier: com.incquerylabs.magicdraw.benchmark.queries.EndPathMiultiplicityNotRedefiniton, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link EndPathMiultiplicityNotRedefiniton#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -509,20 +519,20 @@ public final class EndPathMiultiplicityNotRedefiniton extends BaseGeneratedEMFQu
     
     private final List<PParameter> parameters = Arrays.asList(parameter_endPathMultiplicity);
     
-    private class EmbeddedQuery1980617635 extends BaseGeneratedEMFPQuery {
+    private class Embedded_1_Property_redefinedProperty extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")), PParameterDirection.INOUT);
       
       private final PParameter parameter_p1 = new PParameter("p1", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
       
-      public EmbeddedQuery1980617635() {
+      public Embedded_1_Property_redefinedProperty() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$1980617635";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_1_Property_redefinedProperty";
       }
       
       @Override
@@ -584,7 +594,7 @@ public final class EndPathMiultiplicityNotRedefiniton extends BaseGeneratedEMFQu
           // 	find sysml.EndPathMultiplicity(endPathMultiplicity, _)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_endPathMultiplicity, var___0_), EndPathMultiplicity.instance().getInternalQueryRepresentation());
           // 	neg Property.redefinedProperty(endPathMultiplicity, _)
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_endPathMultiplicity, var___1_), new EndPathMiultiplicityNotRedefiniton.GeneratedPQuery.EmbeddedQuery1980617635());
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_endPathMultiplicity, var___1_), new EndPathMiultiplicityNotRedefiniton.GeneratedPQuery.Embedded_1_Property_redefinedProperty());
           bodies.add(body);
       }
       {

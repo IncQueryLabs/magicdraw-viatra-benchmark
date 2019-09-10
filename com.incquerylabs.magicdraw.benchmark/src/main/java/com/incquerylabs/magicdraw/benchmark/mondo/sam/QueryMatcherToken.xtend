@@ -12,14 +12,15 @@ import org.eclipse.viatra.query.runtime.base.api.filters.IBaseIndexFeatureFilter
 import org.eclipse.viatra.query.runtime.emf.EMFScope
 import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint
 import com.nomagic.magicdraw.core.Application
+import java.util.Collection
 
 /**
  * Contains an AdvancedViatraQueryEngine and a ViatraQueryMatcher.
  */
 class QueryMatcherToken implements DataToken {
 	
-	private AdvancedViatraQueryEngine engine	
-	private ViatraQueryMatcher<? extends IPatternMatch> matcher
+	AdvancedViatraQueryEngine engine	
+	Collection<ViatraQueryMatcher<? extends IPatternMatch>> matchers
 	
 	def initEngine(QueryEvaluationHint engineDefaultHint) {
 		if (engine !== null) {
@@ -53,12 +54,16 @@ class QueryMatcherToken implements DataToken {
 		return engine
 	}
 	
-	def setMatcher(ViatraQueryMatcher<? extends IPatternMatch> matcher) {
-		this.matcher = matcher
+	def addMatcher(ViatraQueryMatcher<? extends IPatternMatch> matcher) {
+		matchers += matcher
 	}
 	
-	def getMatcher() {
-		return matcher
+	def removeMatcher(ViatraQueryMatcher<? extends IPatternMatch> matcher) {
+		matchers -= matcher
+	}
+	
+	def getMatchers() {
+		return matchers
 	}
 	
 	override init() {

@@ -87,8 +87,18 @@ public final class FlowPropertyInvalidType extends BaseGeneratedEMFQuerySpecific
     
     @Override
     public Object get(final String parameterName) {
-      if ("property".equals(parameterName)) return this.fProperty;
-      return null;
+      switch(parameterName) {
+          case "property": return this.fProperty;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fProperty;
+          default: return null;
+      }
     }
     
     public Property getProperty() {
@@ -478,9 +488,9 @@ public final class FlowPropertyInvalidType extends BaseGeneratedEMFQuerySpecific
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.FlowPropertyInvalidType (visibility: PUBLIC, simpleName: FlowPropertyInvalidType, identifier: com.incquerylabs.magicdraw.benchmark.queries.FlowPropertyInvalidType, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link FlowPropertyInvalidType} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.FlowPropertyInvalidType (visibility: PUBLIC, simpleName: FlowPropertyInvalidType, identifier: com.incquerylabs.magicdraw.benchmark.queries.FlowPropertyInvalidType, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link FlowPropertyInvalidType#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -510,18 +520,18 @@ public final class FlowPropertyInvalidType extends BaseGeneratedEMFQuerySpecific
     
     private final List<PParameter> parameters = Arrays.asList(parameter_property);
     
-    private class EmbeddedQuery1785124924 extends BaseGeneratedEMFPQuery {
+    private class Embedded_1_Signal extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.commonbehaviors.mdcommunications.Signal", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Signal")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0);
       
-      public EmbeddedQuery1785124924() {
+      public Embedded_1_Signal() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$1785124924";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_1_Signal";
       }
       
       @Override
@@ -589,7 +599,7 @@ public final class FlowPropertyInvalidType extends BaseGeneratedEMFQuerySpecific
           // 	neg find sysml.ValueType(type, _)
           new NegativePatternCall(body, Tuples.flatTupleOf(var_type, var___2_), ValueType.instance().getInternalQueryRepresentation());
           // 	neg Signal(type)
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_type), new FlowPropertyInvalidType.GeneratedPQuery.EmbeddedQuery1785124924());
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_type), new FlowPropertyInvalidType.GeneratedPQuery.Embedded_1_Signal());
           bodies.add(body);
       }
       return bodies;

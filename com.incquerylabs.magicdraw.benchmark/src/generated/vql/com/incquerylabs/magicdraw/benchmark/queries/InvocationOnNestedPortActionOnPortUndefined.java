@@ -83,8 +83,18 @@ public final class InvocationOnNestedPortActionOnPortUndefined extends BaseGener
     
     @Override
     public Object get(final String parameterName) {
-      if ("action".equals(parameterName)) return this.fAction;
-      return null;
+      switch(parameterName) {
+          case "action": return this.fAction;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fAction;
+          default: return null;
+      }
     }
     
     public InvocationAction getAction() {
@@ -472,9 +482,9 @@ public final class InvocationOnNestedPortActionOnPortUndefined extends BaseGener
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.InvocationOnNestedPortActionOnPortUndefined (visibility: PUBLIC, simpleName: InvocationOnNestedPortActionOnPortUndefined, identifier: com.incquerylabs.magicdraw.benchmark.queries.InvocationOnNestedPortActionOnPortUndefined, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link InvocationOnNestedPortActionOnPortUndefined} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.InvocationOnNestedPortActionOnPortUndefined (visibility: PUBLIC, simpleName: InvocationOnNestedPortActionOnPortUndefined, identifier: com.incquerylabs.magicdraw.benchmark.queries.InvocationOnNestedPortActionOnPortUndefined, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link InvocationOnNestedPortActionOnPortUndefined#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -504,20 +514,20 @@ public final class InvocationOnNestedPortActionOnPortUndefined extends BaseGener
     
     private final List<PParameter> parameters = Arrays.asList(parameter_action);
     
-    private class EmbeddedQuery1370994322 extends BaseGeneratedEMFPQuery {
+    private class Embedded_1_InvocationAction_onPort extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.actions.mdbasicactions.InvocationAction", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "InvocationAction")), PParameterDirection.INOUT);
       
       private final PParameter parameter_p1 = new PParameter("p1", "com.nomagic.uml2.ext.magicdraw.compositestructures.mdports.Port", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Port")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
       
-      public EmbeddedQuery1370994322() {
+      public Embedded_1_InvocationAction_onPort() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$1370994322";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_1_InvocationAction_onPort";
       }
       
       @Override
@@ -579,7 +589,7 @@ public final class InvocationOnNestedPortActionOnPortUndefined extends BaseGener
           // 	find sysml.InvocationOnNestedPortAction(action, _)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_action, var___0_), InvocationOnNestedPortAction.instance().getInternalQueryRepresentation());
           // 	neg InvocationAction.onPort(action, _)
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_action, var___1_), new InvocationOnNestedPortActionOnPortUndefined.GeneratedPQuery.EmbeddedQuery1370994322());
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_action, var___1_), new InvocationOnNestedPortActionOnPortUndefined.GeneratedPQuery.Embedded_1_InvocationAction_onPort());
           bodies.add(body);
       }
       return bodies;

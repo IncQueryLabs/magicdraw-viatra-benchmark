@@ -80,8 +80,18 @@ public final class InterfaceBlockInvalidInheritance extends BaseGeneratedEMFQuer
     
     @Override
     public Object get(final String parameterName) {
-      if ("interfaceBlock".equals(parameterName)) return this.fInterfaceBlock;
-      return null;
+      switch(parameterName) {
+          case "interfaceBlock": return this.fInterfaceBlock;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fInterfaceBlock;
+          default: return null;
+      }
     }
     
     public com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class getInterfaceBlock() {
@@ -469,9 +479,9 @@ public final class InterfaceBlockInvalidInheritance extends BaseGeneratedEMFQuer
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.InterfaceBlockInvalidInheritance (visibility: PUBLIC, simpleName: InterfaceBlockInvalidInheritance, identifier: com.incquerylabs.magicdraw.benchmark.queries.InterfaceBlockInvalidInheritance, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link InterfaceBlockInvalidInheritance} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.InterfaceBlockInvalidInheritance (visibility: PUBLIC, simpleName: InterfaceBlockInvalidInheritance, identifier: com.incquerylabs.magicdraw.benchmark.queries.InterfaceBlockInvalidInheritance, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link InterfaceBlockInvalidInheritance#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

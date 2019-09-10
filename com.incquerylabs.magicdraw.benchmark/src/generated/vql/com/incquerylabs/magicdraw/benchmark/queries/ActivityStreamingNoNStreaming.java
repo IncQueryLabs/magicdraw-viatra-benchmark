@@ -79,8 +79,18 @@ public final class ActivityStreamingNoNStreaming extends BaseGeneratedEMFQuerySp
     
     @Override
     public Object get(final String parameterName) {
-      if ("activity".equals(parameterName)) return this.fActivity;
-      return null;
+      switch(parameterName) {
+          case "activity": return this.fActivity;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fActivity;
+          default: return null;
+      }
     }
     
     public Activity getActivity() {
@@ -467,9 +477,9 @@ public final class ActivityStreamingNoNStreaming extends BaseGeneratedEMFQuerySp
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.ActivityStreamingNoNStreaming (visibility: PUBLIC, simpleName: ActivityStreamingNoNStreaming, identifier: com.incquerylabs.magicdraw.benchmark.queries.ActivityStreamingNoNStreaming, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link ActivityStreamingNoNStreaming} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.ActivityStreamingNoNStreaming (visibility: PUBLIC, simpleName: ActivityStreamingNoNStreaming, identifier: com.incquerylabs.magicdraw.benchmark.queries.ActivityStreamingNoNStreaming, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link ActivityStreamingNoNStreaming#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

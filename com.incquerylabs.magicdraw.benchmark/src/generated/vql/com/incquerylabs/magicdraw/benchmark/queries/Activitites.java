@@ -94,11 +94,24 @@ public final class Activitites extends BaseGeneratedEMFQuerySpecification<Activi
     
     @Override
     public Object get(final String parameterName) {
-      if ("activity".equals(parameterName)) return this.fActivity;
-      if ("event".equals(parameterName)) return this.fEvent;
-      if ("eventName".equals(parameterName)) return this.fEventName;
-      if ("trigger".equals(parameterName)) return this.fTrigger;
-      return null;
+      switch(parameterName) {
+          case "activity": return this.fActivity;
+          case "event": return this.fEvent;
+          case "eventName": return this.fEventName;
+          case "trigger": return this.fTrigger;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fActivity;
+          case 1: return this.fEvent;
+          case 2: return this.fEventName;
+          case 3: return this.fTrigger;
+          default: return null;
+      }
     }
     
     public Activity getActivity() {
@@ -826,9 +839,9 @@ public final class Activitites extends BaseGeneratedEMFQuerySpecification<Activi
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.Activitites (visibility: PUBLIC, simpleName: Activitites, identifier: com.incquerylabs.magicdraw.benchmark.queries.Activitites, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link Activitites} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.Activitites (visibility: PUBLIC, simpleName: Activitites, identifier: com.incquerylabs.magicdraw.benchmark.queries.Activitites, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link Activitites#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

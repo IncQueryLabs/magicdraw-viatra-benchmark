@@ -87,8 +87,18 @@ public final class ChangeStructuralFeatureEventFeatureMultiplicity extends BaseG
     
     @Override
     public Object get(final String parameterName) {
-      if ("changeEvent".equals(parameterName)) return this.fChangeEvent;
-      return null;
+      switch(parameterName) {
+          case "changeEvent": return this.fChangeEvent;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fChangeEvent;
+          default: return null;
+      }
     }
     
     public ChangeEvent getChangeEvent() {
@@ -478,9 +488,9 @@ public final class ChangeStructuralFeatureEventFeatureMultiplicity extends BaseG
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.ChangeStructuralFeatureEventFeatureMultiplicity (visibility: PUBLIC, simpleName: ChangeStructuralFeatureEventFeatureMultiplicity, identifier: com.incquerylabs.magicdraw.benchmark.queries.ChangeStructuralFeatureEventFeatureMultiplicity, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link ChangeStructuralFeatureEventFeatureMultiplicity} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.ChangeStructuralFeatureEventFeatureMultiplicity (visibility: PUBLIC, simpleName: ChangeStructuralFeatureEventFeatureMultiplicity, identifier: com.incquerylabs.magicdraw.benchmark.queries.ChangeStructuralFeatureEventFeatureMultiplicity, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link ChangeStructuralFeatureEventFeatureMultiplicity#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

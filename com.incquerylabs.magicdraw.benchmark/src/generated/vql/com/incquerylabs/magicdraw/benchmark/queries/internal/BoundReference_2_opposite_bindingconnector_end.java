@@ -71,9 +71,9 @@ public final class BoundReference_2_opposite_bindingconnector_end extends BaseGe
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.internal.BoundReference_2_opposite_bindingconnector_end (visibility: PUBLIC, simpleName: BoundReference_2_opposite_bindingconnector_end, identifier: com.incquerylabs.magicdraw.benchmark.queries.internal.BoundReference_2_opposite_bindingconnector_end, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries.internal) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link BoundReference_2_opposite_bindingconnector_end} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.internal.BoundReference_2_opposite_bindingconnector_end (visibility: PUBLIC, simpleName: BoundReference_2_opposite_bindingconnector_end, identifier: com.incquerylabs.magicdraw.benchmark.queries.internal.BoundReference_2_opposite_bindingconnector_end, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries.internal) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link BoundReference_2_opposite_bindingconnector_end#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -103,20 +103,20 @@ public final class BoundReference_2_opposite_bindingconnector_end extends BaseGe
     
     private final List<PParameter> parameters = Arrays.asList(parameter_boundReference);
     
-    private class EmbeddedQuery1627701374 extends BaseGeneratedEMFPQuery {
+    private class Embedded_1_Property_redefinedProperty extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")), PParameterDirection.INOUT);
       
       private final PParameter parameter_p1 = new PParameter("p1", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
       
-      public EmbeddedQuery1627701374() {
+      public Embedded_1_Property_redefinedProperty() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$1627701374";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_1_Property_redefinedProperty";
       }
       
       @Override
@@ -194,7 +194,7 @@ public final class BoundReference_2_opposite_bindingconnector_end extends BaseGe
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ConnectableElement")));
           new Equality(body, var__virtual_1_, var_role);
           // 	Property.redefinedProperty *(boundReference, role)
-          new BinaryReflexiveTransitiveClosure(body, Tuples.flatTupleOf(var_boundReference, var_role), new BoundReference_2_opposite_bindingconnector_end.GeneratedPQuery.EmbeddedQuery1627701374(), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")));
+          new BinaryReflexiveTransitiveClosure(body, Tuples.flatTupleOf(var_boundReference, var_role), new BoundReference_2_opposite_bindingconnector_end.GeneratedPQuery.Embedded_1_Property_redefinedProperty(), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")));
           // 	find sysml.BoundReference_boundEnd(boundReference, boundEnd)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_boundReference, var_boundEnd), BoundReference_boundEnd.instance().getInternalQueryRepresentation());
           // 	Connector.end(connector, opposite)

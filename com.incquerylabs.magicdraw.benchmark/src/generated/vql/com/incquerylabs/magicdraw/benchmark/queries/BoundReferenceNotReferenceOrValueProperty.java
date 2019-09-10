@@ -87,8 +87,18 @@ public final class BoundReferenceNotReferenceOrValueProperty extends BaseGenerat
     
     @Override
     public Object get(final String parameterName) {
-      if ("boundReference".equals(parameterName)) return this.fBoundReference;
-      return null;
+      switch(parameterName) {
+          case "boundReference": return this.fBoundReference;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fBoundReference;
+          default: return null;
+      }
     }
     
     public Property getBoundReference() {
@@ -477,9 +487,9 @@ public final class BoundReferenceNotReferenceOrValueProperty extends BaseGenerat
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.BoundReferenceNotReferenceOrValueProperty (visibility: PUBLIC, simpleName: BoundReferenceNotReferenceOrValueProperty, identifier: com.incquerylabs.magicdraw.benchmark.queries.BoundReferenceNotReferenceOrValueProperty, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link BoundReferenceNotReferenceOrValueProperty} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.BoundReferenceNotReferenceOrValueProperty (visibility: PUBLIC, simpleName: BoundReferenceNotReferenceOrValueProperty, identifier: com.incquerylabs.magicdraw.benchmark.queries.BoundReferenceNotReferenceOrValueProperty, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link BoundReferenceNotReferenceOrValueProperty#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

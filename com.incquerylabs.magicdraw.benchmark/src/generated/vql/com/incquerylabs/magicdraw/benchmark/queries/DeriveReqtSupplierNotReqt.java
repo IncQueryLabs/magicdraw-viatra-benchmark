@@ -83,8 +83,18 @@ public final class DeriveReqtSupplierNotReqt extends BaseGeneratedEMFQuerySpecif
     
     @Override
     public Object get(final String parameterName) {
-      if ("deriveReqt".equals(parameterName)) return this.fDeriveReqt;
-      return null;
+      switch(parameterName) {
+          case "deriveReqt": return this.fDeriveReqt;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fDeriveReqt;
+          default: return null;
+      }
     }
     
     public Abstraction getDeriveReqt() {
@@ -472,9 +482,9 @@ public final class DeriveReqtSupplierNotReqt extends BaseGeneratedEMFQuerySpecif
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.DeriveReqtSupplierNotReqt (visibility: PUBLIC, simpleName: DeriveReqtSupplierNotReqt, identifier: com.incquerylabs.magicdraw.benchmark.queries.DeriveReqtSupplierNotReqt, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link DeriveReqtSupplierNotReqt} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.DeriveReqtSupplierNotReqt (visibility: PUBLIC, simpleName: DeriveReqtSupplierNotReqt, identifier: com.incquerylabs.magicdraw.benchmark.queries.DeriveReqtSupplierNotReqt, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link DeriveReqtSupplierNotReqt#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

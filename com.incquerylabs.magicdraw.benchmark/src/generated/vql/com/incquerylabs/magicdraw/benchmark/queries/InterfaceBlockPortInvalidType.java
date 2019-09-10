@@ -88,8 +88,18 @@ public final class InterfaceBlockPortInvalidType extends BaseGeneratedEMFQuerySp
     
     @Override
     public Object get(final String parameterName) {
-      if ("port".equals(parameterName)) return this.fPort;
-      return null;
+      switch(parameterName) {
+          case "port": return this.fPort;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fPort;
+          default: return null;
+      }
     }
     
     public Port getPort() {
@@ -482,9 +492,9 @@ public final class InterfaceBlockPortInvalidType extends BaseGeneratedEMFQuerySp
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.InterfaceBlockPortInvalidType (visibility: PUBLIC, simpleName: InterfaceBlockPortInvalidType, identifier: com.incquerylabs.magicdraw.benchmark.queries.InterfaceBlockPortInvalidType, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link InterfaceBlockPortInvalidType} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.InterfaceBlockPortInvalidType (visibility: PUBLIC, simpleName: InterfaceBlockPortInvalidType, identifier: com.incquerylabs.magicdraw.benchmark.queries.InterfaceBlockPortInvalidType, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link InterfaceBlockPortInvalidType#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -514,20 +524,20 @@ public final class InterfaceBlockPortInvalidType extends BaseGeneratedEMFQuerySp
     
     private final List<PParameter> parameters = Arrays.asList(parameter_port);
     
-    private class EmbeddedQuery1371463221 extends BaseGeneratedEMFPQuery {
+    private class Embedded_1_Port_type extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.compositestructures.mdports.Port", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Port")), PParameterDirection.INOUT);
       
       private final PParameter parameter_p1 = new PParameter("p1", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Type", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Type")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
       
-      public EmbeddedQuery1371463221() {
+      public Embedded_1_Port_type() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$1371463221";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_1_Port_type";
       }
       
       @Override
@@ -625,7 +635,7 @@ public final class InterfaceBlockPortInvalidType extends BaseGeneratedEMFQuerySp
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")));
           new Equality(body, var__virtual_0_, var_port);
           // 	neg Port.type(port, _)
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_port, var___1_), new InterfaceBlockPortInvalidType.GeneratedPQuery.EmbeddedQuery1371463221());
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_port, var___1_), new InterfaceBlockPortInvalidType.GeneratedPQuery.Embedded_1_Port_type());
           bodies.add(body);
       }
       return bodies;

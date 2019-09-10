@@ -81,8 +81,18 @@ public final class RequirementNestedClassifierNotRequirement extends BaseGenerat
     
     @Override
     public Object get(final String parameterName) {
-      if ("nested".equals(parameterName)) return this.fNested;
-      return null;
+      switch(parameterName) {
+          case "nested": return this.fNested;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fNested;
+          default: return null;
+      }
     }
     
     public com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class getNested() {
@@ -470,9 +480,9 @@ public final class RequirementNestedClassifierNotRequirement extends BaseGenerat
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.RequirementNestedClassifierNotRequirement (visibility: PUBLIC, simpleName: RequirementNestedClassifierNotRequirement, identifier: com.incquerylabs.magicdraw.benchmark.queries.RequirementNestedClassifierNotRequirement, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link RequirementNestedClassifierNotRequirement} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.RequirementNestedClassifierNotRequirement (visibility: PUBLIC, simpleName: RequirementNestedClassifierNotRequirement, identifier: com.incquerylabs.magicdraw.benchmark.queries.RequirementNestedClassifierNotRequirement, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link RequirementNestedClassifierNotRequirement#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

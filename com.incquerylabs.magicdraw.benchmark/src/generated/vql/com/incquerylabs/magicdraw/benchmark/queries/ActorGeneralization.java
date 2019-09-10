@@ -81,9 +81,20 @@ public final class ActorGeneralization extends BaseGeneratedEMFQuerySpecificatio
     
     @Override
     public Object get(final String parameterName) {
-      if ("actor".equals(parameterName)) return this.fActor;
-      if ("generalActor".equals(parameterName)) return this.fGeneralActor;
-      return null;
+      switch(parameterName) {
+          case "actor": return this.fActor;
+          case "generalActor": return this.fGeneralActor;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fActor;
+          case 1: return this.fGeneralActor;
+          default: return null;
+      }
     }
     
     public Actor getActor() {
@@ -613,9 +624,9 @@ public final class ActorGeneralization extends BaseGeneratedEMFQuerySpecificatio
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.ActorGeneralization (visibility: PUBLIC, simpleName: ActorGeneralization, identifier: com.incquerylabs.magicdraw.benchmark.queries.ActorGeneralization, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link ActorGeneralization} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.ActorGeneralization (visibility: PUBLIC, simpleName: ActorGeneralization, identifier: com.incquerylabs.magicdraw.benchmark.queries.ActorGeneralization, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link ActorGeneralization#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

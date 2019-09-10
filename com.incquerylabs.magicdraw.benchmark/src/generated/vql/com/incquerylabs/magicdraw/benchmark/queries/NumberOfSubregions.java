@@ -85,9 +85,20 @@ public final class NumberOfSubregions extends BaseGeneratedEMFQuerySpecification
     
     @Override
     public Object get(final String parameterName) {
-      if ("state".equals(parameterName)) return this.fState;
-      if ("regionCount".equals(parameterName)) return this.fRegionCount;
-      return null;
+      switch(parameterName) {
+          case "state": return this.fState;
+          case "regionCount": return this.fRegionCount;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fState;
+          case 1: return this.fRegionCount;
+          default: return null;
+      }
     }
     
     public State getState() {
@@ -619,9 +630,9 @@ public final class NumberOfSubregions extends BaseGeneratedEMFQuerySpecification
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.NumberOfSubregions (visibility: PUBLIC, simpleName: NumberOfSubregions, identifier: com.incquerylabs.magicdraw.benchmark.queries.NumberOfSubregions, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link NumberOfSubregions} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.NumberOfSubregions (visibility: PUBLIC, simpleName: NumberOfSubregions, identifier: com.incquerylabs.magicdraw.benchmark.queries.NumberOfSubregions, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link NumberOfSubregions#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

@@ -61,9 +61,9 @@ public final class PrincipalBehavior extends BaseGeneratedEMFQuerySpecificationW
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.internal.PrincipalBehavior (visibility: PUBLIC, simpleName: PrincipalBehavior, identifier: com.incquerylabs.magicdraw.benchmark.queries.internal.PrincipalBehavior, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries.internal) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link PrincipalBehavior} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.internal.PrincipalBehavior (visibility: PUBLIC, simpleName: PrincipalBehavior, identifier: com.incquerylabs.magicdraw.benchmark.queries.internal.PrincipalBehavior, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries.internal) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link PrincipalBehavior#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

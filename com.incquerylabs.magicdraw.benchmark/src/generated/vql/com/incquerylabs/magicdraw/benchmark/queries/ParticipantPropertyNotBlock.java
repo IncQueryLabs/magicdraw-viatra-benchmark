@@ -86,9 +86,20 @@ public final class ParticipantPropertyNotBlock extends BaseGeneratedEMFQuerySpec
     
     @Override
     public Object get(final String parameterName) {
-      if ("class".equals(parameterName)) return this.fClass;
-      if ("property".equals(parameterName)) return this.fProperty;
-      return null;
+      switch(parameterName) {
+          case "class": return this.fClass;
+          case "property": return this.fProperty;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fClass;
+          case 1: return this.fProperty;
+          default: return null;
+      }
     }
     
     public com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class getValueOfClass() {
@@ -620,9 +631,9 @@ public final class ParticipantPropertyNotBlock extends BaseGeneratedEMFQuerySpec
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.ParticipantPropertyNotBlock (visibility: PUBLIC, simpleName: ParticipantPropertyNotBlock, identifier: com.incquerylabs.magicdraw.benchmark.queries.ParticipantPropertyNotBlock, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link ParticipantPropertyNotBlock} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.ParticipantPropertyNotBlock (visibility: PUBLIC, simpleName: ParticipantPropertyNotBlock, identifier: com.incquerylabs.magicdraw.benchmark.queries.ParticipantPropertyNotBlock, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link ParticipantPropertyNotBlock#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

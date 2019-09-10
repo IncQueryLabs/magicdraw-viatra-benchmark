@@ -1,5 +1,6 @@
 package com.incquerylabs.magicdraw.benchmark;
 
+import java.util.Collection;
 import java.util.Objects;
 
 import org.eclipse.viatra.query.runtime.api.IQueryGroup;
@@ -13,12 +14,14 @@ import org.eclipse.viatra.query.runtime.matchers.psystem.IQueryReference;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PQuery;
 
+import com.google.common.collect.ImmutableSet;
 import com.incquerylabs.magicdraw.benchmark.incrementalqueries.IncrementalQueries;
 import com.incquerylabs.magicdraw.benchmark.incrementalqueries.ParentState;
 import com.incquerylabs.magicdraw.benchmark.queries.APerformanceQueries;
 import com.incquerylabs.magicdraw.benchmark.queries.IncomingTransitions;
 import com.incquerylabs.magicdraw.benchmark.queries.Sysml_validation_queries;
 import com.incquerylabs.magicdraw.benchmark.queries.TransitiveSubstatesWithCheck3;
+import com.incquerylabs.magicdraw.benchmark.queries.internal.Sysml_validation_queriesAll;
 
 public enum BackendSelection {
 
@@ -28,16 +31,14 @@ public enum BackendSelection {
 	LOCAL_SEARCH_HINTS_TC_FIRST,
 	HYBRID;
 	
-	public IQuerySpecification<?> findQuery(BenchmarkParameters parameters) throws ViatraQueryException {
+	public Collection<IQuerySpecification<?>> findQueries(BenchmarkParameters parameters) throws ViatraQueryException {
 		switch(this) {
 		case RETE:
-			return findQueryBySimpleName(Sysml_validation_queries.instance(), parameters.getQueryName());
 		case LOCALSEARCH:
 		case LOCAL_SEARCH_HINTS_CONDITION_FIRST:
 		case LOCAL_SEARCH_HINTS_TC_FIRST:
-			return findQueryBySimpleName(APerformanceQueries.instance(), parameters.getQueryName());
 		case HYBRID:
-			return findQueryBySimpleName(IncrementalQueries.instance(), parameters.getQueryName());
+			return findQueries(Sysml_validation_queries.instance(), parameters.getQueryName());
 		default:
 			throw new InvalidBenchmarkParameterizationException("Unexpected backend configuration " + this);
 		}
@@ -112,6 +113,13 @@ public enum BackendSelection {
 		default:
 			return true;
 		}
+	}
+	
+	private Collection<IQuerySpecification<?>> findQueries(IQueryGroup querySpecifications, String queryName) throws ViatraQueryException {
+		if(queryName.equals("all")) {
+			return querySpecifications.getSpecifications();
+		}
+		return ImmutableSet.of(findQueryBySimpleName(querySpecifications, queryName));
 	}
 	
 	private IQuerySpecification<?> findQueryBySimpleName(IQueryGroup querySpecifications, String queryName) throws ViatraQueryException {

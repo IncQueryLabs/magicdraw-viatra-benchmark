@@ -6,18 +6,19 @@ import eu.mondo.sam.core.results.CaseDescriptor
 import eu.mondo.sam.core.scenarios.BenchmarkScenario
 import org.eclipse.viatra.query.runtime.api.IQuerySpecification
 import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint
+import java.util.Collection
 
 class SingleQueryScenario extends BenchmarkScenario {
 	
-	private IQuerySpecification<?> querySpecification
-	private EngineImpl engineImpl
-	private String caseName
-	private boolean setIndex
-	private QueryEvaluationHint engineDefaultHints
+	Collection<IQuerySpecification<?>> querySpecifications
+	EngineImpl engineImpl
+	String caseName
+	boolean setIndex
+	QueryEvaluationHint engineDefaultHints
 	
-	new(String caseName, IQuerySpecification<?> querySpecification, EngineImpl engineImpl, QueryEvaluationHint engineDefaultHints, boolean setIndex, int runIndex, String toolName) {
+	new(String caseName, Collection<IQuerySpecification<?>> querySpecifications, EngineImpl engineImpl, QueryEvaluationHint engineDefaultHints, boolean setIndex, int runIndex, String toolName) {
 		this.caseName = caseName
-		this.querySpecification = querySpecification
+		this.querySpecifications = querySpecifications
 		this.engineImpl = engineImpl
 		this.engineDefaultHints = engineDefaultHints
 		this.setIndex = setIndex
@@ -35,8 +36,8 @@ class SingleQueryScenario extends BenchmarkScenario {
 		// A phase responsible for a matcher init/result set retrieval measurement
 		val measurePhase = new SequencePhase
 		measurePhase.addPhases(
-			new InitPhase(querySpecification.name + "InitPhase", engineDefaultHints),
-			new MatcherInitPhase("MatcherInitPhase", querySpecification, indexNeedsSetting), 
+			new InitPhase(caseName + "InitPhase", engineDefaultHints),
+			new MatcherInitPhase("MatcherInitPhase", caseName, querySpecifications, indexNeedsSetting), 
 			new ResultSetRetrievalPhase("ResultSetRetrievalPhase")
 		)
 		// Adding it to the root phase
@@ -65,13 +66,6 @@ class SingleQueryScenario extends BenchmarkScenario {
 	 */
 	private def getToolName() {
 		return tool;	
-	}
-	
-	/**
-	 * Returns the simple (not fully qualified) name of a query.
-	 */
-	private def getName(IQuerySpecification<?> querySpecification) {
-		querySpecification.getFullyQualifiedName().substring(querySpecification.getFullyQualifiedName().lastIndexOf(".") + 1)
 	}
 	
 }

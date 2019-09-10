@@ -87,8 +87,18 @@ public final class AdjunctPropertyWrongName extends BaseGeneratedEMFQuerySpecifi
     
     @Override
     public Object get(final String parameterName) {
-      if ("property".equals(parameterName)) return this.fProperty;
-      return null;
+      switch(parameterName) {
+          case "property": return this.fProperty;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fProperty;
+          default: return null;
+      }
     }
     
     public Property getProperty() {
@@ -477,9 +487,9 @@ public final class AdjunctPropertyWrongName extends BaseGeneratedEMFQuerySpecifi
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.AdjunctPropertyWrongName (visibility: PUBLIC, simpleName: AdjunctPropertyWrongName, identifier: com.incquerylabs.magicdraw.benchmark.queries.AdjunctPropertyWrongName, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link AdjunctPropertyWrongName} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.AdjunctPropertyWrongName (visibility: PUBLIC, simpleName: AdjunctPropertyWrongName, identifier: com.incquerylabs.magicdraw.benchmark.queries.AdjunctPropertyWrongName, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link AdjunctPropertyWrongName#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -509,20 +519,20 @@ public final class AdjunctPropertyWrongName extends BaseGeneratedEMFQuerySpecifi
     
     private final List<PParameter> parameters = Arrays.asList(parameter_property);
     
-    private class EmbeddedQuery1607318440 extends BaseGeneratedEMFPQuery {
+    private class Embedded_1_Property_name extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")), PParameterDirection.INOUT);
       
       private final PParameter parameter_p1 = new PParameter("p1", "java.lang.String", new EDataTypeInSlotsKey((EDataType)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "String")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
       
-      public EmbeddedQuery1607318440() {
+      public Embedded_1_Property_name() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$1607318440";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_1_Property_name";
       }
       
       @Override
@@ -593,7 +603,7 @@ public final class AdjunctPropertyWrongName extends BaseGeneratedEMFQuerySpecifi
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "String")));
           new Equality(body, var__virtual_0_, var_name);
           // 	neg Property.name(property, name)
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_property, var_name), new AdjunctPropertyWrongName.GeneratedPQuery.EmbeddedQuery1607318440());
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_property, var_name), new AdjunctPropertyWrongName.GeneratedPQuery.Embedded_1_Property_name());
           bodies.add(body);
       }
       return bodies;

@@ -77,8 +77,18 @@ public final class FlowSpecificationDeprecated extends BaseGeneratedEMFQuerySpec
     
     @Override
     public Object get(final String parameterName) {
-      if ("flowSpec".equals(parameterName)) return this.fFlowSpec;
-      return null;
+      switch(parameterName) {
+          case "flowSpec": return this.fFlowSpec;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fFlowSpec;
+          default: return null;
+      }
     }
     
     public Interface getFlowSpec() {
@@ -464,9 +474,9 @@ public final class FlowSpecificationDeprecated extends BaseGeneratedEMFQuerySpec
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.FlowSpecificationDeprecated (visibility: PUBLIC, simpleName: FlowSpecificationDeprecated, identifier: com.incquerylabs.magicdraw.benchmark.queries.FlowSpecificationDeprecated, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link FlowSpecificationDeprecated} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.FlowSpecificationDeprecated (visibility: PUBLIC, simpleName: FlowSpecificationDeprecated, identifier: com.incquerylabs.magicdraw.benchmark.queries.FlowSpecificationDeprecated, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link FlowSpecificationDeprecated#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

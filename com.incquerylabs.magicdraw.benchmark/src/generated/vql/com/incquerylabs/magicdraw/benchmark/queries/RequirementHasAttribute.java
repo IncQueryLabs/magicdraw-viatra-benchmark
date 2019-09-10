@@ -80,8 +80,18 @@ public final class RequirementHasAttribute extends BaseGeneratedEMFQuerySpecific
     
     @Override
     public Object get(final String parameterName) {
-      if ("attirubute".equals(parameterName)) return this.fAttirubute;
-      return null;
+      switch(parameterName) {
+          case "attirubute": return this.fAttirubute;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fAttirubute;
+          default: return null;
+      }
     }
     
     public Property getAttirubute() {
@@ -468,9 +478,9 @@ public final class RequirementHasAttribute extends BaseGeneratedEMFQuerySpecific
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.RequirementHasAttribute (visibility: PUBLIC, simpleName: RequirementHasAttribute, identifier: com.incquerylabs.magicdraw.benchmark.queries.RequirementHasAttribute, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link RequirementHasAttribute} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.RequirementHasAttribute (visibility: PUBLIC, simpleName: RequirementHasAttribute, identifier: com.incquerylabs.magicdraw.benchmark.queries.RequirementHasAttribute, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link RequirementHasAttribute#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

@@ -82,8 +82,18 @@ public final class TriggerOnNestedPortBaseFullPort extends BaseGeneratedEMFQuery
     
     @Override
     public Object get(final String parameterName) {
-      if ("trigger".equals(parameterName)) return this.fTrigger;
-      return null;
+      switch(parameterName) {
+          case "trigger": return this.fTrigger;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fTrigger;
+          default: return null;
+      }
     }
     
     public Trigger getTrigger() {
@@ -471,9 +481,9 @@ public final class TriggerOnNestedPortBaseFullPort extends BaseGeneratedEMFQuery
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.TriggerOnNestedPortBaseFullPort (visibility: PUBLIC, simpleName: TriggerOnNestedPortBaseFullPort, identifier: com.incquerylabs.magicdraw.benchmark.queries.TriggerOnNestedPortBaseFullPort, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link TriggerOnNestedPortBaseFullPort} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.TriggerOnNestedPortBaseFullPort (visibility: PUBLIC, simpleName: TriggerOnNestedPortBaseFullPort, identifier: com.incquerylabs.magicdraw.benchmark.queries.TriggerOnNestedPortBaseFullPort, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link TriggerOnNestedPortBaseFullPort#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

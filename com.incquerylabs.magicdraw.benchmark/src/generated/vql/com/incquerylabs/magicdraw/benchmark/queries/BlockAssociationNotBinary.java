@@ -86,8 +86,18 @@ public final class BlockAssociationNotBinary extends BaseGeneratedEMFQuerySpecif
     
     @Override
     public Object get(final String parameterName) {
-      if ("association".equals(parameterName)) return this.fAssociation;
-      return null;
+      switch(parameterName) {
+          case "association": return this.fAssociation;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fAssociation;
+          default: return null;
+      }
     }
     
     public Association getAssociation() {
@@ -475,9 +485,9 @@ public final class BlockAssociationNotBinary extends BaseGeneratedEMFQuerySpecif
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.BlockAssociationNotBinary (visibility: PUBLIC, simpleName: BlockAssociationNotBinary, identifier: com.incquerylabs.magicdraw.benchmark.queries.BlockAssociationNotBinary, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link BlockAssociationNotBinary} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.BlockAssociationNotBinary (visibility: PUBLIC, simpleName: BlockAssociationNotBinary, identifier: com.incquerylabs.magicdraw.benchmark.queries.BlockAssociationNotBinary, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link BlockAssociationNotBinary#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -507,20 +517,20 @@ public final class BlockAssociationNotBinary extends BaseGeneratedEMFQuerySpecif
     
     private final List<PParameter> parameters = Arrays.asList(parameter_association);
     
-    private class EmbeddedQuery1840169967 extends BaseGeneratedEMFPQuery {
+    private class Embedded_1_Association_memberEnd extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Association", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Association")), PParameterDirection.INOUT);
       
       private final PParameter parameter_p1 = new PParameter("p1", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
       
-      public EmbeddedQuery1840169967() {
+      public Embedded_1_Association_memberEnd() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$1840169967";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_1_Association_memberEnd";
       }
       
       @Override
@@ -583,7 +593,7 @@ public final class BlockAssociationNotBinary extends BaseGeneratedEMFQuerySpecif
           new NegativePatternCall(body, Tuples.flatTupleOf(var_association), NotAllEndsAreBlocks.instance().getInternalQueryRepresentation());
           // 	ends == count Association.memberEnd(association, _)
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new PatternMatchCounter(body, Tuples.flatTupleOf(var_association, var___0_), new BlockAssociationNotBinary.GeneratedPQuery.EmbeddedQuery1840169967(), var__virtual_0_);
+          new PatternMatchCounter(body, Tuples.flatTupleOf(var_association, var___0_), new BlockAssociationNotBinary.GeneratedPQuery.Embedded_1_Association_memberEnd(), var__virtual_0_);
           new Equality(body, var_ends, var__virtual_0_);
           // 	check(ends != 2)
           new ExpressionEvaluation(body, new IExpressionEvaluator() {

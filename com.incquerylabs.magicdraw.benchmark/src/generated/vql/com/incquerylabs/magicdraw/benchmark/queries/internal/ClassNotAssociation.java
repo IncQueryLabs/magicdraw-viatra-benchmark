@@ -58,9 +58,9 @@ public final class ClassNotAssociation extends BaseGeneratedEMFQuerySpecificatio
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.internal.ClassNotAssociation (visibility: PUBLIC, simpleName: ClassNotAssociation, identifier: com.incquerylabs.magicdraw.benchmark.queries.internal.ClassNotAssociation, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries.internal) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link ClassNotAssociation} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.internal.ClassNotAssociation (visibility: PUBLIC, simpleName: ClassNotAssociation, identifier: com.incquerylabs.magicdraw.benchmark.queries.internal.ClassNotAssociation, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries.internal) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link ClassNotAssociation#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -90,18 +90,18 @@ public final class ClassNotAssociation extends BaseGeneratedEMFQuerySpecificatio
     
     private final List<PParameter> parameters = Arrays.asList(parameter_classifier);
     
-    private class EmbeddedQuery1251073658 extends BaseGeneratedEMFPQuery {
+    private class Embedded_1_Association extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Association", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Association")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0);
       
-      public EmbeddedQuery1251073658() {
+      public Embedded_1_Association() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$1251073658";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_1_Association";
       }
       
       @Override
@@ -155,7 +155,7 @@ public final class ClassNotAssociation extends BaseGeneratedEMFQuerySpecificatio
           // 	Class(classifier)
           new TypeConstraint(body, Tuples.flatTupleOf(var_classifier), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Class")));
           // 	neg Association(classifier)
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_classifier), new ClassNotAssociation.GeneratedPQuery.EmbeddedQuery1251073658());
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_classifier), new ClassNotAssociation.GeneratedPQuery.Embedded_1_Association());
           bodies.add(body);
       }
       return bodies;

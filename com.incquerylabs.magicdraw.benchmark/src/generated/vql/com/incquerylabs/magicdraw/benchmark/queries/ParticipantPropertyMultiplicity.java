@@ -92,8 +92,18 @@ public final class ParticipantPropertyMultiplicity extends BaseGeneratedEMFQuery
     
     @Override
     public Object get(final String parameterName) {
-      if ("property".equals(parameterName)) return this.fProperty;
-      return null;
+      switch(parameterName) {
+          case "property": return this.fProperty;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fProperty;
+          default: return null;
+      }
     }
     
     public Property getProperty() {
@@ -487,9 +497,9 @@ public final class ParticipantPropertyMultiplicity extends BaseGeneratedEMFQuery
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.ParticipantPropertyMultiplicity (visibility: PUBLIC, simpleName: ParticipantPropertyMultiplicity, identifier: com.incquerylabs.magicdraw.benchmark.queries.ParticipantPropertyMultiplicity, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link ParticipantPropertyMultiplicity} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.ParticipantPropertyMultiplicity (visibility: PUBLIC, simpleName: ParticipantPropertyMultiplicity, identifier: com.incquerylabs.magicdraw.benchmark.queries.ParticipantPropertyMultiplicity, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link ParticipantPropertyMultiplicity#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

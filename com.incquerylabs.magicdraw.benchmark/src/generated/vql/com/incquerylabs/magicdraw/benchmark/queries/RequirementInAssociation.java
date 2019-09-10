@@ -85,9 +85,20 @@ public final class RequirementInAssociation extends BaseGeneratedEMFQuerySpecifi
     
     @Override
     public Object get(final String parameterName) {
-      if ("association".equals(parameterName)) return this.fAssociation;
-      if ("requirement".equals(parameterName)) return this.fRequirement;
-      return null;
+      switch(parameterName) {
+          case "association": return this.fAssociation;
+          case "requirement": return this.fRequirement;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fAssociation;
+          case 1: return this.fRequirement;
+          default: return null;
+      }
     }
     
     public Association getAssociation() {
@@ -620,9 +631,9 @@ public final class RequirementInAssociation extends BaseGeneratedEMFQuerySpecifi
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.RequirementInAssociation (visibility: PUBLIC, simpleName: RequirementInAssociation, identifier: com.incquerylabs.magicdraw.benchmark.queries.RequirementInAssociation, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link RequirementInAssociation} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.RequirementInAssociation (visibility: PUBLIC, simpleName: RequirementInAssociation, identifier: com.incquerylabs.magicdraw.benchmark.queries.RequirementInAssociation, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link RequirementInAssociation#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

@@ -85,8 +85,18 @@ public final class ConstraintBlockPropertyNotComposite extends BaseGeneratedEMFQ
     
     @Override
     public Object get(final String parameterName) {
-      if ("constraintBlock".equals(parameterName)) return this.fConstraintBlock;
-      return null;
+      switch(parameterName) {
+          case "constraintBlock": return this.fConstraintBlock;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fConstraintBlock;
+          default: return null;
+      }
     }
     
     public com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class getConstraintBlock() {
@@ -474,9 +484,9 @@ public final class ConstraintBlockPropertyNotComposite extends BaseGeneratedEMFQ
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.ConstraintBlockPropertyNotComposite (visibility: PUBLIC, simpleName: ConstraintBlockPropertyNotComposite, identifier: com.incquerylabs.magicdraw.benchmark.queries.ConstraintBlockPropertyNotComposite, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link ConstraintBlockPropertyNotComposite} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.ConstraintBlockPropertyNotComposite (visibility: PUBLIC, simpleName: ConstraintBlockPropertyNotComposite, identifier: com.incquerylabs.magicdraw.benchmark.queries.ConstraintBlockPropertyNotComposite, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link ConstraintBlockPropertyNotComposite#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -506,20 +516,20 @@ public final class ConstraintBlockPropertyNotComposite extends BaseGeneratedEMFQ
     
     private final List<PParameter> parameters = Arrays.asList(parameter_constraintBlock);
     
-    private class EmbeddedQuery1865572631 extends BaseGeneratedEMFPQuery {
+    private class Embedded_1_Property_aggregation extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")), PParameterDirection.INOUT);
       
       private final PParameter parameter_p1 = new PParameter("p1", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.AggregationKind", new EDataTypeInSlotsKey((EDataType)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "AggregationKind")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
       
-      public EmbeddedQuery1865572631() {
+      public Embedded_1_Property_aggregation() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$1865572631";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_1_Property_aggregation";
       }
       
       @Override
@@ -589,7 +599,7 @@ public final class ConstraintBlockPropertyNotComposite extends BaseGeneratedEMFQ
           // 	neg Property.aggregation(property, ::composite)
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
           new ConstantValue(body, var__virtual_1_, com.nomagic.uml2.ext.magicdraw.classes.mdkernel.AggregationKindEnum.get("composite"));
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_property, var__virtual_1_), new ConstraintBlockPropertyNotComposite.GeneratedPQuery.EmbeddedQuery1865572631());
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_property, var__virtual_1_), new ConstraintBlockPropertyNotComposite.GeneratedPQuery.Embedded_1_Property_aggregation());
           bodies.add(body);
       }
       return bodies;

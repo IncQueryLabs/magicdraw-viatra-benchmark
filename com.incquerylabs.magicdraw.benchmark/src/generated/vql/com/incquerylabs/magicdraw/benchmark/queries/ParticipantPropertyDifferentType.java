@@ -85,8 +85,18 @@ public final class ParticipantPropertyDifferentType extends BaseGeneratedEMFQuer
     
     @Override
     public Object get(final String parameterName) {
-      if ("property".equals(parameterName)) return this.fProperty;
-      return null;
+      switch(parameterName) {
+          case "property": return this.fProperty;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fProperty;
+          default: return null;
+      }
     }
     
     public Property getProperty() {
@@ -475,9 +485,9 @@ public final class ParticipantPropertyDifferentType extends BaseGeneratedEMFQuer
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.ParticipantPropertyDifferentType (visibility: PUBLIC, simpleName: ParticipantPropertyDifferentType, identifier: com.incquerylabs.magicdraw.benchmark.queries.ParticipantPropertyDifferentType, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link ParticipantPropertyDifferentType} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.ParticipantPropertyDifferentType (visibility: PUBLIC, simpleName: ParticipantPropertyDifferentType, identifier: com.incquerylabs.magicdraw.benchmark.queries.ParticipantPropertyDifferentType, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link ParticipantPropertyDifferentType#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -507,20 +517,20 @@ public final class ParticipantPropertyDifferentType extends BaseGeneratedEMFQuer
     
     private final List<PParameter> parameters = Arrays.asList(parameter_property);
     
-    private class EmbeddedQuery1489786257 extends BaseGeneratedEMFPQuery {
+    private class Embedded_1_Property_type extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")), PParameterDirection.INOUT);
       
       private final PParameter parameter_p1 = new PParameter("p1", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Type", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Type")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
       
-      public EmbeddedQuery1489786257() {
+      public Embedded_1_Property_type() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$1489786257";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_1_Property_type";
       }
       
       @Override
@@ -591,7 +601,7 @@ public final class ParticipantPropertyDifferentType extends BaseGeneratedEMFQuer
           // 	find sysml.ParticipantProperty_end(property, propertyEnd)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_property, var_propertyEnd), ParticipantProperty_end.instance().getInternalQueryRepresentation());
           // 	neg Property.type(propertyEnd, type)
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_propertyEnd, var_type), new ParticipantPropertyDifferentType.GeneratedPQuery.EmbeddedQuery1489786257());
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_propertyEnd, var_type), new ParticipantPropertyDifferentType.GeneratedPQuery.Embedded_1_Property_type());
           bodies.add(body);
       }
       return bodies;

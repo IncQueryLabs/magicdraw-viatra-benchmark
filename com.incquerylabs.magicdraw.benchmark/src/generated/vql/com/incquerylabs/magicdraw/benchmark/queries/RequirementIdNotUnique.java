@@ -83,8 +83,18 @@ public final class RequirementIdNotUnique extends BaseGeneratedEMFQuerySpecifica
     
     @Override
     public Object get(final String parameterName) {
-      if ("req".equals(parameterName)) return this.fReq;
-      return null;
+      switch(parameterName) {
+          case "req": return this.fReq;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fReq;
+          default: return null;
+      }
     }
     
     public NamedElement getReq() {
@@ -474,9 +484,9 @@ public final class RequirementIdNotUnique extends BaseGeneratedEMFQuerySpecifica
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.RequirementIdNotUnique (visibility: PUBLIC, simpleName: RequirementIdNotUnique, identifier: com.incquerylabs.magicdraw.benchmark.queries.RequirementIdNotUnique, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link RequirementIdNotUnique} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.RequirementIdNotUnique (visibility: PUBLIC, simpleName: RequirementIdNotUnique, identifier: com.incquerylabs.magicdraw.benchmark.queries.RequirementIdNotUnique, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link RequirementIdNotUnique#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

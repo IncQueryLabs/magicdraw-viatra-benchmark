@@ -31,8 +31,9 @@ class ResultSetRetrievalPhase extends AtomicPhase {
 		
 		
 		timer.startMeasure
+		
 				
-		val matches = myToken.matcher.allMatches
+		val matches = myToken.matchers.map[x | x.allMatches]
 		
 		timer.stopMeasure
 		

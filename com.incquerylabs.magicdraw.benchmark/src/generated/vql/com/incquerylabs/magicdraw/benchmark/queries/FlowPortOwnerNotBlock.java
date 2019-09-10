@@ -80,8 +80,18 @@ public final class FlowPortOwnerNotBlock extends BaseGeneratedEMFQuerySpecificat
     
     @Override
     public Object get(final String parameterName) {
-      if ("port".equals(parameterName)) return this.fPort;
-      return null;
+      switch(parameterName) {
+          case "port": return this.fPort;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fPort;
+          default: return null;
+      }
     }
     
     public Port getPort() {
@@ -468,9 +478,9 @@ public final class FlowPortOwnerNotBlock extends BaseGeneratedEMFQuerySpecificat
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.FlowPortOwnerNotBlock (visibility: PUBLIC, simpleName: FlowPortOwnerNotBlock, identifier: com.incquerylabs.magicdraw.benchmark.queries.FlowPortOwnerNotBlock, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link FlowPortOwnerNotBlock} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.FlowPortOwnerNotBlock (visibility: PUBLIC, simpleName: FlowPortOwnerNotBlock, identifier: com.incquerylabs.magicdraw.benchmark.queries.FlowPortOwnerNotBlock, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link FlowPortOwnerNotBlock#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

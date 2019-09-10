@@ -83,8 +83,18 @@ public final class AcsfeActionInvalidTrigger extends BaseGeneratedEMFQuerySpecif
     
     @Override
     public Object get(final String parameterName) {
-      if ("action".equals(parameterName)) return this.fAction;
-      return null;
+      switch(parameterName) {
+          case "action": return this.fAction;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fAction;
+          default: return null;
+      }
     }
     
     public AcceptEventAction getAction() {
@@ -472,9 +482,9 @@ public final class AcsfeActionInvalidTrigger extends BaseGeneratedEMFQuerySpecif
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.AcsfeActionInvalidTrigger (visibility: PUBLIC, simpleName: AcsfeActionInvalidTrigger, identifier: com.incquerylabs.magicdraw.benchmark.queries.AcsfeActionInvalidTrigger, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link AcsfeActionInvalidTrigger} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.AcsfeActionInvalidTrigger (visibility: PUBLIC, simpleName: AcsfeActionInvalidTrigger, identifier: com.incquerylabs.magicdraw.benchmark.queries.AcsfeActionInvalidTrigger, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link AcsfeActionInvalidTrigger#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 

@@ -85,8 +85,18 @@ public final class ParticipantPropertyAggregationKindNotNone extends BaseGenerat
     
     @Override
     public Object get(final String parameterName) {
-      if ("property".equals(parameterName)) return this.fProperty;
-      return null;
+      switch(parameterName) {
+          case "property": return this.fProperty;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fProperty;
+          default: return null;
+      }
     }
     
     public Property getProperty() {
@@ -473,9 +483,9 @@ public final class ParticipantPropertyAggregationKindNotNone extends BaseGenerat
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.ParticipantPropertyAggregationKindNotNone (visibility: PUBLIC, simpleName: ParticipantPropertyAggregationKindNotNone, identifier: com.incquerylabs.magicdraw.benchmark.queries.ParticipantPropertyAggregationKindNotNone, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link ParticipantPropertyAggregationKindNotNone} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.ParticipantPropertyAggregationKindNotNone (visibility: PUBLIC, simpleName: ParticipantPropertyAggregationKindNotNone, identifier: com.incquerylabs.magicdraw.benchmark.queries.ParticipantPropertyAggregationKindNotNone, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link ParticipantPropertyAggregationKindNotNone#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -505,20 +515,20 @@ public final class ParticipantPropertyAggregationKindNotNone extends BaseGenerat
     
     private final List<PParameter> parameters = Arrays.asList(parameter_property);
     
-    private class EmbeddedQuery1487520704 extends BaseGeneratedEMFPQuery {
+    private class Embedded_1_Property_aggregation extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")), PParameterDirection.INOUT);
       
       private final PParameter parameter_p1 = new PParameter("p1", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.AggregationKind", new EDataTypeInSlotsKey((EDataType)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "AggregationKind")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
       
-      public EmbeddedQuery1487520704() {
+      public Embedded_1_Property_aggregation() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$1487520704";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_1_Property_aggregation";
       }
       
       @Override
@@ -581,7 +591,7 @@ public final class ParticipantPropertyAggregationKindNotNone extends BaseGenerat
           // 	neg Property.aggregation(property, ::none)
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
           new ConstantValue(body, var__virtual_0_, com.nomagic.uml2.ext.magicdraw.classes.mdkernel.AggregationKindEnum.get("none"));
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_property, var__virtual_0_), new ParticipantPropertyAggregationKindNotNone.GeneratedPQuery.EmbeddedQuery1487520704());
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_property, var__virtual_0_), new ParticipantPropertyAggregationKindNotNone.GeneratedPQuery.Embedded_1_Property_aggregation());
           bodies.add(body);
       }
       return bodies;

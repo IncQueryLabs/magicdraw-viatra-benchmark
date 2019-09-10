@@ -92,8 +92,18 @@ public final class ProbabilityInvalidStereotype extends BaseGeneratedEMFQuerySpe
     
     @Override
     public Object get(final String parameterName) {
-      if ("probability".equals(parameterName)) return this.fProbability;
-      return null;
+      switch(parameterName) {
+          case "probability": return this.fProbability;
+          default: return null;
+      }
+    }
+    
+    @Override
+    public Object get(final int index) {
+      switch(index) {
+          case 0: return this.fProbability;
+          default: return null;
+      }
     }
     
     public NamedElement getProbability() {
@@ -487,9 +497,9 @@ public final class ProbabilityInvalidStereotype extends BaseGeneratedEMFQuerySpe
   }
   
   /**
-   * Inner class allowing the singleton instance of {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.ProbabilityInvalidStereotype (visibility: PUBLIC, simpleName: ProbabilityInvalidStereotype, identifier: com.incquerylabs.magicdraw.benchmark.queries.ProbabilityInvalidStereotype, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)} to be created 
+   * Inner class allowing the singleton instance of {@link ProbabilityInvalidStereotype} to be created 
    *     <b>not</b> at the class load time of the outer class, 
-   *     but rather at the first call to {@link JvmGenericType: com.incquerylabs.magicdraw.benchmark.queries.ProbabilityInvalidStereotype (visibility: PUBLIC, simpleName: ProbabilityInvalidStereotype, identifier: com.incquerylabs.magicdraw.benchmark.queries.ProbabilityInvalidStereotype, deprecated: <unset>) (abstract: false, static: false, final: true, packageName: com.incquerylabs.magicdraw.benchmark.queries) (interface: false, strictFloatingPoint: false, anonymous: false)#instance()}.
+   *     but rather at the first call to {@link ProbabilityInvalidStereotype#instance()}.
    * 
    * <p> This workaround is required e.g. to support recursion.
    * 
@@ -519,18 +529,18 @@ public final class ProbabilityInvalidStereotype extends BaseGeneratedEMFQuerySpe
     
     private final List<PParameter> parameters = Arrays.asList(parameter_probability);
     
-    private class EmbeddedQuery1790923443 extends BaseGeneratedEMFPQuery {
+    private class Embedded_1_DecisionNode extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.activities.mdintermediateactivities.DecisionNode", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "DecisionNode")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0);
       
-      public EmbeddedQuery1790923443() {
+      public Embedded_1_DecisionNode() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$1790923443";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_2_DecisionNode";
       }
       
       @Override
@@ -551,20 +561,20 @@ public final class ProbabilityInvalidStereotype extends BaseGeneratedEMFQuerySpe
       }
     }
     
-    private class EmbeddedQuery2084012914 extends BaseGeneratedEMFPQuery {
+    private class Embedded_2_Parameter_direction extends BaseGeneratedEMFPQuery {
       private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Parameter", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Parameter")), PParameterDirection.INOUT);
       
       private final PParameter parameter_p1 = new PParameter("p1", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.ParameterDirectionKind", new EDataTypeInSlotsKey((EDataType)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "ParameterDirectionKind")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
       
-      public EmbeddedQuery2084012914() {
+      public Embedded_2_Parameter_direction() {
         super(PVisibility.EMBEDDED);
       }
       
       @Override
       public String getFullyQualifiedName() {
-        return GeneratedPQuery.this.getFullyQualifiedName() + "$2084012914";
+        return GeneratedPQuery.this.getFullyQualifiedName() + "$Embedded_2_Parameter_direction";
       }
       
       @Override
@@ -581,7 +591,7 @@ public final class ProbabilityInvalidStereotype extends BaseGeneratedEMFQuerySpe
            new ExportedParameter(body, var_p0, parameter_p0),
            new ExportedParameter(body, var_p1, parameter_p1)
         ));
-        //  Parameter.direction(parameter, ::out)
+        //  Parameter.direction(parameter, ::^out)
         new TypeConstraint(body, Tuples.flatTupleOf(var_p0), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Parameter")));
         PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
         new TypeConstraint(body, Tuples.flatTupleOf(var_p0, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Parameter", "direction")));
@@ -634,7 +644,7 @@ public final class ProbabilityInvalidStereotype extends BaseGeneratedEMFQuerySpe
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ActivityNode")));
           new Equality(body, var__virtual_0_, var_source);
           // 	neg DecisionNode(source)
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_source), new ProbabilityInvalidStereotype.GeneratedPQuery.EmbeddedQuery1790923443());
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_source), new ProbabilityInvalidStereotype.GeneratedPQuery.Embedded_1_DecisionNode());
           bodies.add(body);
       }
       {
@@ -656,10 +666,10 @@ public final class ProbabilityInvalidStereotype extends BaseGeneratedEMFQuerySpe
           new TypeConstraint(body, Tuples.flatTupleOf(var_probability, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ParameterSet", "parameter")));
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Parameter")));
           new Equality(body, var__virtual_0_, var_parameter);
-          // 	neg Parameter.direction(parameter, ::out)
+          // 	neg Parameter.direction(parameter, ::^out)
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
           new ConstantValue(body, var__virtual_1_, com.nomagic.uml2.ext.magicdraw.classes.mdkernel.ParameterDirectionKindEnum.get("out"));
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_parameter, var__virtual_1_), new ProbabilityInvalidStereotype.GeneratedPQuery.EmbeddedQuery2084012914());
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_parameter, var__virtual_1_), new ProbabilityInvalidStereotype.GeneratedPQuery.Embedded_2_Parameter_direction());
           bodies.add(body);
       }
       return bodies;
