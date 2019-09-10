@@ -4,6 +4,7 @@ import com.nomagic.magicdraw.core.Application;
 import com.nomagic.uml2.ext.magicdraw.auxiliaryconstructs.mdmodels.Model;
 import eu.mondo.sam.core.DataToken;
 import java.util.Collection;
+import java.util.HashSet;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.viatra.query.runtime.api.AdvancedViatraQueryEngine;
@@ -22,7 +23,7 @@ import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
 public class QueryMatcherToken implements DataToken {
   private AdvancedViatraQueryEngine engine;
   
-  private Collection<ViatraQueryMatcher<? extends IPatternMatch>> matchers;
+  private Collection<ViatraQueryMatcher<? extends IPatternMatch>> matchers = new HashSet<ViatraQueryMatcher<? extends IPatternMatch>>();
   
   public AdvancedViatraQueryEngine initEngine(final QueryEvaluationHint engineDefaultHint) {
     AdvancedViatraQueryEngine _xblockexpression = null;

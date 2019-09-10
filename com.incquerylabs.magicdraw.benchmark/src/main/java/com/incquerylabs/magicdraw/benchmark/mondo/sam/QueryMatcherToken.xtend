@@ -13,6 +13,7 @@ import org.eclipse.viatra.query.runtime.emf.EMFScope
 import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint
 import com.nomagic.magicdraw.core.Application
 import java.util.Collection
+import java.util.HashSet
 
 /**
  * Contains an AdvancedViatraQueryEngine and a ViatraQueryMatcher.
@@ -20,7 +21,7 @@ import java.util.Collection
 class QueryMatcherToken implements DataToken {
 	
 	AdvancedViatraQueryEngine engine	
-	Collection<ViatraQueryMatcher<? extends IPatternMatch>> matchers
+	Collection<ViatraQueryMatcher<? extends IPatternMatch>> matchers = new HashSet()
 	
 	def initEngine(QueryEvaluationHint engineDefaultHint) {
 		if (engine !== null) {
