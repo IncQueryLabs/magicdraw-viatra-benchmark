@@ -40,7 +40,13 @@ public class ResultSetRetrievalPhase extends AtomicPhase {
     final Iterable<Collection<? extends IPatternMatch>> matches = IterableExtensions.<ViatraQueryMatcher<? extends IPatternMatch>, Collection<? extends IPatternMatch>>map(myToken.getMatchers(), _function);
     timer.stopMeasure();
     final ScalarMetric matchSetSize = new ScalarMetric("MatchSetSize");
-    matchSetSize.setValue(IterableExtensions.size(matches));
+    matchSetSize.setValue(0);
+    for (final Collection<? extends IPatternMatch> matchSet : matches) {
+      long _parseLong = Long.parseLong(matchSetSize.getValue());
+      int _size = matchSet.size();
+      long _plus = (_parseLong + _size);
+      matchSetSize.setValue(_plus);
+    }
     phaseResult.addMetrics(timer, matchSetSize);
     if ((queryBackend instanceof LocalSearchBackend)) {
       logger.info(profiler);

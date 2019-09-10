@@ -9,6 +9,8 @@ import org.apache.log4j.Logger
 import org.eclipse.viatra.query.runtime.localsearch.matcher.integration.LocalSearchBackend
 import org.eclipse.viatra.query.runtime.localsearch.matcher.integration.LocalSearchGenericBackendFactory
 import org.eclipse.viatra.query.runtime.localsearch.profiler.LocalSearchProfilerAdapter
+import java.util.Collection
+import org.eclipse.viatra.query.runtime.api.IPatternMatch
 
 class ResultSetRetrievalPhase extends AtomicPhase {
 	
@@ -38,7 +40,10 @@ class ResultSetRetrievalPhase extends AtomicPhase {
 		timer.stopMeasure
 		
 		val matchSetSize = new ScalarMetric("MatchSetSize")
-		matchSetSize.value = matches.size
+		matchSetSize.value = 0;
+		for(Collection<? extends IPatternMatch> matchSet : matches) {
+			matchSetSize.setValue(Long.parseLong(matchSetSize.value) + matchSet.size)
+		}
 		
 		phaseResult.addMetrics(timer, matchSetSize)
 		
