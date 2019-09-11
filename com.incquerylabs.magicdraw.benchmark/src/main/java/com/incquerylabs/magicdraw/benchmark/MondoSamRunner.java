@@ -21,7 +21,6 @@ public class MondoSamRunner {
 	
 	private final BenchmarkParameters parameters;
 	
-
 	public MondoSamRunner(BenchmarkParameters parameters) {
 		this.parameters = parameters;
 	}

@@ -113,7 +113,7 @@ do
 				cd com.incquerylabs.magicdraw.benchmark
 				
 				./gradlew -Pquery="$query" -Pmodel="/home/jenkins/models-tmt/TMT$size.mdzip" -Pwarmup="/home/jenkins/models-tmt/Warmup.mdzip" -Pindex="$runIndex" -Psize="$size" \
-				-Poutput="${OUTPUT_DIR}" runBenchmark
+				-Poutput="${OUTPUT_DIR}" -Pengine="$engine" runBenchmark
 				
 				# TODO Load from TWC when available
 				#./gradlew -Pquery="$query" -Pmodel="TMT" -Pwarmup="TMT" -Pindex="$runIndex" -Psize="$size" \
