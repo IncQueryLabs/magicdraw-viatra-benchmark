@@ -3,7 +3,7 @@
  */
 package com.incquerylabs.magicdraw.benchmark.queries.internal;
 
-import com.incquerylabs.magicdraw.benchmark.queries.internal.GreaterThanOrEqual;
+import com.incquerylabs.magicdraw.benchmark.queries.internal.ResultToCheck;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -36,21 +36,26 @@ import sysml.ChangeStructuralFeatureEvent_structuralFeature;
  * 
  * <p>Original source:
  *         <code><pre>
- *         private pattern
- *         correctTypeAndOrdering(event : ChangeEvent, result : OutputPin) {
+ *         private pattern correctTypeAndOrdering(action : AcceptEventAction, event : ChangeEvent, trigger: Trigger, result : OutputPin){
+ *         	find resultToCheck(action, event, trigger, result);
+ *         
  *         	OutputPin.type(result, type);
  *         	find sysml.ChangeStructuralFeatureEvent_structuralFeature(event, feature);
  *         	StructuralFeature.type(feature, type);
  *         	OutputPin.isOrdered(result, ordered);
  *         	StructuralFeature.isOrdered(feature, ordered);
+ *         	
  *         	OutputPin.lowerValue(result, rLower);
  *         	StructuralFeature.lowerValue(feature, sfLower);
  *         	LiteralInteger.value(rLower, rLowerValue);
  *         	LiteralInteger.value(sfLower, sfLowerValue);
  *         	check(rLowerValue {@literal <}= sfLowerValue);
+ *         	
  *         	OutputPin.upperValue(result, rUpper);
  *         	StructuralFeature.upperValue(feature, sfUpper);
- *         	find greaterThanOrEqual(rUpper, sfUpper);
+ *         	LiteralUnlimitedNatural.value(rUpper, rUpperValue);
+ *         	LiteralUnlimitedNatural.value(sfUpper, sfUpperValue);
+ *         	check((rUpperValue {@literal >}= sfUpperValue) || (rUpperValue {@literal <} 0));
  *         }
  * </pre></code>
  * 
@@ -106,11 +111,15 @@ public final class CorrectTypeAndOrdering extends BaseGeneratedEMFQuerySpecifica
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final CorrectTypeAndOrdering.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
+    private final PParameter parameter_action = new PParameter("action", "com.nomagic.uml2.ext.magicdraw.actions.mdcompleteactions.AcceptEventAction", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "AcceptEventAction")), PParameterDirection.INOUT);
+    
     private final PParameter parameter_event = new PParameter("event", "com.nomagic.uml2.ext.magicdraw.commonbehaviors.mdcommunications.ChangeEvent", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "ChangeEvent")), PParameterDirection.INOUT);
+    
+    private final PParameter parameter_trigger = new PParameter("trigger", "com.nomagic.uml2.ext.magicdraw.commonbehaviors.mdcommunications.Trigger", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Trigger")), PParameterDirection.INOUT);
     
     private final PParameter parameter_result = new PParameter("result", "com.nomagic.uml2.ext.magicdraw.actions.mdbasicactions.OutputPin", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "OutputPin")), PParameterDirection.INOUT);
     
-    private final List<PParameter> parameters = Arrays.asList(parameter_event, parameter_result);
+    private final List<PParameter> parameters = Arrays.asList(parameter_action, parameter_event, parameter_trigger, parameter_result);
     
     private GeneratedPQuery() {
       super(PVisibility.PRIVATE);
@@ -123,7 +132,7 @@ public final class CorrectTypeAndOrdering extends BaseGeneratedEMFQuerySpecifica
     
     @Override
     public List<String> getParameterNames() {
-      return Arrays.asList("event","result");
+      return Arrays.asList("action","event","trigger","result");
     }
     
     @Override
@@ -137,7 +146,9 @@ public final class CorrectTypeAndOrdering extends BaseGeneratedEMFQuerySpecifica
       Set<PBody> bodies = new LinkedHashSet<>();
       {
           PBody body = new PBody(this);
+          PVariable var_action = body.getOrCreateVariableByName("action");
           PVariable var_event = body.getOrCreateVariableByName("event");
+          PVariable var_trigger = body.getOrCreateVariableByName("trigger");
           PVariable var_result = body.getOrCreateVariableByName("result");
           PVariable var_type = body.getOrCreateVariableByName("type");
           PVariable var_feature = body.getOrCreateVariableByName("feature");
@@ -148,12 +159,20 @@ public final class CorrectTypeAndOrdering extends BaseGeneratedEMFQuerySpecifica
           PVariable var_sfLowerValue = body.getOrCreateVariableByName("sfLowerValue");
           PVariable var_rUpper = body.getOrCreateVariableByName("rUpper");
           PVariable var_sfUpper = body.getOrCreateVariableByName("sfUpper");
+          PVariable var_rUpperValue = body.getOrCreateVariableByName("rUpperValue");
+          PVariable var_sfUpperValue = body.getOrCreateVariableByName("sfUpperValue");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_action), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "AcceptEventAction")));
           new TypeConstraint(body, Tuples.flatTupleOf(var_event), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ChangeEvent")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_trigger), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Trigger")));
           new TypeConstraint(body, Tuples.flatTupleOf(var_result), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "OutputPin")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
+             new ExportedParameter(body, var_action, parameter_action),
              new ExportedParameter(body, var_event, parameter_event),
+             new ExportedParameter(body, var_trigger, parameter_trigger),
              new ExportedParameter(body, var_result, parameter_result)
           ));
+          // 	find resultToCheck(action, event, trigger, result)
+          new PositivePatternCall(body, Tuples.flatTupleOf(var_action, var_event, var_trigger, var_result), ResultToCheck.instance().getInternalQueryRepresentation());
           // 	OutputPin.type(result, type)
           new TypeConstraint(body, Tuples.flatTupleOf(var_result), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "OutputPin")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
@@ -180,7 +199,7 @@ public final class CorrectTypeAndOrdering extends BaseGeneratedEMFQuerySpecifica
           new TypeConstraint(body, Tuples.flatTupleOf(var_feature, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "MultiplicityElement", "isOrdered")));
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_3_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Boolean")));
           new Equality(body, var__virtual_3_, var_ordered);
-          // 	OutputPin.lowerValue(result, rLower)
+          // 		OutputPin.lowerValue(result, rLower)
           new TypeConstraint(body, Tuples.flatTupleOf(var_result), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "OutputPin")));
           PVariable var__virtual_4_ = body.getOrCreateVariableByName(".virtual{4}");
           new TypeConstraint(body, Tuples.flatTupleOf(var_result, var__virtual_4_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "MultiplicityElement", "lowerValue")));
@@ -223,7 +242,7 @@ public final class CorrectTypeAndOrdering extends BaseGeneratedEMFQuerySpecifica
                   return evaluateExpression_1_1(rLowerValue, sfLowerValue);
               }
           },  null); 
-          // 	OutputPin.upperValue(result, rUpper)
+          // 		OutputPin.upperValue(result, rUpper)
           new TypeConstraint(body, Tuples.flatTupleOf(var_result), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "OutputPin")));
           PVariable var__virtual_8_ = body.getOrCreateVariableByName(".virtual{8}");
           new TypeConstraint(body, Tuples.flatTupleOf(var_result, var__virtual_8_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "MultiplicityElement", "upperValue")));
@@ -235,8 +254,37 @@ public final class CorrectTypeAndOrdering extends BaseGeneratedEMFQuerySpecifica
           new TypeConstraint(body, Tuples.flatTupleOf(var_feature, var__virtual_9_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "MultiplicityElement", "upperValue")));
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_9_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ValueSpecification")));
           new Equality(body, var__virtual_9_, var_sfUpper);
-          // 	find greaterThanOrEqual(rUpper, sfUpper)
-          new PositivePatternCall(body, Tuples.flatTupleOf(var_rUpper, var_sfUpper), GreaterThanOrEqual.instance().getInternalQueryRepresentation());
+          // 	LiteralUnlimitedNatural.value(rUpper, rUpperValue)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_rUpper), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "LiteralUnlimitedNatural")));
+          PVariable var__virtual_10_ = body.getOrCreateVariableByName(".virtual{10}");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_rUpper, var__virtual_10_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "LiteralUnlimitedNatural", "value")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_10_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "UnlimitedNatural")));
+          new Equality(body, var__virtual_10_, var_rUpperValue);
+          // 	LiteralUnlimitedNatural.value(sfUpper, sfUpperValue)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_sfUpper), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "LiteralUnlimitedNatural")));
+          PVariable var__virtual_11_ = body.getOrCreateVariableByName(".virtual{11}");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_sfUpper, var__virtual_11_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "LiteralUnlimitedNatural", "value")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_11_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "UnlimitedNatural")));
+          new Equality(body, var__virtual_11_, var_sfUpperValue);
+          // 	check((rUpperValue >= sfUpperValue) || (rUpperValue < 0))
+          new ExpressionEvaluation(body, new IExpressionEvaluator() {
+          
+              @Override
+              public String getShortDescription() {
+                  return "Expression evaluation from pattern correctTypeAndOrdering";
+              }
+              
+              @Override
+              public Iterable<String> getInputParameterNames() {
+                  return Arrays.asList("rUpperValue", "sfUpperValue");}
+          
+              @Override
+              public Object evaluateExpression(IValueProvider provider) throws Exception {
+                  Integer rUpperValue = (Integer) provider.getValue("rUpperValue");
+                  Integer sfUpperValue = (Integer) provider.getValue("sfUpperValue");
+                  return evaluateExpression_1_2(rUpperValue, sfUpperValue);
+              }
+          },  null); 
           bodies.add(body);
       }
       return bodies;
@@ -246,5 +294,9 @@ public final class CorrectTypeAndOrdering extends BaseGeneratedEMFQuerySpecifica
   private static boolean evaluateExpression_1_1(final Integer rLowerValue, final Integer sfLowerValue) {
     boolean _lessEqualsThan = (rLowerValue.compareTo(sfLowerValue) <= 0);
     return _lessEqualsThan;
+  }
+  
+  private static boolean evaluateExpression_1_2(final Integer rUpperValue, final Integer sfUpperValue) {
+    return ((rUpperValue.compareTo(sfUpperValue) >= 0) || ((rUpperValue).intValue() < 0));
   }
 }

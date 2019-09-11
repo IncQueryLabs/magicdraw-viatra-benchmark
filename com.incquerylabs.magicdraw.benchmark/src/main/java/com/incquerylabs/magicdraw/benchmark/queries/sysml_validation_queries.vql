@@ -721,14 +721,14 @@ pattern acsfeActionNotTwoResultpins(action : AcceptEventAction) {
 	check(size != 2);
 }
 
-pattern adjunctPropertyMultiplicityRestrictive(property : Property) {
+pattern adjunctPropertyMultiplicityRestrictive(property : Property){
 	find sysml.AdjunctProperty(property, _);
 	find sysml.AdjunctProperty_principal(property, principal);
 	MultiplicityElement(principal);
 	find moreRestrictive(property);
 }
 
-private pattern moreRestrictive(property : Property) {
+private pattern moreRestrictive(property : Property){
 	find sysml.AdjunctProperty_principal(property, principal);
 	Property.lowerValue(property, propLower);
 	MultiplicityElement.lowerValue(principal, princLower);
@@ -739,20 +739,13 @@ private pattern moreRestrictive(property : Property) {
 	find sysml.AdjunctProperty_principal(property, principal);
 	Property.upperValue(property, propUpper);
 	MultiplicityElement.upperValue(principal, princUpper);
-	find lessThan(propUpper, princUpper);
-}
-
-private pattern
-lessThan(op1 : LiteralUnlimitedNatural, op2 : LiteralUnlimitedNatural) {
-	LiteralUnlimitedNatural.value(op1, value1);
-	LiteralUnlimitedNatural.value(op2, value2);
-	check(value1 >= 0);
-	check(value1 < value2);
-} or {
-	LiteralUnlimitedNatural.value(op1, value1);
-	LiteralUnlimitedNatural.value(op2, value2);
-	check(value1 >= 0);
-	check(value2 == - 1);
+	LiteralUnlimitedNatural.value(propUpper, propUpperValue);
+	LiteralUnlimitedNatural.value(princUpper, princUpperValue);
+	check (propUpperValue >= 0);
+	check(
+		propUpperValue < princUpperValue ||
+		-1 == princUpperValue
+	);
 }
 
 pattern adjunctPropertySubmachineOrInteraction(property : Property) {
@@ -913,7 +906,7 @@ pattern optionalLowerZero(parameter : Parameter) {
 	check(lowerValue == 0);
 }
 
-pattern adjunctPropertyIncorrectMultiplicity(property : Property) {
+pattern adjunctPropertyIncorrectMultiplicity(property : Property){
 	find sysml.AdjunctProperty(property, _);
 	find sysml.AdjunctProperty_principal(property, principal);
 	ObjectNode(principal);
@@ -926,7 +919,15 @@ pattern adjunctPropertyIncorrectMultiplicity(property : Property) {
 	ObjectNode(principal);
 	Property.upperValue(property, propertyUpper);
 	ObjectNode.upperBound(principal, principalUpper);
-	find lessThan(propertyUpper, principalUpper);
+	
+	LiteralUnlimitedNatural.value(propertyUpper, propertyUpperValue);
+	LiteralUnlimitedNatural.value(principalUpper, principalUpperValue);
+	check (propertyUpperValue >= 0);
+	check(
+		principalUpperValue == -1 ||
+		propertyUpperValue < principalUpperValue
+	);
+
 }
 
 pattern traceNotSingleSupplier(trace : Abstraction) {
@@ -935,42 +936,39 @@ pattern traceNotSingleSupplier(trace : Abstraction) {
 	check(size != 1);
 }
 
-pattern acsfeActionIncorrectResultpins(action : AcceptEventAction) {
+pattern acsfeActionIncorrectResultpins(action : AcceptEventAction){
+	find resultToCheck(action, event, trigger, result);
+	neg find correctTypeAndOrdering(action, event, trigger, result);
+}
+
+private pattern resultToCheck(action : AcceptEventAction, event : ChangeEvent, trigger: Trigger, result : OutputPin) {
 	find sysml.AcceptChangeStructuralFeatureEventAction(action, _);
 	find sysml.ChangeStructuralFeatureEvent(event, _);
 	AcceptEventAction.trigger(action, trigger);
 	Trigger.event(trigger, event);
 	AcceptEventAction.result(action, result);
-	neg find correctTypeAndOrdering(event, result);
 }
 
-private pattern
-correctTypeAndOrdering(event : ChangeEvent, result : OutputPin) {
+private pattern correctTypeAndOrdering(action : AcceptEventAction, event : ChangeEvent, trigger: Trigger, result : OutputPin){
+	find resultToCheck(action, event, trigger, result);
+
 	OutputPin.type(result, type);
 	find sysml.ChangeStructuralFeatureEvent_structuralFeature(event, feature);
 	StructuralFeature.type(feature, type);
 	OutputPin.isOrdered(result, ordered);
 	StructuralFeature.isOrdered(feature, ordered);
+	
 	OutputPin.lowerValue(result, rLower);
 	StructuralFeature.lowerValue(feature, sfLower);
 	LiteralInteger.value(rLower, rLowerValue);
 	LiteralInteger.value(sfLower, sfLowerValue);
 	check(rLowerValue <= sfLowerValue);
+	
 	OutputPin.upperValue(result, rUpper);
 	StructuralFeature.upperValue(feature, sfUpper);
-	find greaterThanOrEqual(rUpper, sfUpper);
-}
-
-private pattern
-greaterThanOrEqual(op1 : LiteralUnlimitedNatural, op2 : LiteralUnlimitedNatural) {
-	LiteralUnlimitedNatural.value(op1, value1);
-	LiteralUnlimitedNatural.value(op2, value2);
-	check(value1 < 0);
-} or {
-	LiteralUnlimitedNatural.value(op1, value1);
-	LiteralUnlimitedNatural.value(op2, value2);
-	check(value2 >= 0);
-	check(value1 >= value2);
+	LiteralUnlimitedNatural.value(rUpper, rUpperValue);
+	LiteralUnlimitedNatural.value(sfUpper, sfUpperValue);
+	check((rUpperValue >= sfUpperValue) || (rUpperValue < 0));
 }
 
 pattern viewpointNoCreate(viewpoint : Class) {

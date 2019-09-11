@@ -3,7 +3,6 @@
  */
 package com.incquerylabs.magicdraw.benchmark.queries;
 
-import com.incquerylabs.magicdraw.benchmark.queries.internal.LessThan;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property;
 import java.util.Arrays;
 import java.util.Collection;
@@ -52,7 +51,7 @@ import sysml.AdjunctProperty_principal;
  * 
  * <p>Original source:
  *         <code><pre>
- *         pattern adjunctPropertyIncorrectMultiplicity(property : Property) {
+ *         pattern adjunctPropertyIncorrectMultiplicity(property : Property){
  *         	find sysml.AdjunctProperty(property, _);
  *         	find sysml.AdjunctProperty_principal(property, principal);
  *         	ObjectNode(principal);
@@ -65,7 +64,15 @@ import sysml.AdjunctProperty_principal;
  *         	ObjectNode(principal);
  *         	Property.upperValue(property, propertyUpper);
  *         	ObjectNode.upperBound(principal, principalUpper);
- *         	find lessThan(propertyUpper, principalUpper);
+ *         	
+ *         	LiteralUnlimitedNatural.value(propertyUpper, propertyUpperValue);
+ *         	LiteralUnlimitedNatural.value(principalUpper, principalUpperValue);
+ *         	check (propertyUpperValue {@literal >}= 0);
+ *         	check(
+ *         		principalUpperValue == -1 ||
+ *         		propertyUpperValue {@literal <} principalUpperValue
+ *         	);
+ *         
  *         }
  * </pre></code>
  * 
@@ -257,7 +264,7 @@ public final class AdjunctPropertyIncorrectMultiplicity extends BaseGeneratedEMF
    * 
    * <p>Original source:
    * <code><pre>
-   * pattern adjunctPropertyIncorrectMultiplicity(property : Property) {
+   * pattern adjunctPropertyIncorrectMultiplicity(property : Property){
    * 	find sysml.AdjunctProperty(property, _);
    * 	find sysml.AdjunctProperty_principal(property, principal);
    * 	ObjectNode(principal);
@@ -270,7 +277,15 @@ public final class AdjunctPropertyIncorrectMultiplicity extends BaseGeneratedEMF
    * 	ObjectNode(principal);
    * 	Property.upperValue(property, propertyUpper);
    * 	ObjectNode.upperBound(principal, principalUpper);
-   * 	find lessThan(propertyUpper, principalUpper);
+   * 	
+   * 	LiteralUnlimitedNatural.value(propertyUpper, propertyUpperValue);
+   * 	LiteralUnlimitedNatural.value(principalUpper, principalUpperValue);
+   * 	check (propertyUpperValue {@literal >}= 0);
+   * 	check(
+   * 		principalUpperValue == -1 ||
+   * 		propertyUpperValue {@literal <} principalUpperValue
+   * 	);
+   * 
    * }
    * </pre></code>
    * 
@@ -618,6 +633,8 @@ public final class AdjunctPropertyIncorrectMultiplicity extends BaseGeneratedEMF
           PVariable var_principal = body.getOrCreateVariableByName("principal");
           PVariable var_propertyUpper = body.getOrCreateVariableByName("propertyUpper");
           PVariable var_principalUpper = body.getOrCreateVariableByName("principalUpper");
+          PVariable var_propertyUpperValue = body.getOrCreateVariableByName("propertyUpperValue");
+          PVariable var_principalUpperValue = body.getOrCreateVariableByName("principalUpperValue");
           new TypeConstraint(body, Tuples.flatTupleOf(var_property), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_property, parameter_property)
@@ -640,8 +657,55 @@ public final class AdjunctPropertyIncorrectMultiplicity extends BaseGeneratedEMF
           new TypeConstraint(body, Tuples.flatTupleOf(var_principal, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ObjectNode", "upperBound")));
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ValueSpecification")));
           new Equality(body, var__virtual_1_, var_principalUpper);
-          // 	find lessThan(propertyUpper, principalUpper)
-          new PositivePatternCall(body, Tuples.flatTupleOf(var_propertyUpper, var_principalUpper), LessThan.instance().getInternalQueryRepresentation());
+          // 		LiteralUnlimitedNatural.value(propertyUpper, propertyUpperValue)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_propertyUpper), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "LiteralUnlimitedNatural")));
+          PVariable var__virtual_2_ = body.getOrCreateVariableByName(".virtual{2}");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_propertyUpper, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "LiteralUnlimitedNatural", "value")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_2_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "UnlimitedNatural")));
+          new Equality(body, var__virtual_2_, var_propertyUpperValue);
+          // 	LiteralUnlimitedNatural.value(principalUpper, principalUpperValue)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_principalUpper), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "LiteralUnlimitedNatural")));
+          PVariable var__virtual_3_ = body.getOrCreateVariableByName(".virtual{3}");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_principalUpper, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "LiteralUnlimitedNatural", "value")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_3_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "UnlimitedNatural")));
+          new Equality(body, var__virtual_3_, var_principalUpperValue);
+          // 	check (propertyUpperValue >= 0)
+          new ExpressionEvaluation(body, new IExpressionEvaluator() {
+          
+              @Override
+              public String getShortDescription() {
+                  return "Expression evaluation from pattern adjunctPropertyIncorrectMultiplicity";
+              }
+              
+              @Override
+              public Iterable<String> getInputParameterNames() {
+                  return Arrays.asList("propertyUpperValue");}
+          
+              @Override
+              public Object evaluateExpression(IValueProvider provider) throws Exception {
+                  Integer propertyUpperValue = (Integer) provider.getValue("propertyUpperValue");
+                  return evaluateExpression_2_1(propertyUpperValue);
+              }
+          },  null); 
+          // 	check(		principalUpperValue == -1 ||		propertyUpperValue < principalUpperValue	)
+          new ExpressionEvaluation(body, new IExpressionEvaluator() {
+          
+              @Override
+              public String getShortDescription() {
+                  return "Expression evaluation from pattern adjunctPropertyIncorrectMultiplicity";
+              }
+              
+              @Override
+              public Iterable<String> getInputParameterNames() {
+                  return Arrays.asList("principalUpperValue", "propertyUpperValue");}
+          
+              @Override
+              public Object evaluateExpression(IValueProvider provider) throws Exception {
+                  Integer principalUpperValue = (Integer) provider.getValue("principalUpperValue");
+                  Integer propertyUpperValue = (Integer) provider.getValue("propertyUpperValue");
+                  return evaluateExpression_2_2(principalUpperValue, propertyUpperValue);
+              }
+          },  null); 
           bodies.add(body);
       }
       return bodies;
@@ -650,5 +714,14 @@ public final class AdjunctPropertyIncorrectMultiplicity extends BaseGeneratedEMF
   
   private static boolean evaluateExpression_1_1(final Integer lowerValue) {
     return ((lowerValue).intValue() != 0);
+  }
+  
+  private static boolean evaluateExpression_2_1(final Integer propertyUpperValue) {
+    return ((propertyUpperValue).intValue() >= 0);
+  }
+  
+  private static boolean evaluateExpression_2_2(final Integer principalUpperValue, final Integer propertyUpperValue) {
+    return (((principalUpperValue).intValue() == (-1)) || 
+      (propertyUpperValue.compareTo(principalUpperValue) < 0));
   }
 }

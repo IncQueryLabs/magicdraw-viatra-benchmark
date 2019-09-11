@@ -4,6 +4,7 @@
 package com.incquerylabs.magicdraw.benchmark.queries;
 
 import com.incquerylabs.magicdraw.benchmark.queries.internal.CorrectTypeAndOrdering;
+import com.incquerylabs.magicdraw.benchmark.queries.internal.ResultToCheck;
 import com.nomagic.uml2.ext.magicdraw.actions.mdcompleteactions.AcceptEventAction;
 import java.util.Arrays;
 import java.util.Collection;
@@ -25,11 +26,9 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecificat
 import org.eclipse.viatra.query.runtime.api.impl.BaseMatcher;
 import org.eclipse.viatra.query.runtime.api.impl.BasePatternMatch;
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
-import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
-import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.NegativePatternCall;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.PositivePatternCall;
@@ -40,21 +39,15 @@ import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PVisibility;
 import org.eclipse.viatra.query.runtime.matchers.tuple.Tuple;
 import org.eclipse.viatra.query.runtime.matchers.tuple.Tuples;
 import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
-import sysml.AcceptChangeStructuralFeatureEventAction;
-import sysml.ChangeStructuralFeatureEvent;
 
 /**
  * A pattern-specific query specification that can instantiate Matcher in a type-safe way.
  * 
  * <p>Original source:
  *         <code><pre>
- *         pattern acsfeActionIncorrectResultpins(action : AcceptEventAction) {
- *         	find sysml.AcceptChangeStructuralFeatureEventAction(action, _);
- *         	find sysml.ChangeStructuralFeatureEvent(event, _);
- *         	AcceptEventAction.trigger(action, trigger);
- *         	Trigger.event(trigger, event);
- *         	AcceptEventAction.result(action, result);
- *         	neg find correctTypeAndOrdering(event, result);
+ *         pattern acsfeActionIncorrectResultpins(action : AcceptEventAction){
+ *         	find resultToCheck(action, event, trigger, result);
+ *         	neg find correctTypeAndOrdering(action, event, trigger, result);
  *         }
  * </pre></code>
  * 
@@ -246,13 +239,9 @@ public final class AcsfeActionIncorrectResultpins extends BaseGeneratedEMFQueryS
    * 
    * <p>Original source:
    * <code><pre>
-   * pattern acsfeActionIncorrectResultpins(action : AcceptEventAction) {
-   * 	find sysml.AcceptChangeStructuralFeatureEventAction(action, _);
-   * 	find sysml.ChangeStructuralFeatureEvent(event, _);
-   * 	AcceptEventAction.trigger(action, trigger);
-   * 	Trigger.event(trigger, event);
-   * 	AcceptEventAction.result(action, result);
-   * 	neg find correctTypeAndOrdering(event, result);
+   * pattern acsfeActionIncorrectResultpins(action : AcceptEventAction){
+   * 	find resultToCheck(action, event, trigger, result);
+   * 	neg find correctTypeAndOrdering(action, event, trigger, result);
    * }
    * </pre></code>
    * 
@@ -547,39 +536,17 @@ public final class AcsfeActionIncorrectResultpins extends BaseGeneratedEMFQueryS
       {
           PBody body = new PBody(this);
           PVariable var_action = body.getOrCreateVariableByName("action");
-          PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
           PVariable var_event = body.getOrCreateVariableByName("event");
-          PVariable var___1_ = body.getOrCreateVariableByName("_<1>");
           PVariable var_trigger = body.getOrCreateVariableByName("trigger");
           PVariable var_result = body.getOrCreateVariableByName("result");
           new TypeConstraint(body, Tuples.flatTupleOf(var_action), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "AcceptEventAction")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_action, parameter_action)
           ));
-          // 	find sysml.AcceptChangeStructuralFeatureEventAction(action, _)
-          new PositivePatternCall(body, Tuples.flatTupleOf(var_action, var___0_), AcceptChangeStructuralFeatureEventAction.instance().getInternalQueryRepresentation());
-          // 	find sysml.ChangeStructuralFeatureEvent(event, _)
-          new PositivePatternCall(body, Tuples.flatTupleOf(var_event, var___1_), ChangeStructuralFeatureEvent.instance().getInternalQueryRepresentation());
-          // 	AcceptEventAction.trigger(action, trigger)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_action), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "AcceptEventAction")));
-          PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_action, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "AcceptEventAction", "trigger")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Trigger")));
-          new Equality(body, var__virtual_0_, var_trigger);
-          // 	Trigger.event(trigger, event)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_trigger), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Trigger")));
-          PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_trigger, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Trigger", "event")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Event")));
-          new Equality(body, var__virtual_1_, var_event);
-          // 	AcceptEventAction.result(action, result)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_action), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "AcceptEventAction")));
-          PVariable var__virtual_2_ = body.getOrCreateVariableByName(".virtual{2}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_action, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "AcceptEventAction", "result")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_2_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "OutputPin")));
-          new Equality(body, var__virtual_2_, var_result);
-          // 	neg find correctTypeAndOrdering(event, result)
-          new NegativePatternCall(body, Tuples.flatTupleOf(var_event, var_result), CorrectTypeAndOrdering.instance().getInternalQueryRepresentation());
+          // 	find resultToCheck(action, event, trigger, result)
+          new PositivePatternCall(body, Tuples.flatTupleOf(var_action, var_event, var_trigger, var_result), ResultToCheck.instance().getInternalQueryRepresentation());
+          // 	neg find correctTypeAndOrdering(action, event, trigger, result)
+          new NegativePatternCall(body, Tuples.flatTupleOf(var_action, var_event, var_trigger, var_result), CorrectTypeAndOrdering.instance().getInternalQueryRepresentation());
           bodies.add(body);
       }
       return bodies;

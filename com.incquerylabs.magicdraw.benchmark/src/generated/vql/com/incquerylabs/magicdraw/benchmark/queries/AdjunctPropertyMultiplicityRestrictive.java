@@ -45,7 +45,7 @@ import sysml.AdjunctProperty_principal;
  * 
  * <p>Original source:
  *         <code><pre>
- *         pattern adjunctPropertyMultiplicityRestrictive(property : Property) {
+ *         pattern adjunctPropertyMultiplicityRestrictive(property : Property){
  *         	find sysml.AdjunctProperty(property, _);
  *         	find sysml.AdjunctProperty_principal(property, principal);
  *         	MultiplicityElement(principal);
@@ -241,7 +241,7 @@ public final class AdjunctPropertyMultiplicityRestrictive extends BaseGeneratedE
    * 
    * <p>Original source:
    * <code><pre>
-   * pattern adjunctPropertyMultiplicityRestrictive(property : Property) {
+   * pattern adjunctPropertyMultiplicityRestrictive(property : Property){
    * 	find sysml.AdjunctProperty(property, _);
    * 	find sysml.AdjunctProperty_principal(property, principal);
    * 	MultiplicityElement(principal);

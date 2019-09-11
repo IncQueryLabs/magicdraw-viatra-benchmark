@@ -135,10 +135,8 @@ import com.incquerylabs.magicdraw.benchmark.queries.internal.CorrectTypeAndOrder
 import com.incquerylabs.magicdraw.benchmark.queries.internal.General;
 import com.incquerylabs.magicdraw.benchmark.queries.internal.GeneralClosure;
 import com.incquerylabs.magicdraw.benchmark.queries.internal.GreaterThanOne;
-import com.incquerylabs.magicdraw.benchmark.queries.internal.GreaterThanOrEqual;
 import com.incquerylabs.magicdraw.benchmark.queries.internal.HasCreateOperationamedView;
 import com.incquerylabs.magicdraw.benchmark.queries.internal.InteractionUseOrState;
-import com.incquerylabs.magicdraw.benchmark.queries.internal.LessThan;
 import com.incquerylabs.magicdraw.benchmark.queries.internal.MoreRestrictive;
 import com.incquerylabs.magicdraw.benchmark.queries.internal.NotAllEndsAreBlocks;
 import com.incquerylabs.magicdraw.benchmark.queries.internal.NotFlowProperty;
@@ -150,6 +148,7 @@ import com.incquerylabs.magicdraw.benchmark.queries.internal.PropertyOwnedByBloc
 import com.incquerylabs.magicdraw.benchmark.queries.internal.PropertyOwnedByValueType;
 import com.incquerylabs.magicdraw.benchmark.queries.internal.RedefinedBoundReferenceProperty;
 import com.incquerylabs.magicdraw.benchmark.queries.internal.RepresentsSupplier;
+import com.incquerylabs.magicdraw.benchmark.queries.internal.ResultToCheck;
 import com.incquerylabs.magicdraw.benchmark.queries.internal.StakeholderDerivedFromConform;
 import com.incquerylabs.magicdraw.benchmark.queries.internal.StartObjectBehaviorActionBehavior;
 import com.incquerylabs.magicdraw.benchmark.queries.internal.SubmachineState;
@@ -276,7 +275,6 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * <li>acsfeActionNotTwoResultpins</li>
  * <li>adjunctPropertyMultiplicityRestrictive</li>
  * <li>moreRestrictive</li>
- * <li>lessThan</li>
  * <li>adjunctPropertySubmachineOrInteraction</li>
  * <li>interactionUseOrState</li>
  * <li>correct</li>
@@ -302,8 +300,8 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * <li>adjunctPropertyIncorrectMultiplicity</li>
  * <li>traceNotSingleSupplier</li>
  * <li>acsfeActionIncorrectResultpins</li>
+ * <li>resultToCheck</li>
  * <li>correctTypeAndOrdering</li>
- * <li>greaterThanOrEqual</li>
  * <li>viewpointNoCreate</li>
  * <li>hasCreateOperationamedView</li>
  * <li>changeStructuralFeatureEventStatic</li>
@@ -456,7 +454,6 @@ public final class Sysml_validation_queriesAll extends BaseGeneratedPatternGroup
     querySpecifications.add(AcsfeActionNotTwoResultpins.instance());
     querySpecifications.add(AdjunctPropertyMultiplicityRestrictive.instance());
     querySpecifications.add(MoreRestrictive.instance());
-    querySpecifications.add(LessThan.instance());
     querySpecifications.add(AdjunctPropertySubmachineOrInteraction.instance());
     querySpecifications.add(InteractionUseOrState.instance());
     querySpecifications.add(Correct.instance());
@@ -482,8 +479,8 @@ public final class Sysml_validation_queriesAll extends BaseGeneratedPatternGroup
     querySpecifications.add(AdjunctPropertyIncorrectMultiplicity.instance());
     querySpecifications.add(TraceNotSingleSupplier.instance());
     querySpecifications.add(AcsfeActionIncorrectResultpins.instance());
+    querySpecifications.add(ResultToCheck.instance());
     querySpecifications.add(CorrectTypeAndOrdering.instance());
-    querySpecifications.add(GreaterThanOrEqual.instance());
     querySpecifications.add(ViewpointNoCreate.instance());
     querySpecifications.add(HasCreateOperationamedView.instance());
     querySpecifications.add(ChangeStructuralFeatureEventStatic.instance());

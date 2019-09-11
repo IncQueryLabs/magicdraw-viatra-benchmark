@@ -3,7 +3,6 @@
  */
 package com.incquerylabs.magicdraw.benchmark.queries.internal;
 
-import com.incquerylabs.magicdraw.benchmark.queries.internal.LessThan;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -36,7 +35,7 @@ import sysml.AdjunctProperty_principal;
  * 
  * <p>Original source:
  *         <code><pre>
- *         private pattern moreRestrictive(property : Property) {
+ *         private pattern moreRestrictive(property : Property){
  *         	find sysml.AdjunctProperty_principal(property, principal);
  *         	Property.lowerValue(property, propLower);
  *         	MultiplicityElement.lowerValue(principal, princLower);
@@ -47,7 +46,13 @@ import sysml.AdjunctProperty_principal;
  *         	find sysml.AdjunctProperty_principal(property, principal);
  *         	Property.upperValue(property, propUpper);
  *         	MultiplicityElement.upperValue(principal, princUpper);
- *         	find lessThan(propUpper, princUpper);
+ *         	LiteralUnlimitedNatural.value(propUpper, propUpperValue);
+ *         	LiteralUnlimitedNatural.value(princUpper, princUpperValue);
+ *         	check (propUpperValue {@literal >}= 0);
+ *         	check(
+ *         		propUpperValue {@literal <} princUpperValue ||
+ *         		-1 == princUpperValue
+ *         	);
  *         }
  * </pre></code>
  * 
@@ -195,6 +200,8 @@ public final class MoreRestrictive extends BaseGeneratedEMFQuerySpecificationWit
           PVariable var_principal = body.getOrCreateVariableByName("principal");
           PVariable var_propUpper = body.getOrCreateVariableByName("propUpper");
           PVariable var_princUpper = body.getOrCreateVariableByName("princUpper");
+          PVariable var_propUpperValue = body.getOrCreateVariableByName("propUpperValue");
+          PVariable var_princUpperValue = body.getOrCreateVariableByName("princUpperValue");
           new TypeConstraint(body, Tuples.flatTupleOf(var_property), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_property, parameter_property)
@@ -213,8 +220,55 @@ public final class MoreRestrictive extends BaseGeneratedEMFQuerySpecificationWit
           new TypeConstraint(body, Tuples.flatTupleOf(var_principal, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "MultiplicityElement", "upperValue")));
           new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ValueSpecification")));
           new Equality(body, var__virtual_1_, var_princUpper);
-          // 	find lessThan(propUpper, princUpper)
-          new PositivePatternCall(body, Tuples.flatTupleOf(var_propUpper, var_princUpper), LessThan.instance().getInternalQueryRepresentation());
+          // 	LiteralUnlimitedNatural.value(propUpper, propUpperValue)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_propUpper), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "LiteralUnlimitedNatural")));
+          PVariable var__virtual_2_ = body.getOrCreateVariableByName(".virtual{2}");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_propUpper, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "LiteralUnlimitedNatural", "value")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_2_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "UnlimitedNatural")));
+          new Equality(body, var__virtual_2_, var_propUpperValue);
+          // 	LiteralUnlimitedNatural.value(princUpper, princUpperValue)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_princUpper), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "LiteralUnlimitedNatural")));
+          PVariable var__virtual_3_ = body.getOrCreateVariableByName(".virtual{3}");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_princUpper, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "LiteralUnlimitedNatural", "value")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_3_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "UnlimitedNatural")));
+          new Equality(body, var__virtual_3_, var_princUpperValue);
+          // 	check (propUpperValue >= 0)
+          new ExpressionEvaluation(body, new IExpressionEvaluator() {
+          
+              @Override
+              public String getShortDescription() {
+                  return "Expression evaluation from pattern moreRestrictive";
+              }
+              
+              @Override
+              public Iterable<String> getInputParameterNames() {
+                  return Arrays.asList("propUpperValue");}
+          
+              @Override
+              public Object evaluateExpression(IValueProvider provider) throws Exception {
+                  Integer propUpperValue = (Integer) provider.getValue("propUpperValue");
+                  return evaluateExpression_2_1(propUpperValue);
+              }
+          },  null); 
+          // 	check(		propUpperValue < princUpperValue ||		-1 == princUpperValue	)
+          new ExpressionEvaluation(body, new IExpressionEvaluator() {
+          
+              @Override
+              public String getShortDescription() {
+                  return "Expression evaluation from pattern moreRestrictive";
+              }
+              
+              @Override
+              public Iterable<String> getInputParameterNames() {
+                  return Arrays.asList("princUpperValue", "propUpperValue");}
+          
+              @Override
+              public Object evaluateExpression(IValueProvider provider) throws Exception {
+                  Integer princUpperValue = (Integer) provider.getValue("princUpperValue");
+                  Integer propUpperValue = (Integer) provider.getValue("propUpperValue");
+                  return evaluateExpression_2_2(princUpperValue, propUpperValue);
+              }
+          },  null); 
           bodies.add(body);
       }
       return bodies;
@@ -224,5 +278,14 @@ public final class MoreRestrictive extends BaseGeneratedEMFQuerySpecificationWit
   private static boolean evaluateExpression_1_1(final Integer princLowerValue, final Integer propLowerValue) {
     boolean _greaterThan = (propLowerValue.compareTo(princLowerValue) > 0);
     return _greaterThan;
+  }
+  
+  private static boolean evaluateExpression_2_1(final Integer propUpperValue) {
+    return ((propUpperValue).intValue() >= 0);
+  }
+  
+  private static boolean evaluateExpression_2_2(final Integer princUpperValue, final Integer propUpperValue) {
+    return ((propUpperValue.compareTo(princUpperValue) < 0) || 
+      ((-1) == (princUpperValue).intValue()));
   }
 }
