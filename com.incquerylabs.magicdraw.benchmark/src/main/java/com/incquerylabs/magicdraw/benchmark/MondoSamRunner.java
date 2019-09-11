@@ -74,6 +74,7 @@ public class MondoSamRunner {
 	    		throw new InvalidBenchmarkParameterizationException("Invalid parameter configuration");
 	    }
 	    
+	    System.out.println("Selected backend: " + queryBackend.getToolName());
 
 	    // TODO load TWC project when available
 	    //String server = parameters.getServer();
@@ -100,14 +101,6 @@ public class MondoSamRunner {
 				querySpecifications, backend.getEngineImplementation(), backend.getEngineDefaultHints(), backend.isPreindexingRequired(), runIndex, backend.getToolName());
 		scenario.setSize(size);
 		engine.runBenchmark(scenario, token);
-	}
-
-	/**
-	 * Returns the simple (not fully qualified) name of a query.
-	 */
-	@Deprecated
-	private String getName(IQuerySpecification<?> querySpecification) {
-		return querySpecification.getFullyQualifiedName().substring(querySpecification.getFullyQualifiedName().lastIndexOf(".") + 1);
 	}
 	
 

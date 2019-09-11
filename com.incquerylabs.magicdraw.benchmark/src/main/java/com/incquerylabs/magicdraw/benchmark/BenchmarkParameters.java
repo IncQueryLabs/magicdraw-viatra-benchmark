@@ -74,12 +74,12 @@ public class BenchmarkParameters {
 	    }
 	    
 	    public void setSelectedBackend(String backendString) {
-	    		if (Objects.equals("RETE", backendString)) {
-	    			backend = BackendSelection.RETE;
-	    		} else if (Objects.equals("LOCAL_SEARCH", backendString)) {
-	    			backend = BackendSelection.LOCALSEARCH;    				
-    			} else if (Objects.equals("LOCAL_SEARCH_HINTS-CONDITION_FIRST", backendString)) {
-    				backend = BackendSelection.LOCAL_SEARCH_HINTS_CONDITION_FIRST;
+    		if (Objects.equals("RETE", backendString)) {
+    			backend = BackendSelection.RETE;
+    		} else if (Objects.equals("LOCAL_SEARCH", backendString)) {
+    			backend = BackendSelection.LOCALSEARCH;    				
+			} else if (Objects.equals("LOCAL_SEARCH_HINTS-CONDITION_FIRST", backendString)) {
+				backend = BackendSelection.LOCAL_SEARCH_HINTS_CONDITION_FIRST;
 			} else if (Objects.equals("LOCAL_SEARCH_HINTS-TC_FIRST", backendString)) {
 				backend = BackendSelection.LOCAL_SEARCH_HINTS_TC_FIRST;
 			} else if (Objects.equals("HYBRID", backendString)) {
@@ -87,7 +87,7 @@ public class BenchmarkParameters {
 			} else {
 				throw new IllegalArgumentException("Invalid benchmark engine " + backendString);
 			}
-    		}
+    	}
 	    
 	    public void setQueryName(String queryName) {
 			this.queryName = queryName;
