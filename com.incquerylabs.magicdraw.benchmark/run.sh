@@ -114,6 +114,8 @@ do
 			for query in "${queries[@]}";
 			do
 				if [[ " ${excluded[@]} " =~ " ${query} " ]]; then
+					echo "No benchmark is needed: $query is exluded - @BENCHMARK_QUERIES_EXCLUDE"
+				else
 					echo "Query: $query"
 					echo "Running measurement on $query with $engine (model size: $size ; runIndex: $runIndex )"
 					# Call MD
@@ -125,8 +127,6 @@ do
 					# TODO Load from TWC when available
 					#./gradlew -Pquery="$query" -Pmodel="TMT" -Pwarmup="TMT" -Pindex="$runIndex" -Psize="$size" \
 					#-Pserver="$BENCHMARK_TWC" -Puser="$BENCHMARK_USER" -Ppassword="$BENCHMARK_PASSWORD" -Poutput="${OUTPUT_DIR}" runBenchmark
-				else
-					echo "No benchmark is needed: $query is exluded - @BENCHMARK_QUERIES_EXCLUDE"
 				fi
 			
 				
