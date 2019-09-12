@@ -2,6 +2,7 @@ package com.incquerylabs.magicdraw.benchmark;
 
 import java.util.Collection;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.eclipse.viatra.query.runtime.api.IQueryGroup;
 import org.eclipse.viatra.query.runtime.api.IQuerySpecification;
@@ -15,13 +16,10 @@ import org.eclipse.viatra.query.runtime.matchers.psystem.PConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PQuery;
 
 import com.google.common.collect.ImmutableSet;
-import com.incquerylabs.magicdraw.benchmark.incrementalqueries.IncrementalQueries;
 import com.incquerylabs.magicdraw.benchmark.incrementalqueries.ParentState;
-import com.incquerylabs.magicdraw.benchmark.queries.APerformanceQueries;
 import com.incquerylabs.magicdraw.benchmark.queries.IncomingTransitions;
 import com.incquerylabs.magicdraw.benchmark.queries.Sysml_validation_queries;
 import com.incquerylabs.magicdraw.benchmark.queries.TransitiveSubstatesWithCheck3;
-import com.incquerylabs.magicdraw.benchmark.queries.internal.Sysml_validation_queriesAll;
 
 public enum BackendSelection {
 
@@ -38,7 +36,7 @@ public enum BackendSelection {
 		case LOCAL_SEARCH_HINTS_CONDITION_FIRST:
 		case LOCAL_SEARCH_HINTS_TC_FIRST:
 		case HYBRID:
-			return findQueries(Sysml_validation_queries.instance(), parameters.getQueryName());
+			return findQueries(Sysml_validation_queries.instance(), parameters.getQueryName(), parameters);
 		default:
 			throw new InvalidBenchmarkParameterizationException("Unexpected backend configuration " + this);
 		}
@@ -115,9 +113,9 @@ public enum BackendSelection {
 		}
 	}
 	
-	private Collection<IQuerySpecification<?>> findQueries(IQueryGroup querySpecifications, String queryName) throws ViatraQueryException {
+	private Collection<IQuerySpecification<?>> findQueries(IQueryGroup querySpecifications, String queryName, BenchmarkParameters parameters) throws ViatraQueryException {
 		if(queryName.equals("all")) {
-			return querySpecifications.getSpecifications();
+			return querySpecifications.getSpecifications().stream().filter(x -> !parameters.isExcluded(getName(x))).collect(Collectors.toSet());
 		}
 		return ImmutableSet.of(findQueryBySimpleName(querySpecifications, queryName));
 	}

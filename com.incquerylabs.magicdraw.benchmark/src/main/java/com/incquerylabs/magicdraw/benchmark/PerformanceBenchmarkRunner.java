@@ -11,14 +11,10 @@ import org.apache.log4j.FileAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
-import org.codehaus.jackson.map.ObjectMapper;
 
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.nomagic.magicdraw.commandline.CommandLineAction;
-import com.nomagic.magicdraw.core.Application;
-
-import eu.mondo.sam.core.BenchmarkEngine;
 
 public class PerformanceBenchmarkRunner implements CommandLineAction{
 
@@ -85,6 +81,9 @@ public class PerformanceBenchmarkRunner implements CommandLineAction{
 				argIndex+=2;
 			} else if (Objects.equals("-query", arguments[argIndex])) {
 				parameters.setQueryName(arguments[argIndex + 1]);
+				argIndex+=2;
+			} else if (Objects.equals("-exclude", arguments[argIndex])) {
+				parameters.setExcludedQueries(arguments[argIndex + 1]);
 				argIndex+=2;
 			} else if (Objects.equals("-index", arguments[argIndex])) {
 				parameters.setRunIndex(arguments[argIndex + 1]);
