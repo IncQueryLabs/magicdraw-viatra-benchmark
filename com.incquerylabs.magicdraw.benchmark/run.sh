@@ -114,7 +114,7 @@ do
 			for query in "${queries[@]}";
 			do
 				if [[ " ${excluded[@]} " =~ " ${query} " ]]; then
-					echo "No benchmark is needed: $query is exluded - @BENCHMARK_QUERIES_EXCLUDE"
+					echo "No benchmark is needed: $query is exluded - $BENCHMARK_QUERIES_EXCLUDE"
 				else
 					echo "Query: $query"
 					echo "Running measurement on $query with $engine (model size: $size ; runIndex: $runIndex )"
