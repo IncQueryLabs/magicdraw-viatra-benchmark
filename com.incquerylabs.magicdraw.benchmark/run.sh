@@ -61,6 +61,11 @@ BENCHMARK_QUERIES="rateNotStreaming, boundReferenceNotReferenceOrValueProperty, 
 fi
 echo "Selected queries: ${BENCHMARK_QUERIES}"
 
+if [ -z "$BENCHMARK_QUERIES_EXCLUDE" ]; then
+BENCHMARK_QUERIES_EXCLUDE=""
+fi
+echo "Queries to be excluded: ${BENCHMARK_QUERIES_EXCLUDE}"
+
 if [ -z "$BENCHMARK_SIZES" ]; then
 BENCHMARK_SIZES="300000, 540000, 780000, 1040000, 1200000"
 BENCHMARK_SIZES="300000"
@@ -91,6 +96,7 @@ OUTPUT_DIR="$WORKSPACE/com.incquerylabs.magicdraw.benchmark/results"
 
 IFS=', ' read -r -a engines <<< "$BENCHMARK_ENGINES"
 IFS=', ' read -r -a queries <<< "$BENCHMARK_QUERIES"
+IFS=', ' read -r -a excluded <<< "$BENCHMARK_QUERIES_EXCLUDE"
 IFS=', ' read -r -a modelsizes <<< "$BENCHMARK_SIZES"
 
 # Run benchmark
@@ -107,17 +113,23 @@ do
 			
 			for query in "${queries[@]}";
 			do
-				echo "Query: $query"
-				echo "Running measurement on $query with $engine (model size: $size ; runIndex: $runIndex )"
-				# Call MD
-				cd com.incquerylabs.magicdraw.benchmark
+				if [[ " ${excluded[@]} " =~ " ${query} " ]]; then
+					echo "Query: $query"
+					echo "Running measurement on $query with $engine (model size: $size ; runIndex: $runIndex )"
+					# Call MD
+					cd com.incquerylabs.magicdraw.benchmark
+					
+					./gradlew -Pquery="$query" -Pmodel="/home/jenkins/models-tmt/TMT$size.mdzip" -Pwarmup="/home/jenkins/models-tmt/Warmup.mdzip" -Pindex="$runIndex" -Psize="$size" \
+					-Poutput="${OUTPUT_DIR}" -Pengine="$engine" -Pexclude="$BENCHMARK_QUERIES_EXCLUDE" runBenchmark
+					
+					# TODO Load from TWC when available
+					#./gradlew -Pquery="$query" -Pmodel="TMT" -Pwarmup="TMT" -Pindex="$runIndex" -Psize="$size" \
+					#-Pserver="$BENCHMARK_TWC" -Puser="$BENCHMARK_USER" -Ppassword="$BENCHMARK_PASSWORD" -Poutput="${OUTPUT_DIR}" runBenchmark
+				else
+					echo "No benchmark is needed: $query is exluded - @BENCHMARK_QUERIES_EXCLUDE"
+				fi
+			
 				
-				./gradlew -Pquery="$query" -Pmodel="/home/jenkins/models-tmt/TMT$size.mdzip" -Pwarmup="/home/jenkins/models-tmt/Warmup.mdzip" -Pindex="$runIndex" -Psize="$size" \
-				-Poutput="${OUTPUT_DIR}" -Pengine="$engine" runBenchmark
-				
-				# TODO Load from TWC when available
-				#./gradlew -Pquery="$query" -Pmodel="TMT" -Pwarmup="TMT" -Pindex="$runIndex" -Psize="$size" \
-				#-Pserver="$BENCHMARK_TWC" -Puser="$BENCHMARK_USER" -Ppassword="$BENCHMARK_PASSWORD" -Poutput="${OUTPUT_DIR}" runBenchmark
 			done
 		done
 	done

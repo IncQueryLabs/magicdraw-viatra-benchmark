@@ -10,8 +10,6 @@ import com.incquerylabs.magicdraw.benchmark.mondo.sam.SingleQueryScenario;
 import com.nomagic.magicdraw.core.Application;
 import com.nomagic.magicdraw.core.project.ProjectDescriptor;
 import com.nomagic.magicdraw.core.project.ProjectDescriptorsFactory;
-import com.nomagic.magicdraw.esi.EsiUtils;
-import com.nomagic.magicdraw.teamwork2.ServerLoginInfo;
 
 import eu.mondo.sam.core.BenchmarkEngine;
 import eu.mondo.sam.core.metrics.MemoryMetric;
