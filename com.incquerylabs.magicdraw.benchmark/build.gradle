@@ -212,6 +212,7 @@ String benchmarkOutput = project.hasProperty('output') ? project.getProperty('ou
 String benchmarkServer = project.hasProperty('server') ? project.getProperty('server') : ''
 String benchmarkUser = project.hasProperty('user') ? project.getProperty('user') : ''
 String benchmarkPassword = project.hasProperty('password') ? project.getProperty('password') : ''
+String benchmarkExclude = project.hasProperty('exclude') ? project.getProperty('exclude') : ''
 
 def benchmarkArgs = [
 	'-Dcom.nomagic.magicdraw.launcher=com.nomagic.magicdraw.commandline.CommandLineActionLauncher',
@@ -249,6 +250,9 @@ task runBenchmark(type: JavaExec) {
 	}
 	if(project.hasProperty('password')) {
 		args += ["-password", "${benchmarkPassword}"]
+	}
+	if(project.hasProperty('exclude')) {
+		args += ["-exclude", "${benchmarkExclude}"]
 	}
 	jvmArgs += benchmarkArgs
 }
