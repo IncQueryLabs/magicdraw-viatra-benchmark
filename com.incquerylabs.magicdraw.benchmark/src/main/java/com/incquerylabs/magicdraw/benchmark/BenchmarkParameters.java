@@ -1,10 +1,9 @@
 package com.incquerylabs.magicdraw.benchmark;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-import com.beust.jcommander.internal.Lists;
 
 public class BenchmarkParameters {
 		
@@ -24,7 +23,7 @@ public class BenchmarkParameters {
 		private String user;
 		private String password;
 
-		private List<String> excludedQueries;
+		private List<String> excludedQueries = new ArrayList<String>();
 		
 		public String getResultPath() {
 			return resultPath;
@@ -131,7 +130,10 @@ public class BenchmarkParameters {
 		}
 
 		public void setExcludedQueries(String excludedQueries) {
-			this.excludedQueries = Lists.newArrayList(excludedQueries.split(", "));
+			String[] array = excludedQueries.split(", ");
+			for (int i = 0; i < array.length; i++) {
+				this.excludedQueries.add(array[i]);
+			}
 		}	
 		
 		public boolean isExcluded(String query) {
