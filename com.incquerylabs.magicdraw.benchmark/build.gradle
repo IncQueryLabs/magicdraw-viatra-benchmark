@@ -1,0 +1,382 @@
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.stream.Collectors
+import java.util.zip.ZipFile
+
+plugins {
+  id "org.xtext.xtend" version  "2.0.2"
+}
+
+xtext.version = xtextVersion
+
+String buildNumber = project.hasProperty('buildNumber') ? project.getProperty('buildNumber') : System.currentTimeSeconds()
+String timestamp = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH:mm").format(LocalDateTime.now())
+
+//This is the part that is painful to maintain, as MD releases tend to move around these library jars
+String[] classpathLibraries = [
+        'lib/patch.jar',
+        'lib/md.jar',
+        'lib/md_api.jar',
+        'lib/md_common.jar',
+        'lib/md_common_api.jar',
+        'lib/md_common_test.jar',
+        'lib/tw_common.jar',
+        'lib/tw_common_api.jar',
+        'lib/launcher.jar',
+        'lib/activation.jar'
+]
+
+
+// Apply the java-library plugin to add support for Java Library
+
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'distribution'
+apply plugin: 'org.xtext.xtend'
+
+sourceSets {
+    main {
+        java {
+            srcDir 'src/main/java'
+            srcDir 'src/generated/vql'
+        }    
+ 		xtendOutputDir = 'build/xtend-gen'            
+    }
+    test {
+    	java {
+    		srcDir 'src/test/java'
+    	}
+    }
+}
+
+// In this section you declare where to find the dependencies of your project
+repositories {
+    ivy {
+        url 'http://download1.nomagic.com/'
+        layout 'pattern', {
+            artifact '/[module][revision]/[classifier].[ext]'
+        }
+    } 
+    jcenter()
+    mavenCentral()
+	maven { url 'https://build.incquerylabs.com/nexus/repository/v4md/' }
+    maven { url 'https://build.incquerylabs.com/nexus/repository/mondosam/' }
+ 	maven { url "https://repo.eclipse.org/content/groups/viatra/" }
+ }
+
+configurations {
+	plugin
+    implementation.extendsFrom plugin
+    preCompile
+}
+
+dependencies {    
+
+	def exclusions = {
+        exclude group: 'com.google.guava', module: 'guava'
+        exclude module: 'viatra-query-runtime'
+        exclude module: 'org.eclipse.emf.ecore'
+        exclude module: 'org.eclipse.emf.ecore.common'
+        exclude module: 'org.eclipse.emf.ecore.xmi'
+        exclude module: 'org.eclipse.emf.common'
+        exclude module: 'org.eclipse.equinox.common'
+        exclude module: 'asm'
+        exclude module: 'log4j'
+        exclude module: 'org.eclipse.osgi'
+        exclude module: 'org.eclipse.xtext.xbase.lib' //provided by V4MD
+        exclude module: 'org.eclipse.xtend.lib.macro' //provided by V4MD
+        exclude module: 'org.eclipse.xtext' //version number replacement
+        exclude module: 'org.eclipse.xtext.xbase' //version number replacement
+        exclude module: 'org.eclipse.xtext.xtext.generator' //version number replacement
+        
+    }
+
+
+  
+    preCompile group: 'com.nomagic', name: 'magicdraw', version: '190', classifier: 'MagicDraw_190_no_install', ext: 'zip'
+    preCompile group: 'com.nomagic', name: 'sysml', version: '190', classifier: 'SysML_Plugin_190_bundle', ext: 'zip'
+    preCompile group: 'com.incquerylabs.v4md', name: 'com.incquerylabs.v4md', version: v4mdVersion, classifier: 'plugin', ext: 'zip'
+    
+    compile group: 'org.eclipse.viatra', name: 'viatra-query-language', version: viatraVersion, exclusions
+    compile group: 'org.eclipse.xtext',  name: 'org.eclipse.xtext', version: xtextVersion, exclusions
+    compile group: 'org.eclipse.xtext',  name: 'org.eclipse.xtext.xbase', version: xtextVersion, exclusions
+    compile group: 'org.eclipse.xtext',  name: 'org.eclipse.xtext.xtext.generator', version: xtextVersion, exclusions
+    compile group: 'org.eclipse.xtext',  name: 'org.eclipse.xtext.common.types', version: xtextVersion, exclusions
+    compile group: 'org.eclipse.emf', name: 'org.eclipse.emf.codegen', version: '2.10.0-v20140901-1055', exclusions
+    compile group: 'org.eclipse.emf', name: 'org.eclipse.emf.codegen.ecore', version: '2.10.1-v20140901-1055', exclusions
+    compile group: 'org.ow2.asm', name: 'asm', version: '6.2.1'
+	compile group: 'eu.mondo.sam', name: 'core', version: '0.1.0'
+  	compile group: 'org.codehaus.jackson', name: 'jackson-core-asl', version: '1.6.0'
+  	compile group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.6.0'       
+    
+ 	implementation group: 'org.eclipse.viatra', name: 'viatra-query-runtime', version: viatraVersion, exclusions
+    implementation group: 'org.eclipse.viatra', name: 'viatra-transformation-runtime', version: viatraVersion, exclusions    
+    
+    // This ensures classpath load order to match the MagicDraw provided order and then includes extras needed for non-OpenAPI stuff.
+    compile files(classpathLibraries.collect { 'build/dependency-cache/extracted/' + it })
+    compile fileTree(dir: 'build/dependency-cache/extracted', include: ['lib/**/*.jar', 'plugins/**/*.jar'], exclude: ([ classpathLibraries, ['plugins/com.nomagic.collaborator.publisher/**/*.jar', 'plugins/com.nomagic.magicdraw.emfuml2xmi*/**/*.jar'] ]).flatten())
+    compile fileTree(dir: 'lib', include: ['**/*.jar'])
+}
+
+task extractDependencies {
+    configurations.preCompile.resolvedConfiguration.resolvedArtifacts.each { artifact ->
+        inputs.file artifact.file
+        def zipFile = new ZipFile(artifact.file)
+        zipFile.entries().each { entry ->
+            if (!entry.isDirectory()) {
+                outputs.file 'build/dependency-cache/extracted/' + entry.getName()
+            }
+        }
+    }
+    doLast {
+        inputs.files.each { archive ->
+            copy {
+                from zipTree(archive)
+                into 'build/dependency-cache/extracted'
+            }
+        }
+        fileTree(dir: 'build/dependency-cache/extracted', include: '*.zip').each { archive ->
+            copy {
+                from zipTree(archive)
+                into 'build/dependency-cache/extracted'
+            }
+        }
+    }
+}
+compileJava.dependsOn extractDependencies
+
+processResources {
+	doFirst {
+		delete "build/resources"
+	}
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+String benchmarkEngine = project.hasProperty('engine') ? project.getProperty('engine') : ''
+String benchmarkQuery = project.hasProperty('query') ? project.getProperty('query') : ''
+String benchmarkIndex = project.hasProperty('index') ? project.getProperty('index') : ''
+String benchmarkSize = project.hasProperty('size') ? project.getProperty('size') : ''
+String benchmarkModel = project.hasProperty('model') ? project.getProperty('model') : ''
+String benchmarkWarmup = project.hasProperty('warmup') ? project.getProperty('warmup') : ''
+String benchmarkOutput = project.hasProperty('output') ? project.getProperty('output') : ''
+String benchmarkServer = project.hasProperty('server') ? project.getProperty('server') : ''
+String benchmarkUser = project.hasProperty('user') ? project.getProperty('user') : ''
+String benchmarkPassword = project.hasProperty('password') ? project.getProperty('password') : ''
+String benchmarkExclude = project.hasProperty('exclude') ? project.getProperty('exclude') : ''
+
+def benchmarkArgs = [
+	'-Dcom.nomagic.magicdraw.launcher=com.nomagic.magicdraw.commandline.CommandLineActionLauncher',
+ 	'-Dcom.nomagic.magicdraw.commandline.action=com.incquerylabs.magicdraw.benchmark.PerformanceBenchmarkRunner',
+]
+
+task runBenchmark(type: JavaExec) {
+	args = []
+	if(project.hasProperty('engine')) {
+		args += ["-engine", "${benchmarkEngine}"]
+	}
+	if(project.hasProperty('query')) {
+		args += ["-query", "${benchmarkQuery}"]
+	}
+	if(project.hasProperty('index')) {
+		args += ["-index", "${benchmarkIndex}"]
+	}
+	if(project.hasProperty('size')) {
+		args += ["-size", "${benchmarkSize}"]
+	}
+	if(project.hasProperty('model')) {
+		args += ["-model", "${benchmarkModel}"]
+	}
+	if(project.hasProperty('warmup')) {
+		args += ["-warmup", "${benchmarkWarmup}"]
+	}
+	if(project.hasProperty('output')) {
+		args += ["-output", "${benchmarkOutput}"]
+	}
+	if(project.hasProperty('server')) {
+		args += ["-server", "${benchmarkServer}"]
+	}
+	if(project.hasProperty('user')) {
+		args += ["-user", "${benchmarkUser}"]
+	}
+	if(project.hasProperty('password')) {
+		args += ["-password", "${benchmarkPassword}"]
+	}
+	if(project.hasProperty('exclude')) {
+		args += ["-exclude", "${benchmarkExclude}"]
+	}
+	jvmArgs += benchmarkArgs
+}
+
+runBenchmark.dependsOn installDist
+
+class PreDist extends DefaultTask {
+    String humanVersion
+    String internalVersion
+    String groupName
+    String pluginTemplate
+    Set<File> resolvedArtifacts
+    String pluginUserVisibleName
+    org.gradle.api.tasks.bundling.Jar outputArtifact
+    String distributionFolderName
+
+    @TaskAction
+    void executeTask() {
+        project.copy {
+        	from 'lib'
+            from outputArtifact
+            into "build/${distributionFolderName}/plugins/${groupName}"
+        }
+        resolvedArtifacts.each { artifact ->
+			if(artifact.getName().contains('jackson')){
+				project.copy{
+					from artifact
+					into "build/${distributionFolderName}/plugins/${groupName}"  
+				}
+			}
+			if(artifact.getName().startsWith('core-')){
+				project.copy{
+					from artifact
+					into "build/${distributionFolderName}/plugins/${groupName}"  
+				}
+			}
+	    }
+	    
+		String sep = "\\" + File.separator
+	    String pluginLibraries = ''
+        project.fileTree(dir: "build/${distributionFolderName}/plugins/${groupName}", include: '**/*.jar').each { file ->
+            pluginLibraries += '\t\t<library name=\"' + file.absolutePath.replaceAll(~/.*build${sep}${distributionFolderName}${sep}plugins${sep}${groupName}${sep}/, '') + '\"/>' + System.lineSeparator()
+        }
+        project.copy {
+            from pluginTemplate
+            filter { String line -> line.replace('<!-- START AUTO-GENERATED -->', '<!-- START AUTO-GENERATED -->' + System.lineSeparator() + System.lineSeparator() + pluginLibraries) }
+            filter { String line -> line.replace('${human.version}', humanVersion) }
+            filter { String line -> line.replace('${internal.version}', internalVersion) }
+            filter { String line -> line.replace('${plugin.name}', pluginUserVisibleName) }
+            into "build/${distributionFolderName}/plugins/${groupName}"
+        }
+    }
+}
+
+task preDist(type: PreDist) {
+    humanVersion = version
+    internalVersion = buildNumber
+    groupName = magicDrawGroupName
+    pluginUserVisibleName = project.getProperty("pluginName")
+    pluginTemplate = 'src/main/dist/template/plugins/${group}/plugin.xml'
+    resolvedArtifacts = configurations.compile.resolvedConfiguration.resolvedArtifacts.file
+    outputArtifact = project.jar
+    distributionFolderName = "generated-dist"
+
+    doFirst {
+    	project.copy {
+            from 'src/main/dist'
+            exclude 'template'
+            from 'src/main/dist/template'
+            exclude 'plugins'
+            from 'src/main/dist/template/plugins'
+            exclude '${group}'
+            into 'build/generated-dist'
+        }
+        project.copy {
+            from 'src/main/dist/settings'
+            into "build/generated-dist/plugins/${groupName}/settings"
+        }
+        project.fileTree(dir: 'build/generated-dist', include: '**/*${group}*/**').each { file ->
+            file.renameTo(project.file(file.getAbsolutePath().replace('${group}', "${groupName}")))
+        }
+    }
+
+    doLast {
+    	String buildTimestamp = timestamp
+    	String descriptor = descriptorFile
+	    String descriptorFiles = ''
+	    String sep = "\\" + File.separator
+        project.fileTree(dir: 'build/generated-dist').each { file ->
+            String relativePath = file.absolutePath.replaceAll(/.*build${sep}generated-dist${sep}/, '')
+            descriptorFiles += '\t\t<file from=\"' + relativePath + '\" to=\"' + relativePath + '\"/>' + System.lineSeparator()
+        }
+    }
+}
+preDist.dependsOn jar
+
+distributions {
+    main {
+        contents {
+            exclude 'template'
+            from 'build/generated-dist'
+        }
+    }
+}
+
+distZip {
+    includeEmptyDirs false
+    duplicatesStrategy DuplicatesStrategy.EXCLUDE
+    eachFile { file ->
+        file.setPath(path.substring(path.indexOf("/") + 1, path.length()))
+    }
+}
+distZip.dependsOn preDist
+
+installDist {
+    destinationDir = file('build/plugin')
+    doLast {
+        copy {
+            fileMode 0755
+            from 'build/dependency-cache/extracted'
+            from 'build/plugin'
+            into 'build/install'
+        }
+    }
+}
+installDist.dependsOn distZip
+
+def os = org.gradle.internal.os.OperatingSystem.current()
+def platformConfigSetting = 
+        (os.isWindows())
+		? ['-DWINCONFIG=true']
+		: ((os.isMacOsX())
+			? ['-DWINCONFIG=false', '-Xdock:name=MagicDraw', '-Xdock:icon=bin/md.icns', '-Dapple.laf.useScreenMenuBar=true']
+: ['-DWINCONFIG=false'])
+
+tasks.withType(JavaExec) {
+	doFirst {
+        classpath fileTree(dir: 'build/install', include: ['lib/**/*.jar'], exclude: ['lib/**/*akka*.jar'])
+    }
+
+	workingDir 'build/install'
+    ignoreExitValue true
+
+    standardOutput = System.out
+    errorOutput = System.err
+	
+    main = 'com.nomagic.osgi.launcher.ProductionFrameworkLauncher'
+    jvmArgs = platformConfigSetting + ['-Xmx8192M', '-Xss512M', '-noverify', '-splash:data/splash.png','-Dmd.class.path=$java.class.path']
+	args 'DEVELOPER'
+}
+
+task runJava(type: JavaExec) {
+}
+runJava.dependsOn installDist
+
+task preparePluginDistributions {
+	configurations.preCompile.resolvedConfiguration.resolvedArtifacts.each { artifact ->
+		if(artifact.getName().contains('v4md')){
+			copy{
+				from artifact.getFile().getParentFile()
+				include '*v4md*.zip'
+				rename { String fileName ->
+					fileName.replace("-SNAPSHOT-no-install", "")
+				}
+				into 'build/distributions/'
+			}
+		}
+    }
+}
+preparePluginDistributions.dependsOn installDist
+
+

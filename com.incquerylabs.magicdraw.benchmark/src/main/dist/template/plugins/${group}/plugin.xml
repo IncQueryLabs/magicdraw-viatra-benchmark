@@ -1,0 +1,21 @@
+<plugin
+        id="com.incquerylabs.magicdraw.benchmark"
+        name="Benchmark Plugin"
+        internalVersion="${internal.version}"
+        version="${human.version}"
+        provider-name="IncQuery Labs Ltd."
+        class-lookup="LocalFirst"
+		ownClassloader="true"
+        class="com.incquerylabs.magicdraw.benchmark.MagicDrawPerformancePlugin">
+    
+	<requires>
+		<required-plugin id="com.incquerylabs.v4md" name="V4MD" version="2.0.0 M3" internalVersion="200003"/>
+		<required-plugin id="com.nomagic.magicdraw.plugins.impl.sysml" name="SysML"/>
+	</requires>
+    
+    <runtime>
+        <!-- START AUTO-GENERATED -->
+        <!-- END AUTO-GENERATED -->
+    </runtime>
+    
+</plugin>

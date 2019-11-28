@@ -1,10 +1,17 @@
 #!/bin/bash
- 
-if [ -z "$MD_HOME" ]; then
-    echo "MD_HOME environment variable not set, please set it to the MagicDraw installation folder"
-    exit 1
+
+if [ -z "$MODEL_LOCATION" ]; then 
+	export MODEL_LOCATION=${WORKSPACE_BENCHMARK}/models-tmt
 fi
- 
+
+if [ -z "$WORKSPACE_BENCHMARK" ]; then 
+	export WORKSPACE_BENCHMARK=$(pwd)
+fi
+
+if [ -z "$MD_HOME" ]; then
+    export MD_HOME=${WORKSPACE_BENCHMARK}/com.incquerylabs.magicdraw.benchmark/build/install
+fi
+
 if [ "$OS" = Windows_NT ]; then
     md_home_url_leader=$(echo "$MD_HOME" | sed -e 's/^/\//' -e 's/ /%20/g' -e 's/\\/\//g')
     md_home_url_base=$(echo "$MD_HOME" | sed -e 's/:/%3A/g' -e 's/ /%20/g' \
@@ -30,8 +37,7 @@ CP="${OSGI_LAUNCHER}${cp_delim}${OSGI_FRAMEWORK}${cp_delim}${MD_OSGI_FRAGMENT}${
 
 # Setup benchmark
 if [ -z "$BENCHMARK_ENGINES" ]; then
-#BENCHMARK_ENGINES="RETE, LOCAL_SEARCH, LOCAL_SEARCH_HINTS-CONDITION_FIRST, LOCAL_SEARCH_HINTS-TC_FIRST, HYBRID"
-BENCHMARK_ENGINES="RETE, LOCAL_SEARCH, HYBRID"
+BENCHMARK_ENGINES="RETE, LOCAL_SEARCH, LOCAL_SEARCH_HINTS-CONDITION_FIRST, LOCAL_SEARCH_HINTS-TC_FIRST, HYBRID"
 fi
 echo "Selected engines: ${BENCHMARK_ENGINES}"
 
@@ -43,7 +49,7 @@ echo "Selected queries: ${BENCHMARK_QUERIES}"
 
 if [ -z "$BENCHMARK_SIZES" ]; then
 #BENCHMARK_SIZES="300000, 540000, 780000, 1040000, 1200000"
-BENCHMARK_SIZES="300000"
+BENCHMARK_SIZES="5000"
 fi
 echo "Selected sizes: ${BENCHMARK_SIZES}"
 
@@ -52,17 +58,15 @@ BENCHMARK_RUNS=1
 fi
 echo "Number of runs: ${BENCHMARK_RUNS}"
 
-if [ -z $WORKSPACE ]; then 
-    OUTPUT_DIR="results"
-else 
-    OUTPUT_DIR="$WORKSPACE/com.incquerylabs.magicdraw.benchmark/results"
-fi
+OUTPUT_DIR=${WORKSPACE_BENCHMARK}/com.incquerylabs.magicdraw.benchmark/results
 
 IFS=', ' read -r -a engines <<< "$BENCHMARK_ENGINES"
 IFS=', ' read -r -a queries <<< "$BENCHMARK_QUERIES"
 IFS=', ' read -r -a modelsizes <<< "$BENCHMARK_SIZES"
 
 # Run benchmark
+cd ${WORKSPACE_BENCHMARK}/com.incquerylabs.magicdraw.benchmark
+	
 for runIndex in `seq 1 "$BENCHMARK_RUNS"`;
 do
 	
@@ -78,17 +82,11 @@ do
 			do
 				echo "Query: $query"
 				echo "Running measurement on $query with $engine (model size: $size ; runIndex: $runIndex )"
+				
 				# Call MD
-				java -Xmx8G -Xms4G -Xss1024K \
-					-Dmd.class.path=$md_cp_url \
-					-Dcom.nomagic.osgi.config.dir="$MD_HOME/configuration" \
-					-Desi.system.config="$MD_HOME/data/application.conf" \
-					-Dlogback.configurationFile="$MD_HOME/data/logback.xml" \
-					-Dmd.plugins.dir="$MD_HOME/plugins${cp_delim}$WORKSPACE/com.incquerylabs.magicdraw.benchmark/target/plugin-release/files/plugins${cp_delim}" \
-					-Dcom.nomagic.magicdraw.launcher=com.nomagic.magicdraw.commandline.CommandLineActionLauncher \
-					-Dcom.nomagic.magicdraw.commandline.action=com.incquerylabs.magicdraw.benchmark.PerformanceBenchmarkRunner \
-					-cp "$CP" \
-					com.nomagic.osgi.launcher.ProductionFrameworkLauncher "$@ -engine $engine -query $query -index $runIndex -size $size -model '${MD_HOME}/performance/inputs/TMT$size.mdzip' -warmup '${MD_HOME}/performance/inputs/Warmup.mdzip' -output '${OUTPUT_DIR}'"
+				./gradlew -Pquery="$query" -Pmodel="${MODEL_LOCATION}/TMT$size.mdzip" -Pwarmup="${MODEL_LOCATION}/Warmup.mdzip" -Pindex="$runIndex" -Psize="$size" \
+				-Poutput="${OUTPUT_DIR}" -Pengine="$engine" runBenchmark
+				
 			done
 		done
 	done

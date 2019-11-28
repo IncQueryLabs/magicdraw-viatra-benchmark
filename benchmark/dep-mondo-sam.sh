@@ -1,8 +1,12 @@
 #!/bin/bash
 
-cd "$( cd "$( dirname "$0" )" && pwd )/.."
+if [ -z "$WORKSPACE_BENCHMARK" ]; then 
+	export WORKSPACE_BENCHMARK=$(pwd)
+fi
+cd ${WORKSPACE_BENCHMARK}
 
 # Clone results repository if needed
+echo "Clone mondo-sam"
 if [ -d "mondo-sam" ]; then
   # Repo exists, update
   cd mondo-sam
@@ -16,3 +20,5 @@ else
   git fetch
   git checkout 0.1-maintenance
 fi
+echo "Finished Cloning"
+

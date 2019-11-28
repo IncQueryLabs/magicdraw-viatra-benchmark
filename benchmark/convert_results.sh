@@ -1,12 +1,16 @@
 #!/bin/bash
-cd "$( cd "$( dirname "$0" )" && pwd )"
+
+if [ -z "$WORKSPACE_BENCHMARK" ]; then 
+	export WORKSPACE_BENCHMARK=$(pwd)
+fi
 
 # Ensure old results are removed
-rm -rf ${WORKSPACE}/benchmark/results
-mkdir ${WORKSPACE}/benchmark/results
+rm -rf ${WORKSPACE_BENCHMARK}/benchmark/results
+mkdir ${WORKSPACE_BENCHMARK}/benchmark/results
 
-cd ${WORKSPACE}/com.incquerylabs.magicdraw.benchmark/results
+cd ${WORKSPACE_BENCHMARK}/com.incquerylabs.magicdraw.benchmark/results
 
+echo "Process results"
 for i in $(ls -d */); do
   echo ${i};
   
@@ -14,12 +18,13 @@ for i in $(ls -d */); do
     echo "SKIP"
   else
     echo "PROCESS"
-	mkdir ${WORKSPACE}/benchmark/results/${i}
-	python3 ${WORKSPACE}/mondo-sam/reporting/convert_results.py --source ${WORKSPACE}/com.incquerylabs.magicdraw.benchmark/results/${i} \
---jsonfile ${WORKSPACE}/benchmark/results/${i}results.json \
---csvfile ${WORKSPACE}/benchmark/results/${i}results.csv
+	mkdir ${WORKSPACE_BENCHMARK}/benchmark/results/${i}
+	python3 ${WORKSPACE_BENCHMARK}/mondo-sam/reporting/convert_results.py --source ${WORKSPACE_BENCHMARK}/com.incquerylabs.magicdraw.benchmark/results/${i} \
+--jsonfile ${WORKSPACE_BENCHMARK}/benchmark/results/${i}results.json \
+--csvfile ${WORKSPACE_BENCHMARK}/benchmark/results/${i}results.csv
   fi
   
 done
+echo "Finished processing result"
 
 
