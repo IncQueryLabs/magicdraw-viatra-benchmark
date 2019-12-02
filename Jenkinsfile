@@ -12,8 +12,8 @@ pipeline {
 		)
 
 		string( 
-			defaultValue: 'optionalLowerZero',
-			description: 'Comma separated list of queries to test (with a single space after each comma). If empty, all queries are taken into account. Use the value "all" if you want to apply all patterns in one run.',
+			defaultValue: 'transitiveSubstatesWithCheck3',
+			description: 'Comma separated list of queries to test (with a single space after each comma).',
 			name: 'BENCHMARK_QUERIES' 
 		)
 		
