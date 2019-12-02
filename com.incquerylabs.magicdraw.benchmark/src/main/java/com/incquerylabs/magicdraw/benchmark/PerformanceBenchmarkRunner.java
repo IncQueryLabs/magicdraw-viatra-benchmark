@@ -6,14 +6,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.apache.log4j.FileAppender;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PatternLayout;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Lists;
 import com.nomagic.magicdraw.commandline.CommandLineAction;
 
 public class PerformanceBenchmarkRunner implements CommandLineAction{
@@ -59,14 +58,7 @@ public class PerformanceBenchmarkRunner implements CommandLineAction{
 		
 		
 		// XXX Sometimes parameters are stored in a single args value separated by whitespace characters
-		List<String[]> transformedArgs = Lists.transform(Arrays.asList(args), new Function<String, String[]>() {
-
-			@Override
-			public String[] apply(String arg0) {
-				return arg0.trim().split("\\s");
-			}
-			
-		});
+		List<String[]> transformedArgs = Arrays.asList(args).stream().map(arg -> arg.trim().split("\\s")).collect(Collectors.toList());
 		List<String> argList = new ArrayList<>();
 		for (String[] strings : transformedArgs) {
 			argList.addAll(Arrays.asList(strings));

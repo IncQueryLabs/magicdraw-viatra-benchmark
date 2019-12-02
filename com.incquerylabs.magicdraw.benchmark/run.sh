@@ -5,7 +5,7 @@ if [ -z "$MODEL_LOCATION" ]; then
 fi
 
 if [ -z "$WORKSPACE_BENCHMARK" ]; then 
-	export WORKSPACE_BENCHMARK=$(pwd)
+	export WORKSPACE_BENCHMARK=$WORKSPACE
 fi
 
 if [ -z "$MD_HOME" ]; then
@@ -37,7 +37,8 @@ CP="${OSGI_LAUNCHER}${cp_delim}${OSGI_FRAMEWORK}${cp_delim}${MD_OSGI_FRAGMENT}${
 
 # Setup benchmark
 if [ -z "$BENCHMARK_ENGINES" ]; then
-BENCHMARK_ENGINES="RETE, LOCAL_SEARCH, LOCAL_SEARCH_HINTS-CONDITION_FIRST, LOCAL_SEARCH_HINTS-TC_FIRST, HYBRID"
+#BENCHMARK_ENGINES="RETE, LOCAL_SEARCH, LOCAL_SEARCH_HINTS-CONDITION_FIRST, LOCAL_SEARCH_HINTS-TC_FIRST, HYBRID"
+BENCHMARK_ENGINES="RETE"
 fi
 echo "Selected engines: ${BENCHMARK_ENGINES}"
 
@@ -77,7 +78,7 @@ do
 		for size in "${modelsizes[@]}";
 		do
 			echo "Model size: $size"
-			
+		
 			for query in "${queries[@]}";
 			do
 				echo "Query: $query"

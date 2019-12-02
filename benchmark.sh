@@ -1,10 +1,12 @@
 #!/bin/bash
 
+# WORKSPACE_BENCHMARK is used as $WORKSPACE can be overriden by 3rd party applications e.g. Git.
+
 # export WORKSPACE_BENCHMARK=<The directory path that contains this file>
 # export MODEL_LOCATION=<The directory path that contains the TMT model files(*.mdzip)>
 
 if [ -z "$WORKSPACE_BENCHMARK" ]; then 
-	export WORKSPACE_BENCHMARK=$(pwd)
+	export WORKSPACE_BENCHMARK=$(WORKSPACE)
 fi
 
 # compile benchmark

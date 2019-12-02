@@ -1,8 +1,8 @@
 package com.incquerylabs.magicdraw.benchmark;
 
-import java.util.Collection;
 import java.util.Objects;
 
+import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.viatra.query.runtime.api.IQueryGroup;
 import org.eclipse.viatra.query.runtime.api.IQuerySpecification;
 import org.eclipse.viatra.query.runtime.exception.ViatraQueryException;
@@ -14,7 +14,6 @@ import org.eclipse.viatra.query.runtime.matchers.psystem.IQueryReference;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PQuery;
 
-import com.google.common.collect.ImmutableSet;
 import com.incquerylabs.magicdraw.benchmark.incrementalqueries.ParentState;
 import com.incquerylabs.magicdraw.benchmark.queries.APerformanceQueries;
 import com.incquerylabs.magicdraw.benchmark.queries.IncomingTransitions;
@@ -28,7 +27,7 @@ public enum BackendSelection {
 	LOCAL_SEARCH_HINTS_TC_FIRST,
 	HYBRID;
 	
-	public Collection<IQuerySpecification<?>> findQueries(BenchmarkParameters parameters) throws ViatraQueryException {
+	public Iterable<IQuerySpecification<?>> findQueries(BenchmarkParameters parameters) throws ViatraQueryException {
 		switch(this) {
 		case RETE:
 		case LOCALSEARCH:
@@ -112,8 +111,8 @@ public enum BackendSelection {
 		}
 	}
 	
-	private Collection<IQuerySpecification<?>> findQueries(IQueryGroup querySpecifications, String queryName, BenchmarkParameters parameters) throws ViatraQueryException {
-		return ImmutableSet.of(findQueryBySimpleName(querySpecifications, queryName));
+	private Iterable<IQuerySpecification<?>> findQueries(IQueryGroup querySpecifications, String queryName, BenchmarkParameters parameters) throws ViatraQueryException {
+		return Lists.immutable.of(findQueryBySimpleName(querySpecifications, queryName));
 	}
 	
 	private IQuerySpecification<?> findQueryBySimpleName(IQueryGroup querySpecifications, String queryName) throws ViatraQueryException {
