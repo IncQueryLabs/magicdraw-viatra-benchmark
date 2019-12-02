@@ -44,7 +44,9 @@ pipeline {
 			steps {
 				sh '''
 					export MODEL_LOCATION=/home/jenkins/models-tmt
-					export WORKSPACE_BENCHMARK=$(pwd)
+					# WORKSPACE_BENCHMARK is used as on client-side 3rd applications (e.g. git on Windows) 
+					# overrides the $WORKSPACE variable during their execution
+					export WORKSPACE_BENCHMARK=$WORKSPACE
 					rm -rf benhmark/results
 					rm -rf benhmark/diagrams
 				    cd com.incquerylabs.magicdraw.benchmark
