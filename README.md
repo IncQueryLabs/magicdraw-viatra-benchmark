@@ -53,8 +53,11 @@ This behaviour is configured by four variables and affects how `com.incquerylabs
 The name of the variables and their possible values are the following:
 * `BENCHMARK_ENGINES`: Which query engine implementations to measure
   * Default (all possible values): `RETE, LOCAL_SEARCH, LOCAL_SEARCH_HINTS-CONDITION_FIRST, LOCAL_SEARCH_HINTS-TC_FIRST, HYBRID`
-* `BENCHMARK_QUERIES`: Which queries to measure
+* `BENCHMARK_QUERIES`: Which queries to measure - `all` is a special value to run the queries at once in the same MagicDraw instance
   * Default: `transitiveSubstatesWithCheck3`
+  * Possible values: `all, blocksOrRequirementsOrConstraints, alphabeticalDependencies, circularDependencies, loopTransitionWithTriggerEffectEventNoGuard, stateWithMostSubstates, transitiveSubstatesWithCheck3, allBenchMarkedQueries`
+* `BENCHMARK_QUERIES_EXCLUDE`: Which queries to exclude from measure
+  * Default: ``
   * Possible values: `blocksOrRequirementsOrConstraints, alphabeticalDependencies, circularDependencies, loopTransitionWithTriggerEffectEventNoGuard, stateWithMostSubstates, transitiveSubstatesWithCheck3, allBenchMarkedQueries`
 * `BENCHMARK_SIZES`: Which models to measure
   * Default: `5000`
