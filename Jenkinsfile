@@ -65,8 +65,10 @@ pipeline {
 		stage('Benchmark') {
             steps {
             	wrap([$class: 'Xvnc']) {
-					export MODEL_LOCATION=/home/jenkins/models-tmt
-				    sh './com.incquerylabs.magicdraw.benchmark/run.sh'
+					sh '''
+						export MODEL_LOCATION=/home/jenkins/models-tmt
+				    	./com.incquerylabs.magicdraw.benchmark/run.sh
+					'''
             	}
 			}
 		}
