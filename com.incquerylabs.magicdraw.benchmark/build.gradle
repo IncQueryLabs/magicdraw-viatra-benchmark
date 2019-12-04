@@ -240,6 +240,18 @@ class PreDist extends DefaultTask {
 					into "build/${distributionFolderName}/plugins/${groupName}"  
 				}
 			}
+			if(artifact.getName().contains('guava')){
+				project.copy{
+					from artifact
+					into "build/${distributionFolderName}/plugins/${groupName}"  
+				}
+			}
+			if(artifact.getName().contains('xbase')){
+				project.copy{
+					from artifact
+					into "build/${distributionFolderName}/plugins/${groupName}"  
+				}
+			}
 	    }
 	    
 		String sep = "\\" + File.separator
