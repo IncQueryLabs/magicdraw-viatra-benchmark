@@ -83,7 +83,6 @@ dependencies {
         exclude module: 'asm'
         exclude module: 'log4j'
         exclude module: 'org.eclipse.osgi'
-        exclude module: 'org.eclipse.xtext.xbase.lib' //provided by V4MD
         exclude module: 'org.eclipse.xtend.lib.macro' //provided by V4MD
         exclude module: 'org.eclipse.xtext' //version number replacement
         exclude module: 'org.eclipse.xtext.xbase' //version number replacement
