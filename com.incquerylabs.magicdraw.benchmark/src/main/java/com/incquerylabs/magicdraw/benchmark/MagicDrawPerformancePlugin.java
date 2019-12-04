@@ -50,7 +50,6 @@ import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PQuery;
 import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
 
 import com.google.common.base.Stopwatch;
-import com.incquerylabs.magicdraw.benchmark.incrementalqueries.IncrementalQueries;
 import com.incquerylabs.magicdraw.benchmark.queries.APerformanceQueries;
 import com.incquerylabs.magicdraw.benchmark.queries.TransitiveSubstatesWithCheck3;
 import com.incquerylabs.magicdraw.benchmark.queries.WarmUpQueries;
@@ -126,23 +125,7 @@ public class MagicDrawPerformancePlugin extends com.nomagic.magicdraw.plugins.Pl
 						}
 					}	
 				});
-				category.addAction(new MDAction("Hybrid", "Hybrid", null, null) {
-					
-					private static final long serialVersionUID = 4506234143069504650L;
-
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						try {							
-							ViatraQueryLoggingUtil.getDefaultLogger().setLevel(Level.ERROR);
-							final String resultFilePath = "D:\\git\\magicdraw-viatra-benchmark\\com.incquerylabs.magicdraw.benchmark\\results\\hybrid_results.txt";
-							warmUpJvm();
-							List<MeasurementData> measurementData = measureHybridTimeAll();
-							print(measurementData, MeasurementData.getTimeCSVFields(), resultFilePath);
-						} catch (Exception e1) {
-							e1.printStackTrace();
-						}
-					}	
-				});
+				
 				category.addAction(new MDAction("Single Query", "Single Query", null, null) {
 					
 					private static final long serialVersionUID = 8334524877688749468L;
@@ -179,10 +162,6 @@ public class MagicDrawPerformancePlugin extends com.nomagic.magicdraw.plugins.Pl
 	
 	public List<MeasurementData> measureLocalSearchTimeAll() throws Exception {
 		return measureTimeAll(returnQuerySpecifications(), EngineImpl.LOCAL_SEARCH);
-	}
-	
-	public List<MeasurementData> measureHybridTimeAll() throws Exception {
-		return measureTimeAll(returnIncrementalQuerySpecifications(), EngineImpl.LOCAL_SEARCH);
 	}
 	
 	public MeasurementData measureSingleQuery(IQuerySpecification<?> specification, List<IQuerySpecification<?>> hintedPatterns) throws ViatraQueryException, InvocationTargetException {
@@ -336,13 +315,6 @@ public class MagicDrawPerformancePlugin extends com.nomagic.magicdraw.plugins.Pl
 
 	private List<IQuerySpecification<?>> returnQuerySpecifications() throws ViatraQueryException {
 		final Set<IQuerySpecification<?>> specifications = APerformanceQueries.instance().getSpecifications();
-		List<IQuerySpecification<?>> specificationList = specifications.stream().collect(Collectors.toList());
-		specificationList.sort((a, b) -> a.getFullyQualifiedName().compareTo(b.getFullyQualifiedName()));
-		return specificationList;
-	}
-	
-	private List<IQuerySpecification<?>> returnIncrementalQuerySpecifications() throws ViatraQueryException {
-		final Set<IQuerySpecification<?>> specifications = IncrementalQueries.instance().getSpecifications();
 		List<IQuerySpecification<?>> specificationList = specifications.stream().collect(Collectors.toList());
 		specificationList.sort((a, b) -> a.getFullyQualifiedName().compareTo(b.getFullyQualifiedName()));
 		return specificationList;

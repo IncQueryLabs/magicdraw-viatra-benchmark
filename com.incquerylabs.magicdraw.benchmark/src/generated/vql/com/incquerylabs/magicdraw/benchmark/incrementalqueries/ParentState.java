@@ -43,7 +43,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         Simple pattern for transitive closures marked incremental.
+ *         Simple pattern for transitive closures.
  *          
  *         incremental pattern parentState(state : State, parentState : State) {
  *         	State.region(parentState, subregion);
@@ -260,7 +260,7 @@ public final class ParentState extends BaseGeneratedEMFQuerySpecification<Parent
    * 
    * <p>Original source:
    * <code><pre>
-   * Simple pattern for transitive closures marked incremental.
+   * Simple pattern for transitive closures.
    *  
    * incremental pattern parentState(state : State, parentState : State) {
    * 	State.region(parentState, subregion);

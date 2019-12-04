@@ -55,8 +55,6 @@ public class PerformanceBenchmarkRunner implements CommandLineAction{
 	private BenchmarkParameters parseParameters(String[] args) {
 		BenchmarkParameters parameters = new BenchmarkParameters();
 		
-		
-		
 		// XXX Sometimes parameters are stored in a single args value separated by whitespace characters
 		List<String[]> transformedArgs = Arrays.asList(args).stream().map(arg -> arg.trim().split("\\s")).collect(Collectors.toList());
 		List<String> argList = new ArrayList<>();

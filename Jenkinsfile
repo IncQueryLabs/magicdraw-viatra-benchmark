@@ -18,7 +18,7 @@ pipeline {
 		)
 		
 		string( 
-			defaultValue: '',
+			defaultValue: 'adjunctPropertyMultiplicityRestrictive, requirementIdNotUnique, adjunctPropertyCallActionInconsistent',
 			description: 'Comma separated list of queries to exclude from the benchmark (with a single space after each comma)',
 			name: 'BENCHMARK_QUERIES_EXCLUDE' 
 		)

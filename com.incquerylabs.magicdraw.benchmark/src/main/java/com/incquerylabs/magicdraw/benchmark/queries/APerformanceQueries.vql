@@ -2,321 +2,1086 @@ package com.incquerylabs.magicdraw.benchmark.queries
 
 import "http://www.nomagic.com/magicdraw/UML/2.5.1"
 
-/**
- * Querying all instances of an EClass. 
- */
-pattern classes(class : Class) {
-	Class(class);
+pattern participantPropertyDifferentType(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty(property, _);
+	Property.type(property, type);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty_end(property, propertyEnd);
+	neg Property.type(propertyEnd, type);
 }
 
-/**
- * Querying elements that are not the specified type: single negation.
- */
-pattern nonBlockClasses(class : Class) {
-	neg find blocks(class);
+pattern refineNotSingleClient(abstraction : Abstraction) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Refine(abstraction, _);
+	clients == count Abstraction.client(abstraction, _);
+	check(clients != 1);
 }
 
-/**
- * Querying all instances of an EClass that have a short "reference chain".
- */
-pattern blocks(class : Class) {
-    Class.appliedStereotypeInstance.classifier.name(class, "Block"); 
+pattern requirementHasOperation(operation : Operation) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(class, _);
+	Class.ownedOperation(class, operation);
 }
 
-/**
- * Querying all instances of an EClass that have a short "reference chain".
- */
-pattern requirements(class : Class) {
-	Class.appliedStereotypeInstance.classifier.name(class, "Requirement"); 
+pattern requirementHasAttribute(attirubute : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(req, _);
+	Class.ownedAttribute(req, attirubute);
 }
 
-/**
- * Querying all instances of an EClass that have a short "reference chain".
- */
-private pattern constraintBlocks(class : Class) {
-	Class.appliedStereotypeInstance.classifier.name(class, "Constraint"); 
+pattern
+requirementInAssociation(association : Association, requirement : Class) {
+	Association.memberEnd(association, memberEnd);
+	Property.type(memberEnd, requirement);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(requirement, _);
 }
 
-/**
- * Disjunction of blocks and requirements.
- */
-pattern blocksOrRequirements(class : Class) {
-	find blocks(class);
+pattern
+requirementInGeneralization(classifier : Classifier, requirement : Class) {
+	Classifier.generalization(classifier, generalization);
+	Generalization.general(generalization, requirement);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(requirement, _);
+}
+
+pattern activityEdgeDiscreteAndContinuous(activityEdge : ActivityEdge) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Discrete(activityEdge, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Continuous(activityEdge, _);
+}
+
+pattern requirementAsType(element : TypedElement, requirement : Class) {
+	TypedElement.type(element, requirement);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(requirement, _);
+}
+
+pattern flowPropertyInvalidType(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.FlowProperty(property, _);
+	Property.type(property, type);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(type, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(type, _);
+	neg Signal(type);
+}
+
+pattern interfaceBlockIsConjugated(port : Port, class : Class) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceBlock(class, _);
+	Port.type(port, class);
+	Port.isConjugated(port, true);
+}
+
+pattern noBufferAndOverwrite(objectNode : ObjectNode) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.NoBuffer(objectNode, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Overwrite(objectNode, _);
+}
+
+pattern notBinaryConnector(connector : Connector) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(block, _);
+	Class.ownedConnector(block, connector);
+	ends == count Connector.end(connector, _);
+	check(ends != 2);
+}
+
+pattern allocateNotSingleClient(abstraction : Abstraction) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Allocate(abstraction, _);
+	clients == count Abstraction.client(abstraction, _);
+	check(clients != 1);
+}
+
+pattern allocateNotSingleSupplier(abstraction : Abstraction) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Allocate(abstraction, _);
+	suppliers == count Abstraction.supplier(abstraction, _);
+	check(suppliers != 1);
+}
+
+pattern participantPropertyNotBlock(class : Class, property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty(property, _);
+	Class.ownedAttribute(class, property);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
+}
+
+pattern
+participationPropertyNotAssociation(class : Class, property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty(property, _);
+	Class.ownedAttribute(class, property);
+	neg AssociationClass(class);
+}
+
+pattern participantPropertyIsMemberEndOfAssociation(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty(property, _);
+	Association.memberEnd(_, property);
+}
+
+pattern refineNotSingleSupplier(abstraction : Abstraction) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Refine(abstraction, _);
+	suppliers == count Abstraction.supplier(abstraction, _);
+	check(suppliers != 1);
+}
+
+pattern participantPropertyAggregationKindNotNone(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty(property, _);
+	neg Property.aggregation(property, ::none);
+}
+
+pattern fullPortIsBehavioral(port : Port) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.FullPort(port, _);
+	Port.isBehavior(port, true);
+}
+
+pattern interfaceBlockPortInvalidType(port : Port) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceBlock(class, _);
+	Class.ownedAttribute(class, port);
+	Port.type(port, type);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceBlock(type, _);
 } or {
-	find requirements(class);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceBlock(class, _);
+	Class.ownedAttribute(class, port);
+	neg Port.type(port, _);
 }
 
-/**
- * Disjunction reusing the blocksOrRequirements and constraintBlocks patterns and the negation of dependencies.
- */
-pattern blocksOrRequirementsOrConstraints(class : Class) {
-	find blocksOrRequirements(class);
+pattern conformGeneralNotViewpoint(conform : Generalization) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Conform(conform, _);
+	Generalization.general(conform, general);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Viewpoint(general, _);
+}
+
+pattern conformSpecificNotView(conform : Generalization) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Conform(conform, _);
+	Generalization.specific(conform, specific);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.View(specific, _);
+}
+
+pattern boundReferenceNotConnectorEnd(boundReference : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference(boundReference, _);
+	neg find BoundReference_1_bindingconnector_end(boundReference);
+}
+
+private pattern
+BoundReference_1_bindingconnector_end(boundReference : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.BindingConnector(bindingConnector, _);
+	Connector.end(bindingConnector, connectorEnd);
+	ConnectorEnd.role(connectorEnd, role);
+	Property.redefinedProperty *(boundReference, role);
+}
+
+pattern
+connectionPropertyDifferentName(property : Property, connector : Connector) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty(property, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty_connector(property, connector);
+	Property.name(property, propName);
+	Connector.name(connector, conName);
+	propName != conName;
+}
+
+pattern
+connectionPropertyNotTypedByAssociationBlock(property : Property, connector : Connector) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty(property, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty_connector(property, connector);
+	Connector.type(connector, type);
+	neg find associationBlock(type);
+}
+
+private pattern associationBlock(class : AssociationClass) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
+}
+
+pattern connectorPropertyNotBlock(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty(property, _);
+	neg find owningBlock(property, _);
+}
+
+private pattern owningBlock(property : Property, class : Class) {
+	Class.ownedAttribute(class, property);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
+}
+
+pattern connectorPropertyNotComposite(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty(property, _);
+	neg Property.aggregation(property, ::composite);
+}
+
+pattern connectorPropertyNotOwnedOrInherited(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty(property, _);
+	neg find owningBlockTransitive(property, _);
+}
+
+private pattern general(specific : Classifier, general : Classifier) {
+	Classifier.generalization(specific, generalization);
+	Generalization.general(generalization, general);
+}
+
+private pattern owningBlockTransitive(property : Property, owner : Class) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(owner, _);
+	Class.ownedAttribute(owner, property);
+	find general *(owner, general);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty_connector(property, connector);
+	Class.ownedConnector(general, connector);
+}
+
+pattern valueTypeSpecializatonNotValueType(classifier : Classifier) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(valueType, _);
+	find general(classifier, valueType);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(classifier, _);
+}
+
+pattern blockValuePropertyNotComposite(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(block, _);
+	Class.ownedAttribute(block, property);
+	Property.type(property, type);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(type, _);
+	neg Property.aggregation(property, ::composite);
+}
+
+pattern valueTypeValuePropertyNotComposite(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(valueType, _);
+	DataType.ownedAttribute(valueType, property);
+	Property.type(property, type);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(type, _);
+	neg Property.aggregation(property, ::composite);
+}
+
+pattern parameterDiscreteAndContinuous(parameter : Parameter) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Discrete(parameter, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Continuous(parameter, _);
+}
+
+pattern probabilityInvalidStereotype(probability : NamedElement) {
+	ActivityEdge(probability);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Probability(probability, _);
+	ActivityEdge.source(probability, source);
+	neg DecisionNode(source);
 } or {
-	find constraintBlocks(class);
-	neg find dependencies(class, _);
-	neg find dependencies(_, class);
+	ParameterSet(probability);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Probability(probability, _);
+	ParameterSet.parameter(probability, parameter);
+	neg Parameter.direction(parameter, ::^out);
 }
 
-/**
- * Querying all instances of an EClass with an attribute. 
- */
-pattern namedElement(element : NamedElement, name : java ^java.lang.String) {
-	NamedElement.name(element, name);
+pattern probabilityAllOutgoingEdges(activityEdge : ActivityEdge) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Probability(activityEdge, _);
+	ActivityEdge.target(activityEdge, target);
+	ActivityNode.incoming(target, edge);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Probability(edge, _);
 }
 
-/**
- * Reusing namedElement and eval the names.
- */
-pattern complexNameOfElements(element : NamedElement, complexName : java ^java.lang.String) {
-	find namedElement(element, name);
-	complexName == eval(name.toFirstUpper + ". "+ name.toFirstLower + "." + name.toUpperCase + "." + name.toLowerCase + "." + name.length); 
+pattern rateNotStreaming(rate : Parameter) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Rate(rate, _);
+	Parameter.isStream(rate, false);
 }
 
-
-/**
- * Pattern describing succession relation between two dependencies.
- */
-pattern dependencyChains(source : Dependency, target : Dependency) {
-    Dependency.supplier(source, elem);
-    Dependency.client(target, elem);
+pattern copyClientNotRequirement(copy : Abstraction) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Copy(copy, _);
+	Abstraction.client(copy, client);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(client, _);
 }
 
-/*
- * Pattern responsible for detecting circular dependency chains.
- */
-pattern circularDependencies(dependency : Dependency) {
-    find dependencyChains+(dependency, dependency);
+pattern copySupplierNotRequirement(copy : Abstraction) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Copy(copy, _);
+	Abstraction.supplier(copy, supplier);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(supplier, _);
 }
 
-/**
- * Source and target of a dependency element.
- */
-pattern dependencies(source : NamedElement, target : NamedElement) {
-	Dependency.supplier(dependency, target);
-	Dependency.client(dependency, source);
+pattern satisfySupplierNotRequirement(satisfy : Abstraction) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Satisfy(satisfy, _);
+	Abstraction.supplier(satisfy, supplier);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(supplier, _);
 }
 
-/**
- * Reusing the dependency pattern and querying simple attributes.
- */
-pattern namesOfDependencyEndpoints(source : NamedElement, sourceName : java ^java.lang.String, target : NamedElement, targetName : java ^java.lang.String) {
-	find dependencies(source, target);
-	NamedElement.name(source, sourceName);
-	NamedElement.name(target, targetName);
+pattern stakeHolderInvalidStereotype(stakeholder : Classifier) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Stakeholder(stakeholder, _);
+	neg Actor(stakeholder);
+	neg find classNotAssociation(stakeholder);
 }
 
-/**
- * Reusing the namesOfDependencyEndpoints pattern and filtering with a check.
- */
-pattern alphabeticalDependencies(source : NamedElement, target : NamedElement) {
-	find namesOfDependencyEndpoints(source, sourceName, target, targetName);
-	check (sourceName < targetName);
+private pattern classNotAssociation(classifier : Classifier) {
+	Class(classifier);
+	neg Association(classifier);
 }
 
-/**
- * Simple filtering with a check on all instances of an EClass.
- */
-pattern elementsWithShortNames(class : NamedElement) {
-	NamedElement.name(class, name);
-	check (name.length < 10); 
+pattern endPathMiultiplicityNotRedefiniton(endPathMultiplicity : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.EndPathMultiplicity(endPathMultiplicity, _);
+	neg Property.redefinedProperty(endPathMultiplicity, _);
+} or {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.EndPathMultiplicity(endPathMultiplicity, _);
+	neg find redefinedBoundReferenceProperty(endPathMultiplicity, _);
 }
 
-/**
- * Cartesian product of classes.
- */
-//pattern productOfClasses(lhs : Class, lhsName : java ^java.lang.String, rhs : Class, rhsName : java ^java.lang.String) {
-//	Class.name(lhs, lhsName);
-//    Class.name(rhs, rhsName);
-//}
-
-/**
- * Cartesian product of classes and a filter using a check.
- */
-//private pattern hasLongerName(lhs : Class, rhs : Class) {
-//    find productOfClasses(lhs, lhsName, rhs, rhsName);
-//    check (lhsName.length < rhsName.length); 
-//}
-
-/**
- * Selecting an element reusing a Cartesian product.
- */
-//pattern elementWithShortestName(element : Class) {
-//	find requirements(element); // If this in not here, we run out of memory
-//	neg find hasLongerName(_, element);
-//}
-
-/**
- * A transition that connects two states with the following properties
- * - Source state is a member of a composite state
- * - Target state is a member of the same state machine, however not contained in a composite state
- * - Target state has an outgoing transition towards a final state
- * 
- */
-pattern transitionPointingOutOfCompState(source : State, target : Vertex, transition : Transition) {
-	Transition.source(transition, source);
-	Transition.target(transition, target);
-	
-	//pattern for target side element
-	Vertex.container(target, targetRegion);
-	Region.stateMachine(targetRegion, _);
-	Vertex.outgoing(target, targetVertexTransition);
-	Transition.target(targetVertexTransition, finalState);
-	FinalState(finalState);
-	
-	//Pattern for source side element
-	find parentState+(source, sourceParent);
-	State.container.stateMachine(sourceParent, _ );
-	
+private pattern
+redefinedBoundReferenceProperty(property : Property, boundReference : Property) {
+	Property.redefinedProperty(property, boundReference);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference(boundReference, _);
 }
 
+pattern endPathMiultiplicityNegative(endPathMultiplicity : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.EndPathMultiplicity(endPathMultiplicity, _);
+	Property.lowerValue(endPathMultiplicity, lower);
+	LiteralInteger.value(lower, value);
+	check(value < 0);
+}
 
-/**
- * A loop transition that
- * - Has a trigger
- * - Has some effect that is an activity
- * - Has no guard
- * - defines an event
- * 
- */
-pattern loopTransitionWithTriggerEffectEventNoGuard(state : State, transition : Transition, trigger : Trigger, event : Event, effect : Activity) {
-	Transition.source(transition, state);
-	Transition.target(transition, state);
-	Transition.kind(transition, ::external);
-	Transition.trigger(transition, trigger);
-	Transition.effect(transition, effect);
-	neg find transitionWithGuard(transition, _);
+pattern participantPropertyEndOwner(participantProperty : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty(participantProperty, _);
+	neg find associationEnd(participantProperty);
+}
+
+private pattern associationEnd(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty_end(property, end);
+	Property.association(property, association);
+	Association.memberEnd(association, end);
+}
+
+pattern participantPropertyMultiplicity(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty(property, _);
+	Property.lowerValue(property, lower);
+	LiteralInteger.value(lower, value);
+	check(value != 1);
+} or {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty(property, _);
+	Property.upperValue(property, upper);
+	LiteralUnlimitedNatural.value(upper, value);
+	check(value != 1);
+}
+
+pattern propertySpecificTypeNotOneProperty(classifier : Classifier) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.PropertySpecificType(classifier, _);
+	number == count Property.type(_, classifier);
+	check(number != 1);
+}
+
+pattern adjunctPropertyCallActionInconsistent(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
+	neg find compositeAndConsistent(property);
+}
+
+private pattern compositeAndConsistent(property : Property) {
+	find checkEmptiness(property);
+} or {
+	neg find calledBehavior(property, _);
+	neg Property.type(property, _);
+} or {
+	find calledBehavior(property, called);
+	Property.type(property, type);
+	find general *(called, type);
+}
+
+private pattern checkEmptiness(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
+	CallOperationAction(principal);
+	CallOperationAction.operation(principal, operation);
+	neg Operation.method(operation, _);
+	neg Property.type(property, _);
+} or {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
+	CallOperationAction(principal);
+	CallOperationAction.operation(principal, operation);
+	Operation.method(operation, called);
+	Property.type(property, type);
+	find general(called, type);
+}
+
+private pattern calledBehavior(property : Property, behavior : Behavior) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
+	CallBehaviorAction(principal);
+	CallBehaviorAction.behavior(principal, behavior);
+} or {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
+	find StartObjectBehaviorActionBehavior(principal, behavior);
+}
+
+private pattern
+StartObjectBehaviorActionBehavior(action : StartObjectBehaviorAction, behavior : Behavior) {
+	StartObjectBehaviorAction.object(action, object);
+	InputPin.type(object, behavior);
+} or {
+	StartObjectBehaviorAction.object(action, object);
+	InputPin.type(object, type);
+	BehavioredClassifier(type);
+	BehavioredClassifier.classifierBehavior(type, behavior);
+}
+
+pattern adjunctPropertyConnectorNotAssociationBlock(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
+	Connector(principal);
+	neg find associationBlockOfConnector(principal);
+}
+
+private pattern associationBlockOfConnector(connector : Connector) {
+	Connector.type(connector, type);
+	Association(type);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(type, _);
+}
+
+pattern adjunctPropertyConnectorPropertyInconsistent(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty(property, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, apPrincipal);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty_connector(property, cpConnector);
+	apPrincipal != cpConnector;
+}
+
+pattern adjunctPropertyIncompatibleType(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
+	find connOrVarOrParam(property);
+	find principalType(principal, principalType);
+	Property.type(property, type);
+	neg find generalClosure(principalType, type);
+}
+
+private pattern connOrVarOrParam(element : Element) {
+	Connector(element);
+} or {
+	Variable(element);
+} or {
+	Parameter(element);
+}
+
+private pattern
+principalType(principal : Element, principalType : Classifier) {
+	Connector(principal);
+	Connector.type(principal, principalType);
+} or {
+	TypedElement.type(principal, principalType);
+}
+
+private pattern
+generalClosure(classifier : Classifier, general : Classifier) {
+	find general *(classifier, general);
+}
+
+pattern adjunctPropertyInvalidPrincipalKind(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
+	neg Connector(principal);
+	neg CallAction(principal);
+	neg ObjectNode(principal);
+	neg Variable(principal);
+	neg Parameter(principal);
+	neg InteractionUse(principal);
+	neg find submachineState(principal);
+}
+
+private pattern submachineState(state : State) {
+	State(state);
+	State.submachine(state, _);
+}
+
+pattern adjunctPropertyNotComposite(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
+	Connector(principal);
+	neg Property.aggregation(property, ::composite);
+} or {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
+	CallAction(principal);
+	neg Property.aggregation(property, ::composite);
+}
+
+pattern adjunctPropertyWrongName(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
+	NamedElement.name(principal, name);
+	neg Property.name(property, name);
+}
+
+pattern blockAssociationNotBinary(association : Association) {
+	neg find notAllEndsAreBlocks(association);
+	ends == count Association.memberEnd(association, _);
+	check(ends != 2);
+}
+
+private pattern notAllEndsAreBlocks(association : Association) {
+	Association.memberEnd(association, end);
+	Property.type(end, class);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
+}
+
+pattern blockSpecializationNotBlock(class : Class) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(block, _);
+	find general(class, block);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
+}
+
+pattern classifierBehaviorPropertyInvalidOwner(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ClassifierBehaviorProperty(property, _);
+	neg find validOwner(property);
+}
+
+private pattern validOwner(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(block, _);
+	Class.ownedAttribute(block, property);
+	Class.classifierBehavior(block, _);
+}
+
+pattern classifierBehaviorPropertyInvalidType(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ClassifierBehaviorProperty(property, _);
+	neg find validType(property);
+}
+
+private pattern validType(property : Property) {
+	Class.ownedAttribute(class, property);
+	Class.classifierBehavior(class, clBehavior);
+	Property.type(property, type);
+	find general *(clBehavior, type);
+}
+
+pattern viewNotSingleViewpoint(view : Class) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.View(view, _);
+	size == count find viewConforms(view, _);
+	check(size != 1);
+}
+
+private pattern viewConforms(class : Class, conform : Generalization) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Conform(conform, _);
+	Generalization.specific(conform, class);
+}
+
+pattern viewStakeholderNotDerivedFromConform(view : Class) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.View(view, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.View_stakeholder(view, stakeholder);
+	neg find stakeholderDerivedFromConform(view, stakeholder, _);
+}
+
+private pattern
+stakeholderDerivedFromConform(view : Class, stakeholder : Class, conform : Generalization) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Conform(conform, _);
+	Generalization.specific(conform, view);
+	Generalization.general(conform, viewPoint);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Viewpoint_stakeholder(viewPoint, stakeholder);
+}
+
+pattern viewViewpointNotDerivedFromConform(view : Class) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.View(view, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.View_viewPoint(view, viewPoint);
+	neg find viewpointDerivedFromConform(view, viewPoint, _);
+}
+
+private pattern
+viewpointDerivedFromConform(view : Class, viewPoint : Class, conform : Generalization) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Conform(conform, _);
+	Generalization.specific(conform, view);
+	Generalization.general(conform, viewPoint);
+}
+
+pattern classifierBehaviorPropertyNotComposite(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ClassifierBehaviorProperty(property, _);
+	neg Property.aggregation(property, ::composite);
+}
+
+pattern requirementNestedClassifierNotRequirement(nested : Class) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(requirement, _);
+	Class.nestedClassifier(requirement, nested);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(nested, _);
+}
+
+pattern
+constraintBlockSpecializationNotConstraintBlock(constraintBlock : Class) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ConstraintBlock(constraintBlock, _);
+	Classifier(classifier);
+	Classifier.generalization(classifier, generalization);
+	Generalization.general(generalization, constraintBlock);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ConstraintBlock(classifier, _);
+}
+
+pattern distributedPropertyNotBlockOrValueType(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.DistributedProperty(property, _);
+	neg find propertyOwnedByBlock(property);
+	neg find propertyOwnedByValueType(property);
+}
+
+private pattern propertyOwnedByBlock(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(block, _);
+	Class.ownedAttribute(block, property);
+}
+
+private pattern propertyOwnedByValueType(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(valueType, _);
+	DataType.ownedAttribute(valueType, property);
+}
+
+pattern exposeClientNotView(expose : Dependency) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Expose(expose, _);
+	Dependency.client(expose, client);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.View(client, _);
+}
+
+pattern fullPortBoundToFullPort(port : Port) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.FullPort(port, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.BindingConnector(connector, _);
+	Connector.end(connector, end);
+	ConnectorEnd.role(end, port);
+	Connector.end(connector, otherEnd);
+	ConnectorEnd.role(otherEnd, role);
+	role != port;
+	find com.incquerylabs.magicdraw.benchmark.queries.library.FullPort(role, _);
+}
+
+pattern
+invocationOnNestedPortActionOnPortUndefined(action : InvocationAction) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.InvocationOnNestedPortAction(action, _);
+	neg InvocationAction.onPort(action, _);
+}
+
+pattern itemFlowAssociationHasItemProperty(itemFlow : InformationFlow) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow(itemFlow, _);
+	InformationFlow.realization(itemFlow, realization);
+	Association(realization);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow_itemProperty(itemFlow, _);
+}
+
+pattern itemFlowDifferentType(itemFlow : InformationFlow) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow(itemFlow, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow_itemProperty(itemFlow, itemProperty);
+	Property.type(itemProperty, type);
+	neg InformationFlow.conveyed(itemFlow, type);
+}
+
+pattern itemFlowInvalidType(itemFlow : InformationFlow) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow(itemFlow, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow_itemProperty(itemFlow, itemProperty);
+	Property.type(itemProperty, type);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(type, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(type, _);
+	neg Signal(type);
+}
+
+pattern itemFlowItemPropertyDifferentName(itemFlow : InformationFlow) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow(itemFlow, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow_itemProperty(itemFlow, itemProperty);
+	InformationFlow.name(itemFlow, itemFlowName);
+	Property.name(itemProperty, itemPropertyName);
+	check(itemFlowName != itemPropertyName);
+}
+
+pattern proxyPortFullPort(port : Port) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ProxyPort(port, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.FullPort(port, _);
+}
+
+pattern proxyPortSubportNotProxyPort(port : Port) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ProxyPort(port, _);
+	Port.type(port, type);
+	Class.ownedAttribute(type, otherPort);
+	Port(otherPort);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ProxyPort(otherPort, _);
+}
+
+pattern proxyPortTypeNotInterfaceBlock(port : Port) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ProxyPort(port, _);
+	Port.type(port, type);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceBlock(type, _);
+}
+
+pattern traceNotSingleClient(trace : Abstraction) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Trace(trace, _);
+	size == count Abstraction.client(trace, _);
+	check(size != 1);
+}
+
+pattern triggerOnNestedPortBaseFullPort(trigger : Trigger) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.TriggerOnNestedPort(trigger, _);
+	Trigger.port(trigger, port);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.FullPort(port, _);
+}
+
+pattern triggerOnNestedPortFullPort(trigger : Trigger) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.TriggerOnNestedPort(trigger, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.TriggerOnNestedPort_onNestedPort(trigger, port);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.FullPort(port, _);
+}
+
+pattern triggerOnNestedPortNotSinglePort(trigger : Trigger) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.TriggerOnNestedPort(trigger, _);
+	size == count Trigger.port(trigger, _);
+	check(size != 1);
+}
+
+pattern verifySupplierNotRequirement(verify : Abstraction) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Verify(verify, _);
+	Abstraction.supplier(verify, supplier);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(supplier, _);
+}
+
+pattern acsfeActionOneTrigger(action : AcceptEventAction) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AcceptChangeStructuralFeatureEventAction(action, _);
+	size == count AcceptEventAction.trigger(action, _);
+	check(size != 1);
+}
+
+pattern acsfeActionInvalidTrigger(action : AcceptEventAction) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AcceptChangeStructuralFeatureEventAction(action, _);
+	AcceptEventAction.trigger(action, trigger);
+	neg find triggerEventIsChangeStructuralFeatureEvent(trigger);
+}
+
+private pattern
+triggerEventIsChangeStructuralFeatureEvent(trigger : Trigger) {
 	Trigger.event(trigger, event);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ChangeStructuralFeatureEvent(event, _);
 }
 
-private pattern transitionWithGuard(trans : Transition, guard : Constraint){
-	Transition.guard(trans, guard);
+pattern acsfeActionNotTwoResultpins(action : AcceptEventAction) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AcceptChangeStructuralFeatureEventAction(action, _);
+	size == count AcceptEventAction.result(action, _);
+	check(size != 2);
 }
 
-/**
- * Simple pattern for transitive closures.
- */
-pattern parentState(state : State, parentState : State) {
-	State.region(parentState, subregion);
-	Region.subvertex(subregion, state);
-} 
-
-/**
- * Using recursion, eval and disjunction.
- * Cannot be evaluated using local search because of recursion!
- */
-//pattern qualifiedStateName(state : State, name : java ^java.lang.String) {
-//	find parentState(state, parentState);
-//    State.name(state, simpleName);
-//    find qualifiedStateName(parentState, parentName);
-//    name == eval (parentName + "." + simpleName);
-//} or { 
-//    neg find parentState(state, _);
-//    State.name(state, name);
-//}
-
-/**
- * Simple pattern for aggregators.
- */
-pattern subregions(state : State, subregion : Region) {
-  	State.region(state, subregion);
-}
- 
-/**
- * Reusing a simple pattern with the "count" aggregator.
- */
-pattern numberOfSubregions(state : State, regionCount : java ^java.lang.Integer) {
-  	regionCount == count find subregions(state, _subregion);
+pattern adjunctPropertyMultiplicityRestrictive(property : Property){
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
+	MultiplicityElement(principal);
+	find moreRestrictive(property);
 }
 
-/**
- * Reusing a simple pattern with transitive closure.
- */
-//pattern transitiveSubstates(state : State, transitiveSubstate : State) {	
-//	find parentState+(transitiveSubstate, state);
-//}
-
-/**
- * Returns states with short names.
- */
-pattern statesWithShortNames(state : State) {
-	State.name(state, name);
-	check(name.length < 6);
-}
-
-/**
- * Returns transitions with their targets. Made for reuse.
- */
-pattern incomingTransitions(transition : Transition, targetState : State) {
-	Transition.target(transition, targetState);
-}
-
-/**
- * Reusing a simple pattern with transitive closure.
- */
-pattern transitiveSubstates(state : State, transitiveSubstate : State) {
-	find parentState+(transitiveSubstate, state);
-}
-
-/**
- * Reusing a simple pattern with a check expression before the transitive closure.
- */
-pattern transitiveSubstatesWithCheck(state : State, transitiveSubstate : State) {
-	find statesWithShortNames(state);
-	find parentState+(transitiveSubstate, state);
-}
-
-/**
- * Reusing a simple pattern with a check expression. Made for reuse.
- */
-pattern statesWithMoreIncomingTransitions(state : State)  {
-	transitionCount == count find incomingTransitions(_, state);
-	check (transitionCount > 1);
-}
-
-/**
- * Reusing a simple pattern with a check expression before the transitive closure.
- */
-pattern transitiveSubstatesWithCheck2(state : State, transitiveSubstate : State) {
-	transitionCount == count find incomingTransitions(_, state);
-	check (transitionCount > 1);
-	find parentState+(transitiveSubstate, state);
-}
-
-/**
- * Reusing a simple pattern with a check expression before the transitive closure.
- */
-pattern transitiveSubstatesWithCheck3(state : State, transitiveSubstate : State) {
-	find statesWithMoreIncomingTransitions(state);
-	find parentState+(transitiveSubstate, state);
-}
-
-/**
- * Reusing a transitive closure pattern with the count aggregator.
- */
-pattern numberOfTransitiveSubstates(state : State, transitiveSubstateCount : java ^java.lang.Integer) {
-	transitiveSubstateCount == count find transitiveSubstates(state, _);
-}
-
-/**
- * Reusing a transitive closure and count aggregator pattern with the max aggregator.
- */
-pattern stateWithMostSubstates(state : State) {
-    // the number of substates of this state
-    find numberOfTransitiveSubstates(state, count);
-    // is the maximum from all states
-	count == max find numberOfTransitiveSubstates(_, #substateCount);
-}
-
-pattern allBenchMarkedQueries(param : NamedElement) {
-	find blocksOrRequirementsOrConstraints(param);
+private pattern moreRestrictive(property : Property){
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
+	Property.lowerValue(property, propLower);
+	MultiplicityElement.lowerValue(principal, princLower);
+	LiteralInteger.value(propLower, propLowerValue);
+	LiteralInteger.value(princLower, princLowerValue);
+	check(propLowerValue > princLowerValue);
 } or {
-	find transitiveSubstatesWithCheck3(param, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
+	Property.upperValue(property, propUpper);
+	MultiplicityElement.upperValue(principal, princUpper);
+	LiteralUnlimitedNatural.value(propUpper, propUpperValue);
+	LiteralUnlimitedNatural.value(princUpper, princUpperValue);
+	check (propUpperValue >= 0);
+	check(
+		propUpperValue < princUpperValue ||
+		-1 == princUpperValue
+	);
+}
+
+pattern adjunctPropertySubmachineOrInteraction(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
+	find interactionUseOrState(principal);
+	neg find correct(property);
+}
+
+private pattern interactionUseOrState(element : Element) {
+	InteractionUse(element);
 } or {
-	find alphabeticalDependencies(param, _);
+	State(element);
+}
+
+private pattern correct(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
+	neg find principalBehavior(principal, _);
+	neg Property.type(property, _);
 } or {
-	find circularDependencies(param);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
+	find principalBehavior(principal, behavior);
+	Property.type(property, type);
+	find general *(behavior, type);
+}
+
+private pattern principalBehavior(principal : Element, behavior : Behavior) {
+	InteractionUse(principal);
+	InteractionUse.refersTo(principal, behavior);
 } or {
-	find loopTransitionWithTriggerEffectEventNoGuard(param, _, _, _, _);
+	State(principal);
+	State.submachine(principal, behavior);
+}
+
+pattern
+allocateActivityPartitionActionsOnClientEnds(activityPartition : ActivityPartition) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AllocateActivityPartition(activityPartition, _);
+	ActivityPartition.node(activityPartition, node);
+	Action(node);
+	neg find correctActPartNode(activityPartition, node);
+}
+
+private pattern
+correctActPartNode(activityPartition : ActivityPartition, action : Action) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Allocate(allocs, _);
+	Abstraction.client(allocs, action);
+	find representsSupplier(allocs, activityPartition);
+}
+
+private pattern
+representsSupplier(allocs : Abstraction, activityPartition : ActivityPartition) {
+	Abstraction.supplier(allocs, supplier);
+	ActivityPartition.represents(activityPartition, supplier);
+}
+
+pattern boundReferenceOpposite(boundReference : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference(boundReference, _);
+	neg find BoundReference_2_opposite_bindingconnector_end(boundReference);
+}
+
+private pattern
+BoundReference_2_opposite_bindingconnector_end(boundReference : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.BindingConnector(oppositeConnector, _);
+	Connector.end(oppositeConnector, opposite);
+	ConnectorEnd.role(opposite, role);
+	Property.redefinedProperty *(boundReference, role);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference_boundEnd(boundReference, boundEnd);
+	Connector.end(connector, opposite);
+	Connector.end(connector, boundEnd);
+	boundEnd != opposite;
+}
+
+pattern boundReferenceNotReferenceOrValueProperty(boundReference : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference(boundReference, _);
+	Property.type(boundReference, type);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(type, _);
+	Property.aggregation(boundReference, ::composite);
+}
+
+pattern boundReferenceNotOrdered(boundReference : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference(boundReference, _);
+	Property.upperValue(boundReference, upper);
+	find greaterThanOne(upper);
+	Property.isOrdered(boundReference, false);
+}
+
+private pattern greaterThanOne(op : LiteralUnlimitedNatural) {
+	LiteralUnlimitedNatural.value(op, value);
+	check(value > 1);
 } or {
-	find transitionPointingOutOfCompState(param, _, _);
-} 
+	LiteralUnlimitedNatural.value(op, value);
+	check(value < 0);
+}
+
+pattern boundReferenceUnique(boundReference : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference(boundReference, _);
+	Property.upperValue(boundReference, upper);
+	find greaterThanOne(upper);
+	Property.isUnique(boundReference, true);
+}
+
+pattern boundReferenceRedefined(boundReference : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference(boundReference, _);
+	Property.redefinedProperty(boundReference, redefined);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference(redefined, _);
+}
+
+pattern constraintBlockPropertyNotComposite(constraintBlock : Class) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ConstraintBlock(constraintBlock, _);
+	Class.ownedAttribute(constraintBlock, property);
+	neg Property.aggregation(property, ::composite);
+}
+
+pattern controlOperatorOperationMethod(method : Behavior) {
+	Operation(controlOpertator);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ControlOperator(controlOpertator, _);
+	Operation.method(controlOpertator, method);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ControlOperator(method, _);
+}
+
+pattern deriveReqtSupplierNotReqt(deriveReqt : Abstraction) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.DeriveReqt(deriveReqt, _);
+	Abstraction.supplier(deriveReqt, supplier);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(supplier, _);
+}
+
+pattern deriveReqtClientNotReqt(deriveReqt : Abstraction) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.DeriveReqt(deriveReqt, _);
+	Abstraction.client(deriveReqt, client);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(client, _);
+}
+
+pattern direcredFeatureInvalidStereotype(feature : Feature) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.DirectedFeature(feature, _);
+	neg BehavioralFeature(feature);
+	neg find notFlowProperty(feature);
+}
+
+private pattern notFlowProperty(feature : Property) {
+	Property.redefinedProperty(feature, redefined);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.FlowProperty(redefined, _);
+	Property.subsettedProperty(feature, subsetted);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.FlowProperty(subsetted, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.FlowProperty(feature, _);
+}
+
+pattern optionalLowerNotZero(parameter : Parameter) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Optional(parameter, _);
+	Parameter.lowerValue(parameter, lower);
+	LiteralInteger.value(lower, lowerValue);
+	check(lowerValue != 0);
+}
+
+pattern optionalLowerZero(parameter : Parameter) {
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Optional(parameter, _);
+	Parameter.lowerValue(parameter, lower);
+	LiteralInteger.value(lower, lowerValue);
+	check(lowerValue == 0);
+}
+
+pattern adjunctPropertyIncorrectMultiplicity(property : Property){
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
+	ObjectNode(principal);
+	Property.lowerValue(property, lower);
+	LiteralInteger.value(lower, lowerValue);
+	check(lowerValue != 0);
+} or {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
+	ObjectNode(principal);
+	Property.upperValue(property, propertyUpper);
+	ObjectNode.upperBound(principal, principalUpper);
+	
+	LiteralUnlimitedNatural.value(propertyUpper, propertyUpperValue);
+	LiteralUnlimitedNatural.value(principalUpper, principalUpperValue);
+	check (propertyUpperValue >= 0);
+	check(
+		principalUpperValue == -1 ||
+		propertyUpperValue < principalUpperValue
+	);
+
+}
+
+pattern traceNotSingleSupplier(trace : Abstraction) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Trace(trace, _);
+	size == count Abstraction.supplier(trace, _);
+	check(size != 1);
+}
+
+pattern acsfeActionIncorrectResultpins(action : AcceptEventAction){
+	find resultToCheck(action, event, trigger, result);
+	neg find correctTypeAndOrdering(action, event, trigger, result);
+}
+
+private pattern resultToCheck(action : AcceptEventAction, event : ChangeEvent, trigger: Trigger, result : OutputPin) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AcceptChangeStructuralFeatureEventAction(action, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ChangeStructuralFeatureEvent(event, _);
+	AcceptEventAction.trigger(action, trigger);
+	Trigger.event(trigger, event);
+	AcceptEventAction.result(action, result);
+}
+
+private pattern correctTypeAndOrdering(action : AcceptEventAction, event : ChangeEvent, trigger: Trigger, result : OutputPin){
+	find resultToCheck(action, event, trigger, result);
+
+	OutputPin.type(result, type);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ChangeStructuralFeatureEvent_structuralFeature(event, feature);
+	StructuralFeature.type(feature, type);
+	OutputPin.isOrdered(result, ordered);
+	StructuralFeature.isOrdered(feature, ordered);
+	
+	OutputPin.lowerValue(result, rLower);
+	StructuralFeature.lowerValue(feature, sfLower);
+	LiteralInteger.value(rLower, rLowerValue);
+	LiteralInteger.value(sfLower, sfLowerValue);
+	check(rLowerValue <= sfLowerValue);
+	
+	OutputPin.upperValue(result, rUpper);
+	StructuralFeature.upperValue(feature, sfUpper);
+	LiteralUnlimitedNatural.value(rUpper, rUpperValue);
+	LiteralUnlimitedNatural.value(sfUpper, sfUpperValue);
+	check((rUpperValue >= sfUpperValue) || (rUpperValue < 0));
+}
+
+pattern viewpointNoCreate(viewpoint : Class) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Viewpoint(viewpoint, _);
+	neg find hasCreateOperationamedView(viewpoint);
+}
+
+private pattern hasCreateOperationamedView(viewpoint : Class) {
+	Class.ownedOperation(viewpoint, operation);
+	Operation.name(operation, name);
+	check(name == "View");
+	find com.incquerylabs.magicdraw.benchmark.queries.library.stereotypedElement(operation, _, _, "Create");
+}
+
+pattern changeStructuralFeatureEventStatic(changeEvent : ChangeEvent) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ChangeStructuralFeatureEvent(changeEvent, _);
+	find
+	com.incquerylabs.magicdraw.benchmark.queries.library.ChangeStructuralFeatureEvent_structuralFeature(changeEvent, structuralFeature);
+	StructuralFeature.isStatic(structuralFeature, true);
+}
+
+pattern
+changeStructuralFeatureEventFeatureMultiplicity(changeEvent : ChangeEvent) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ChangeStructuralFeatureEvent(changeEvent, _);
+	size == count find
+	com.incquerylabs.magicdraw.benchmark.queries.library.ChangeStructuralFeatureEvent_structuralFeature(changeEvent, _);
+	check(size != 1);
+}
+
+pattern copyMultipleCopies(copy : Abstraction) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Copy(copy, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(req, _);
+	Abstraction.client(copy, req);
+	Abstraction.client(otherCopy, req);
+	copy != otherCopy;
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Copy(otherCopy, _);
+}
+
+pattern copyCycle(copy : Abstraction) {
+	find supplierCopy +(copy, copy);
+}
+
+private pattern supplierCopy(copy1 : Abstraction, copy2 : Abstraction) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Copy(copy1, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Copy(copy2, _);
+	Abstraction.supplier(copy1, req);
+	Abstraction.client(copy2, req);
+}
+
+pattern requirementIdNotUnique(req : NamedElement) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(req, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement_Id(req, id);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(req2, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement_Id(req2, id);
+	req != req2;
+}
+
+pattern propertySpecificTypeNotOwnedByBlock(property : Property) {
+	Property.type(property, type);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.PropertySpecificType(type, _);
+	neg find owningBlock(property, _);
+}
+
+pattern valuePropertyNotValueType(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ValueProperty(property, _);
+	Property.type(property, type);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(type, _);
+}
+
+pattern flowPortOwnerNotBlock(port : Port) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.FlowPort(port, _);
+	neg find owningBlock(port, _);
+}
+
+pattern flowSpecificationInvalidApplication(property : Property) {
+	Property.type(property, type);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.FlowSpecification(type, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.FlowPort(property, _);
+}
+
+pattern flowPortDeprecated(port : Port) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.FlowPort(port, _);
+}
+
+pattern flowSpecificationDeprecated(flowSpec : Interface) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.FlowSpecification(flowSpec, _);
+}
+
+pattern interfaceBlockInvalidInheritance(interfaceBlock : Class) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceBlock(interfaceBlock, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.generalizedClassifier(interfaceBlock, general);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceBlock(general, _);
+}
+
+pattern partPropertyInvalidType(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.PartProperty(property, _);
+	Property.type(property, type);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(type, _);
+}
+
+pattern referencePropertyInvalidType(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ReferenceProperty(property, _);
+	Property.type(property, type);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(type, _);
+}
+
+pattern sharedPropertyInvalidType(property : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.SharedProperty(property, _);
+	Property.type(property, type);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(type, _);
+}
+
+pattern activityStreamingNoNStreaming(activity : Activity) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.streaming(activity, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.nonStreaming(activity, _);
+}

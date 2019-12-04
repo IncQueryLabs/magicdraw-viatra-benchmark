@@ -4,7 +4,7 @@
 package com.incquerylabs.magicdraw.benchmark.incrementalqueries;
 
 import com.incquerylabs.magicdraw.benchmark.incrementalqueries.ParentState;
-import com.incquerylabs.magicdraw.benchmark.queries.StatesWithShortNames;
+import com.incquerylabs.magicdraw.benchmark.incrementalqueries.StatesWithShortNames;
 import com.nomagic.uml2.ext.magicdraw.statemachines.mdbehaviorstatemachines.State;
 import java.util.Arrays;
 import java.util.Collection;
@@ -45,11 +45,11 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         Reusing a simple pattern with a check expression before the transitive closure which is an incremental pattern.
+ *         Reusing a simple pattern with a check expression before the transitive closure.
  *          
  *         pattern transitiveSubstatesWithCheck(state : State, transitiveSubstate : State) {
  *         	find statesWithShortNames(state);
- *         	find parentState+(transitiveSubstate, state); 
+ *         	find parentState+(transitiveSubstate, state);
  *         }
  * </pre></code>
  * 
@@ -262,11 +262,11 @@ public final class TransitiveSubstatesWithCheck extends BaseGeneratedEMFQuerySpe
    * 
    * <p>Original source:
    * <code><pre>
-   * Reusing a simple pattern with a check expression before the transitive closure which is an incremental pattern.
+   * Reusing a simple pattern with a check expression before the transitive closure.
    *  
    * pattern transitiveSubstatesWithCheck(state : State, transitiveSubstate : State) {
    * 	find statesWithShortNames(state);
-   * 	find parentState+(transitiveSubstate, state); 
+   * 	find parentState+(transitiveSubstate, state);
    * }
    * </pre></code>
    * 
