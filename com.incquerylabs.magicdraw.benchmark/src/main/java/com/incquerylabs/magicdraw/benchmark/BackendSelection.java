@@ -1,6 +1,8 @@
 package com.incquerylabs.magicdraw.benchmark;
 
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.eclipse.collections.impl.factory.Lists;
 import org.eclipse.viatra.query.runtime.api.IQueryGroup;
@@ -27,6 +29,8 @@ public enum BackendSelection {
 	LOCAL_SEARCH_HINTS_TC_FIRST,
 	HYBRID;
 	
+	private static final String ALL = "all";
+
 	public Iterable<IQuerySpecification<?>> findQueries(BenchmarkParameters parameters) throws ViatraQueryException {
 		switch(this) {
 		case RETE:
@@ -112,7 +116,14 @@ public enum BackendSelection {
 	}
 	
 	private Iterable<IQuerySpecification<?>> findQueries(IQueryGroup querySpecifications, String queryName, BenchmarkParameters parameters) throws ViatraQueryException {
+		if(queryName.equals(ALL)) {
+			return findAllQueries(querySpecifications).stream().filter(x -> !parameters.isExcluded(getName(x))).collect(Collectors.toSet());
+		}
 		return Lists.immutable.of(findQueryBySimpleName(querySpecifications, queryName));
+	}
+	
+	private Set<IQuerySpecification<?>> findAllQueries(IQueryGroup querySpecifications) throws ViatraQueryException {
+		return querySpecifications.getSpecifications();
 	}
 	
 	private IQuerySpecification<?> findQueryBySimpleName(IQueryGroup querySpecifications, String queryName) throws ViatraQueryException {

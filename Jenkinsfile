@@ -13,8 +13,14 @@ pipeline {
 
 		string( 
 			defaultValue: 'transitiveSubstatesWithCheck3',
-			description: 'Comma separated list of queries to test (with a single space after each comma).',
+			description: 'Comma separated list of queries to test (with a single space after each comma). If empty, all queries are taken into account. Use the value "all" if you want to apply all patterns in one run.',
 			name: 'BENCHMARK_QUERIES' 
+		)
+		
+		string( 
+			defaultValue: '',
+			description: 'Comma separated list of queries to exclude from the benchmark (with a single space after each comma)',
+			name: 'BENCHMARK_QUERIES_EXCLUDE' 
 		)
 		
 		string( 

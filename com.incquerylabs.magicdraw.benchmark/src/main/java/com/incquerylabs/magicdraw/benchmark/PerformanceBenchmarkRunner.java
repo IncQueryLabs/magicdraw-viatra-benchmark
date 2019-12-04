@@ -101,7 +101,10 @@ public class PerformanceBenchmarkRunner implements CommandLineAction{
 			} else if (Objects.equals("-password", arguments[argIndex])) {
 				parameters.setPassword(arguments[argIndex + 1]);
 				argIndex+=2;
-			} else {
+			} else if (Objects.equals("-exclude", arguments[argIndex])) {
+				parameters.setExcludedQueries(arguments[argIndex + 1]);
+				argIndex+=2;
+			}else {
 				System.err.println("Unexpected parameter " + arguments[argIndex]);
 				argIndex++; // Skip unknown parameter
 			}			

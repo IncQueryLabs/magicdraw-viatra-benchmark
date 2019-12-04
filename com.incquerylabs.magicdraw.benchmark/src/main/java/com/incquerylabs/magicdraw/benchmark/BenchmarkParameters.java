@@ -130,6 +130,9 @@ public class BenchmarkParameters {
 		}
 
 		public void setExcludedQueries(String excludedQueries) {
+			if(excludedQueries.isEmpty()) 
+				return;
+			
 			String[] array = excludedQueries.split(", ");
 			for (int i = 0; i < array.length; i++) {
 				this.excludedQueries.add(array[i]);

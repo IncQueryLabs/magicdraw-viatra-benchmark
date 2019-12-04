@@ -48,6 +48,11 @@ BENCHMARK_QUERIES="transitiveSubstatesWithCheck3"
 fi
 echo "Selected queries: ${BENCHMARK_QUERIES}"
 
+if [ -z "$BENCHMARK_QUERIES_EXCLUDE" ]; then
+BENCHMARK_QUERIES_EXCLUDE=""
+fi
+echo "Queries to be excluded: ${BENCHMARK_QUERIES_EXCLUDE}"
+
 if [ -z "$BENCHMARK_SIZES" ]; then
 #BENCHMARK_SIZES="300000, 540000, 780000, 1040000, 1200000"
 BENCHMARK_SIZES="5000"
@@ -63,6 +68,7 @@ OUTPUT_DIR=${WORKSPACE_BENCHMARK}/com.incquerylabs.magicdraw.benchmark/results
 
 IFS=', ' read -r -a engines <<< "$BENCHMARK_ENGINES"
 IFS=', ' read -r -a queries <<< "$BENCHMARK_QUERIES"
+IFS=', ' read -r -a excluded <<< "$BENCHMARK_QUERIES_EXCLUDE"
 IFS=', ' read -r -a modelsizes <<< "$BENCHMARK_SIZES"
 
 # Run benchmark
@@ -81,13 +87,16 @@ do
 		
 			for query in "${queries[@]}";
 			do
-				echo "Query: $query"
-				echo "Running measurement on $query with $engine (model size: $size ; runIndex: $runIndex )"
-				
-				# Call MD
-				./gradlew -Pquery="$query" -Pmodel="${MODEL_LOCATION}/TMT$size.mdzip" -Pwarmup="${MODEL_LOCATION}/Warmup.mdzip" -Pindex="$runIndex" -Psize="$size" \
-				-Poutput="${OUTPUT_DIR}" -Pengine="$engine" runBenchmark
-				
+			if [[ " ${excluded[@]} " =~ " ${query} " ]]; then
+					echo "No benchmark is needed: $query is excluded - $BENCHMARK_QUERIES_EXCLUDE"
+				else
+					echo "Query: $query"
+					echo "Running measurement on $query with $engine (model size: $size ; runIndex: $runIndex )"
+					
+					# Call MD
+					./gradlew -Pquery="$query" -Pmodel="${MODEL_LOCATION}/TMT$size.mdzip" -Pwarmup="${MODEL_LOCATION}/Warmup.mdzip" -Pindex="$runIndex" -Psize="$size" \
+					-Poutput="${OUTPUT_DIR}" -Pengine="$engine" -Pexclude="$BENCHMARK_QUERIES_EXCLUDE" runBenchmark
+				fi
 			done
 		done
 	done
