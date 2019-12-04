@@ -49,7 +49,6 @@ pipeline {
         stage('Build') { 
 			steps {
 				sh '''
-					export MODEL_LOCATION=/home/jenkins/models-tmt
 					# WORKSPACE_BENCHMARK is used as on client-side 3rd applications (e.g. git on Windows) 
 					# overrides the $WORKSPACE variable during their execution
 					export WORKSPACE_BENCHMARK=$WORKSPACE
@@ -66,6 +65,7 @@ pipeline {
 		stage('Benchmark') {
             steps {
             	wrap([$class: 'Xvnc']) {
+					export MODEL_LOCATION=/home/jenkins/models-tmt
 				    sh './com.incquerylabs.magicdraw.benchmark/run.sh'
             	}
 			}
