@@ -1,11 +1,11 @@
 /**
- * Generated from platform:/resource/com.incquerylabs.magicdraw.benchmark/src/main/java/com/incquerylabs/magicdraw/benchmark/queries/library/SysMLLibrary.vql
+ * Generated from platform:/resource/com.incquerylabs.magicdraw.benchmark/src/main/java/com/incquerylabs/magicdraw/benchmark/queries/library/UAFLibrary.vql
  */
 package com.incquerylabs.magicdraw.benchmark.queries.library;
 
 import com.incquerylabs.magicdraw.benchmark.queries.library.SlotValue;
 import com.incquerylabs.magicdraw.benchmark.queries.library.Viewpoint;
-import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier;
+import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Element;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -48,12 +48,12 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * <p>Original source:
  *         <code><pre>
  *         Pattern that queries the 'stakeholder' attribute of elements with the stereotype 'Viewpoint'.
- *           
- *           Parameters: 
- *           	element: 'Class' object with the stereotype 'Viewpoint'.
- *           	value : Classifier : A value of the attribute 'stakeholder'.
  *          
- *         pattern Viewpoint_stakeholder(element : Class, value : Classifier){
+ *           Parameters:
+ *           element: 'Class' object with the stereotype 'Viewpoint'.
+ *           value : Element : A value of the attribute 'stakeholder'.
+ *          
+ *         pattern Viewpoint_stakeholder(element : Class, value : Element) {
  *         	find Viewpoint(element, domainStereotypeInstance);
  *         	find slotValue(domainStereotypeInstance, "stakeholder", valuespec);
  *         	ElementValue.element(valuespec, value);
@@ -81,11 +81,11 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
   public static abstract class Match extends BasePatternMatch {
     private com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class fElement;
     
-    private Classifier fValue;
+    private Element fValue;
     
     private static List<String> parameterNames = makeImmutableList("element", "value");
     
-    private Match(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Classifier pValue) {
+    private Match(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Element pValue) {
       this.fElement = pElement;
       this.fValue = pValue;
     }
@@ -112,7 +112,7 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
       return this.fElement;
     }
     
-    public Classifier getValue() {
+    public Element getValue() {
       return this.fValue;
     }
     
@@ -124,7 +124,7 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
           return true;
       }
       if ("value".equals(parameterName) ) {
-          this.fValue = (Classifier) newValue;
+          this.fValue = (Element) newValue;
           return true;
       }
       return false;
@@ -135,7 +135,7 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
       this.fElement = pElement;
     }
     
-    public void setValue(final Classifier pValue) {
+    public void setValue(final Element pValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fValue = pValue;
     }
@@ -218,7 +218,7 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static Viewpoint_stakeholder.Match newMutableMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Classifier pValue) {
+    public static Viewpoint_stakeholder.Match newMutableMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Element pValue) {
       return new Mutable(pElement, pValue);
     }
     
@@ -231,12 +231,12 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
      * @return the (partial) match object.
      * 
      */
-    public static Viewpoint_stakeholder.Match newMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Classifier pValue) {
+    public static Viewpoint_stakeholder.Match newMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Element pValue) {
       return new Immutable(pElement, pValue);
     }
     
     private static final class Mutable extends Viewpoint_stakeholder.Match {
-      Mutable(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Classifier pValue) {
+      Mutable(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Element pValue) {
         super(pElement, pValue);
       }
       
@@ -247,7 +247,7 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
     }
     
     private static final class Immutable extends Viewpoint_stakeholder.Match {
-      Immutable(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Classifier pValue) {
+      Immutable(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Element pValue) {
         super(pElement, pValue);
       }
       
@@ -270,12 +270,12 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
    * <p>Original source:
    * <code><pre>
    * Pattern that queries the 'stakeholder' attribute of elements with the stereotype 'Viewpoint'.
-   *   
-   *   Parameters: 
-   *   	element: 'Class' object with the stereotype 'Viewpoint'.
-   *   	value : Classifier : A value of the attribute 'stakeholder'.
    *  
-   * pattern Viewpoint_stakeholder(element : Class, value : Classifier){
+   *   Parameters:
+   *   element: 'Class' object with the stereotype 'Viewpoint'.
+   *   value : Element : A value of the attribute 'stakeholder'.
+   *  
+   * pattern Viewpoint_stakeholder(element : Class, value : Element) {
    * 	find Viewpoint(element, domainStereotypeInstance);
    * 	find slotValue(domainStereotypeInstance, "stakeholder", valuespec);
    * 	ElementValue.element(valuespec, value);
@@ -339,7 +339,7 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<Viewpoint_stakeholder.Match> getAllMatches(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Classifier pValue) {
+    public Collection<Viewpoint_stakeholder.Match> getAllMatches(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Element pValue) {
       return rawStreamAllMatches(new Object[]{pElement, pValue}).collect(Collectors.toSet());
     }
     
@@ -354,7 +354,7 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<Viewpoint_stakeholder.Match> streamAllMatches(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Classifier pValue) {
+    public Stream<Viewpoint_stakeholder.Match> streamAllMatches(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Element pValue) {
       return rawStreamAllMatches(new Object[]{pElement, pValue});
     }
     
@@ -366,7 +366,7 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<Viewpoint_stakeholder.Match> getOneArbitraryMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Classifier pValue) {
+    public Optional<Viewpoint_stakeholder.Match> getOneArbitraryMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Element pValue) {
       return rawGetOneArbitraryMatch(new Object[]{pElement, pValue});
     }
     
@@ -378,7 +378,7 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
      * @return true if the input is a valid (partial) match of the pattern.
      * 
      */
-    public boolean hasMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Classifier pValue) {
+    public boolean hasMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Element pValue) {
       return rawHasMatch(new Object[]{pElement, pValue});
     }
     
@@ -389,7 +389,7 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
      * @return the number of pattern matches found.
      * 
      */
-    public int countMatches(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Classifier pValue) {
+    public int countMatches(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Element pValue) {
       return rawCountMatches(new Object[]{pElement, pValue});
     }
     
@@ -402,7 +402,7 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Classifier pValue, final Consumer<? super Viewpoint_stakeholder.Match> processor) {
+    public boolean forOneArbitraryMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Element pValue, final Consumer<? super Viewpoint_stakeholder.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pElement, pValue}, processor);
     }
     
@@ -415,7 +415,7 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
      * @return the (partial) match object.
      * 
      */
-    public Viewpoint_stakeholder.Match newMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Classifier pValue) {
+    public Viewpoint_stakeholder.Match newMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Element pValue) {
       return Viewpoint_stakeholder.Match.newMatch(pElement, pValue);
     }
     
@@ -470,7 +470,7 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> streamAllValuesOfelement(final Classifier pValue) {
+    public Stream<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> streamAllValuesOfelement(final Element pValue) {
       return rawStreamAllValuesOfelement(new Object[]{null, pValue});
     }
     
@@ -488,7 +488,7 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> getAllValuesOfelement(final Classifier pValue) {
+    public Set<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> getAllValuesOfelement(final Element pValue) {
       return rawStreamAllValuesOfelement(new Object[]{null, pValue}).collect(Collectors.toSet());
     }
     
@@ -497,8 +497,8 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<Classifier> rawStreamAllValuesOfvalue(final Object[] parameters) {
-      return rawStreamAllValues(POSITION_VALUE, parameters).map(Classifier.class::cast);
+    protected Stream<Element> rawStreamAllValuesOfvalue(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_VALUE, parameters).map(Element.class::cast);
     }
     
     /**
@@ -506,7 +506,7 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Classifier> getAllValuesOfvalue() {
+    public Set<Element> getAllValuesOfvalue() {
       return rawStreamAllValuesOfvalue(emptyArray()).collect(Collectors.toSet());
     }
     
@@ -515,7 +515,7 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<Classifier> streamAllValuesOfvalue() {
+    public Stream<Element> streamAllValuesOfvalue() {
       return rawStreamAllValuesOfvalue(emptyArray());
     }
     
@@ -529,7 +529,7 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Classifier> streamAllValuesOfvalue(final Viewpoint_stakeholder.Match partialMatch) {
+    public Stream<Element> streamAllValuesOfvalue(final Viewpoint_stakeholder.Match partialMatch) {
       return rawStreamAllValuesOfvalue(partialMatch.toArray());
     }
     
@@ -543,7 +543,7 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Classifier> streamAllValuesOfvalue(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement) {
+    public Stream<Element> streamAllValuesOfvalue(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement) {
       return rawStreamAllValuesOfvalue(new Object[]{pElement, null});
     }
     
@@ -552,7 +552,7 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Classifier> getAllValuesOfvalue(final Viewpoint_stakeholder.Match partialMatch) {
+    public Set<Element> getAllValuesOfvalue(final Viewpoint_stakeholder.Match partialMatch) {
       return rawStreamAllValuesOfvalue(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
@@ -561,14 +561,14 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Classifier> getAllValuesOfvalue(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement) {
+    public Set<Element> getAllValuesOfvalue(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement) {
       return rawStreamAllValuesOfvalue(new Object[]{pElement, null}).collect(Collectors.toSet());
     }
     
     @Override
     protected Viewpoint_stakeholder.Match tupleToMatch(final Tuple t) {
       try {
-          return Viewpoint_stakeholder.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) t.get(POSITION_ELEMENT), (Classifier) t.get(POSITION_VALUE));
+          return Viewpoint_stakeholder.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) t.get(POSITION_ELEMENT), (Element) t.get(POSITION_VALUE));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -578,7 +578,7 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
     @Override
     protected Viewpoint_stakeholder.Match arrayToMatch(final Object[] match) {
       try {
-          return Viewpoint_stakeholder.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) match[POSITION_ELEMENT], (Classifier) match[POSITION_VALUE]);
+          return Viewpoint_stakeholder.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) match[POSITION_ELEMENT], (Element) match[POSITION_VALUE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -588,7 +588,7 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
     @Override
     protected Viewpoint_stakeholder.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return Viewpoint_stakeholder.Match.newMutableMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) match[POSITION_ELEMENT], (Classifier) match[POSITION_VALUE]);
+          return Viewpoint_stakeholder.Match.newMutableMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) match[POSITION_ELEMENT], (Element) match[POSITION_VALUE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -639,7 +639,7 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
   
   @Override
   public Viewpoint_stakeholder.Match newMatch(final Object... parameters) {
-    return Viewpoint_stakeholder.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) parameters[0], (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier) parameters[1]);
+    return Viewpoint_stakeholder.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) parameters[0], (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Element) parameters[1]);
   }
   
   /**
@@ -673,7 +673,7 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
     
     private final PParameter parameter_element = new PParameter("element", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Class")), PParameterDirection.INOUT);
     
-    private final PParameter parameter_value = new PParameter("value", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Classifier")), PParameterDirection.INOUT);
+    private final PParameter parameter_value = new PParameter("value", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Element", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Element")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_element, parameter_value);
     
@@ -707,7 +707,7 @@ public final class Viewpoint_stakeholder extends BaseGeneratedEMFQuerySpecificat
           PVariable var_domainStereotypeInstance = body.getOrCreateVariableByName("domainStereotypeInstance");
           PVariable var_valuespec = body.getOrCreateVariableByName("valuespec");
           new TypeConstraint(body, Tuples.flatTupleOf(var_element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Class")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var_value), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Classifier")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_value), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Element")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_element, parameter_element),
              new ExportedParameter(body, var_value, parameter_value)

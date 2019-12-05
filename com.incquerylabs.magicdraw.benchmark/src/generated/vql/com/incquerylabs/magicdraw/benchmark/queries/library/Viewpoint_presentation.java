@@ -1,5 +1,5 @@
 /**
- * Generated from platform:/resource/com.incquerylabs.magicdraw.benchmark/src/main/java/com/incquerylabs/magicdraw/benchmark/queries/library/SysMLLibrary.vql
+ * Generated from platform:/resource/com.incquerylabs.magicdraw.benchmark/src/main/java/com/incquerylabs/magicdraw/benchmark/queries/library/UAFLibrary.vql
  */
 package com.incquerylabs.magicdraw.benchmark.queries.library;
 
@@ -46,12 +46,12 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * <p>Original source:
  *         <code><pre>
  *         Pattern that queries the 'presentation' attribute of elements with the stereotype 'Viewpoint'.
- *           
- *           Parameters: 
- *           	element: 'Class' object with the stereotype 'Viewpoint'.
- *           	valuespec : LiteralString : A value of the attribute 'presentation'.
  *          
- *         pattern Viewpoint_presentation(element : Class, valuespec : LiteralString){
+ *           Parameters:
+ *           element: 'Class' object with the stereotype 'Viewpoint'.
+ *           valuespec : LiteralString : A value of the attribute 'presentation'.
+ *          
+ *         pattern Viewpoint_presentation(element : Class, valuespec : LiteralString) {
  *         	find Viewpoint(element, domainStereotypeInstance);
  *         	find slotValue(domainStereotypeInstance, "presentation", valuespec);
  *         }
@@ -267,12 +267,12 @@ public final class Viewpoint_presentation extends BaseGeneratedEMFQuerySpecifica
    * <p>Original source:
    * <code><pre>
    * Pattern that queries the 'presentation' attribute of elements with the stereotype 'Viewpoint'.
-   *   
-   *   Parameters: 
-   *   	element: 'Class' object with the stereotype 'Viewpoint'.
-   *   	valuespec : LiteralString : A value of the attribute 'presentation'.
    *  
-   * pattern Viewpoint_presentation(element : Class, valuespec : LiteralString){
+   *   Parameters:
+   *   element: 'Class' object with the stereotype 'Viewpoint'.
+   *   valuespec : LiteralString : A value of the attribute 'presentation'.
+   *  
+   * pattern Viewpoint_presentation(element : Class, valuespec : LiteralString) {
    * 	find Viewpoint(element, domainStereotypeInstance);
    * 	find slotValue(domainStereotypeInstance, "presentation", valuespec);
    * }

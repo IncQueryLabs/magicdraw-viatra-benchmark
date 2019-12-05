@@ -1,11 +1,10 @@
 /**
- * Generated from platform:/resource/com.incquerylabs.magicdraw.benchmark/src/main/java/com/incquerylabs/magicdraw/benchmark/queries/library/SysMLLibrary.vql
+ * Generated from platform:/resource/com.incquerylabs.magicdraw.benchmark/src/main/java/com/incquerylabs/magicdraw/benchmark/queries/library/UAFLibrary.vql
  */
 package com.incquerylabs.magicdraw.benchmark.queries.library;
 
 import com.incquerylabs.magicdraw.benchmark.queries.library.StereotypedElement;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.InstanceSpecification;
-import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Namespace;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -48,11 +47,13 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  *         Pattern that queries elements with the stereotype 'View' or other stereotypes generalizing it.
  *          
  *           Parameters:
- *           element : 'Namespace' object with the stereotype View.
+ *           element : 'Class' object with the stereotype View.
  *           domainStereotypeInstance : Stereotype Application instance
  *          
- *         pattern View(element : Namespace, domainStereotypeInstance : InstanceSpecification){
- *         	find stereotypedElement(element, domainStereotypeInstance, "SysML", "View");
+ *         pattern
+ *         View(element : Class, domainStereotypeInstance : InstanceSpecification) {
+ *         	find
+ *         	stereotypedElement(element, domainStereotypeInstance, "UAF", "View");
  *         }
  * </pre></code>
  * 
@@ -75,13 +76,13 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
    * 
    */
   public static abstract class Match extends BasePatternMatch {
-    private Namespace fElement;
+    private com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class fElement;
     
     private InstanceSpecification fDomainStereotypeInstance;
     
     private static List<String> parameterNames = makeImmutableList("element", "domainStereotypeInstance");
     
-    private Match(final Namespace pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    private Match(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final InstanceSpecification pDomainStereotypeInstance) {
       this.fElement = pElement;
       this.fDomainStereotypeInstance = pDomainStereotypeInstance;
     }
@@ -104,7 +105,7 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
       }
     }
     
-    public Namespace getElement() {
+    public com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class getElement() {
       return this.fElement;
     }
     
@@ -116,7 +117,7 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       if ("element".equals(parameterName) ) {
-          this.fElement = (Namespace) newValue;
+          this.fElement = (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) newValue;
           return true;
       }
       if ("domainStereotypeInstance".equals(parameterName) ) {
@@ -126,7 +127,7 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
       return false;
     }
     
-    public void setElement(final Namespace pElement) {
+    public void setElement(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fElement = pElement;
     }
@@ -214,7 +215,7 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static View.Match newMutableMatch(final Namespace pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    public static View.Match newMutableMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final InstanceSpecification pDomainStereotypeInstance) {
       return new Mutable(pElement, pDomainStereotypeInstance);
     }
     
@@ -227,12 +228,12 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
      * @return the (partial) match object.
      * 
      */
-    public static View.Match newMatch(final Namespace pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    public static View.Match newMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final InstanceSpecification pDomainStereotypeInstance) {
       return new Immutable(pElement, pDomainStereotypeInstance);
     }
     
     private static final class Mutable extends View.Match {
-      Mutable(final Namespace pElement, final InstanceSpecification pDomainStereotypeInstance) {
+      Mutable(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final InstanceSpecification pDomainStereotypeInstance) {
         super(pElement, pDomainStereotypeInstance);
       }
       
@@ -243,7 +244,7 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
     }
     
     private static final class Immutable extends View.Match {
-      Immutable(final Namespace pElement, final InstanceSpecification pDomainStereotypeInstance) {
+      Immutable(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final InstanceSpecification pDomainStereotypeInstance) {
         super(pElement, pDomainStereotypeInstance);
       }
       
@@ -268,11 +269,13 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
    * Pattern that queries elements with the stereotype 'View' or other stereotypes generalizing it.
    *  
    *   Parameters:
-   *   element : 'Namespace' object with the stereotype View.
+   *   element : 'Class' object with the stereotype View.
    *   domainStereotypeInstance : Stereotype Application instance
    *  
-   * pattern View(element : Namespace, domainStereotypeInstance : InstanceSpecification){
-   * 	find stereotypedElement(element, domainStereotypeInstance, "SysML", "View");
+   * pattern
+   * View(element : Class, domainStereotypeInstance : InstanceSpecification) {
+   * 	find
+   * 	stereotypedElement(element, domainStereotypeInstance, "UAF", "View");
    * }
    * </pre></code>
    * 
@@ -333,7 +336,7 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<View.Match> getAllMatches(final Namespace pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    public Collection<View.Match> getAllMatches(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final InstanceSpecification pDomainStereotypeInstance) {
       return rawStreamAllMatches(new Object[]{pElement, pDomainStereotypeInstance}).collect(Collectors.toSet());
     }
     
@@ -348,7 +351,7 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<View.Match> streamAllMatches(final Namespace pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    public Stream<View.Match> streamAllMatches(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final InstanceSpecification pDomainStereotypeInstance) {
       return rawStreamAllMatches(new Object[]{pElement, pDomainStereotypeInstance});
     }
     
@@ -360,7 +363,7 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<View.Match> getOneArbitraryMatch(final Namespace pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    public Optional<View.Match> getOneArbitraryMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final InstanceSpecification pDomainStereotypeInstance) {
       return rawGetOneArbitraryMatch(new Object[]{pElement, pDomainStereotypeInstance});
     }
     
@@ -372,7 +375,7 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
      * @return true if the input is a valid (partial) match of the pattern.
      * 
      */
-    public boolean hasMatch(final Namespace pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    public boolean hasMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final InstanceSpecification pDomainStereotypeInstance) {
       return rawHasMatch(new Object[]{pElement, pDomainStereotypeInstance});
     }
     
@@ -383,7 +386,7 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
      * @return the number of pattern matches found.
      * 
      */
-    public int countMatches(final Namespace pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    public int countMatches(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final InstanceSpecification pDomainStereotypeInstance) {
       return rawCountMatches(new Object[]{pElement, pDomainStereotypeInstance});
     }
     
@@ -396,7 +399,7 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final Namespace pElement, final InstanceSpecification pDomainStereotypeInstance, final Consumer<? super View.Match> processor) {
+    public boolean forOneArbitraryMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final InstanceSpecification pDomainStereotypeInstance, final Consumer<? super View.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pElement, pDomainStereotypeInstance}, processor);
     }
     
@@ -409,7 +412,7 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
      * @return the (partial) match object.
      * 
      */
-    public View.Match newMatch(final Namespace pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    public View.Match newMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final InstanceSpecification pDomainStereotypeInstance) {
       return View.Match.newMatch(pElement, pDomainStereotypeInstance);
     }
     
@@ -418,8 +421,8 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<Namespace> rawStreamAllValuesOfelement(final Object[] parameters) {
-      return rawStreamAllValues(POSITION_ELEMENT, parameters).map(Namespace.class::cast);
+    protected Stream<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> rawStreamAllValuesOfelement(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_ELEMENT, parameters).map(com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class.class::cast);
     }
     
     /**
@@ -427,7 +430,7 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Namespace> getAllValuesOfelement() {
+    public Set<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> getAllValuesOfelement() {
       return rawStreamAllValuesOfelement(emptyArray()).collect(Collectors.toSet());
     }
     
@@ -436,7 +439,7 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<Namespace> streamAllValuesOfelement() {
+    public Stream<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> streamAllValuesOfelement() {
       return rawStreamAllValuesOfelement(emptyArray());
     }
     
@@ -450,7 +453,7 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Namespace> streamAllValuesOfelement(final View.Match partialMatch) {
+    public Stream<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> streamAllValuesOfelement(final View.Match partialMatch) {
       return rawStreamAllValuesOfelement(partialMatch.toArray());
     }
     
@@ -464,7 +467,7 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Namespace> streamAllValuesOfelement(final InstanceSpecification pDomainStereotypeInstance) {
+    public Stream<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> streamAllValuesOfelement(final InstanceSpecification pDomainStereotypeInstance) {
       return rawStreamAllValuesOfelement(new Object[]{null, pDomainStereotypeInstance});
     }
     
@@ -473,7 +476,7 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Namespace> getAllValuesOfelement(final View.Match partialMatch) {
+    public Set<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> getAllValuesOfelement(final View.Match partialMatch) {
       return rawStreamAllValuesOfelement(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
@@ -482,7 +485,7 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Namespace> getAllValuesOfelement(final InstanceSpecification pDomainStereotypeInstance) {
+    public Set<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> getAllValuesOfelement(final InstanceSpecification pDomainStereotypeInstance) {
       return rawStreamAllValuesOfelement(new Object[]{null, pDomainStereotypeInstance}).collect(Collectors.toSet());
     }
     
@@ -537,7 +540,7 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<InstanceSpecification> streamAllValuesOfdomainStereotypeInstance(final Namespace pElement) {
+    public Stream<InstanceSpecification> streamAllValuesOfdomainStereotypeInstance(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement) {
       return rawStreamAllValuesOfdomainStereotypeInstance(new Object[]{pElement, null});
     }
     
@@ -555,14 +558,14 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<InstanceSpecification> getAllValuesOfdomainStereotypeInstance(final Namespace pElement) {
+    public Set<InstanceSpecification> getAllValuesOfdomainStereotypeInstance(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement) {
       return rawStreamAllValuesOfdomainStereotypeInstance(new Object[]{pElement, null}).collect(Collectors.toSet());
     }
     
     @Override
     protected View.Match tupleToMatch(final Tuple t) {
       try {
-          return View.Match.newMatch((Namespace) t.get(POSITION_ELEMENT), (InstanceSpecification) t.get(POSITION_DOMAINSTEREOTYPEINSTANCE));
+          return View.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) t.get(POSITION_ELEMENT), (InstanceSpecification) t.get(POSITION_DOMAINSTEREOTYPEINSTANCE));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -572,7 +575,7 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
     @Override
     protected View.Match arrayToMatch(final Object[] match) {
       try {
-          return View.Match.newMatch((Namespace) match[POSITION_ELEMENT], (InstanceSpecification) match[POSITION_DOMAINSTEREOTYPEINSTANCE]);
+          return View.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) match[POSITION_ELEMENT], (InstanceSpecification) match[POSITION_DOMAINSTEREOTYPEINSTANCE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -582,7 +585,7 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
     @Override
     protected View.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return View.Match.newMutableMatch((Namespace) match[POSITION_ELEMENT], (InstanceSpecification) match[POSITION_DOMAINSTEREOTYPEINSTANCE]);
+          return View.Match.newMutableMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) match[POSITION_ELEMENT], (InstanceSpecification) match[POSITION_DOMAINSTEREOTYPEINSTANCE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -633,7 +636,7 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
   
   @Override
   public View.Match newMatch(final Object... parameters) {
-    return View.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Namespace) parameters[0], (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.InstanceSpecification) parameters[1]);
+    return View.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) parameters[0], (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.InstanceSpecification) parameters[1]);
   }
   
   /**
@@ -665,7 +668,7 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final View.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_element = new PParameter("element", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Namespace", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Namespace")), PParameterDirection.INOUT);
+    private final PParameter parameter_element = new PParameter("element", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Class")), PParameterDirection.INOUT);
     
     private final PParameter parameter_domainStereotypeInstance = new PParameter("domainStereotypeInstance", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.InstanceSpecification", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "InstanceSpecification")), PParameterDirection.INOUT);
     
@@ -698,15 +701,15 @@ public final class View extends BaseGeneratedEMFQuerySpecification<View.Matcher>
           PBody body = new PBody(this);
           PVariable var_element = body.getOrCreateVariableByName("element");
           PVariable var_domainStereotypeInstance = body.getOrCreateVariableByName("domainStereotypeInstance");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Namespace")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Class")));
           new TypeConstraint(body, Tuples.flatTupleOf(var_domainStereotypeInstance), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "InstanceSpecification")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_element, parameter_element),
              new ExportedParameter(body, var_domainStereotypeInstance, parameter_domainStereotypeInstance)
           ));
-          // 	find stereotypedElement(element, domainStereotypeInstance, "SysML", "View")
+          // 	find	stereotypedElement(element, domainStereotypeInstance, "UAF", "View")
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new ConstantValue(body, var__virtual_0_, "SysML");
+          new ConstantValue(body, var__virtual_0_, "UAF");
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
           new ConstantValue(body, var__virtual_1_, "View");
           new PositivePatternCall(body, Tuples.flatTupleOf(var_element, var_domainStereotypeInstance, var__virtual_0_, var__virtual_1_), StereotypedElement.instance().getInternalQueryRepresentation());

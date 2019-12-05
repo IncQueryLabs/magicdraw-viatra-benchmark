@@ -51,7 +51,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
 
 import com.google.common.base.Stopwatch;
 import com.incquerylabs.magicdraw.benchmark.queries.APerformanceQueries;
-import com.incquerylabs.magicdraw.benchmark.queries.TransitiveSubstatesWithCheck3;
+import com.incquerylabs.magicdraw.benchmark.incrementalqueries.TransitiveSubstatesWithCheck3;
 import com.incquerylabs.magicdraw.benchmark.queries.WarmUpQueries;
 import com.nomagic.actions.AMConfigurator;
 import com.nomagic.actions.ActionsCategory;

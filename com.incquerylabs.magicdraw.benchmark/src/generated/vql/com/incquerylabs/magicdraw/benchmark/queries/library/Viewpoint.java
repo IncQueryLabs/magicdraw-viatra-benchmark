@@ -1,5 +1,5 @@
 /**
- * Generated from platform:/resource/com.incquerylabs.magicdraw.benchmark/src/main/java/com/incquerylabs/magicdraw/benchmark/queries/library/SysMLLibrary.vql
+ * Generated from platform:/resource/com.incquerylabs.magicdraw.benchmark/src/main/java/com/incquerylabs/magicdraw/benchmark/queries/library/UAFLibrary.vql
  */
 package com.incquerylabs.magicdraw.benchmark.queries.library;
 
@@ -50,8 +50,10 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  *           element : 'Class' object with the stereotype Viewpoint.
  *           domainStereotypeInstance : Stereotype Application instance
  *          
- *         pattern Viewpoint(element : Class, domainStereotypeInstance : InstanceSpecification){
- *         	find stereotypedElement(element, domainStereotypeInstance, "SysML", "Viewpoint");
+ *         pattern
+ *         Viewpoint(element : Class, domainStereotypeInstance : InstanceSpecification) {
+ *         	find
+ *         	stereotypedElement(element, domainStereotypeInstance, "UAF", "Viewpoint");
  *         }
  * </pre></code>
  * 
@@ -270,8 +272,10 @@ public final class Viewpoint extends BaseGeneratedEMFQuerySpecification<Viewpoin
    *   element : 'Class' object with the stereotype Viewpoint.
    *   domainStereotypeInstance : Stereotype Application instance
    *  
-   * pattern Viewpoint(element : Class, domainStereotypeInstance : InstanceSpecification){
-   * 	find stereotypedElement(element, domainStereotypeInstance, "SysML", "Viewpoint");
+   * pattern
+   * Viewpoint(element : Class, domainStereotypeInstance : InstanceSpecification) {
+   * 	find
+   * 	stereotypedElement(element, domainStereotypeInstance, "UAF", "Viewpoint");
    * }
    * </pre></code>
    * 
@@ -703,9 +707,9 @@ public final class Viewpoint extends BaseGeneratedEMFQuerySpecification<Viewpoin
              new ExportedParameter(body, var_element, parameter_element),
              new ExportedParameter(body, var_domainStereotypeInstance, parameter_domainStereotypeInstance)
           ));
-          // 	find stereotypedElement(element, domainStereotypeInstance, "SysML", "Viewpoint")
+          // 	find	stereotypedElement(element, domainStereotypeInstance, "UAF", "Viewpoint")
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new ConstantValue(body, var__virtual_0_, "SysML");
+          new ConstantValue(body, var__virtual_0_, "UAF");
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
           new ConstantValue(body, var__virtual_1_, "Viewpoint");
           new PositivePatternCall(body, Tuples.flatTupleOf(var_element, var_domainStereotypeInstance, var__virtual_0_, var__virtual_1_), StereotypedElement.instance().getInternalQueryRepresentation());

@@ -2,1086 +2,2573 @@ package com.incquerylabs.magicdraw.benchmark.queries
 
 import "http://www.nomagic.com/magicdraw/UML/2.5.1"
 
-pattern participantPropertyDifferentType(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty(property, _);
-	Property.type(property, type);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty_end(property, propertyEnd);
-	neg Property.type(propertyEnd, type);
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalRole
+ * UAF Constraint Id:  OperationalRole.type
+ *******************************************************************************/
+pattern OperationalRole_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalRole(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalAgent(type, _);
 }
 
-pattern refineNotSingleClient(abstraction : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Refine(abstraction, _);
-	clients == count Abstraction.client(abstraction, _);
-	check(clients != 1);
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalRole
+ * UAF Constraint Id:  OperationalRole.class
+ *******************************************************************************/
+pattern OperationalRole_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalRole(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalAgent(class, _);
 }
 
-pattern requirementHasOperation(operation : Operation) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(class, _);
-	Class.ownedOperation(class, operation);
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalPerformer
+ * UAF Constraint Id:  OperationalPerformer.isCapableOfPerforming
+ *******************************************************************************/
+pattern OperationalPerformer_isCapableOfPerforming(element : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalPerformer(element, _);
+    find com.incquerylabs.magicdraw.benchmark.queries.library.IsCapableToPerform(isCapableToPerform, _);
+    Abstraction.client(isCapableToPerform, element);
+    Abstraction.supplier(isCapableToPerform, isCapableOfPerforming);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalActivity(isCapableOfPerforming, _);
 }
 
-pattern requirementHasAttribute(attirubute : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(req, _);
-	Class.ownedAttribute(req, attirubute);
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalPerformer
+ * UAF Constraint Id:  OperationalPerformer.ownedPort
+ *******************************************************************************/
+pattern OperationalPerformer_ownedPort(element : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalPerformer(element, _);
+    Class.ownedAttribute(element, ownedPort);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalPort(ownedPort, _);
 }
 
-pattern
-requirementInAssociation(association : Association, requirement : Class) {
-	Association.memberEnd(association, memberEnd);
-	Property.type(memberEnd, requirement);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(requirement, _);
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalPerformer
+ * UAF Constraint Id:  OperationalPerformer.ownedOperation
+ *******************************************************************************/
+pattern OperationalPerformer_ownedOperation(element : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalPerformer(element, _);
+    Class.ownedOperation(element, ownedOperation);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalMethod(ownedOperation, _);
 }
 
-pattern
-requirementInGeneralization(classifier : Classifier, requirement : Class) {
-	Classifier.generalization(classifier, generalization);
-	Generalization.general(generalization, requirement);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(requirement, _);
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ProblemDomain
+ * UAF Constraint Id:  ProblemDomain.class
+ *******************************************************************************/
+pattern ProblemDomain_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ProblemDomain(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalArchitecture(class, _);
 }
 
-pattern activityEdgeDiscreteAndContinuous(activityEdge : ActivityEdge) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Discrete(activityEdge, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Continuous(activityEdge, _);
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ProblemDomain
+ * UAF Constraint Id:  ProblemDomain.type
+ *******************************************************************************/
+pattern ProblemDomain_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ProblemDomain(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalPerformer(type, _);
 }
 
-pattern requirementAsType(element : TypedElement, requirement : Class) {
-	TypedElement.type(element, requirement);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(requirement, _);
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalPort
+ * UAF Constraint Id:  OperationalPort.class
+ *******************************************************************************/
+pattern OperationalPort_class(element : Port) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalPort(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalPerformer(class, _);
 }
 
-pattern flowPropertyInvalidType(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.FlowProperty(property, _);
-	Property.type(property, type);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(type, _);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(type, _);
-	neg Signal(type);
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalPort
+ * UAF Constraint Id:  OperationalPort.type
+ *******************************************************************************/
+pattern OperationalPort_type(element : Port) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalPort(element, _);
+    Port.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalInterface(type, _);
 }
 
-pattern interfaceBlockIsConjugated(port : Port, class : Class) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceBlock(class, _);
-	Port.type(port, class);
-	Port.isConjugated(port, true);
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalMethod
+ * UAF Constraint Id:  OperationalMethod.ownedParameter
+ *******************************************************************************/
+pattern OperationalMethod_ownedParameter(element : Operation) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalMethod(element, _);
+    Operation.ownedParameter(element, ownedParameter);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalParameter(ownedParameter, _);
 }
 
-pattern noBufferAndOverwrite(objectNode : ObjectNode) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.NoBuffer(objectNode, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Overwrite(objectNode, _);
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalMethod
+ * UAF Constraint Id:  OperationalMethod.method
+ *******************************************************************************/
+pattern OperationalMethod_method(element : Operation) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalMethod(element, _);
+    Operation.method(element, method);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalActivity(method, _);
 }
 
-pattern notBinaryConnector(connector : Connector) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(block, _);
-	Class.ownedConnector(block, connector);
-	ends == count Connector.end(connector, _);
-	check(ends != 2);
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalParameter
+ * UAF Constraint Id:  OperationalParameter.type
+ *******************************************************************************/
+pattern OperationalParameter_type(element : Parameter) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalParameter(element, _);
+    Parameter.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalExchangeItem(type, _);
 }
 
-pattern allocateNotSingleClient(abstraction : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Allocate(abstraction, _);
-	clients == count Abstraction.client(abstraction, _);
-	check(clients != 1);
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ArbitraryConnector
+ * UAF Constraint Id:  ArbitraryConnector.client
+ *******************************************************************************/
+pattern ArbitraryConnector_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ArbitraryConnector(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ConceptRole(client, _);
 }
 
-pattern allocateNotSingleSupplier(abstraction : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Allocate(abstraction, _);
-	suppliers == count Abstraction.supplier(abstraction, _);
-	check(suppliers != 1);
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ArbitraryConnector
+ * UAF Constraint Id:  ArbitraryConnector.supplier
+ *******************************************************************************/
+pattern ArbitraryConnector_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ArbitraryConnector(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ConceptRole(supplier, _);
 }
 
-pattern participantPropertyNotBlock(class : Class, property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty(property, _);
-	Class.ownedAttribute(class, property);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ConceptRole
+ * UAF Constraint Id:  ConceptRole.type
+ *******************************************************************************/
+pattern ConceptRole_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ConceptRole(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ConceptItem(type, _);
 }
 
-pattern
-participationPropertyNotAssociation(class : Class, property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty(property, _);
-	Class.ownedAttribute(class, property);
-	neg AssociationClass(class);
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ConceptRole
+ * UAF Constraint Id:  ConceptRole.class
+ *******************************************************************************/
+pattern ConceptRole_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ConceptRole(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.HighLevelOperationalConcept(class, _);
 }
 
-pattern participantPropertyIsMemberEndOfAssociation(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty(property, _);
-	Association.memberEnd(_, property);
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalConnector
+ * UAF Constraint Id:  OperationalConnector.end
+ *******************************************************************************/
+pattern OperationalConnector_end(element : Connector) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalConnector(element, _);
+    Connector.end(element, end);
+    ConnectorEnd.role(end, role);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalRole(role, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalPort(role, _);
 }
 
-pattern refineNotSingleSupplier(abstraction : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Refine(abstraction, _);
-	suppliers == count Abstraction.supplier(abstraction, _);
-	check(suppliers != 1);
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalInterface
+ * UAF Constraint Id:  OperationalInterface.ownedOperation
+ *******************************************************************************/
+pattern OperationalInterface_ownedOperation(element : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalInterface(element, _);
+    Class.ownedOperation(element, ownedOperation);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalMethod(ownedOperation, _);
 }
 
-pattern participantPropertyAggregationKindNotNone(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty(property, _);
-	neg Property.aggregation(property, ::none);
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalExchange
+ * UAF Constraint Id:  OperationalExchange.realizingConnector
+ *******************************************************************************/
+pattern OperationalExchange_realizingConnector(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalExchange(element, _);
+    InformationFlow.realizingConnector(element, realizingConnector);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalConnector(realizingConnector, _);
 }
 
-pattern fullPortIsBehavioral(port : Port) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.FullPort(port, _);
-	Port.isBehavior(port, true);
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalExchange
+ * UAF Constraint Id:  OperationalExchange.realizingActivityEdge
+ *******************************************************************************/
+pattern OperationalExchange_realizingActivityEdge(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalExchange(element, _);
+    InformationFlow.realizingActivityEdge(element, realizingActivityEdge);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalActivityEdge(realizingActivityEdge, _);
 }
 
-pattern interfaceBlockPortInvalidType(port : Port) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceBlock(class, _);
-	Class.ownedAttribute(class, port);
-	Port.type(port, type);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceBlock(type, _);
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalExchange
+ * UAF Constraint Id:  OperationalExchange.informationSource
+ *******************************************************************************/
+pattern OperationalExchange_informationSource(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalExchange(element, _);
+    InformationFlow.informationSource(element, informationSource);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalPerformer(informationSource, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalExchange
+ * UAF Constraint Id:  OperationalExchange.informationTarget
+ *******************************************************************************/
+pattern OperationalExchange_informationTarget(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalExchange(element, _);
+    InformationFlow.informationTarget(element, informationTarget);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalPerformer(informationTarget, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalExchange
+ * UAF Constraint Id:  OperationalExchange.realizingMessage
+ *******************************************************************************/
+pattern OperationalExchange_realizingMessage(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalExchange(element, _);
+    InformationFlow.realizingMessage(element, realizingMessage);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalMessage(realizingMessage, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalSignalProperty
+ * UAF Constraint Id:  OperationalSignalProperty.class
+ *******************************************************************************/
+pattern OperationalSignalProperty_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalSignalProperty(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalSignal(class, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalSignalProperty
+ * UAF Constraint Id:  OperationalSignalProperty.type
+ *******************************************************************************/
+pattern OperationalSignalProperty_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalSignalProperty(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalExchangeItem(type, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalConstraint
+ * UAF Constraint Id:  OperationalConstraint.constrainedElement
+ *******************************************************************************/
+pattern OperationalConstraint_constrainedElement(element : Constraint) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalConstraint(element, _);
+    Constraint.constrainedElement(element, constrainedElement);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.SubjectOfOperationalConstraint(constrainedElement, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     InformationElement
+ * UAF Constraint Id:  InformationElement.owner
+ *******************************************************************************/
+pattern InformationElement_owner(element : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.InformationElement(element, _);
+    Class.owner(element, owner);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.DataModel(owner, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalActivity
+ * UAF Constraint Id:  OperationalActivity.ownedParameter
+ *******************************************************************************/
+pattern OperationalActivity_ownedParameter(element : Activity) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalActivity(element, _);
+    Activity.ownedParameter(element, ownedParameter);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalParameter(ownedParameter, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalActivityAction
+ * UAF Constraint Id:  OperationalActivityAction.behavior
+ *******************************************************************************/
+pattern OperationalActivityAction_behavior(element : CallBehaviorAction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalActivityAction(element, _);
+    CallBehaviorAction.behavior(element, behavior);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalActivity(behavior, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalActivityAction
+ * UAF Constraint Id:  OperationalActivityAction.activity
+ *******************************************************************************/
+pattern OperationalActivityAction_activity(element : CallBehaviorAction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalActivityAction(element, _);
+    CallBehaviorAction.activity(element, activity);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalActivity(activity, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalActivityEdge
+ * UAF Constraint Id:  OperationalActivityEdge.owner
+ *******************************************************************************/
+pattern OperationalActivityEdge_owner(element : ActivityEdge) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalActivityEdge(element, _);
+    ActivityEdge.owner+(element, owner);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalActivityEdge(owner, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalControlFlow
+ * UAF Constraint Id:  OperationalControlFlow.target
+ *******************************************************************************/
+pattern OperationalControlFlow_target(element : ControlFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalControlFlow(element, _);
+    ControlFlow.target(element, target);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalActivityAction(target, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalControlFlow
+ * UAF Constraint Id:  OperationalControlFlow.source
+ *******************************************************************************/
+pattern OperationalControlFlow_source(element : ControlFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalControlFlow(element, _);
+    ControlFlow.source(element, source);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalActivityAction(source, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OperationalStateDescription
+ * UAF Constraint Id:  OperationalStateDescription.owner
+ *******************************************************************************/
+pattern OperationalStateDescription_owner(element : StateMachine) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalStateDescription(element, _);
+    StateMachine.owner(element, owner);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalAgent(owner, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Information
+ * UAF Constraint Id:  Information.annotatedElement
+ *******************************************************************************/
+pattern Information_annotatedElement(element : Comment) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.Information(element, _);
+    Comment.annotatedElement(element, annotatedElement);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ConceptItem(annotatedElement, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Metadata
+ * UAF Constraint Id:  Metadata.annotatedElement
+ *******************************************************************************/
+pattern Metadata_annotatedElement(element : Comment) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.Metadata(element, _);
+    Comment.annotatedElement(element, annotatedElement);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.UAFElement(annotatedElement, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ArchitectureMetadata
+ * UAF Constraint Id:  ArchitectureMetadata.annotatedElement
+ *******************************************************************************/
+pattern ArchitectureMetadata_annotatedElement(element : Comment) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ArchitectureMetadata(element, _);
+    Comment.annotatedElement(element, annotatedElement);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ArchitecturalDescription(annotatedElement, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     IsCapableToPerform
+ * UAF Constraint Id:  IsCapableOfPerforming.client
+ *******************************************************************************/
+private pattern IsCapableOfPerforming_client_supplier(abstraction : Abstraction, client : Class, supplier : Activity) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.IsCapableToPerform(abstraction, _);
+	Abstraction.client(abstraction, client);
+	Abstraction.supplier(abstraction, supplier);
+}
+
+// IsCapableOfPerforming.client a.
+pattern IsCapableOfPerforming_OperationalActivity_client(element : Abstraction) {
+	find IsCapableOfPerforming_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalActivity(supplier, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalAgent(client, _);
+}
+
+// IsCapableOfPerforming.client b.
+pattern IsCapableOfPerforming_ServiceFunction_client(element : Abstraction) {
+	find IsCapableOfPerforming_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceFunction(supplier, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceSpecification(client, _);
+}
+
+// IsCapableOfPerforming.client c.
+pattern IsCapableOfPerforming_Function_client(element : Abstraction) {
+	find IsCapableOfPerforming_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Function(supplier, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ProjectActivity(supplier, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourcePerformer(client, _);
+}
+
+// IsCapableOfPerforming.client d.
+pattern IsCapableOfPerforming_ProjectActivity_client(element : Abstraction) {
+	find IsCapableOfPerforming_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ProjectActivity(supplier, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Project(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     IsCapableToPerform
+ * UAF Constraint Id:  IsCapableOfPerforming.supplier
+ *******************************************************************************/
+// IsCapableOfPerforming.supplier a.
+pattern IsCapableOfPerforming_OperationalAgent_supplier(element : Abstraction) {
+	find IsCapableOfPerforming_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalAgent(client, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalActivity(supplier, _);
+}
+
+// IsCapableOfPerforming.supplier b.
+pattern IsCapableOfPerforming_ServiceSpecification_supplier(element : Abstraction) {
+	find IsCapableOfPerforming_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceSpecification(client, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceFunction(supplier, _);
+}
+
+// IsCapableOfPerforming.supplier c.
+pattern IsCapableOfPerforming_ResourcePerformer_supplier(element : Abstraction) {
+	find IsCapableOfPerforming_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ResourcePerformer(client, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Function(supplier, _);
 } or {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceBlock(class, _);
-	Class.ownedAttribute(class, port);
-	neg Port.type(port, _);
+	find IsCapableOfPerforming_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ResourcePerformer(client, _);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ProjectActivity(supplier, _);
 }
 
-pattern conformGeneralNotViewpoint(conform : Generalization) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Conform(conform, _);
-	Generalization.general(conform, general);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Viewpoint(general, _);
+// IsCapableOfPerforming.supplier d.
+pattern IsCapableOfPerforming_Project_supplier(element : Abstraction) {
+	find IsCapableOfPerforming_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Project(client, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ProjectActivity(supplier, _);
 }
 
-pattern conformSpecificNotView(conform : Generalization) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Conform(conform, _);
-	Generalization.specific(conform, specific);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.View(specific, _);
-}
-
-pattern boundReferenceNotConnectorEnd(boundReference : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference(boundReference, _);
-	neg find BoundReference_1_bindingconnector_end(boundReference);
-}
-
-private pattern
-BoundReference_1_bindingconnector_end(boundReference : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.BindingConnector(bindingConnector, _);
-	Connector.end(bindingConnector, connectorEnd);
-	ConnectorEnd.role(connectorEnd, role);
-	Property.redefinedProperty *(boundReference, role);
-}
-
-pattern
-connectionPropertyDifferentName(property : Property, connector : Connector) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty_connector(property, connector);
-	Property.name(property, propName);
-	Connector.name(connector, conName);
-	propName != conName;
-}
-
-pattern
-connectionPropertyNotTypedByAssociationBlock(property : Property, connector : Connector) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty_connector(property, connector);
-	Connector.type(connector, type);
-	neg find associationBlock(type);
-}
-
-private pattern associationBlock(class : AssociationClass) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
-}
-
-pattern connectorPropertyNotBlock(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty(property, _);
-	neg find owningBlock(property, _);
-}
-
-private pattern owningBlock(property : Property, class : Class) {
-	Class.ownedAttribute(class, property);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
-}
-
-pattern connectorPropertyNotComposite(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty(property, _);
-	neg Property.aggregation(property, ::composite);
-}
-
-pattern connectorPropertyNotOwnedOrInherited(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty(property, _);
-	neg find owningBlockTransitive(property, _);
-}
-
-private pattern general(specific : Classifier, general : Classifier) {
-	Classifier.generalization(specific, generalization);
-	Generalization.general(generalization, general);
-}
-
-private pattern owningBlockTransitive(property : Property, owner : Class) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(owner, _);
-	Class.ownedAttribute(owner, property);
-	find general *(owner, general);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty_connector(property, connector);
-	Class.ownedConnector(general, connector);
-}
-
-pattern valueTypeSpecializatonNotValueType(classifier : Classifier) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(valueType, _);
-	find general(classifier, valueType);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(classifier, _);
-}
-
-pattern blockValuePropertyNotComposite(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(block, _);
-	Class.ownedAttribute(block, property);
-	Property.type(property, type);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(type, _);
-	neg Property.aggregation(property, ::composite);
-}
-
-pattern valueTypeValuePropertyNotComposite(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(valueType, _);
-	DataType.ownedAttribute(valueType, property);
-	Property.type(property, type);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(type, _);
-	neg Property.aggregation(property, ::composite);
-}
-
-pattern parameterDiscreteAndContinuous(parameter : Parameter) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Discrete(parameter, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Continuous(parameter, _);
-}
-
-pattern probabilityInvalidStereotype(probability : NamedElement) {
-	ActivityEdge(probability);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Probability(probability, _);
-	ActivityEdge.source(probability, source);
-	neg DecisionNode(source);
-} or {
-	ParameterSet(probability);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Probability(probability, _);
-	ParameterSet.parameter(probability, parameter);
-	neg Parameter.direction(parameter, ::^out);
-}
-
-pattern probabilityAllOutgoingEdges(activityEdge : ActivityEdge) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Probability(activityEdge, _);
-	ActivityEdge.target(activityEdge, target);
-	ActivityNode.incoming(target, edge);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Probability(edge, _);
-}
-
-pattern rateNotStreaming(rate : Parameter) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Rate(rate, _);
-	Parameter.isStream(rate, false);
-}
-
-pattern copyClientNotRequirement(copy : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Copy(copy, _);
-	Abstraction.client(copy, client);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(client, _);
-}
-
-pattern copySupplierNotRequirement(copy : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Copy(copy, _);
-	Abstraction.supplier(copy, supplier);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(supplier, _);
-}
-
-pattern satisfySupplierNotRequirement(satisfy : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Satisfy(satisfy, _);
-	Abstraction.supplier(satisfy, supplier);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(supplier, _);
-}
-
-pattern stakeHolderInvalidStereotype(stakeholder : Classifier) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Stakeholder(stakeholder, _);
-	neg Actor(stakeholder);
-	neg find classNotAssociation(stakeholder);
-}
-
-private pattern classNotAssociation(classifier : Classifier) {
-	Class(classifier);
-	neg Association(classifier);
-}
-
-pattern endPathMiultiplicityNotRedefiniton(endPathMultiplicity : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.EndPathMultiplicity(endPathMultiplicity, _);
-	neg Property.redefinedProperty(endPathMultiplicity, _);
-} or {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.EndPathMultiplicity(endPathMultiplicity, _);
-	neg find redefinedBoundReferenceProperty(endPathMultiplicity, _);
-}
-
-private pattern
-redefinedBoundReferenceProperty(property : Property, boundReference : Property) {
-	Property.redefinedProperty(property, boundReference);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference(boundReference, _);
-}
-
-pattern endPathMiultiplicityNegative(endPathMultiplicity : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.EndPathMultiplicity(endPathMultiplicity, _);
-	Property.lowerValue(endPathMultiplicity, lower);
-	LiteralInteger.value(lower, value);
-	check(value < 0);
-}
-
-pattern participantPropertyEndOwner(participantProperty : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty(participantProperty, _);
-	neg find associationEnd(participantProperty);
-}
-
-private pattern associationEnd(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty_end(property, end);
-	Property.association(property, association);
-	Association.memberEnd(association, end);
-}
-
-pattern participantPropertyMultiplicity(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty(property, _);
-	Property.lowerValue(property, lower);
-	LiteralInteger.value(lower, value);
-	check(value != 1);
-} or {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty(property, _);
-	Property.upperValue(property, upper);
-	LiteralUnlimitedNatural.value(upper, value);
-	check(value != 1);
-}
-
-pattern propertySpecificTypeNotOneProperty(classifier : Classifier) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.PropertySpecificType(classifier, _);
-	number == count Property.type(_, classifier);
-	check(number != 1);
-}
-
-pattern adjunctPropertyCallActionInconsistent(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
-	neg find compositeAndConsistent(property);
-}
-
-private pattern compositeAndConsistent(property : Property) {
-	find checkEmptiness(property);
-} or {
-	neg find calledBehavior(property, _);
-	neg Property.type(property, _);
-} or {
-	find calledBehavior(property, called);
-	Property.type(property, type);
-	find general *(called, type);
-}
-
-private pattern checkEmptiness(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	CallOperationAction(principal);
-	CallOperationAction.operation(principal, operation);
-	neg Operation.method(operation, _);
-	neg Property.type(property, _);
-} or {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	CallOperationAction(principal);
-	CallOperationAction.operation(principal, operation);
-	Operation.method(operation, called);
-	Property.type(property, type);
-	find general(called, type);
-}
-
-private pattern calledBehavior(property : Property, behavior : Behavior) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	CallBehaviorAction(principal);
-	CallBehaviorAction.behavior(principal, behavior);
-} or {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	find StartObjectBehaviorActionBehavior(principal, behavior);
-}
-
-private pattern
-StartObjectBehaviorActionBehavior(action : StartObjectBehaviorAction, behavior : Behavior) {
-	StartObjectBehaviorAction.object(action, object);
-	InputPin.type(object, behavior);
-} or {
-	StartObjectBehaviorAction.object(action, object);
-	InputPin.type(object, type);
-	BehavioredClassifier(type);
-	BehavioredClassifier.classifierBehavior(type, behavior);
-}
-
-pattern adjunctPropertyConnectorNotAssociationBlock(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	Connector(principal);
-	neg find associationBlockOfConnector(principal);
-}
-
-private pattern associationBlockOfConnector(connector : Connector) {
-	Connector.type(connector, type);
-	Association(type);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(type, _);
-}
-
-pattern adjunctPropertyConnectorPropertyInconsistent(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, apPrincipal);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty_connector(property, cpConnector);
-	apPrincipal != cpConnector;
-}
-
-pattern adjunctPropertyIncompatibleType(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	find connOrVarOrParam(property);
-	find principalType(principal, principalType);
-	Property.type(property, type);
-	neg find generalClosure(principalType, type);
-}
-
-private pattern connOrVarOrParam(element : Element) {
-	Connector(element);
-} or {
-	Variable(element);
-} or {
-	Parameter(element);
-}
-
-private pattern
-principalType(principal : Element, principalType : Classifier) {
-	Connector(principal);
-	Connector.type(principal, principalType);
-} or {
-	TypedElement.type(principal, principalType);
-}
-
-private pattern
-generalClosure(classifier : Classifier, general : Classifier) {
-	find general *(classifier, general);
-}
-
-pattern adjunctPropertyInvalidPrincipalKind(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	neg Connector(principal);
-	neg CallAction(principal);
-	neg ObjectNode(principal);
-	neg Variable(principal);
-	neg Parameter(principal);
-	neg InteractionUse(principal);
-	neg find submachineState(principal);
-}
-
-private pattern submachineState(state : State) {
-	State(state);
-	State.submachine(state, _);
-}
-
-pattern adjunctPropertyNotComposite(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	Connector(principal);
-	neg Property.aggregation(property, ::composite);
-} or {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	CallAction(principal);
-	neg Property.aggregation(property, ::composite);
-}
-
-pattern adjunctPropertyWrongName(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	NamedElement.name(principal, name);
-	neg Property.name(property, name);
-}
-
-pattern blockAssociationNotBinary(association : Association) {
-	neg find notAllEndsAreBlocks(association);
-	ends == count Association.memberEnd(association, _);
-	check(ends != 2);
-}
-
-private pattern notAllEndsAreBlocks(association : Association) {
-	Association.memberEnd(association, end);
-	Property.type(end, class);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
-}
-
-pattern blockSpecializationNotBlock(class : Class) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(block, _);
-	find general(class, block);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
-}
-
-pattern classifierBehaviorPropertyInvalidOwner(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ClassifierBehaviorProperty(property, _);
-	neg find validOwner(property);
-}
-
-private pattern validOwner(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(block, _);
-	Class.ownedAttribute(block, property);
-	Class.classifierBehavior(block, _);
-}
-
-pattern classifierBehaviorPropertyInvalidType(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ClassifierBehaviorProperty(property, _);
-	neg find validType(property);
-}
-
-private pattern validType(property : Property) {
-	Class.ownedAttribute(class, property);
-	Class.classifierBehavior(class, clBehavior);
-	Property.type(property, type);
-	find general *(clBehavior, type);
-}
-
-pattern viewNotSingleViewpoint(view : Class) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.View(view, _);
-	size == count find viewConforms(view, _);
-	check(size != 1);
-}
-
-private pattern viewConforms(class : Class, conform : Generalization) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Conform(conform, _);
-	Generalization.specific(conform, class);
-}
-
-pattern viewStakeholderNotDerivedFromConform(view : Class) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.View(view, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.View_stakeholder(view, stakeholder);
-	neg find stakeholderDerivedFromConform(view, stakeholder, _);
-}
-
-private pattern
-stakeholderDerivedFromConform(view : Class, stakeholder : Class, conform : Generalization) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Conform(conform, _);
-	Generalization.specific(conform, view);
-	Generalization.general(conform, viewPoint);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Viewpoint_stakeholder(viewPoint, stakeholder);
-}
-
-pattern viewViewpointNotDerivedFromConform(view : Class) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.View(view, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.View_viewPoint(view, viewPoint);
-	neg find viewpointDerivedFromConform(view, viewPoint, _);
-}
-
-private pattern
-viewpointDerivedFromConform(view : Class, viewPoint : Class, conform : Generalization) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Conform(conform, _);
-	Generalization.specific(conform, view);
-	Generalization.general(conform, viewPoint);
-}
-
-pattern classifierBehaviorPropertyNotComposite(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ClassifierBehaviorProperty(property, _);
-	neg Property.aggregation(property, ::composite);
-}
-
-pattern requirementNestedClassifierNotRequirement(nested : Class) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(requirement, _);
-	Class.nestedClassifier(requirement, nested);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(nested, _);
-}
-
-pattern
-constraintBlockSpecializationNotConstraintBlock(constraintBlock : Class) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ConstraintBlock(constraintBlock, _);
-	Classifier(classifier);
-	Classifier.generalization(classifier, generalization);
-	Generalization.general(generalization, constraintBlock);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ConstraintBlock(classifier, _);
-}
-
-pattern distributedPropertyNotBlockOrValueType(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.DistributedProperty(property, _);
-	neg find propertyOwnedByBlock(property);
-	neg find propertyOwnedByValueType(property);
-}
-
-private pattern propertyOwnedByBlock(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(block, _);
-	Class.ownedAttribute(block, property);
-}
-
-private pattern propertyOwnedByValueType(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(valueType, _);
-	DataType.ownedAttribute(valueType, property);
-}
-
-pattern exposeClientNotView(expose : Dependency) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Expose(expose, _);
-	Dependency.client(expose, client);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.View(client, _);
-}
-
-pattern fullPortBoundToFullPort(port : Port) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.FullPort(port, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.BindingConnector(connector, _);
-	Connector.end(connector, end);
-	ConnectorEnd.role(end, port);
-	Connector.end(connector, otherEnd);
-	ConnectorEnd.role(otherEnd, role);
-	role != port;
-	find com.incquerylabs.magicdraw.benchmark.queries.library.FullPort(role, _);
-}
-
-pattern
-invocationOnNestedPortActionOnPortUndefined(action : InvocationAction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.InvocationOnNestedPortAction(action, _);
-	neg InvocationAction.onPort(action, _);
-}
-
-pattern itemFlowAssociationHasItemProperty(itemFlow : InformationFlow) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow(itemFlow, _);
-	InformationFlow.realization(itemFlow, realization);
-	Association(realization);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow_itemProperty(itemFlow, _);
-}
-
-pattern itemFlowDifferentType(itemFlow : InformationFlow) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow(itemFlow, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow_itemProperty(itemFlow, itemProperty);
-	Property.type(itemProperty, type);
-	neg InformationFlow.conveyed(itemFlow, type);
-}
-
-pattern itemFlowInvalidType(itemFlow : InformationFlow) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow(itemFlow, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow_itemProperty(itemFlow, itemProperty);
-	Property.type(itemProperty, type);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(type, _);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(type, _);
-	neg Signal(type);
-}
-
-pattern itemFlowItemPropertyDifferentName(itemFlow : InformationFlow) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow(itemFlow, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow_itemProperty(itemFlow, itemProperty);
-	InformationFlow.name(itemFlow, itemFlowName);
-	Property.name(itemProperty, itemPropertyName);
-	check(itemFlowName != itemPropertyName);
-}
-
-pattern proxyPortFullPort(port : Port) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ProxyPort(port, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.FullPort(port, _);
-}
-
-pattern proxyPortSubportNotProxyPort(port : Port) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ProxyPort(port, _);
-	Port.type(port, type);
-	Class.ownedAttribute(type, otherPort);
-	Port(otherPort);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ProxyPort(otherPort, _);
-}
-
-pattern proxyPortTypeNotInterfaceBlock(port : Port) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ProxyPort(port, _);
-	Port.type(port, type);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceBlock(type, _);
-}
-
-pattern traceNotSingleClient(trace : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Trace(trace, _);
-	size == count Abstraction.client(trace, _);
-	check(size != 1);
-}
-
-pattern triggerOnNestedPortBaseFullPort(trigger : Trigger) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.TriggerOnNestedPort(trigger, _);
-	Trigger.port(trigger, port);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.FullPort(port, _);
-}
-
-pattern triggerOnNestedPortFullPort(trigger : Trigger) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.TriggerOnNestedPort(trigger, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.TriggerOnNestedPort_onNestedPort(trigger, port);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.FullPort(port, _);
-}
-
-pattern triggerOnNestedPortNotSinglePort(trigger : Trigger) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.TriggerOnNestedPort(trigger, _);
-	size == count Trigger.port(trigger, _);
-	check(size != 1);
-}
-
-pattern verifySupplierNotRequirement(verify : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Verify(verify, _);
-	Abstraction.supplier(verify, supplier);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(supplier, _);
-}
-
-pattern acsfeActionOneTrigger(action : AcceptEventAction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AcceptChangeStructuralFeatureEventAction(action, _);
-	size == count AcceptEventAction.trigger(action, _);
-	check(size != 1);
-}
-
-pattern acsfeActionInvalidTrigger(action : AcceptEventAction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AcceptChangeStructuralFeatureEventAction(action, _);
-	AcceptEventAction.trigger(action, trigger);
-	neg find triggerEventIsChangeStructuralFeatureEvent(trigger);
-}
-
-private pattern
-triggerEventIsChangeStructuralFeatureEvent(trigger : Trigger) {
-	Trigger.event(trigger, event);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ChangeStructuralFeatureEvent(event, _);
-}
-
-pattern acsfeActionNotTwoResultpins(action : AcceptEventAction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AcceptChangeStructuralFeatureEventAction(action, _);
-	size == count AcceptEventAction.result(action, _);
-	check(size != 2);
-}
-
-pattern adjunctPropertyMultiplicityRestrictive(property : Property){
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	MultiplicityElement(principal);
-	find moreRestrictive(property);
-}
-
-private pattern moreRestrictive(property : Property){
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	Property.lowerValue(property, propLower);
-	MultiplicityElement.lowerValue(principal, princLower);
-	LiteralInteger.value(propLower, propLowerValue);
-	LiteralInteger.value(princLower, princLowerValue);
-	check(propLowerValue > princLowerValue);
-} or {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	Property.upperValue(property, propUpper);
-	MultiplicityElement.upperValue(principal, princUpper);
-	LiteralUnlimitedNatural.value(propUpper, propUpperValue);
-	LiteralUnlimitedNatural.value(princUpper, princUpperValue);
-	check (propUpperValue >= 0);
-	check(
-		propUpperValue < princUpperValue ||
-		-1 == princUpperValue
-	);
-}
-
-pattern adjunctPropertySubmachineOrInteraction(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	find interactionUseOrState(principal);
-	neg find correct(property);
-}
-
-private pattern interactionUseOrState(element : Element) {
-	InteractionUse(element);
-} or {
-	State(element);
-}
-
-private pattern correct(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	neg find principalBehavior(principal, _);
-	neg Property.type(property, _);
-} or {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	find principalBehavior(principal, behavior);
-	Property.type(property, type);
-	find general *(behavior, type);
-}
-
-private pattern principalBehavior(principal : Element, behavior : Behavior) {
-	InteractionUse(principal);
-	InteractionUse.refersTo(principal, behavior);
-} or {
-	State(principal);
-	State.submachine(principal, behavior);
-}
-
-pattern
-allocateActivityPartitionActionsOnClientEnds(activityPartition : ActivityPartition) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AllocateActivityPartition(activityPartition, _);
-	ActivityPartition.node(activityPartition, node);
-	Action(node);
-	neg find correctActPartNode(activityPartition, node);
-}
-
-private pattern
-correctActPartNode(activityPartition : ActivityPartition, action : Action) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Allocate(allocs, _);
-	Abstraction.client(allocs, action);
-	find representsSupplier(allocs, activityPartition);
-}
-
-private pattern
-representsSupplier(allocs : Abstraction, activityPartition : ActivityPartition) {
-	Abstraction.supplier(allocs, supplier);
-	ActivityPartition.represents(activityPartition, supplier);
-}
-
-pattern boundReferenceOpposite(boundReference : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference(boundReference, _);
-	neg find BoundReference_2_opposite_bindingconnector_end(boundReference);
-}
-
-private pattern
-BoundReference_2_opposite_bindingconnector_end(boundReference : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.BindingConnector(oppositeConnector, _);
-	Connector.end(oppositeConnector, opposite);
-	ConnectorEnd.role(opposite, role);
-	Property.redefinedProperty *(boundReference, role);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference_boundEnd(boundReference, boundEnd);
-	Connector.end(connector, opposite);
-	Connector.end(connector, boundEnd);
-	boundEnd != opposite;
-}
-
-pattern boundReferenceNotReferenceOrValueProperty(boundReference : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference(boundReference, _);
-	Property.type(boundReference, type);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(type, _);
-	Property.aggregation(boundReference, ::composite);
-}
-
-pattern boundReferenceNotOrdered(boundReference : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference(boundReference, _);
-	Property.upperValue(boundReference, upper);
-	find greaterThanOne(upper);
-	Property.isOrdered(boundReference, false);
-}
-
-private pattern greaterThanOne(op : LiteralUnlimitedNatural) {
-	LiteralUnlimitedNatural.value(op, value);
-	check(value > 1);
-} or {
-	LiteralUnlimitedNatural.value(op, value);
-	check(value < 0);
-}
-
-pattern boundReferenceUnique(boundReference : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference(boundReference, _);
-	Property.upperValue(boundReference, upper);
-	find greaterThanOne(upper);
-	Property.isUnique(boundReference, true);
-}
-
-pattern boundReferenceRedefined(boundReference : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference(boundReference, _);
-	Property.redefinedProperty(boundReference, redefined);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference(redefined, _);
-}
-
-pattern constraintBlockPropertyNotComposite(constraintBlock : Class) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ConstraintBlock(constraintBlock, _);
-	Class.ownedAttribute(constraintBlock, property);
-	neg Property.aggregation(property, ::composite);
-}
-
-pattern controlOperatorOperationMethod(method : Behavior) {
-	Operation(controlOpertator);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ControlOperator(controlOpertator, _);
-	Operation.method(controlOpertator, method);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ControlOperator(method, _);
-}
-
-pattern deriveReqtSupplierNotReqt(deriveReqt : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.DeriveReqt(deriveReqt, _);
-	Abstraction.supplier(deriveReqt, supplier);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(supplier, _);
-}
-
-pattern deriveReqtClientNotReqt(deriveReqt : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.DeriveReqt(deriveReqt, _);
-	Abstraction.client(deriveReqt, client);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(client, _);
-}
-
-pattern direcredFeatureInvalidStereotype(feature : Feature) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.DirectedFeature(feature, _);
-	neg BehavioralFeature(feature);
-	neg find notFlowProperty(feature);
-}
-
-private pattern notFlowProperty(feature : Property) {
-	Property.redefinedProperty(feature, redefined);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.FlowProperty(redefined, _);
-	Property.subsettedProperty(feature, subsetted);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.FlowProperty(subsetted, _);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.FlowProperty(feature, _);
-}
-
-pattern optionalLowerNotZero(parameter : Parameter) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Optional(parameter, _);
-	Parameter.lowerValue(parameter, lower);
-	LiteralInteger.value(lower, lowerValue);
-	check(lowerValue != 0);
-}
-
-pattern optionalLowerZero(parameter : Parameter) {
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Optional(parameter, _);
-	Parameter.lowerValue(parameter, lower);
-	LiteralInteger.value(lower, lowerValue);
-	check(lowerValue == 0);
-}
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     PerformsInContext
+ * UAF Constraint Id:  PerformsInContext.client
+ *******************************************************************************/
+pattern PerformsInContext_client_supplier(abstraction : Abstraction, client : Property, supplier : CallBehaviorAction) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.PerformsInContext(abstraction, _);
+	Abstraction.client(abstraction, client);
+	Abstraction.supplier(abstraction, supplier);
+}
 
-pattern adjunctPropertyIncorrectMultiplicity(property : Property){
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	ObjectNode(principal);
-	Property.lowerValue(property, lower);
-	LiteralInteger.value(lower, lowerValue);
-	check(lowerValue != 0);
-} or {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	ObjectNode(principal);
-	Property.upperValue(property, propertyUpper);
-	ObjectNode.upperBound(principal, principalUpper);
-	
-	LiteralUnlimitedNatural.value(propertyUpper, propertyUpperValue);
-	LiteralUnlimitedNatural.value(principalUpper, principalUpperValue);
-	check (propertyUpperValue >= 0);
-	check(
-		principalUpperValue == -1 ||
-		propertyUpperValue < principalUpperValue
-	);
-
-}
-
-pattern traceNotSingleSupplier(trace : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Trace(trace, _);
-	size == count Abstraction.supplier(trace, _);
-	check(size != 1);
+// PerformsInContext.client a.
+pattern PerformsInContext_OperationalActivityAction_client(element : Abstraction) {
+	find PerformsInContext_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalActivityAction(supplier, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalRole(client, _);
 }
 
-pattern acsfeActionIncorrectResultpins(action : AcceptEventAction){
-	find resultToCheck(action, event, trigger, result);
-	neg find correctTypeAndOrdering(action, event, trigger, result);
+// PerformsInContext.client b.
+pattern PerformsInContext_ServiceFunctionAction_client(element : Abstraction) {
+	find PerformsInContext_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceFunctionAction(supplier, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceSpecificationRole(client, _);
 }
 
-private pattern resultToCheck(action : AcceptEventAction, event : ChangeEvent, trigger: Trigger, result : OutputPin) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AcceptChangeStructuralFeatureEventAction(action, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ChangeStructuralFeatureEvent(event, _);
-	AcceptEventAction.trigger(action, trigger);
-	Trigger.event(trigger, event);
-	AcceptEventAction.result(action, result);
+// PerformsInContext.client c.
+pattern PerformsInContext_FunctionAction_client(element : Abstraction) {
+	find PerformsInContext_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.FunctionAction(supplier, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceRole(client, _);
 }
 
-private pattern correctTypeAndOrdering(action : AcceptEventAction, event : ChangeEvent, trigger: Trigger, result : OutputPin){
-	find resultToCheck(action, event, trigger, result);
-
-	OutputPin.type(result, type);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ChangeStructuralFeatureEvent_structuralFeature(event, feature);
-	StructuralFeature.type(feature, type);
-	OutputPin.isOrdered(result, ordered);
-	StructuralFeature.isOrdered(feature, ordered);
-	
-	OutputPin.lowerValue(result, rLower);
-	StructuralFeature.lowerValue(feature, sfLower);
-	LiteralInteger.value(rLower, rLowerValue);
-	LiteralInteger.value(sfLower, sfLowerValue);
-	check(rLowerValue <= sfLowerValue);
-	
-	OutputPin.upperValue(result, rUpper);
-	StructuralFeature.upperValue(feature, sfUpper);
-	LiteralUnlimitedNatural.value(rUpper, rUpperValue);
-	LiteralUnlimitedNatural.value(sfUpper, sfUpperValue);
-	check((rUpperValue >= sfUpperValue) || (rUpperValue < 0));
-}
-
-pattern viewpointNoCreate(viewpoint : Class) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Viewpoint(viewpoint, _);
-	neg find hasCreateOperationamedView(viewpoint);
+// PerformsInContext.client d.
+pattern PerformsInContext_ProjectActivityAction_client(element : Abstraction) {
+	find PerformsInContext_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ProjectActivityAction(supplier, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ProjectRole(client, _);
 }
 
-private pattern hasCreateOperationamedView(viewpoint : Class) {
-	Class.ownedOperation(viewpoint, operation);
-	Operation.name(operation, name);
-	check(name == "View");
-	find com.incquerylabs.magicdraw.benchmark.queries.library.stereotypedElement(operation, _, _, "Create");
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     PerformsInContext
+ * UAF Constraint Id:  PerformsInContext.supplier
+ *******************************************************************************/
+// PerformsInContext.supplier a.
+pattern PerformsInContext_OperationalActivityAction_supplier(element : Abstraction) {
+	find PerformsInContext_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalRole(client, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalActivityAction(client, _);
 }
 
-pattern changeStructuralFeatureEventStatic(changeEvent : ChangeEvent) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ChangeStructuralFeatureEvent(changeEvent, _);
-	find
-	com.incquerylabs.magicdraw.benchmark.queries.library.ChangeStructuralFeatureEvent_structuralFeature(changeEvent, structuralFeature);
-	StructuralFeature.isStatic(structuralFeature, true);
+// PerformsInContext.supplier b.
+pattern PerformsInContext_ServiceSpecificationRole_supplier(element : Abstraction) {
+	find PerformsInContext_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceSpecificationRole(client, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceFunctionAction(client, _);
 }
 
-pattern
-changeStructuralFeatureEventFeatureMultiplicity(changeEvent : ChangeEvent) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ChangeStructuralFeatureEvent(changeEvent, _);
-	size == count find
-	com.incquerylabs.magicdraw.benchmark.queries.library.ChangeStructuralFeatureEvent_structuralFeature(changeEvent, _);
-	check(size != 1);
+// PerformsInContext.supplier c.
+pattern PerformsInContext_ResourceRole_supplier(element : Abstraction) {
+	find PerformsInContext_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceRole(client, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.FunctionAction(client, _);
 }
 
-pattern copyMultipleCopies(copy : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Copy(copy, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(req, _);
-	Abstraction.client(copy, req);
-	Abstraction.client(otherCopy, req);
-	copy != otherCopy;
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Copy(otherCopy, _);
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Implements
+ * UAF Constraint Id:  Implements.client
+ *******************************************************************************/
+pattern Implements_client_supplier(abstraction : Abstraction, client : NamedElement, supplier : NamedElement) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.Implements(abstraction, _);
+	Abstraction.client(abstraction, client);
+	Abstraction.client(abstraction, supplier);
 }
 
-pattern copyCycle(copy : Abstraction) {
-	find supplierCopy +(copy, copy);
+// Implements.client a.
+pattern Implements_OperationalAgent_client(element : Abstraction) {
+	find Implements_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalAgent(supplier, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourcePerformer(client, _);
 }
 
-private pattern supplierCopy(copy1 : Abstraction, copy2 : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Copy(copy1, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Copy(copy2, _);
-	Abstraction.supplier(copy1, req);
-	Abstraction.client(copy2, req);
+// Implements.client b.
+pattern Implements_OperationalActivity_client(element : Abstraction) {
+	find Implements_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalActivity(supplier, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Function(client, _);
 }
 
-pattern requirementIdNotUnique(req : NamedElement) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(req, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement_Id(req, id);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(req2, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement_Id(req2, id);
-	req != req2;
+// Implements.client c.
+pattern Implements_ServiceFunction_client(element : Abstraction) {
+	find Implements_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceFunction(supplier, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Function(client, _);
 }
 
-pattern propertySpecificTypeNotOwnedByBlock(property : Property) {
-	Property.type(property, type);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.PropertySpecificType(type, _);
-	neg find owningBlock(property, _);
+// Implements.client d.
+pattern Implements_ServiceInterface_client(element : Abstraction) {
+	find Implements_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceInterface(supplier, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceInterface(client, _);
 }
 
-pattern valuePropertyNotValueType(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ValueProperty(property, _);
-	Property.type(property, type);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(type, _);
+// Implements.client e.
+pattern Implements_OperationalInterface_client(element : Abstraction) {
+	find Implements_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalInterface(supplier, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceInterface(client, _);
 }
 
-pattern flowPortOwnerNotBlock(port : Port) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.FlowPort(port, _);
-	neg find owningBlock(port, _);
+// Implements.client f.
+pattern Implements_OperationalConnector_client(element : Abstraction) {
+	find Implements_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalConnector(supplier, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceConnector(client, _);
 }
 
-pattern flowSpecificationInvalidApplication(property : Property) {
-	Property.type(property, type);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.FlowSpecification(type, _);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.FlowPort(property, _);
+// Implements.client g1.
+pattern Implements_OperationalExchange_client(element : Abstraction) {
+	find Implements_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalExchange(supplier, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceExchange(client, _);
 }
 
-pattern flowPortDeprecated(port : Port) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.FlowPort(port, _);
+// Implements.client g2.
+pattern Implements_OperationalRole_client(element : Abstraction) {
+	find Implements_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalRole(supplier, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceRole(client, _);
 }
 
-pattern flowSpecificationDeprecated(flowSpec : Interface) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.FlowSpecification(flowSpec, _);
+// Implements.client h.
+pattern Implements_ResourceConnector_client(element : Abstraction) {
+	find Implements_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceConnector(supplier, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceConnector(client, _);
 }
 
-pattern interfaceBlockInvalidInheritance(interfaceBlock : Class) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceBlock(interfaceBlock, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.generalizedClassifier(interfaceBlock, general);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceBlock(general, _);
+// Implements.client i.
+pattern Implements_ActualEnduringTask_client(element : Abstraction) {
+	find Implements_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ActualEnduringTask(supplier, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalActivity(client, _);
 }
 
-pattern partPropertyInvalidType(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.PartProperty(property, _);
-	Property.type(property, type);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(type, _);
+// Implements.client j.
+pattern Implements_InformationElement_client(element : Abstraction) {
+	find Implements_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.InformationElement(supplier, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.DataElement(client, _);
 }
 
-pattern referencePropertyInvalidType(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ReferenceProperty(property, _);
-	Property.type(property, type);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(type, _);
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Implements
+ * UAF Constraint Id:  Implements.supplier
+ *******************************************************************************/
+// Implements.supplier a.
+pattern Implements_ResourcePerformer_supplier(element : Abstraction) {
+	find Implements_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalAgent(client, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalAgent(supplier, _);
 }
 
-pattern sharedPropertyInvalidType(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.SharedProperty(property, _);
-	Property.type(property, type);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(type, _);
-}
+// Implements.supplier b.
+pattern Implements_Function_supplier(element : Abstraction) {
+	find Implements_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalAgent(client, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalActivity(supplier, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceFunction(supplier, _);
+}
 
-pattern activityStreamingNoNStreaming(activity : Activity) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.streaming(activity, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.nonStreaming(activity, _);
+// Implements.supplier c. d.
+pattern Implements_ResourceInterface_supplier(element : Abstraction) {
+	find Implements_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceInterface(client, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceInterface(supplier, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalInterface(supplier, _);
+}
+
+// Implements.supplier e.
+pattern Implements_ResourceConnector_supplier(element : Abstraction) {
+	find Implements_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceConnector(client, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalConnector(supplier, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceConnector(supplier, _);
+}
+
+// Implements.supplier f.
+pattern Implements_ResourceExchange_supplier(element : Abstraction) {
+	find Implements_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceExchange(client, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalExchange(supplier, _);
+}
+
+// Implements.supplier g.
+pattern Implements_ResourceRole_supplier(element : Abstraction) {
+	find Implements_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceRole(client, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalRole(supplier, _);
+}
+
+// Implements.supplier h.
+pattern Implements_OperationalActivity_supplier(element : Abstraction) {
+	find Implements_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalActivity(client, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualEnduringTask(supplier, _);
+}
+
+// Implements.supplier i.
+pattern Implements_DataElement_supplier(element : Abstraction) {
+	find Implements_client_supplier(element, client, supplier);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.DataElement(client, _);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.InformationElement(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ArchitecturalReference
+ * UAF Constraint Id:  ArchitecturalReference.client
+ *******************************************************************************/
+pattern ArchitecturalReference_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ArchitecturalReference(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ArchitecturalDescription(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ArchitecturalReference
+ * UAF Constraint Id:  ArchitecturalReference.supplier
+ *******************************************************************************/
+pattern ArchitecturalReference_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ArchitecturalReference(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ArchitecturalDescription(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ServicePort
+ * UAF Constraint Id:  ServicePort.type
+ *******************************************************************************/
+pattern ServicePort_type(element : Port) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ServicePort(element, _);
+    Port.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceInterface(type, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ServicePort
+ * UAF Constraint Id:  ServicePort.class
+ *******************************************************************************/
+pattern ServicePort_class(element : Port) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ServicePort(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceSpecification(class, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ServiceSpecificationRole
+ * UAF Constraint Id:  ServiceSpecificationRole.type
+ *******************************************************************************/
+pattern ServiceSpecificationRole_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceSpecificationRole(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceSpecification(type, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ServiceSpecificationRole
+ * UAF Constraint Id:  ServiceSpecificationRole.class
+ *******************************************************************************/
+pattern ServiceSpecificationRole_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceSpecificationRole(element, _);
+    Class.ownedAttribute(class, elemnt);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceSpecification(class, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ServiceMethod
+ * UAF Constraint Id:  ServiceMethod.ownedParameter
+ *******************************************************************************/
+pattern ServiceMethod_ownedParameter(element : Operation) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceMethod(element, _);
+    Operation.ownedParameter(element, ownedParameter);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceParameter(ownedParameter, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ServiceMethod
+ * UAF Constraint Id:  ServiceMethod.method
+ *******************************************************************************/
+pattern ServiceMethod_method(element : Operation) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceMethod(element, _);
+    Operation.method(element, method);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceFunction(method, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ServiceMethod
+ * UAF Constraint Id:  ServiceMethod.owner
+ *******************************************************************************/
+pattern ServiceMethod_owner(element : Operation) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceMethod(element, _);
+    Operation.owner(element, owner);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceSpecification(owner, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ServiceParameter
+ * UAF Constraint Id:  ServiceParameter.type
+ *******************************************************************************/
+pattern ServiceParameter_type(element : Parameter) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceParameter(element, _);
+    Parameter.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalExchangeItem(type, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ServiceConnector
+ * UAF Constraint Id:  ServiceConnector.end
+ *******************************************************************************/
+pattern ServiceConnector_end(element : Connector) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceConnector(element, _);
+    Connector.end(element, end);
+    ConnectorEnd.role(end, role);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ServicePort(role, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceSpecificationRole(role, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ServiceInterface
+ * UAF Constraint Id:  ServiceInterface.ownedOperation
+ *******************************************************************************/
+pattern ServiceInterface_ownedOperation(element : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceInterface(element, _);
+    Class.ownedOperation(element, ownedOperation);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceMethod(ownedOperation, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ServicePolicy
+ * UAF Constraint Id:  ServicePolicy.constrainedElement
+ *******************************************************************************/
+pattern ServicePolicy_constrainedElement(element : Constraint) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ServicePolicy(element, _);
+    Constraint.constrainedElement(element, constrainedElement);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceSpecification(constrainedElement, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ServiceFunction
+ * UAF Constraint Id:  ServiceFunction.ownedParameter
+ *******************************************************************************/
+pattern ServiceFunction_ownedParameter(element : Activity) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceFunction(element, _);
+    Activity.ownedParameter(element, ownedParameter);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceParameter(ownedParameter, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ServiceFunctionAction
+ * UAF Constraint Id:  ServiceFunctionAction.behavior
+ *******************************************************************************/
+pattern ServiceFunctionAction_behavior(element : CallBehaviorAction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceFunctionAction(element, _);
+    CallBehaviorAction.behavior(element, behavior);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceFunction(behavior, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ServiceFunctionAction
+ * UAF Constraint Id:  ServiceFunctionAction.activity
+ *******************************************************************************/
+pattern ServiceFunctionAction_activity(element : CallBehaviorAction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceFunctionAction(element, _);
+    CallBehaviorAction.activity(element, activity);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceFunction(activity, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ServiceStateDescription
+ * UAF Constraint Id:  ServiceStateMachine.owner
+ *******************************************************************************/
+pattern ServiceStateMachine_owner(element : StateMachine) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceStateDescription(element, _);
+    StateMachine.owner(element, owner);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceSpecification(owner, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Consumes
+ * UAF Constraint Id:  Consumes.client
+ *******************************************************************************/
+pattern Consumes_client(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.Consumes(element, _);
+    Abstraction.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalActivity(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Consumes
+ * UAF Constraint Id:  Consumes.supplier
+ *******************************************************************************/
+pattern Consumes_supplier(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.Consumes(element, _);
+    Abstraction.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceSpecification(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ResourceRole
+ * UAF Constraint Id:  ResourceRole.class
+ *******************************************************************************/
+pattern ResourceRole_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceRole(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourcePerformer(class, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ResourceRole
+ * UAF Constraint Id:  ResouceRole.type
+ *******************************************************************************/
+pattern ResouceRole_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceRole(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourcePerformer(type, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ResourcePort
+ * UAF Constraint Id:  ResoucePort.type
+ *******************************************************************************/
+pattern ResoucePort_type(element : Port) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ResourcePort(element, _);
+    Port.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceInterface(type, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ResourcePort
+ * UAF Constraint Id:  ResourcePort.class
+ *******************************************************************************/
+pattern ResourcePort_class(element : Port) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ResourcePort(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourcePerformer(class, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ResourceMethod
+ * UAF Constraint Id:  ResourceMethod.method
+ *******************************************************************************/
+pattern ResourceMethod_method(element : Operation) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceMethod(element, _);
+    Operation.method(element, method);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Function(method, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ResourceMethod
+ * UAF Constraint Id:  ResourceMethod.ownedParameter
+ *******************************************************************************/
+pattern ResourceMethod_ownedParameter(element : Operation) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceMethod(element, _);
+    Operation.ownedParameter(element, ownedParameter);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceParameter(ownedParameter, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ResourcePerformer
+ * UAF Constraint Id:  ResourcePerformer.ownedOperation
+ *******************************************************************************/
+pattern ResourcePerformer_ownedOperation(element : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ResourcePerformer(element, _);
+    Class.ownedOperation(element, ownedOperation);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceMethod(ownedOperation, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ResourcePerformer
+ * UAF Constraint Id:  ResourcePerformer.ownedPort
+ *******************************************************************************/
+pattern ResourcePerformer_ownedPort(element : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ResourcePerformer(element, _);
+    Class.ownedAttribute(element, ownedPort);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourcePort(ownedPort, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ResourcePerformer
+ * UAF Constraint Id:  ResourcePerformer.isCapableOfPerforming
+ *******************************************************************************/
+pattern ResourcePerformer_isCapableOfPerforming(element : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ResourcePerformer(element, _);
+    find com.incquerylabs.magicdraw.benchmark.queries.library.IsCapableToPerform(isCapableToPerform, _);
+    Abstraction.client(isCapableToPerform, element);
+    Abstraction.supplier(isCapableToPerform, isCapableOfPerforming);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Function(isCapableOfPerforming, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ResourceExchange
+ * UAF Constraint Id:  ResourceInteraction.realizingActivityEdge
+ *******************************************************************************/
+pattern ResourceInteraction_realizingActivityEdge(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceExchange(element, _);
+    InformationFlow.realizingActivityEdge(element, realizingActivityEdge);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.FunctionEdge(realizingActivityEdge, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ResourceExchange
+ * UAF Constraint Id:  ResourceInteraction.realizingConnector
+ *******************************************************************************/
+pattern ResourceInteraction_realizingConnector(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceExchange(element, _);
+    InformationFlow.realizingConnector(element, realizingConnector);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceConnector(realizingConnector, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ResourceExchange
+ * UAF Constraint Id:  ResourceInteraction.informationSource
+ *******************************************************************************/
+pattern ResourceInteraction_informationSource(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceExchange(element, _);
+    InformationFlow.informationSource(element, informationSource);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourcePerformer(informationSource, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ResourceExchange
+ * UAF Constraint Id:  ResourceInteraction.informationTarget
+ *******************************************************************************/
+pattern ResourceInteraction_informationTarget(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceExchange(element, _);
+    InformationFlow.informationTarget(element, informationTarget);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourcePerformer(informationTarget, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ResourceExchange
+ * UAF Constraint Id:  ResourceInteraction.realizingMessage
+ *******************************************************************************/
+pattern ResourceInteraction_realizingMessage(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceExchange(element, _);
+    InformationFlow.realizingMessage(element, realizingMessage);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceMessage(realizingMessage, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ResourceInterface
+ * UAF Constraint Id:  ResourceInterface.ownedOperation
+ *******************************************************************************/
+pattern ResourceInterface_ownedOperation(element : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceInterface(element, _);
+    Class.ownedOperation(element, ownedOperation);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceMethod(ownedOperation, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ResourceConnector
+ * UAF Constraint Id:  ResourceConnector.end
+ *******************************************************************************/
+pattern ResourceConnector_end(element : Connector) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceConnector(element, _);
+    Connector.end(element, end);
+    ConnectorEnd.role(end, role);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourcePort(role, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceRole(role, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ResourceSignalProperty
+ * UAF Constraint Id:  ResourceSignalProperty.class
+ *******************************************************************************/
+pattern ResourceSignalProperty_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceSignalProperty(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceSignal(class, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ResourceSignalProperty
+ * UAF Constraint Id:  ResourceSignalProperty.type
+ *******************************************************************************/
+pattern ResourceSignalProperty_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceSignalProperty(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceExchangeItem(type, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ResourceConstraint
+ * UAF Constraint Id:  ResourceConstraint.constrainedElement
+ *******************************************************************************/
+pattern ResourceConstraint_constrainedElement(element : Constraint) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceConstraint(element, _);
+    Constraint.constrainedElement(element, constrainedElement);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.SubjectOfResourceConstraint(constrainedElement, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     DataElement
+ * UAF Constraint Id:  DataElement.owner
+ *******************************************************************************/
+pattern DataElement_owner(element : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.DataElement(element, _);
+    Class.owner(element, owner);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.DataModel(owner, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Function
+ * UAF Constraint Id:  Function.ownedParameter
+ *******************************************************************************/
+pattern Function_ownedParameter(element : Activity) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.Function(element, _);
+    Activity.ownedParameter(element, ownedParameter);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceParameter(ownedParameter, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     FunctionAction
+ * UAF Constraint Id:  FunctionAction.activity
+ *******************************************************************************/
+pattern FunctionAction_activity(element : CallBehaviorAction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.FunctionAction(element, _);
+    CallBehaviorAction.activity(element, activity);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Function(activity, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     FunctionAction
+ * UAF Constraint Id:  FunctionAction.behavior
+ *******************************************************************************/
+pattern FunctionAction_behavior(element : CallBehaviorAction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.FunctionAction(element, _);
+    CallBehaviorAction.behavior(element, behavior);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Function(behavior, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     FunctionControlFlow
+ * UAF Constraint Id:  FunctionControlFlow.source
+ *******************************************************************************/
+pattern FunctionControlFlow_source(element : ControlFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.FunctionControlFlow(element, _);
+    ControlFlow.source(element, source);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.FunctionAction(source, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     FunctionControlFlow
+ * UAF Constraint Id:  FunctionControlFlow.target
+ *******************************************************************************/
+pattern FunctionControlFlow_target(element : ControlFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.FunctionControlFlow(element, _);
+    ControlFlow.target(element, target);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.FunctionAction(target, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     FunctionEdge
+ * UAF Constraint Id:  FunctionEdge.owner
+ *******************************************************************************/
+pattern FunctionEdge_owner(element : ActivityEdge) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.FunctionEdge(element, _);
+    ActivityEdge.owner+(element, owner);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.FunctionEdge(owner, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Forecast
+ * UAF Constraint Id:  Forecast.supplier
+ *******************************************************************************/
+pattern Forecast_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.Forecast(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.SubjectOfForecast(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Forecast
+ * UAF Constraint Id:  Forecast.client
+ *******************************************************************************/
+pattern Forecast_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.Forecast(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.SubjectOfForecast(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     VersionOfConfiguration
+ * UAF Constraint Id:  VersionOfConfiguration.class
+ *******************************************************************************/
+pattern VersionOfConfiguration_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.VersionOfConfiguration(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.WholeLifeConfiguration(class, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     VersionOfConfiguration
+ * UAF Constraint Id:  VersionOfConfiguration.type
+ *******************************************************************************/
+pattern VersionOfConfiguration_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.VersionOfConfiguration(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.VersionedElement(type, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     VersionSuccession
+ * UAF Constraint Id:  VersionSuccession.client
+ *******************************************************************************/
+pattern VersionSuccession_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.VersionSuccession(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.VersionOfConfiguration(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     VersionSuccession
+ * UAF Constraint Id:  VersionSuccession.supplier
+ *******************************************************************************/
+pattern VersionSuccession_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.VersionSuccession(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.VersionOfConfiguration(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ResourceStateDescription
+ * UAF Constraint Id:  ResourceStateDescription.owner
+ *******************************************************************************/
+pattern ResourceStateDescription_owner(element : StateMachine) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceStateDescription(element, _);
+    StateMachine.owner(element, owner);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourcePerformer(owner, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     StructuralPart
+ * UAF Constraint Id:  StructuralPart.class
+ *******************************************************************************/
+pattern StructuralPart_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.StructuralPart(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.EnterprisePhase(class, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     StructuralPart
+ * UAF Constraint Id:  StructuralPart.type
+ *******************************************************************************/
+pattern StructuralPart_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.StructuralPart(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.EnterprisePhase(type, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     CapabilityProperty
+ * UAF Constraint Id:  CapabilityProperty.class
+ *******************************************************************************/
+pattern CapabilityProperty_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.CapabilityProperty(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Capability(class, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     CapabilityProperty
+ * UAF Constraint Id:  CapabilityProperty.type
+ *******************************************************************************/
+pattern CapabilityProperty_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.CapabilityProperty(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Capability(type, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     TemporalPart
+ * UAF Constraint Id:  TemporalPart.class
+ *******************************************************************************/
+pattern TemporalPart_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.TemporalPart(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.EnterprisePhase(class, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     TemporalPart
+ * UAF Constraint Id:  TemporalPart.type
+ *******************************************************************************/
+pattern TemporalPart_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.TemporalPart(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.EnterprisePhase(type, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualEnterprisePhase
+ * UAF Constraint Id:  ActualEnterprisePhase.classifier
+ *******************************************************************************/
+pattern ActualEnterprisePhase_classifier(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualEnterprisePhase(element, _);
+    InstanceSpecification.classifier(element, classifier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.EnterprisePhase(classifier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     VisionStatement
+ * UAF Constraint Id:  VisionStatement.ownedAttribute
+ *******************************************************************************/
+pattern VisionStatement_ownedAttribute(element : Comment) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.VisionStatement(element, _);
+    Comment.annotatedElement(element, ownedAttribute);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.EnterpriseVision(ownedAttribute, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualEnduringTask
+ * UAF Constraint Id:  ActualEnduringTask.classifier
+ *******************************************************************************/
+pattern ActualEnduringTask_classifier(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualEnduringTask(element, _);
+    InstanceSpecification.classifier(element, classifier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.EnduringTask(classifier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     CapabilityForTask
+ * UAF Constraint Id:  CapabilityForTask.client
+ *******************************************************************************/
+pattern CapabilityForTask_client(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.CapabilityForTask(element, _);
+    Abstraction.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Capability(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     CapabilityForTask
+ * UAF Constraint Id:  CapabilityForTask.supplier
+ *******************************************************************************/
+pattern CapabilityForTask_supplier(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.CapabilityForTask(element, _);
+    Abstraction.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualEnduringTask(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     AchievedEffect
+ * UAF Constraint Id:  AchievedEffect.client
+ *******************************************************************************/
+pattern AchievedEffect_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.AchievedEffect(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Achiever(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     AchievedEffect
+ * UAF Constraint Id:  AchievedEffect.supplier
+ *******************************************************************************/
+pattern AchievedEffect_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.AchievedEffect(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualState(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     DesiredEffect
+ * UAF Constraint Id:  DesiredEffect.client
+ *******************************************************************************/
+pattern DesiredEffect_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.DesiredEffect(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Desirer(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     DesiredEffect
+ * UAF Constraint Id:  DesiredEffect.supplier
+ *******************************************************************************/
+pattern DesiredEffect_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.DesiredEffect(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualState(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Exhibits
+ * UAF Constraint Id:  Exhibits.client
+ *******************************************************************************/
+pattern Exhibits_client(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.Exhibits(element, _);
+    Abstraction.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.CapableElement(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Exhibits
+ * UAF Constraint Id:  Exhibits.supplier
+ *******************************************************************************/
+pattern Exhibits_supplier(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.Exhibits(element, _);
+    Abstraction.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Capability(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     MapsToCapability
+ * UAF Constraint Id:  MapsToCapability.client
+ *******************************************************************************/
+pattern MapsToCapability_client(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.MapsToCapability(element, _);
+    Abstraction.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Activity(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     MapsToCapability
+ * UAF Constraint Id:  MapsToCapability.supplier
+ *******************************************************************************/
+pattern MapsToCapability_supplier(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.MapsToCapability(element, _);
+    Abstraction.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Capability(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OrganizationInEnterprise
+ * UAF Constraint Id:  OrganizationInEnterprise.supplier
+ *******************************************************************************/
+pattern OrganizationInEnterprise_supplier(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OrganizationInEnterprise(element, _);
+    Abstraction.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualEnterprisePhase(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OrganizationInEnterprise
+ * UAF Constraint Id:  OrganizationInEnterprise.client
+ *******************************************************************************/
+pattern OrganizationInEnterprise_client(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OrganizationInEnterprise(element, _);
+    Abstraction.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualOrganization(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualResponsibility
+ * UAF Constraint Id:  ActualResponsibility.classifier
+ *******************************************************************************/
+pattern ActualResponsibility_classifier(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualResponsibility(element, _);
+    InstanceSpecification.classifier(element, classifier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Responsibility(classifier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualPost
+ * UAF Constraint Id:  ActualPost.classifier
+ *******************************************************************************/
+pattern ActualPost_classifier(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualPost(element, _);
+    InstanceSpecification.classifier(element, classifier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Post(classifier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     FieldedCapability
+ * UAF Constraint Id:  FieldedCapability.classifier
+ *******************************************************************************/
+pattern FieldedCapability_classifier(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.FieldedCapability(element, _);
+    InstanceSpecification.classifier(element, classifier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.CapabilityConfiguration(classifier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualOrganization
+ * UAF Constraint Id:  ActualOrganization.classifier
+ *******************************************************************************/
+pattern ActualOrganization_classifier(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualOrganization(element, _);
+    InstanceSpecification.classifier(element, classifier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Organization(classifier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualOrganization
+ * UAF Constraint Id:  ActualOrganization.slot
+ *******************************************************************************/
+pattern ActualOrganization_slot(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualOrganization(element, _);
+    InstanceSpecification.slot(element, slot);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualOrganizationRole(slot, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualResource
+ * UAF Constraint Id:  ActualResource.classifier
+ *******************************************************************************/
+pattern ActualResource_classifier(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualResource(element, _);
+    InstanceSpecification.classifier(element, classifier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourcePerformer(classifier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualPerson
+ * UAF Constraint Id:  ActualPerson.classifier
+ *******************************************************************************/
+pattern ActualPerson_classifier(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualPerson(element, _);
+    InstanceSpecification.classifier(element, classifier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Person(classifier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualResourceRole
+ * UAF Constraint Id:  ActualResourceRole.definingFeature
+ *******************************************************************************/
+pattern ActualResourceRole_definingFeature(element : Slot) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualResourceRole(element, _);
+    Slot.definingFeature(element, definingFeature);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceRole(definingFeature, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualResourceRole
+ * UAF Constraint Id:  ActualResourceRole.owningInstance
+ *******************************************************************************/
+pattern ActualResourceRole_owningInstance(element : Slot) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualResourceRole(element, _);
+    Slot.owningInstance(element, owningInstance);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualResource(owningInstance, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualOrganizationRole
+ * UAF Constraint Id:  ActualOrganizationRole.owningInstance
+ *******************************************************************************/
+pattern ActualOrganizationRole_owningInstance(element : Slot) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualOrganizationRole(element, _);
+    Slot.owningInstance(element, owningInstance);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualOrganization(owningInstance, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualResourceRelationship
+ * UAF Constraint Id:  ActualResourceRelationship.informationSource
+ *******************************************************************************/
+pattern ActualResourceRelationship_informationSource(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualResourceRelationship(element, _);
+    InformationFlow.informationSource(element, informationSource);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualResource(informationSource, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualResourceRelationship
+ * UAF Constraint Id:  ActualResourceRelationship.realizes
+ *******************************************************************************/
+pattern ActualResourceRelationship_realizes(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualResourceRelationship(element, _);
+    InformationFlow.realization(element, realizes);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceExchange(realizes, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualResourceRelationship
+ * UAF Constraint Id:  ActualResourceRelationship.informationTarget
+ *******************************************************************************/
+pattern ActualResourceRelationship_informationTarget(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualResourceRelationship(element, _);
+    InformationFlow.informationTarget(element, informationTarget);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualResource(informationTarget, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     FillsPost
+ * UAF Constraint Id:  FillsPost.client
+ *******************************************************************************/
+pattern FillsPost_client(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.FillsPost(element, _);
+    Abstraction.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualPerson(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     FillsPost
+ * UAF Constraint Id:  FillsPost.supplier
+ *******************************************************************************/
+pattern FillsPost_supplier(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.FillsPost(element, _);
+    Abstraction.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualPost(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualService
+ * UAF Constraint Id:  ActualService.classifier
+ *******************************************************************************/
+pattern ActualService_classifier(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualService(element, _);
+    InstanceSpecification.classifier(element, classifier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ServiceSpecification(classifier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ProvidesCompetence
+ * UAF Constraint Id:  ProvidesCompetence.client
+ *******************************************************************************/
+pattern ProvidesCompetence_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ProvidesCompetence(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualOrganizationalResource(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ProvidesCompetence
+ * UAF Constraint Id:  ProvidesCompetence.supplier
+ *******************************************************************************/
+pattern ProvidesCompetence_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ProvidesCompetence(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Competence(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OwnsProcess
+ * UAF Constraint Id:  OwnsProcess.supplier
+ *******************************************************************************/
+pattern OwnsProcess_supplier(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OwnsProcess(element, _);
+    Abstraction.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalActivity(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OwnsProcess
+ * UAF Constraint Id:  OwnsProcess.client
+ *******************************************************************************/
+pattern OwnsProcess_client(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OwnsProcess(element, _);
+    Abstraction.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualOrganizationalResource(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     CompetenceForRole
+ * UAF Constraint Id:  CompetenceForRole.client
+ *******************************************************************************/
+pattern CompetenceForRole_client(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.CompetenceForRole(element, _);
+    Abstraction.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceRole(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     CompetenceForRole
+ * UAF Constraint Id:  CompetenceForRole.supplier
+ *******************************************************************************/
+pattern CompetenceForRole_supplier(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.CompetenceForRole(element, _);
+    Abstraction.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Competence(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     RequiresCompetence
+ * UAF Constraint Id:  RequiresCompetence.client
+ *******************************************************************************/
+pattern RequiresCompetence_client(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.RequiresCompetence(element, _);
+    Abstraction.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OrganizationalResource(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     RequiresCompetence
+ * UAF Constraint Id:  RequiresCompetence.supplier
+ *******************************************************************************/
+pattern RequiresCompetence_supplier(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.RequiresCompetence(element, _);
+    Abstraction.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Competence(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     CompetenceToConduct
+ * UAF Constraint Id:  CompetenceToConduct.client
+ *******************************************************************************/
+pattern CompetenceToConduct_client(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.CompetenceToConduct(element, _);
+    Abstraction.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Function(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     CompetenceToConduct
+ * UAF Constraint Id:  CompetenceToConduct.supplier
+ *******************************************************************************/
+pattern CompetenceToConduct_supplier(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.CompetenceToConduct(element, _);
+    Abstraction.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Competence(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Control
+ * UAF Constraint Id:  Control.conveyed
+ *******************************************************************************/
+pattern Control_conveyed(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.Control(element, _);
+    InformationFlow.conveyed(element, conveyed);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.DataElement(conveyed, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Control
+ * UAF Constraint Id:  Control.informationTarget
+ *******************************************************************************/
+pattern Control_informationTarget(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.Control(element, _);
+    InformationFlow.informationTarget(element, informationTarget);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.PhysicalResource(informationTarget, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Control
+ * UAF Constraint Id:  Control.informationSource
+ *******************************************************************************/
+pattern Control_informationSource(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.Control(element, _);
+    InformationFlow.informationSource(element, informationSource);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.PhysicalResource(informationSource, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Command
+ * UAF Constraint Id:  Command.informationSource
+ *******************************************************************************/
+pattern Command_informationSource(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.Command(element, _);
+    InformationFlow.informationSource(element, informationSource);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OrganizationalResource(informationSource, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Command
+ * UAF Constraint Id:  Command.informationTarget
+ *******************************************************************************/
+pattern Command_informationTarget(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.Command(element, _);
+    InformationFlow.informationTarget(element, informationTarget);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OrganizationalResource(informationTarget, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Command
+ * UAF Constraint Id:  Command.conveyed
+ *******************************************************************************/
+pattern Command_conveyed(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.Command(element, _);
+    InformationFlow.conveyed(element, conveyed);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.DataElement(conveyed, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ResponsibleFor
+ * UAF Constraint Id:  ResponsibleFor.client
+ *******************************************************************************/
+pattern ResponsibleFor_client(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ResponsibleFor(element, _);
+    Abstraction.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualResponsibleResource(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ResponsibleFor
+ * UAF Constraint Id:  ResponsibleFor.supplier
+ *******************************************************************************/
+pattern ResponsibleFor_supplier(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ResponsibleFor(element, _);
+    Abstraction.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualProject(supplier, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualResponsibility(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     SecurityConstraint
+ * UAF Constraint Id:  Security.constrainedElement
+ *******************************************************************************/
+pattern Security_constrainedElement(element : Constraint) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.SecurityConstraint(element, _);
+    Constraint.constrainedElement(element, constrainedElement);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.SubjectOfSecurityConstraint(constrainedElement, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     SecurityProcessAction
+ * UAF Constraint Id:  SecurityControlAction.behavior
+ *******************************************************************************/
+pattern SecurityControlAction_behavior(element : CallBehaviorAction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.SecurityProcessAction(element, _);
+    CallBehaviorAction.behavior(element, behavior);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.SecurityControl(behavior, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Enhances
+ * UAF Constraint Id:  Enhances.client
+ *******************************************************************************/
+pattern Enhances_client(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.Enhances(element, _);
+    Abstraction.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.EnhancedSecurityControl(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Enhances
+ * UAF Constraint Id:  Enhances.supplier
+ *******************************************************************************/
+pattern Enhances_supplier(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.Enhances(element, _);
+    Abstraction.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.SecurityControl(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Protects
+ * UAF Constraint Id:  Protects.client
+ *******************************************************************************/
+pattern Protects_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.Protects(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.SecurityControl(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Protects
+ * UAF Constraint Id:  Protects.supplier
+ *******************************************************************************/
+pattern Protects_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.Protects(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Asset(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ProtectsInContext
+ * UAF Constraint Id:  ProtectsInContext.client
+ *******************************************************************************/
+pattern ProtectsInContext_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ProtectsInContext(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.SecurityControl(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ProtectsInContext
+ * UAF Constraint Id:  ProtectsInContext.supplier
+ *******************************************************************************/
+pattern ProtectsInContext_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ProtectsInContext(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.AssetRole(supplier, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalConnector(supplier, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceConnector(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     SecurityProperty
+ * UAF Constraint Id:  SecurityProperty.type
+ *******************************************************************************/
+private pattern SecurityProperty_class_type(poperty : Property, class: Class, type : Type) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.SecurityProperty(element, _);
+    Class.ownedAttribute(class, poperty);
+    Property.type(property, type);
+}
+
+// SecurityProperty.type a.
+pattern SecurityProperty_OperationalAgent_type(element : Property) {
+    find SecurityProperty_class_type(element, class, type);
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OperationalAgent(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.InformationElement(type, _);
+}
+
+// SecurityProperty.type b.
+pattern SecurityProperty_ResourcePerformer_type(element : Property) {
+    find SecurityProperty_class_type(element, class, type);
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ResourcePerformer(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.DataElement(type, _);
+}
+
+// SecurityProperty.type c.
+pattern SecurityProperty_InformationElement_type(element : Property) {
+    find SecurityProperty_class_type(element, class, type);
+    find com.incquerylabs.magicdraw.benchmark.queries.library.InformationElement(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.InformationElement(type, _);
+}
+
+// SecurityProperty.type d.
+pattern SecurityProperty_DataElement_type(element : Property) {
+    find SecurityProperty_class_type(element, class, type);
+    find com.incquerylabs.magicdraw.benchmark.queries.library.DataElement(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.DataElement(type, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     SecurityProperty
+ * UAF Constraint Id:  SecurityProperty.class
+ *******************************************************************************/
+pattern SecurityProperty_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.SecurityProperty(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Asset(class, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Affects
+ * UAF Constraint Id:  Affects.client
+ *******************************************************************************/
+pattern Affects_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.Affects(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Risk(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Affects
+ * UAF Constraint Id:  Affects.supplier
+ *******************************************************************************/
+pattern Affects_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.Affects(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Asset(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Mitigates
+ * UAF Constraint Id:  Mitigates.client
+ *******************************************************************************/
+pattern Mitigates_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.Mitigates(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.SecurityControl(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Mitigates
+ * UAF Constraint Id:  Mitigates.supplier
+ *******************************************************************************/
+pattern Mitigates_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.Mitigates(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Risk(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OwnsRisk
+ * UAF Constraint Id:  OwnsRisk.client
+ *******************************************************************************/
+pattern OwnsRisk_client(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OwnsRisk(element, _);
+    Abstraction.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.OrganizationalResource(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OwnsRisk
+ * UAF Constraint Id:  OwnsRisk.supplier
+ *******************************************************************************/
+pattern OwnsRisk_supplier(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OwnsRisk(element, _);
+    Abstraction.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Risk(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OwnsRiskInContext
+ * UAF Constraint Id:  OwnsProcess.client
+ *******************************************************************************/
+pattern OwnsRiskInContext_client(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OwnsRiskInContext(element, _);
+    Abstraction.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ResourceRole(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     OwnsRiskInContext
+ * UAF Constraint Id:  OwnsProcess.supplier
+ *******************************************************************************/
+pattern OwnsRiskInContext_supplier(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.OwnsRiskInContext(element, _);
+    Abstraction.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Risk(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     AffectsInContext
+ * UAF Constraint Id:  AffectsInContext.client
+ *******************************************************************************/
+pattern AffectsInContext_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.AffectsInContext(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Risk(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     AffectsInContext
+ * UAF Constraint Id:  AffectsInContext.supplier
+ *******************************************************************************/
+pattern AffectsInContext_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.AffectsInContext(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.AssetRole(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ProtocolLayer
+ * UAF Constraint Id:  ProtocolLayer.class
+ *******************************************************************************/
+pattern ProtocolLayer_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ProtocolLayer(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Protocol(class, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ProtocolLayer
+ * UAF Constraint Id:  ProtocolLayer.type
+ *******************************************************************************/
+pattern ProtocolLayer_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ProtocolLayer(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Protocol(type, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ProjectSequence
+ * UAF Constraint Id:  ProjectSequence.client
+ *******************************************************************************/
+pattern ProjectSequence_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ProjectSequence(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualProject(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ProjectSequence
+ * UAF Constraint Id:  ProjectSequence.supplier
+ *******************************************************************************/
+pattern ProjectSequence_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ProjectSequence(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualProject(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     MilestoneDependency
+ * UAF Constraint Id:  MilestoneDependency.client
+ *******************************************************************************/
+pattern MilestoneDependency_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.MilestoneDependency(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualProjectMilestone(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     MilestoneDependency
+ * UAF Constraint Id:  MilestoneSequence.supplier
+ *******************************************************************************/
+pattern MilestoneSequence_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.MilestoneDependency(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualProjectMilestone(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ProjectActivityAction
+ * UAF Constraint Id:  ProjectActivityAction.activity
+ *******************************************************************************/
+pattern ProjectActivityAction_activity(element : CallBehaviorAction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ProjectActivityAction(element, _);
+    CallBehaviorAction.activity(element, activity);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ProjectActivity(activity, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ProjectActivityAction
+ * UAF Constraint Id:  FunctionAction.behavior
+ *******************************************************************************/
+pattern ProjectActivityAction_behavior(element : CallBehaviorAction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ProjectActivityAction(element, _);
+    CallBehaviorAction.behavior(element, behavior);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ProjectActivity(behavior, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualProjectMilestoneRole
+ * UAF Constraint Id:  ActualProjectMilestoneRole.definingFeature
+ *******************************************************************************/
+pattern ActualProjectMilestoneRole_definingFeature(element : Slot) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualProjectMilestoneRole(element, _);
+    Slot.definingFeature(element, definingFeature);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ProjectMilestoneRole(definingFeature, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualProjectMilestoneRole
+ * UAF Constraint Id:  ActualProjectMilestoneRole.owningInstance
+ *******************************************************************************/
+pattern ActualProjectMilestoneRole_owningInstance(element : Slot) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualProjectMilestoneRole(element, _);
+    Slot.owningInstance(element, owningInstance);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualProject(owningInstance, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualProjectMilestoneRole
+ * UAF Constraint Id:  ActualProjectMilestoneRole.value.instance
+ *******************************************************************************/
+pattern ActualProjectMilestoneRole_value_instance(element : Slot) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualProjectMilestoneRole(element, _);
+    Slot.value(element, value);
+    InstanceValue.instance(value, instance);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualProjectMilestone(instance, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualProjectRole
+ * UAF Constraint Id:  ActualProjectRole.definingFeature
+ *******************************************************************************/
+pattern ActualProjectRole_definingFeature(element : Slot) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualProjectRole(element, _);
+    Slot.definingFeature(element, definingFeature);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ProjectRole(definingFeature, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualProjectRole
+ * UAF Constraint Id:  ActualProjectRole.owningInstance
+ *******************************************************************************/
+pattern ActualProjectRole_owningInstance(element : Slot) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualProjectRole(element, _);
+    Slot.owningInstance(element, owningInstance);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualProject(owningInstance, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualProjectRole
+ * UAF Constraint Id:  ActualProjectRole.value.instance
+ *******************************************************************************/
+pattern ActualProjectRole_value_instance(element : Slot) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualProjectRole(element, _);
+    Slot.value(element, value);
+    InstanceValue.instance(value, instance);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualProject(instance, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualProject
+ * UAF Constraint Id:  ActualProject.classifier
+ *******************************************************************************/
+pattern ActualProject_classifier(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualProject(element, _);
+    InstanceSpecification.classifier(element, classifier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Project(classifier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualProject
+ * UAF Constraint Id:  ActualProject.slot
+ *******************************************************************************/
+pattern ActualProject_slot(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualProject(element, _);
+    InstanceSpecification.slot(element, slot);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualProjectRole(slot, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualProjectMilestoneRole(slot, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualProjectMilestone
+ * UAF Constraint Id:  ActualProjectMilestone.classifier
+ *******************************************************************************/
+pattern ActualProjectMilestone_classifier(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualProjectMilestone(element, _);
+    InstanceSpecification.classifier(element, classifier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ProjectMilestone(classifier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ProjectRole
+ * UAF Constraint Id:  ProjectRole.class
+ *******************************************************************************/
+pattern ProjectRole_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ProjectRole(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Project(class, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ProjectRole
+ * UAF Constraint Id:  ProjectRole.type
+ *******************************************************************************/
+pattern ProjectRole_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ProjectRole(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Project(type, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ProjectMilestoneRole
+ * UAF Constraint Id:  ProjectMilestoneRole.class
+ *******************************************************************************/
+pattern ProjectMilestoneRole_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ProjectMilestoneRole(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Project(class, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ProjectMilestoneRole
+ * UAF Constraint Id:  ProjectMilestoneRole.type
+ *******************************************************************************/
+pattern ProjectMilestoneRole_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ProjectMilestoneRole(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ProjectMilestone(type, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ProjectTheme
+ * UAF Constraint Id:  ProjecTheme.type
+ *******************************************************************************/
+pattern ProjecTheme_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ProjectTheme(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.StatusIndicators(type, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ProjectTheme
+ * UAF Constraint Id:  ProjecTheme.class
+ *******************************************************************************/
+pattern ProjecTheme_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ProjectTheme(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ProjectMilestone(class, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ProjectStatus
+ * UAF Constraint Id:  ProjectStatus.definingFeature
+ *******************************************************************************/
+pattern ProjectStatus_definingFeature(element : Slot) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ProjectStatus(element, _);
+    Slot.definingFeature(element, definingFeature);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ProjectTheme(definingFeature, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Alias
+ * UAF Constraint Id:  Alias.annotatedElement
+ *******************************************************************************/
+pattern Alias_annotatedElement(element : Comment) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.Alias(element, _);
+    Comment.annotatedElement(element, annotatedElement);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.UAFElement(annotatedElement, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Definition
+ * UAF Constraint Id:  Definition.annotatedElement
+ *******************************************************************************/
+pattern Definition_annotatedElement(element : Comment) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.Definition(element, _);
+    Comment.annotatedElement(element, annotatedElement);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.UAFElement(annotatedElement, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     SameAs
+ * UAF Constraint Id:  SameAs.client
+ *******************************************************************************/
+pattern SameAs_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.SameAs(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.UAFElement(client, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     SameAs
+ * UAF Constraint Id:  SameAs.supplier
+ *******************************************************************************/
+pattern SameAs_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.SameAs(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.UAFElement(supplier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     EnvironmentProperty
+ * UAF Constraint Id:  EnvironmentalProperty.class
+ *******************************************************************************/
+pattern EnvironmentalProperty_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.EnvironmentProperty(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Environment(class, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     EnvironmentProperty
+ * UAF Constraint Id:  EnvironmentalProperty.type
+ *******************************************************************************/
+pattern EnvironmentalProperty_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.EnvironmentProperty(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Condition(type, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualCondition
+ * UAF Constraint Id:  ActualCondition.classifier
+ *******************************************************************************/
+pattern ActualCondition_classifier(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualCondition(element, _);
+    InstanceSpecification.classifier(element, classifier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Condition(classifier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     Measurement
+ * UAF Constraint Id:  Measurement.class
+ *******************************************************************************/
+pattern Measurement_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.Measurement(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.PropertySet(class, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualMeasurement
+ * UAF Constraint Id:  ActualMeasurement.definingFeature
+ *******************************************************************************/
+pattern ActualMeasurement_definingFeature(element : Slot) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualMeasurement(element, _);
+    Slot.definingFeature(element, definingFeature);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Measurement(definingFeature, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualMeasurement
+ * UAF Constraint Id:  ActualMeasurement.owningInstance
+ *******************************************************************************/
+pattern ActualMeasurement_owningInstance(element : Slot) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualMeasurement(element, _);
+    Slot.owningInstance(element, owningInstance);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualPropertySet(owningInstance, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualEnvironment
+ * UAF Constraint Id:  ActualEnvironment.classifier
+ *******************************************************************************/
+pattern ActualEnvironment_classifier(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualEnvironment(element, _);
+    InstanceSpecification.classifier(element, classifier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Environment(classifier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualMeasurementSet
+ * UAF Constraint Id:  ActualMeasurementSet.classifier
+ *******************************************************************************/
+pattern ActualMeasurementSet_classifier(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualMeasurementSet(element, _);
+    InstanceSpecification.classifier(element, classifier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.MeasurementSet(classifier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualMeasurementSet
+ * UAF Constraint Id:  ActualMeasurementSet.slot
+ *******************************************************************************/
+pattern ActualMeasurementSet_slot(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualMeasurementSet(element, _);
+    InstanceSpecification.slot(element, slot);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ActualMeasurement(slot, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualPropertySet
+ * UAF Constraint Id:  ActualPropertySet.classifier
+ *******************************************************************************/
+pattern ActualPropertySet_classifier(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualPropertySet(element, _);
+    InstanceSpecification.classifier(element, classifier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.PropertySet(classifier, _);
+}
+
+/*******************************************************************************
+ * UAF Standard:       Version 1.0
+ * UAF Element:     ActualLocation
+ * UAF Constraint Id:  ActualLocation.classifier
+ *******************************************************************************/
+pattern ActualLocation_classifier(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.ActualLocation(element, _);
+    InstanceSpecification.classifier(element, classifier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Location(classifier, _);
 }

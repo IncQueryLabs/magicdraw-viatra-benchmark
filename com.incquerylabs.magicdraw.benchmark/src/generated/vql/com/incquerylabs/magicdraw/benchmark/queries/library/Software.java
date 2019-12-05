@@ -1,10 +1,9 @@
 /**
- * Generated from platform:/resource/com.incquerylabs.magicdraw.benchmark/src/main/java/com/incquerylabs/magicdraw/benchmark/queries/library/SysMLAdditionalLibrary.vql
+ * Generated from platform:/resource/com.incquerylabs.magicdraw.benchmark/src/main/java/com/incquerylabs/magicdraw/benchmark/queries/library/UAFLibrary.vql
  */
 package com.incquerylabs.magicdraw.benchmark.queries.library;
 
 import com.incquerylabs.magicdraw.benchmark.queries.library.StereotypedElement;
-import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Diagram;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.InstanceSpecification;
 import java.util.Arrays;
 import java.util.Collection;
@@ -48,11 +47,13 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  *         Pattern that queries elements with the stereotype 'Software' or other stereotypes generalizing it.
  *          
  *           Parameters:
- *           element : 'Diagram' object with the stereotype Software.
+ *           element : 'Class' object with the stereotype Software.
  *           domainStereotypeInstance : Stereotype Application instance
  *          
- *         pattern Software(element : Diagram, domainStereotypeInstance : InstanceSpecification){
- *         	find stereotypedElement(element, domainStereotypeInstance, "additional_stereotypes", "Software");
+ *         pattern
+ *         Software(element : Class, domainStereotypeInstance : InstanceSpecification) {
+ *         	find
+ *         	stereotypedElement(element, domainStereotypeInstance, "UAF", "Software");
  *         }
  * </pre></code>
  * 
@@ -75,13 +76,13 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
    * 
    */
   public static abstract class Match extends BasePatternMatch {
-    private Diagram fElement;
+    private com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class fElement;
     
     private InstanceSpecification fDomainStereotypeInstance;
     
     private static List<String> parameterNames = makeImmutableList("element", "domainStereotypeInstance");
     
-    private Match(final Diagram pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    private Match(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final InstanceSpecification pDomainStereotypeInstance) {
       this.fElement = pElement;
       this.fDomainStereotypeInstance = pDomainStereotypeInstance;
     }
@@ -104,7 +105,7 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
       }
     }
     
-    public Diagram getElement() {
+    public com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class getElement() {
       return this.fElement;
     }
     
@@ -116,7 +117,7 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       if ("element".equals(parameterName) ) {
-          this.fElement = (Diagram) newValue;
+          this.fElement = (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) newValue;
           return true;
       }
       if ("domainStereotypeInstance".equals(parameterName) ) {
@@ -126,7 +127,7 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
       return false;
     }
     
-    public void setElement(final Diagram pElement) {
+    public void setElement(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fElement = pElement;
     }
@@ -214,7 +215,7 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static Software.Match newMutableMatch(final Diagram pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    public static Software.Match newMutableMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final InstanceSpecification pDomainStereotypeInstance) {
       return new Mutable(pElement, pDomainStereotypeInstance);
     }
     
@@ -227,12 +228,12 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
      * @return the (partial) match object.
      * 
      */
-    public static Software.Match newMatch(final Diagram pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    public static Software.Match newMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final InstanceSpecification pDomainStereotypeInstance) {
       return new Immutable(pElement, pDomainStereotypeInstance);
     }
     
     private static final class Mutable extends Software.Match {
-      Mutable(final Diagram pElement, final InstanceSpecification pDomainStereotypeInstance) {
+      Mutable(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final InstanceSpecification pDomainStereotypeInstance) {
         super(pElement, pDomainStereotypeInstance);
       }
       
@@ -243,7 +244,7 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
     }
     
     private static final class Immutable extends Software.Match {
-      Immutable(final Diagram pElement, final InstanceSpecification pDomainStereotypeInstance) {
+      Immutable(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final InstanceSpecification pDomainStereotypeInstance) {
         super(pElement, pDomainStereotypeInstance);
       }
       
@@ -268,11 +269,13 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
    * Pattern that queries elements with the stereotype 'Software' or other stereotypes generalizing it.
    *  
    *   Parameters:
-   *   element : 'Diagram' object with the stereotype Software.
+   *   element : 'Class' object with the stereotype Software.
    *   domainStereotypeInstance : Stereotype Application instance
    *  
-   * pattern Software(element : Diagram, domainStereotypeInstance : InstanceSpecification){
-   * 	find stereotypedElement(element, domainStereotypeInstance, "additional_stereotypes", "Software");
+   * pattern
+   * Software(element : Class, domainStereotypeInstance : InstanceSpecification) {
+   * 	find
+   * 	stereotypedElement(element, domainStereotypeInstance, "UAF", "Software");
    * }
    * </pre></code>
    * 
@@ -333,7 +336,7 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<Software.Match> getAllMatches(final Diagram pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    public Collection<Software.Match> getAllMatches(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final InstanceSpecification pDomainStereotypeInstance) {
       return rawStreamAllMatches(new Object[]{pElement, pDomainStereotypeInstance}).collect(Collectors.toSet());
     }
     
@@ -348,7 +351,7 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<Software.Match> streamAllMatches(final Diagram pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    public Stream<Software.Match> streamAllMatches(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final InstanceSpecification pDomainStereotypeInstance) {
       return rawStreamAllMatches(new Object[]{pElement, pDomainStereotypeInstance});
     }
     
@@ -360,7 +363,7 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<Software.Match> getOneArbitraryMatch(final Diagram pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    public Optional<Software.Match> getOneArbitraryMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final InstanceSpecification pDomainStereotypeInstance) {
       return rawGetOneArbitraryMatch(new Object[]{pElement, pDomainStereotypeInstance});
     }
     
@@ -372,7 +375,7 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
      * @return true if the input is a valid (partial) match of the pattern.
      * 
      */
-    public boolean hasMatch(final Diagram pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    public boolean hasMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final InstanceSpecification pDomainStereotypeInstance) {
       return rawHasMatch(new Object[]{pElement, pDomainStereotypeInstance});
     }
     
@@ -383,7 +386,7 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
      * @return the number of pattern matches found.
      * 
      */
-    public int countMatches(final Diagram pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    public int countMatches(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final InstanceSpecification pDomainStereotypeInstance) {
       return rawCountMatches(new Object[]{pElement, pDomainStereotypeInstance});
     }
     
@@ -396,7 +399,7 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final Diagram pElement, final InstanceSpecification pDomainStereotypeInstance, final Consumer<? super Software.Match> processor) {
+    public boolean forOneArbitraryMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final InstanceSpecification pDomainStereotypeInstance, final Consumer<? super Software.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pElement, pDomainStereotypeInstance}, processor);
     }
     
@@ -409,7 +412,7 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
      * @return the (partial) match object.
      * 
      */
-    public Software.Match newMatch(final Diagram pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    public Software.Match newMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final InstanceSpecification pDomainStereotypeInstance) {
       return Software.Match.newMatch(pElement, pDomainStereotypeInstance);
     }
     
@@ -418,8 +421,8 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<Diagram> rawStreamAllValuesOfelement(final Object[] parameters) {
-      return rawStreamAllValues(POSITION_ELEMENT, parameters).map(Diagram.class::cast);
+    protected Stream<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> rawStreamAllValuesOfelement(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_ELEMENT, parameters).map(com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class.class::cast);
     }
     
     /**
@@ -427,7 +430,7 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Diagram> getAllValuesOfelement() {
+    public Set<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> getAllValuesOfelement() {
       return rawStreamAllValuesOfelement(emptyArray()).collect(Collectors.toSet());
     }
     
@@ -436,7 +439,7 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<Diagram> streamAllValuesOfelement() {
+    public Stream<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> streamAllValuesOfelement() {
       return rawStreamAllValuesOfelement(emptyArray());
     }
     
@@ -450,7 +453,7 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Diagram> streamAllValuesOfelement(final Software.Match partialMatch) {
+    public Stream<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> streamAllValuesOfelement(final Software.Match partialMatch) {
       return rawStreamAllValuesOfelement(partialMatch.toArray());
     }
     
@@ -464,7 +467,7 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Diagram> streamAllValuesOfelement(final InstanceSpecification pDomainStereotypeInstance) {
+    public Stream<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> streamAllValuesOfelement(final InstanceSpecification pDomainStereotypeInstance) {
       return rawStreamAllValuesOfelement(new Object[]{null, pDomainStereotypeInstance});
     }
     
@@ -473,7 +476,7 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Diagram> getAllValuesOfelement(final Software.Match partialMatch) {
+    public Set<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> getAllValuesOfelement(final Software.Match partialMatch) {
       return rawStreamAllValuesOfelement(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
@@ -482,7 +485,7 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Diagram> getAllValuesOfelement(final InstanceSpecification pDomainStereotypeInstance) {
+    public Set<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> getAllValuesOfelement(final InstanceSpecification pDomainStereotypeInstance) {
       return rawStreamAllValuesOfelement(new Object[]{null, pDomainStereotypeInstance}).collect(Collectors.toSet());
     }
     
@@ -537,7 +540,7 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<InstanceSpecification> streamAllValuesOfdomainStereotypeInstance(final Diagram pElement) {
+    public Stream<InstanceSpecification> streamAllValuesOfdomainStereotypeInstance(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement) {
       return rawStreamAllValuesOfdomainStereotypeInstance(new Object[]{pElement, null});
     }
     
@@ -555,14 +558,14 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<InstanceSpecification> getAllValuesOfdomainStereotypeInstance(final Diagram pElement) {
+    public Set<InstanceSpecification> getAllValuesOfdomainStereotypeInstance(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement) {
       return rawStreamAllValuesOfdomainStereotypeInstance(new Object[]{pElement, null}).collect(Collectors.toSet());
     }
     
     @Override
     protected Software.Match tupleToMatch(final Tuple t) {
       try {
-          return Software.Match.newMatch((Diagram) t.get(POSITION_ELEMENT), (InstanceSpecification) t.get(POSITION_DOMAINSTEREOTYPEINSTANCE));
+          return Software.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) t.get(POSITION_ELEMENT), (InstanceSpecification) t.get(POSITION_DOMAINSTEREOTYPEINSTANCE));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -572,7 +575,7 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
     @Override
     protected Software.Match arrayToMatch(final Object[] match) {
       try {
-          return Software.Match.newMatch((Diagram) match[POSITION_ELEMENT], (InstanceSpecification) match[POSITION_DOMAINSTEREOTYPEINSTANCE]);
+          return Software.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) match[POSITION_ELEMENT], (InstanceSpecification) match[POSITION_DOMAINSTEREOTYPEINSTANCE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -582,7 +585,7 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
     @Override
     protected Software.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return Software.Match.newMutableMatch((Diagram) match[POSITION_ELEMENT], (InstanceSpecification) match[POSITION_DOMAINSTEREOTYPEINSTANCE]);
+          return Software.Match.newMutableMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) match[POSITION_ELEMENT], (InstanceSpecification) match[POSITION_DOMAINSTEREOTYPEINSTANCE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -633,7 +636,7 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
   
   @Override
   public Software.Match newMatch(final Object... parameters) {
-    return Software.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Diagram) parameters[0], (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.InstanceSpecification) parameters[1]);
+    return Software.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) parameters[0], (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.InstanceSpecification) parameters[1]);
   }
   
   /**
@@ -665,7 +668,7 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final Software.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_element = new PParameter("element", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Diagram", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Diagram")), PParameterDirection.INOUT);
+    private final PParameter parameter_element = new PParameter("element", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Class")), PParameterDirection.INOUT);
     
     private final PParameter parameter_domainStereotypeInstance = new PParameter("domainStereotypeInstance", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.InstanceSpecification", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "InstanceSpecification")), PParameterDirection.INOUT);
     
@@ -698,15 +701,15 @@ public final class Software extends BaseGeneratedEMFQuerySpecification<Software.
           PBody body = new PBody(this);
           PVariable var_element = body.getOrCreateVariableByName("element");
           PVariable var_domainStereotypeInstance = body.getOrCreateVariableByName("domainStereotypeInstance");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Diagram")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Class")));
           new TypeConstraint(body, Tuples.flatTupleOf(var_domainStereotypeInstance), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "InstanceSpecification")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_element, parameter_element),
              new ExportedParameter(body, var_domainStereotypeInstance, parameter_domainStereotypeInstance)
           ));
-          // 	find stereotypedElement(element, domainStereotypeInstance, "additional_stereotypes", "Software")
+          // 	find	stereotypedElement(element, domainStereotypeInstance, "UAF", "Software")
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new ConstantValue(body, var__virtual_0_, "additional_stereotypes");
+          new ConstantValue(body, var__virtual_0_, "UAF");
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
           new ConstantValue(body, var__virtual_1_, "Software");
           new PositivePatternCall(body, Tuples.flatTupleOf(var_element, var_domainStereotypeInstance, var__virtual_0_, var__virtual_1_), StereotypedElement.instance().getInternalQueryRepresentation());

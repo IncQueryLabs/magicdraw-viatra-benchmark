@@ -1,5 +1,5 @@
 /**
- * Generated from platform:/resource/com.incquerylabs.magicdraw.benchmark/src/main/java/com/incquerylabs/magicdraw/benchmark/queries/library/SysMLLibrary.vql
+ * Generated from platform:/resource/com.incquerylabs.magicdraw.benchmark/src/main/java/com/incquerylabs/magicdraw/benchmark/queries/library/UAFLibrary.vql
  */
 package com.incquerylabs.magicdraw.benchmark.queries.library;
 
@@ -45,12 +45,12 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * <p>Original source:
  *         <code><pre>
  *         Pattern that queries the 'isEncapsulated' attribute of elements with the stereotype 'System'.
- *           
- *           Parameters: 
- *           	element: 'Class' object with the stereotype 'System'.
- *           	valuespec : LiteralBoolean : A value of the attribute 'isEncapsulated'.
  *          
- *         pattern System_isEncapsulated(element : Class, valuespec : LiteralBoolean){
+ *           Parameters:
+ *           element: 'Class' object with the stereotype 'System'.
+ *           valuespec : LiteralBoolean : A value of the attribute 'isEncapsulated'.
+ *          
+ *         pattern System_isEncapsulated(element : Class, valuespec : LiteralBoolean) {
  *         	find System(element, domainStereotypeInstance);
  *         	find slotValue(domainStereotypeInstance, "isEncapsulated", valuespec);
  *         }
@@ -266,12 +266,12 @@ public final class System_isEncapsulated extends BaseGeneratedEMFQuerySpecificat
    * <p>Original source:
    * <code><pre>
    * Pattern that queries the 'isEncapsulated' attribute of elements with the stereotype 'System'.
-   *   
-   *   Parameters: 
-   *   	element: 'Class' object with the stereotype 'System'.
-   *   	valuespec : LiteralBoolean : A value of the attribute 'isEncapsulated'.
    *  
-   * pattern System_isEncapsulated(element : Class, valuespec : LiteralBoolean){
+   *   Parameters:
+   *   element: 'Class' object with the stereotype 'System'.
+   *   valuespec : LiteralBoolean : A value of the attribute 'isEncapsulated'.
+   *  
+   * pattern System_isEncapsulated(element : Class, valuespec : LiteralBoolean) {
    * 	find System(element, domainStereotypeInstance);
    * 	find slotValue(domainStereotypeInstance, "isEncapsulated", valuespec);
    * }

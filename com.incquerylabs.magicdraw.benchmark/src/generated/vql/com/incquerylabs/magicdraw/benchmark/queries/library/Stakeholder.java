@@ -1,10 +1,10 @@
 /**
- * Generated from platform:/resource/com.incquerylabs.magicdraw.benchmark/src/main/java/com/incquerylabs/magicdraw/benchmark/queries/library/SysMLLibrary.vql
+ * Generated from platform:/resource/com.incquerylabs.magicdraw.benchmark/src/main/java/com/incquerylabs/magicdraw/benchmark/queries/library/UAFLibrary.vql
  */
 package com.incquerylabs.magicdraw.benchmark.queries.library;
 
 import com.incquerylabs.magicdraw.benchmark.queries.library.StereotypedElement;
-import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier;
+import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Element;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.InstanceSpecification;
 import java.util.Arrays;
 import java.util.Collection;
@@ -48,11 +48,13 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  *         Pattern that queries elements with the stereotype 'Stakeholder' or other stereotypes generalizing it.
  *          
  *           Parameters:
- *           element : 'Classifier' object with the stereotype Stakeholder.
+ *           element : 'Element' object with the stereotype Stakeholder.
  *           domainStereotypeInstance : Stereotype Application instance
  *          
- *         pattern Stakeholder(element : Classifier, domainStereotypeInstance : InstanceSpecification){
- *         	find stereotypedElement(element, domainStereotypeInstance, "SysML", "Stakeholder");
+ *         pattern
+ *         Stakeholder(element : Element, domainStereotypeInstance : InstanceSpecification) {
+ *         	find
+ *         	stereotypedElement(element, domainStereotypeInstance, "UAF", "Stakeholder");
  *         }
  * </pre></code>
  * 
@@ -75,13 +77,13 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
    * 
    */
   public static abstract class Match extends BasePatternMatch {
-    private Classifier fElement;
+    private Element fElement;
     
     private InstanceSpecification fDomainStereotypeInstance;
     
     private static List<String> parameterNames = makeImmutableList("element", "domainStereotypeInstance");
     
-    private Match(final Classifier pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    private Match(final Element pElement, final InstanceSpecification pDomainStereotypeInstance) {
       this.fElement = pElement;
       this.fDomainStereotypeInstance = pDomainStereotypeInstance;
     }
@@ -104,7 +106,7 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
       }
     }
     
-    public Classifier getElement() {
+    public Element getElement() {
       return this.fElement;
     }
     
@@ -116,7 +118,7 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       if ("element".equals(parameterName) ) {
-          this.fElement = (Classifier) newValue;
+          this.fElement = (Element) newValue;
           return true;
       }
       if ("domainStereotypeInstance".equals(parameterName) ) {
@@ -126,7 +128,7 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
       return false;
     }
     
-    public void setElement(final Classifier pElement) {
+    public void setElement(final Element pElement) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fElement = pElement;
     }
@@ -214,7 +216,7 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static Stakeholder.Match newMutableMatch(final Classifier pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    public static Stakeholder.Match newMutableMatch(final Element pElement, final InstanceSpecification pDomainStereotypeInstance) {
       return new Mutable(pElement, pDomainStereotypeInstance);
     }
     
@@ -227,12 +229,12 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
      * @return the (partial) match object.
      * 
      */
-    public static Stakeholder.Match newMatch(final Classifier pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    public static Stakeholder.Match newMatch(final Element pElement, final InstanceSpecification pDomainStereotypeInstance) {
       return new Immutable(pElement, pDomainStereotypeInstance);
     }
     
     private static final class Mutable extends Stakeholder.Match {
-      Mutable(final Classifier pElement, final InstanceSpecification pDomainStereotypeInstance) {
+      Mutable(final Element pElement, final InstanceSpecification pDomainStereotypeInstance) {
         super(pElement, pDomainStereotypeInstance);
       }
       
@@ -243,7 +245,7 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
     }
     
     private static final class Immutable extends Stakeholder.Match {
-      Immutable(final Classifier pElement, final InstanceSpecification pDomainStereotypeInstance) {
+      Immutable(final Element pElement, final InstanceSpecification pDomainStereotypeInstance) {
         super(pElement, pDomainStereotypeInstance);
       }
       
@@ -268,11 +270,13 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
    * Pattern that queries elements with the stereotype 'Stakeholder' or other stereotypes generalizing it.
    *  
    *   Parameters:
-   *   element : 'Classifier' object with the stereotype Stakeholder.
+   *   element : 'Element' object with the stereotype Stakeholder.
    *   domainStereotypeInstance : Stereotype Application instance
    *  
-   * pattern Stakeholder(element : Classifier, domainStereotypeInstance : InstanceSpecification){
-   * 	find stereotypedElement(element, domainStereotypeInstance, "SysML", "Stakeholder");
+   * pattern
+   * Stakeholder(element : Element, domainStereotypeInstance : InstanceSpecification) {
+   * 	find
+   * 	stereotypedElement(element, domainStereotypeInstance, "UAF", "Stakeholder");
    * }
    * </pre></code>
    * 
@@ -333,7 +337,7 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<Stakeholder.Match> getAllMatches(final Classifier pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    public Collection<Stakeholder.Match> getAllMatches(final Element pElement, final InstanceSpecification pDomainStereotypeInstance) {
       return rawStreamAllMatches(new Object[]{pElement, pDomainStereotypeInstance}).collect(Collectors.toSet());
     }
     
@@ -348,7 +352,7 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<Stakeholder.Match> streamAllMatches(final Classifier pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    public Stream<Stakeholder.Match> streamAllMatches(final Element pElement, final InstanceSpecification pDomainStereotypeInstance) {
       return rawStreamAllMatches(new Object[]{pElement, pDomainStereotypeInstance});
     }
     
@@ -360,7 +364,7 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<Stakeholder.Match> getOneArbitraryMatch(final Classifier pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    public Optional<Stakeholder.Match> getOneArbitraryMatch(final Element pElement, final InstanceSpecification pDomainStereotypeInstance) {
       return rawGetOneArbitraryMatch(new Object[]{pElement, pDomainStereotypeInstance});
     }
     
@@ -372,7 +376,7 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
      * @return true if the input is a valid (partial) match of the pattern.
      * 
      */
-    public boolean hasMatch(final Classifier pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    public boolean hasMatch(final Element pElement, final InstanceSpecification pDomainStereotypeInstance) {
       return rawHasMatch(new Object[]{pElement, pDomainStereotypeInstance});
     }
     
@@ -383,7 +387,7 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
      * @return the number of pattern matches found.
      * 
      */
-    public int countMatches(final Classifier pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    public int countMatches(final Element pElement, final InstanceSpecification pDomainStereotypeInstance) {
       return rawCountMatches(new Object[]{pElement, pDomainStereotypeInstance});
     }
     
@@ -396,7 +400,7 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final Classifier pElement, final InstanceSpecification pDomainStereotypeInstance, final Consumer<? super Stakeholder.Match> processor) {
+    public boolean forOneArbitraryMatch(final Element pElement, final InstanceSpecification pDomainStereotypeInstance, final Consumer<? super Stakeholder.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pElement, pDomainStereotypeInstance}, processor);
     }
     
@@ -409,7 +413,7 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
      * @return the (partial) match object.
      * 
      */
-    public Stakeholder.Match newMatch(final Classifier pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    public Stakeholder.Match newMatch(final Element pElement, final InstanceSpecification pDomainStereotypeInstance) {
       return Stakeholder.Match.newMatch(pElement, pDomainStereotypeInstance);
     }
     
@@ -418,8 +422,8 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<Classifier> rawStreamAllValuesOfelement(final Object[] parameters) {
-      return rawStreamAllValues(POSITION_ELEMENT, parameters).map(Classifier.class::cast);
+    protected Stream<Element> rawStreamAllValuesOfelement(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_ELEMENT, parameters).map(Element.class::cast);
     }
     
     /**
@@ -427,7 +431,7 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Classifier> getAllValuesOfelement() {
+    public Set<Element> getAllValuesOfelement() {
       return rawStreamAllValuesOfelement(emptyArray()).collect(Collectors.toSet());
     }
     
@@ -436,7 +440,7 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<Classifier> streamAllValuesOfelement() {
+    public Stream<Element> streamAllValuesOfelement() {
       return rawStreamAllValuesOfelement(emptyArray());
     }
     
@@ -450,7 +454,7 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Classifier> streamAllValuesOfelement(final Stakeholder.Match partialMatch) {
+    public Stream<Element> streamAllValuesOfelement(final Stakeholder.Match partialMatch) {
       return rawStreamAllValuesOfelement(partialMatch.toArray());
     }
     
@@ -464,7 +468,7 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Classifier> streamAllValuesOfelement(final InstanceSpecification pDomainStereotypeInstance) {
+    public Stream<Element> streamAllValuesOfelement(final InstanceSpecification pDomainStereotypeInstance) {
       return rawStreamAllValuesOfelement(new Object[]{null, pDomainStereotypeInstance});
     }
     
@@ -473,7 +477,7 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Classifier> getAllValuesOfelement(final Stakeholder.Match partialMatch) {
+    public Set<Element> getAllValuesOfelement(final Stakeholder.Match partialMatch) {
       return rawStreamAllValuesOfelement(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
@@ -482,7 +486,7 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Classifier> getAllValuesOfelement(final InstanceSpecification pDomainStereotypeInstance) {
+    public Set<Element> getAllValuesOfelement(final InstanceSpecification pDomainStereotypeInstance) {
       return rawStreamAllValuesOfelement(new Object[]{null, pDomainStereotypeInstance}).collect(Collectors.toSet());
     }
     
@@ -537,7 +541,7 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<InstanceSpecification> streamAllValuesOfdomainStereotypeInstance(final Classifier pElement) {
+    public Stream<InstanceSpecification> streamAllValuesOfdomainStereotypeInstance(final Element pElement) {
       return rawStreamAllValuesOfdomainStereotypeInstance(new Object[]{pElement, null});
     }
     
@@ -555,14 +559,14 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<InstanceSpecification> getAllValuesOfdomainStereotypeInstance(final Classifier pElement) {
+    public Set<InstanceSpecification> getAllValuesOfdomainStereotypeInstance(final Element pElement) {
       return rawStreamAllValuesOfdomainStereotypeInstance(new Object[]{pElement, null}).collect(Collectors.toSet());
     }
     
     @Override
     protected Stakeholder.Match tupleToMatch(final Tuple t) {
       try {
-          return Stakeholder.Match.newMatch((Classifier) t.get(POSITION_ELEMENT), (InstanceSpecification) t.get(POSITION_DOMAINSTEREOTYPEINSTANCE));
+          return Stakeholder.Match.newMatch((Element) t.get(POSITION_ELEMENT), (InstanceSpecification) t.get(POSITION_DOMAINSTEREOTYPEINSTANCE));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -572,7 +576,7 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
     @Override
     protected Stakeholder.Match arrayToMatch(final Object[] match) {
       try {
-          return Stakeholder.Match.newMatch((Classifier) match[POSITION_ELEMENT], (InstanceSpecification) match[POSITION_DOMAINSTEREOTYPEINSTANCE]);
+          return Stakeholder.Match.newMatch((Element) match[POSITION_ELEMENT], (InstanceSpecification) match[POSITION_DOMAINSTEREOTYPEINSTANCE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -582,7 +586,7 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
     @Override
     protected Stakeholder.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return Stakeholder.Match.newMutableMatch((Classifier) match[POSITION_ELEMENT], (InstanceSpecification) match[POSITION_DOMAINSTEREOTYPEINSTANCE]);
+          return Stakeholder.Match.newMutableMatch((Element) match[POSITION_ELEMENT], (InstanceSpecification) match[POSITION_DOMAINSTEREOTYPEINSTANCE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -633,7 +637,7 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
   
   @Override
   public Stakeholder.Match newMatch(final Object... parameters) {
-    return Stakeholder.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier) parameters[0], (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.InstanceSpecification) parameters[1]);
+    return Stakeholder.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Element) parameters[0], (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.InstanceSpecification) parameters[1]);
   }
   
   /**
@@ -665,7 +669,7 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final Stakeholder.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_element = new PParameter("element", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Classifier")), PParameterDirection.INOUT);
+    private final PParameter parameter_element = new PParameter("element", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Element", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Element")), PParameterDirection.INOUT);
     
     private final PParameter parameter_domainStereotypeInstance = new PParameter("domainStereotypeInstance", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.InstanceSpecification", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "InstanceSpecification")), PParameterDirection.INOUT);
     
@@ -698,15 +702,15 @@ public final class Stakeholder extends BaseGeneratedEMFQuerySpecification<Stakeh
           PBody body = new PBody(this);
           PVariable var_element = body.getOrCreateVariableByName("element");
           PVariable var_domainStereotypeInstance = body.getOrCreateVariableByName("domainStereotypeInstance");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Classifier")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Element")));
           new TypeConstraint(body, Tuples.flatTupleOf(var_domainStereotypeInstance), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "InstanceSpecification")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_element, parameter_element),
              new ExportedParameter(body, var_domainStereotypeInstance, parameter_domainStereotypeInstance)
           ));
-          // 	find stereotypedElement(element, domainStereotypeInstance, "SysML", "Stakeholder")
+          // 	find	stereotypedElement(element, domainStereotypeInstance, "UAF", "Stakeholder")
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new ConstantValue(body, var__virtual_0_, "SysML");
+          new ConstantValue(body, var__virtual_0_, "UAF");
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
           new ConstantValue(body, var__virtual_1_, "Stakeholder");
           new PositivePatternCall(body, Tuples.flatTupleOf(var_element, var_domainStereotypeInstance, var__virtual_0_, var__virtual_1_), StereotypedElement.instance().getInternalQueryRepresentation());

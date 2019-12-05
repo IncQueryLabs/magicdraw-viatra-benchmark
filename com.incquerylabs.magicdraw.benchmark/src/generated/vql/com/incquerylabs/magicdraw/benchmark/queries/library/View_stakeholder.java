@@ -1,12 +1,11 @@
 /**
- * Generated from platform:/resource/com.incquerylabs.magicdraw.benchmark/src/main/java/com/incquerylabs/magicdraw/benchmark/queries/library/SysMLLibrary.vql
+ * Generated from platform:/resource/com.incquerylabs.magicdraw.benchmark/src/main/java/com/incquerylabs/magicdraw/benchmark/queries/library/UAFLibrary.vql
  */
 package com.incquerylabs.magicdraw.benchmark.queries.library;
 
 import com.incquerylabs.magicdraw.benchmark.queries.library.SlotValue;
 import com.incquerylabs.magicdraw.benchmark.queries.library.View;
-import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier;
-import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Namespace;
+import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Element;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -49,12 +48,12 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * <p>Original source:
  *         <code><pre>
  *         Pattern that queries the 'stakeholder' attribute of elements with the stereotype 'View'.
- *           
- *           Parameters: 
- *           	element: 'Namespace' object with the stereotype 'View'.
- *           	value : Classifier : A value of the attribute 'stakeholder'.
  *          
- *         pattern View_stakeholder(element : Namespace, value : Classifier){
+ *           Parameters:
+ *           element: 'Class' object with the stereotype 'View'.
+ *           value : Element : A value of the attribute 'stakeholder'.
+ *          
+ *         pattern View_stakeholder(element : Class, value : Element) {
  *         	find View(element, domainStereotypeInstance);
  *         	find slotValue(domainStereotypeInstance, "stakeholder", valuespec);
  *         	ElementValue.element(valuespec, value);
@@ -80,13 +79,13 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
    * 
    */
   public static abstract class Match extends BasePatternMatch {
-    private Namespace fElement;
+    private com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class fElement;
     
-    private Classifier fValue;
+    private Element fValue;
     
     private static List<String> parameterNames = makeImmutableList("element", "value");
     
-    private Match(final Namespace pElement, final Classifier pValue) {
+    private Match(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Element pValue) {
       this.fElement = pElement;
       this.fValue = pValue;
     }
@@ -109,11 +108,11 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
       }
     }
     
-    public Namespace getElement() {
+    public com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class getElement() {
       return this.fElement;
     }
     
-    public Classifier getValue() {
+    public Element getValue() {
       return this.fValue;
     }
     
@@ -121,22 +120,22 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       if ("element".equals(parameterName) ) {
-          this.fElement = (Namespace) newValue;
+          this.fElement = (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) newValue;
           return true;
       }
       if ("value".equals(parameterName) ) {
-          this.fValue = (Classifier) newValue;
+          this.fValue = (Element) newValue;
           return true;
       }
       return false;
     }
     
-    public void setElement(final Namespace pElement) {
+    public void setElement(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fElement = pElement;
     }
     
-    public void setValue(final Classifier pValue) {
+    public void setValue(final Element pValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fValue = pValue;
     }
@@ -219,7 +218,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static View_stakeholder.Match newMutableMatch(final Namespace pElement, final Classifier pValue) {
+    public static View_stakeholder.Match newMutableMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Element pValue) {
       return new Mutable(pElement, pValue);
     }
     
@@ -232,12 +231,12 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return the (partial) match object.
      * 
      */
-    public static View_stakeholder.Match newMatch(final Namespace pElement, final Classifier pValue) {
+    public static View_stakeholder.Match newMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Element pValue) {
       return new Immutable(pElement, pValue);
     }
     
     private static final class Mutable extends View_stakeholder.Match {
-      Mutable(final Namespace pElement, final Classifier pValue) {
+      Mutable(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Element pValue) {
         super(pElement, pValue);
       }
       
@@ -248,7 +247,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
     }
     
     private static final class Immutable extends View_stakeholder.Match {
-      Immutable(final Namespace pElement, final Classifier pValue) {
+      Immutable(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Element pValue) {
         super(pElement, pValue);
       }
       
@@ -271,12 +270,12 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
    * <p>Original source:
    * <code><pre>
    * Pattern that queries the 'stakeholder' attribute of elements with the stereotype 'View'.
-   *   
-   *   Parameters: 
-   *   	element: 'Namespace' object with the stereotype 'View'.
-   *   	value : Classifier : A value of the attribute 'stakeholder'.
    *  
-   * pattern View_stakeholder(element : Namespace, value : Classifier){
+   *   Parameters:
+   *   element: 'Class' object with the stereotype 'View'.
+   *   value : Element : A value of the attribute 'stakeholder'.
+   *  
+   * pattern View_stakeholder(element : Class, value : Element) {
    * 	find View(element, domainStereotypeInstance);
    * 	find slotValue(domainStereotypeInstance, "stakeholder", valuespec);
    * 	ElementValue.element(valuespec, value);
@@ -340,7 +339,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<View_stakeholder.Match> getAllMatches(final Namespace pElement, final Classifier pValue) {
+    public Collection<View_stakeholder.Match> getAllMatches(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Element pValue) {
       return rawStreamAllMatches(new Object[]{pElement, pValue}).collect(Collectors.toSet());
     }
     
@@ -355,7 +354,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<View_stakeholder.Match> streamAllMatches(final Namespace pElement, final Classifier pValue) {
+    public Stream<View_stakeholder.Match> streamAllMatches(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Element pValue) {
       return rawStreamAllMatches(new Object[]{pElement, pValue});
     }
     
@@ -367,7 +366,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<View_stakeholder.Match> getOneArbitraryMatch(final Namespace pElement, final Classifier pValue) {
+    public Optional<View_stakeholder.Match> getOneArbitraryMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Element pValue) {
       return rawGetOneArbitraryMatch(new Object[]{pElement, pValue});
     }
     
@@ -379,7 +378,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return true if the input is a valid (partial) match of the pattern.
      * 
      */
-    public boolean hasMatch(final Namespace pElement, final Classifier pValue) {
+    public boolean hasMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Element pValue) {
       return rawHasMatch(new Object[]{pElement, pValue});
     }
     
@@ -390,7 +389,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return the number of pattern matches found.
      * 
      */
-    public int countMatches(final Namespace pElement, final Classifier pValue) {
+    public int countMatches(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Element pValue) {
       return rawCountMatches(new Object[]{pElement, pValue});
     }
     
@@ -403,7 +402,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final Namespace pElement, final Classifier pValue, final Consumer<? super View_stakeholder.Match> processor) {
+    public boolean forOneArbitraryMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Element pValue, final Consumer<? super View_stakeholder.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pElement, pValue}, processor);
     }
     
@@ -416,7 +415,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return the (partial) match object.
      * 
      */
-    public View_stakeholder.Match newMatch(final Namespace pElement, final Classifier pValue) {
+    public View_stakeholder.Match newMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final Element pValue) {
       return View_stakeholder.Match.newMatch(pElement, pValue);
     }
     
@@ -425,8 +424,8 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<Namespace> rawStreamAllValuesOfelement(final Object[] parameters) {
-      return rawStreamAllValues(POSITION_ELEMENT, parameters).map(Namespace.class::cast);
+    protected Stream<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> rawStreamAllValuesOfelement(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_ELEMENT, parameters).map(com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class.class::cast);
     }
     
     /**
@@ -434,7 +433,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Namespace> getAllValuesOfelement() {
+    public Set<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> getAllValuesOfelement() {
       return rawStreamAllValuesOfelement(emptyArray()).collect(Collectors.toSet());
     }
     
@@ -443,7 +442,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<Namespace> streamAllValuesOfelement() {
+    public Stream<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> streamAllValuesOfelement() {
       return rawStreamAllValuesOfelement(emptyArray());
     }
     
@@ -457,7 +456,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Namespace> streamAllValuesOfelement(final View_stakeholder.Match partialMatch) {
+    public Stream<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> streamAllValuesOfelement(final View_stakeholder.Match partialMatch) {
       return rawStreamAllValuesOfelement(partialMatch.toArray());
     }
     
@@ -471,7 +470,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Namespace> streamAllValuesOfelement(final Classifier pValue) {
+    public Stream<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> streamAllValuesOfelement(final Element pValue) {
       return rawStreamAllValuesOfelement(new Object[]{null, pValue});
     }
     
@@ -480,7 +479,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Namespace> getAllValuesOfelement(final View_stakeholder.Match partialMatch) {
+    public Set<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> getAllValuesOfelement(final View_stakeholder.Match partialMatch) {
       return rawStreamAllValuesOfelement(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
@@ -489,7 +488,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Namespace> getAllValuesOfelement(final Classifier pValue) {
+    public Set<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> getAllValuesOfelement(final Element pValue) {
       return rawStreamAllValuesOfelement(new Object[]{null, pValue}).collect(Collectors.toSet());
     }
     
@@ -498,8 +497,8 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<Classifier> rawStreamAllValuesOfvalue(final Object[] parameters) {
-      return rawStreamAllValues(POSITION_VALUE, parameters).map(Classifier.class::cast);
+    protected Stream<Element> rawStreamAllValuesOfvalue(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_VALUE, parameters).map(Element.class::cast);
     }
     
     /**
@@ -507,7 +506,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Classifier> getAllValuesOfvalue() {
+    public Set<Element> getAllValuesOfvalue() {
       return rawStreamAllValuesOfvalue(emptyArray()).collect(Collectors.toSet());
     }
     
@@ -516,7 +515,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<Classifier> streamAllValuesOfvalue() {
+    public Stream<Element> streamAllValuesOfvalue() {
       return rawStreamAllValuesOfvalue(emptyArray());
     }
     
@@ -530,7 +529,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Classifier> streamAllValuesOfvalue(final View_stakeholder.Match partialMatch) {
+    public Stream<Element> streamAllValuesOfvalue(final View_stakeholder.Match partialMatch) {
       return rawStreamAllValuesOfvalue(partialMatch.toArray());
     }
     
@@ -544,7 +543,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Classifier> streamAllValuesOfvalue(final Namespace pElement) {
+    public Stream<Element> streamAllValuesOfvalue(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement) {
       return rawStreamAllValuesOfvalue(new Object[]{pElement, null});
     }
     
@@ -553,7 +552,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Classifier> getAllValuesOfvalue(final View_stakeholder.Match partialMatch) {
+    public Set<Element> getAllValuesOfvalue(final View_stakeholder.Match partialMatch) {
       return rawStreamAllValuesOfvalue(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
@@ -562,14 +561,14 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Classifier> getAllValuesOfvalue(final Namespace pElement) {
+    public Set<Element> getAllValuesOfvalue(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement) {
       return rawStreamAllValuesOfvalue(new Object[]{pElement, null}).collect(Collectors.toSet());
     }
     
     @Override
     protected View_stakeholder.Match tupleToMatch(final Tuple t) {
       try {
-          return View_stakeholder.Match.newMatch((Namespace) t.get(POSITION_ELEMENT), (Classifier) t.get(POSITION_VALUE));
+          return View_stakeholder.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) t.get(POSITION_ELEMENT), (Element) t.get(POSITION_VALUE));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -579,7 +578,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
     @Override
     protected View_stakeholder.Match arrayToMatch(final Object[] match) {
       try {
-          return View_stakeholder.Match.newMatch((Namespace) match[POSITION_ELEMENT], (Classifier) match[POSITION_VALUE]);
+          return View_stakeholder.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) match[POSITION_ELEMENT], (Element) match[POSITION_VALUE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -589,7 +588,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
     @Override
     protected View_stakeholder.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return View_stakeholder.Match.newMutableMatch((Namespace) match[POSITION_ELEMENT], (Classifier) match[POSITION_VALUE]);
+          return View_stakeholder.Match.newMutableMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) match[POSITION_ELEMENT], (Element) match[POSITION_VALUE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -640,7 +639,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
   
   @Override
   public View_stakeholder.Match newMatch(final Object... parameters) {
-    return View_stakeholder.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Namespace) parameters[0], (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier) parameters[1]);
+    return View_stakeholder.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) parameters[0], (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Element) parameters[1]);
   }
   
   /**
@@ -672,9 +671,9 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final View_stakeholder.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_element = new PParameter("element", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Namespace", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Namespace")), PParameterDirection.INOUT);
+    private final PParameter parameter_element = new PParameter("element", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Class")), PParameterDirection.INOUT);
     
-    private final PParameter parameter_value = new PParameter("value", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Classifier")), PParameterDirection.INOUT);
+    private final PParameter parameter_value = new PParameter("value", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Element", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Element")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_element, parameter_value);
     
@@ -707,8 +706,8 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
           PVariable var_value = body.getOrCreateVariableByName("value");
           PVariable var_domainStereotypeInstance = body.getOrCreateVariableByName("domainStereotypeInstance");
           PVariable var_valuespec = body.getOrCreateVariableByName("valuespec");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Namespace")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var_value), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Classifier")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Class")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_value), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Element")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_element, parameter_element),
              new ExportedParameter(body, var_value, parameter_value)

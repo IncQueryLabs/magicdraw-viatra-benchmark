@@ -18,8 +18,8 @@ import org.eclipse.viatra.query.runtime.matchers.psystem.queries.PQuery;
 
 import com.incquerylabs.magicdraw.benchmark.incrementalqueries.ParentState;
 import com.incquerylabs.magicdraw.benchmark.queries.APerformanceQueries;
-import com.incquerylabs.magicdraw.benchmark.queries.IncomingTransitions;
-import com.incquerylabs.magicdraw.benchmark.queries.TransitiveSubstatesWithCheck3;
+import com.incquerylabs.magicdraw.benchmark.incrementalqueries.IncomingTransitions;
+import com.incquerylabs.magicdraw.benchmark.incrementalqueries.TransitiveSubstatesWithCheck3;
 
 public enum BackendSelection {
 

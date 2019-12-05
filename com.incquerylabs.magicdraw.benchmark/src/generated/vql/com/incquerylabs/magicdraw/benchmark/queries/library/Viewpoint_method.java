@@ -1,5 +1,5 @@
 /**
- * Generated from platform:/resource/com.incquerylabs.magicdraw.benchmark/src/main/java/com/incquerylabs/magicdraw/benchmark/queries/library/SysMLLibrary.vql
+ * Generated from platform:/resource/com.incquerylabs.magicdraw.benchmark/src/main/java/com/incquerylabs/magicdraw/benchmark/queries/library/UAFLibrary.vql
  */
 package com.incquerylabs.magicdraw.benchmark.queries.library;
 
@@ -48,12 +48,12 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * <p>Original source:
  *         <code><pre>
  *         Pattern that queries the 'method' attribute of elements with the stereotype 'Viewpoint'.
- *           
- *           Parameters: 
- *           	element: 'Class' object with the stereotype 'Viewpoint'.
- *           	value : Behavior : A value of the attribute 'method'.
  *          
- *         pattern Viewpoint_method(element : Class, value : Behavior){
+ *           Parameters:
+ *           element: 'Class' object with the stereotype 'Viewpoint'.
+ *           value : Behavior : A value of the attribute 'method'.
+ *          
+ *         pattern Viewpoint_method(element : Class, value : Behavior) {
  *         	find Viewpoint(element, domainStereotypeInstance);
  *         	find slotValue(domainStereotypeInstance, "method", valuespec);
  *         	ElementValue.element(valuespec, value);
@@ -270,12 +270,12 @@ public final class Viewpoint_method extends BaseGeneratedEMFQuerySpecification<V
    * <p>Original source:
    * <code><pre>
    * Pattern that queries the 'method' attribute of elements with the stereotype 'Viewpoint'.
-   *   
-   *   Parameters: 
-   *   	element: 'Class' object with the stereotype 'Viewpoint'.
-   *   	value : Behavior : A value of the attribute 'method'.
    *  
-   * pattern Viewpoint_method(element : Class, value : Behavior){
+   *   Parameters:
+   *   element: 'Class' object with the stereotype 'Viewpoint'.
+   *   value : Behavior : A value of the attribute 'method'.
+   *  
+   * pattern Viewpoint_method(element : Class, value : Behavior) {
    * 	find Viewpoint(element, domainStereotypeInstance);
    * 	find slotValue(domainStereotypeInstance, "method", valuespec);
    * 	ElementValue.element(valuespec, value);

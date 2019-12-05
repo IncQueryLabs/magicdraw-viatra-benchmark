@@ -1,11 +1,10 @@
 /**
- * Generated from platform:/resource/com.incquerylabs.magicdraw.benchmark/src/main/java/com/incquerylabs/magicdraw/benchmark/queries/library/SysMLLibrary.vql
+ * Generated from platform:/resource/com.incquerylabs.magicdraw.benchmark/src/main/java/com/incquerylabs/magicdraw/benchmark/queries/library/UAFLibrary.vql
  */
 package com.incquerylabs.magicdraw.benchmark.queries.library;
 
 import com.incquerylabs.magicdraw.benchmark.queries.library.SlotValue;
 import com.incquerylabs.magicdraw.benchmark.queries.library.Viewpoint;
-import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.LiteralString;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -26,9 +25,11 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecificat
 import org.eclipse.viatra.query.runtime.api.impl.BaseMatcher;
 import org.eclipse.viatra.query.runtime.api.impl.BasePatternMatch;
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
+import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
+import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.ConstantValue;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.PositivePatternCall;
@@ -46,14 +47,15 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * <p>Original source:
  *         <code><pre>
  *         Pattern that queries the 'concern' attribute of elements with the stereotype 'Viewpoint'.
- *           
- *           Parameters: 
- *           	element: 'Class' object with the stereotype 'Viewpoint'.
- *           	valuespec : LiteralString : A value of the attribute 'concern'.
  *          
- *         pattern Viewpoint_concern(element : Class, valuespec : LiteralString){
+ *           Parameters:
+ *           element: 'Class' object with the stereotype 'Viewpoint'.
+ *           value : Class : A value of the attribute 'concern'.
+ *          
+ *         pattern Viewpoint_concern(element : Class, value : Class) {
  *         	find Viewpoint(element, domainStereotypeInstance);
  *         	find slotValue(domainStereotypeInstance, "concern", valuespec);
+ *         	ElementValue.element(valuespec, value);
  *         }
  * </pre></code>
  * 
@@ -78,20 +80,20 @@ public final class Viewpoint_concern extends BaseGeneratedEMFQuerySpecification<
   public static abstract class Match extends BasePatternMatch {
     private com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class fElement;
     
-    private LiteralString fValuespec;
+    private com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class fValue;
     
-    private static List<String> parameterNames = makeImmutableList("element", "valuespec");
+    private static List<String> parameterNames = makeImmutableList("element", "value");
     
-    private Match(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final LiteralString pValuespec) {
+    private Match(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pValue) {
       this.fElement = pElement;
-      this.fValuespec = pValuespec;
+      this.fValue = pValue;
     }
     
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
           case "element": return this.fElement;
-          case "valuespec": return this.fValuespec;
+          case "value": return this.fValue;
           default: return null;
       }
     }
@@ -100,7 +102,7 @@ public final class Viewpoint_concern extends BaseGeneratedEMFQuerySpecification<
     public Object get(final int index) {
       switch(index) {
           case 0: return this.fElement;
-          case 1: return this.fValuespec;
+          case 1: return this.fValue;
           default: return null;
       }
     }
@@ -109,8 +111,8 @@ public final class Viewpoint_concern extends BaseGeneratedEMFQuerySpecification<
       return this.fElement;
     }
     
-    public LiteralString getValuespec() {
-      return this.fValuespec;
+    public com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class getValue() {
+      return this.fValue;
     }
     
     @Override
@@ -120,8 +122,8 @@ public final class Viewpoint_concern extends BaseGeneratedEMFQuerySpecification<
           this.fElement = (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) newValue;
           return true;
       }
-      if ("valuespec".equals(parameterName) ) {
-          this.fValuespec = (LiteralString) newValue;
+      if ("value".equals(parameterName) ) {
+          this.fValue = (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) newValue;
           return true;
       }
       return false;
@@ -132,9 +134,9 @@ public final class Viewpoint_concern extends BaseGeneratedEMFQuerySpecification<
       this.fElement = pElement;
     }
     
-    public void setValuespec(final LiteralString pValuespec) {
+    public void setValue(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      this.fValuespec = pValuespec;
+      this.fValue = pValue;
     }
     
     @Override
@@ -149,25 +151,25 @@ public final class Viewpoint_concern extends BaseGeneratedEMFQuerySpecification<
     
     @Override
     public Object[] toArray() {
-      return new Object[]{fElement, fValuespec};
+      return new Object[]{fElement, fValue};
     }
     
     @Override
     public Viewpoint_concern.Match toImmutable() {
-      return isMutable() ? newMatch(fElement, fValuespec) : this;
+      return isMutable() ? newMatch(fElement, fValue) : this;
     }
     
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
       result.append("\"element\"=" + prettyPrintValue(fElement) + ", ");
-      result.append("\"valuespec\"=" + prettyPrintValue(fValuespec));
+      result.append("\"value\"=" + prettyPrintValue(fValue));
       return result.toString();
     }
     
     @Override
     public int hashCode() {
-      return Objects.hash(fElement, fValuespec);
+      return Objects.hash(fElement, fValue);
     }
     
     @Override
@@ -179,7 +181,7 @@ public final class Viewpoint_concern extends BaseGeneratedEMFQuerySpecification<
       }
       if ((obj instanceof Viewpoint_concern.Match)) {
           Viewpoint_concern.Match other = (Viewpoint_concern.Match) obj;
-          return Objects.equals(fElement, other.fElement) && Objects.equals(fValuespec, other.fValuespec);
+          return Objects.equals(fElement, other.fElement) && Objects.equals(fValue, other.fValue);
       } else {
           // this should be infrequent
           if (!(obj instanceof IPatternMatch)) {
@@ -211,12 +213,12 @@ public final class Viewpoint_concern extends BaseGeneratedEMFQuerySpecification<
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
      * 
      * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pValue the fixed value of pattern parameter value, or null if not bound.
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static Viewpoint_concern.Match newMutableMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final LiteralString pValuespec) {
-      return new Mutable(pElement, pValuespec);
+    public static Viewpoint_concern.Match newMutableMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pValue) {
+      return new Mutable(pElement, pValue);
     }
     
     /**
@@ -224,17 +226,17 @@ public final class Viewpoint_concern extends BaseGeneratedEMFQuerySpecification<
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
      * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pValue the fixed value of pattern parameter value, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public static Viewpoint_concern.Match newMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final LiteralString pValuespec) {
-      return new Immutable(pElement, pValuespec);
+    public static Viewpoint_concern.Match newMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pValue) {
+      return new Immutable(pElement, pValue);
     }
     
     private static final class Mutable extends Viewpoint_concern.Match {
-      Mutable(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final LiteralString pValuespec) {
-        super(pElement, pValuespec);
+      Mutable(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pValue) {
+        super(pElement, pValue);
       }
       
       @Override
@@ -244,8 +246,8 @@ public final class Viewpoint_concern extends BaseGeneratedEMFQuerySpecification<
     }
     
     private static final class Immutable extends Viewpoint_concern.Match {
-      Immutable(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final LiteralString pValuespec) {
-        super(pElement, pValuespec);
+      Immutable(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pValue) {
+        super(pElement, pValue);
       }
       
       @Override
@@ -267,14 +269,15 @@ public final class Viewpoint_concern extends BaseGeneratedEMFQuerySpecification<
    * <p>Original source:
    * <code><pre>
    * Pattern that queries the 'concern' attribute of elements with the stereotype 'Viewpoint'.
-   *   
-   *   Parameters: 
-   *   	element: 'Class' object with the stereotype 'Viewpoint'.
-   *   	valuespec : LiteralString : A value of the attribute 'concern'.
    *  
-   * pattern Viewpoint_concern(element : Class, valuespec : LiteralString){
+   *   Parameters:
+   *   element: 'Class' object with the stereotype 'Viewpoint'.
+   *   value : Class : A value of the attribute 'concern'.
+   *  
+   * pattern Viewpoint_concern(element : Class, value : Class) {
    * 	find Viewpoint(element, domainStereotypeInstance);
    * 	find slotValue(domainStereotypeInstance, "concern", valuespec);
+   * 	ElementValue.element(valuespec, value);
    * }
    * </pre></code>
    * 
@@ -312,7 +315,7 @@ public final class Viewpoint_concern extends BaseGeneratedEMFQuerySpecification<
     
     private static final int POSITION_ELEMENT = 0;
     
-    private static final int POSITION_VALUESPEC = 1;
+    private static final int POSITION_VALUE = 1;
     
     private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(Viewpoint_concern.Matcher.class);
     
@@ -331,12 +334,12 @@ public final class Viewpoint_concern extends BaseGeneratedEMFQuerySpecification<
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pValue the fixed value of pattern parameter value, or null if not bound.
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<Viewpoint_concern.Match> getAllMatches(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final LiteralString pValuespec) {
-      return rawStreamAllMatches(new Object[]{pElement, pValuespec}).collect(Collectors.toSet());
+    public Collection<Viewpoint_concern.Match> getAllMatches(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pValue) {
+      return rawStreamAllMatches(new Object[]{pElement, pValue}).collect(Collectors.toSet());
     }
     
     /**
@@ -346,60 +349,60 @@ public final class Viewpoint_concern extends BaseGeneratedEMFQuerySpecification<
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
      * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
      * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pValue the fixed value of pattern parameter value, or null if not bound.
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<Viewpoint_concern.Match> streamAllMatches(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final LiteralString pValuespec) {
-      return rawStreamAllMatches(new Object[]{pElement, pValuespec});
+    public Stream<Viewpoint_concern.Match> streamAllMatches(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pValue) {
+      return rawStreamAllMatches(new Object[]{pElement, pValue});
     }
     
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
      * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pValue the fixed value of pattern parameter value, or null if not bound.
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<Viewpoint_concern.Match> getOneArbitraryMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final LiteralString pValuespec) {
-      return rawGetOneArbitraryMatch(new Object[]{pElement, pValuespec});
+    public Optional<Viewpoint_concern.Match> getOneArbitraryMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pValue) {
+      return rawGetOneArbitraryMatch(new Object[]{pElement, pValue});
     }
     
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
      * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pValue the fixed value of pattern parameter value, or null if not bound.
      * @return true if the input is a valid (partial) match of the pattern.
      * 
      */
-    public boolean hasMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final LiteralString pValuespec) {
-      return rawHasMatch(new Object[]{pElement, pValuespec});
+    public boolean hasMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pValue) {
+      return rawHasMatch(new Object[]{pElement, pValue});
     }
     
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
      * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pValue the fixed value of pattern parameter value, or null if not bound.
      * @return the number of pattern matches found.
      * 
      */
-    public int countMatches(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final LiteralString pValuespec) {
-      return rawCountMatches(new Object[]{pElement, pValuespec});
+    public int countMatches(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pValue) {
+      return rawCountMatches(new Object[]{pElement, pValue});
     }
     
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
      * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pValue the fixed value of pattern parameter value, or null if not bound.
      * @param processor the action that will process the selected match.
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final LiteralString pValuespec, final Consumer<? super Viewpoint_concern.Match> processor) {
-      return rawForOneArbitraryMatch(new Object[]{pElement, pValuespec}, processor);
+    public boolean forOneArbitraryMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pValue, final Consumer<? super Viewpoint_concern.Match> processor) {
+      return rawForOneArbitraryMatch(new Object[]{pElement, pValue}, processor);
     }
     
     /**
@@ -407,12 +410,12 @@ public final class Viewpoint_concern extends BaseGeneratedEMFQuerySpecification<
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
      * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pValue the fixed value of pattern parameter value, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public Viewpoint_concern.Match newMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final LiteralString pValuespec) {
-      return Viewpoint_concern.Match.newMatch(pElement, pValuespec);
+    public Viewpoint_concern.Match newMatch(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement, final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pValue) {
+      return Viewpoint_concern.Match.newMatch(pElement, pValue);
     }
     
     /**
@@ -466,8 +469,8 @@ public final class Viewpoint_concern extends BaseGeneratedEMFQuerySpecification<
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> streamAllValuesOfelement(final LiteralString pValuespec) {
-      return rawStreamAllValuesOfelement(new Object[]{null, pValuespec});
+    public Stream<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> streamAllValuesOfelement(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pValue) {
+      return rawStreamAllValuesOfelement(new Object[]{null, pValue});
     }
     
     /**
@@ -484,39 +487,39 @@ public final class Viewpoint_concern extends BaseGeneratedEMFQuerySpecification<
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> getAllValuesOfelement(final LiteralString pValuespec) {
-      return rawStreamAllValuesOfelement(new Object[]{null, pValuespec}).collect(Collectors.toSet());
+    public Set<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> getAllValuesOfelement(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pValue) {
+      return rawStreamAllValuesOfelement(new Object[]{null, pValue}).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for valuespec.
+     * Retrieve the set of values that occur in matches for value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<LiteralString> rawStreamAllValuesOfvaluespec(final Object[] parameters) {
-      return rawStreamAllValues(POSITION_VALUESPEC, parameters).map(LiteralString.class::cast);
+    protected Stream<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> rawStreamAllValuesOfvalue(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_VALUE, parameters).map(com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for valuespec.
+     * Retrieve the set of values that occur in matches for value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<LiteralString> getAllValuesOfvaluespec() {
-      return rawStreamAllValuesOfvaluespec(emptyArray()).collect(Collectors.toSet());
+    public Set<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> getAllValuesOfvalue() {
+      return rawStreamAllValuesOfvalue(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for valuespec.
+     * Retrieve the set of values that occur in matches for value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<LiteralString> streamAllValuesOfvaluespec() {
-      return rawStreamAllValuesOfvaluespec(emptyArray());
+    public Stream<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> streamAllValuesOfvalue() {
+      return rawStreamAllValuesOfvalue(emptyArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for valuespec.
+     * Retrieve the set of values that occur in matches for value.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -525,12 +528,12 @@ public final class Viewpoint_concern extends BaseGeneratedEMFQuerySpecification<
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<LiteralString> streamAllValuesOfvaluespec(final Viewpoint_concern.Match partialMatch) {
-      return rawStreamAllValuesOfvaluespec(partialMatch.toArray());
+    public Stream<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> streamAllValuesOfvalue(final Viewpoint_concern.Match partialMatch) {
+      return rawStreamAllValuesOfvalue(partialMatch.toArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for valuespec.
+     * Retrieve the set of values that occur in matches for value.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -539,32 +542,32 @@ public final class Viewpoint_concern extends BaseGeneratedEMFQuerySpecification<
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<LiteralString> streamAllValuesOfvaluespec(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement) {
-      return rawStreamAllValuesOfvaluespec(new Object[]{pElement, null});
+    public Stream<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> streamAllValuesOfvalue(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement) {
+      return rawStreamAllValuesOfvalue(new Object[]{pElement, null});
     }
     
     /**
-     * Retrieve the set of values that occur in matches for valuespec.
+     * Retrieve the set of values that occur in matches for value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<LiteralString> getAllValuesOfvaluespec(final Viewpoint_concern.Match partialMatch) {
-      return rawStreamAllValuesOfvaluespec(partialMatch.toArray()).collect(Collectors.toSet());
+    public Set<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> getAllValuesOfvalue(final Viewpoint_concern.Match partialMatch) {
+      return rawStreamAllValuesOfvalue(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for valuespec.
+     * Retrieve the set of values that occur in matches for value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<LiteralString> getAllValuesOfvaluespec(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement) {
-      return rawStreamAllValuesOfvaluespec(new Object[]{pElement, null}).collect(Collectors.toSet());
+    public Set<com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class> getAllValuesOfvalue(final com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class pElement) {
+      return rawStreamAllValuesOfvalue(new Object[]{pElement, null}).collect(Collectors.toSet());
     }
     
     @Override
     protected Viewpoint_concern.Match tupleToMatch(final Tuple t) {
       try {
-          return Viewpoint_concern.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) t.get(POSITION_ELEMENT), (LiteralString) t.get(POSITION_VALUESPEC));
+          return Viewpoint_concern.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) t.get(POSITION_ELEMENT), (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) t.get(POSITION_VALUE));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -574,7 +577,7 @@ public final class Viewpoint_concern extends BaseGeneratedEMFQuerySpecification<
     @Override
     protected Viewpoint_concern.Match arrayToMatch(final Object[] match) {
       try {
-          return Viewpoint_concern.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) match[POSITION_ELEMENT], (LiteralString) match[POSITION_VALUESPEC]);
+          return Viewpoint_concern.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) match[POSITION_ELEMENT], (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) match[POSITION_VALUE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -584,7 +587,7 @@ public final class Viewpoint_concern extends BaseGeneratedEMFQuerySpecification<
     @Override
     protected Viewpoint_concern.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return Viewpoint_concern.Match.newMutableMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) match[POSITION_ELEMENT], (LiteralString) match[POSITION_VALUESPEC]);
+          return Viewpoint_concern.Match.newMutableMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) match[POSITION_ELEMENT], (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) match[POSITION_VALUE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -635,7 +638,7 @@ public final class Viewpoint_concern extends BaseGeneratedEMFQuerySpecification<
   
   @Override
   public Viewpoint_concern.Match newMatch(final Object... parameters) {
-    return Viewpoint_concern.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) parameters[0], (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.LiteralString) parameters[1]);
+    return Viewpoint_concern.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) parameters[0], (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class) parameters[1]);
   }
   
   /**
@@ -669,9 +672,9 @@ public final class Viewpoint_concern extends BaseGeneratedEMFQuerySpecification<
     
     private final PParameter parameter_element = new PParameter("element", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Class")), PParameterDirection.INOUT);
     
-    private final PParameter parameter_valuespec = new PParameter("valuespec", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.LiteralString", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "LiteralString")), PParameterDirection.INOUT);
+    private final PParameter parameter_value = new PParameter("value", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Class")), PParameterDirection.INOUT);
     
-    private final List<PParameter> parameters = Arrays.asList(parameter_element, parameter_valuespec);
+    private final List<PParameter> parameters = Arrays.asList(parameter_element, parameter_value);
     
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
@@ -684,7 +687,7 @@ public final class Viewpoint_concern extends BaseGeneratedEMFQuerySpecification<
     
     @Override
     public List<String> getParameterNames() {
-      return Arrays.asList("element","valuespec");
+      return Arrays.asList("element","value");
     }
     
     @Override
@@ -699,13 +702,14 @@ public final class Viewpoint_concern extends BaseGeneratedEMFQuerySpecification<
       {
           PBody body = new PBody(this);
           PVariable var_element = body.getOrCreateVariableByName("element");
-          PVariable var_valuespec = body.getOrCreateVariableByName("valuespec");
+          PVariable var_value = body.getOrCreateVariableByName("value");
           PVariable var_domainStereotypeInstance = body.getOrCreateVariableByName("domainStereotypeInstance");
+          PVariable var_valuespec = body.getOrCreateVariableByName("valuespec");
           new TypeConstraint(body, Tuples.flatTupleOf(var_element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Class")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var_valuespec), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "LiteralString")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_value), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Class")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_element, parameter_element),
-             new ExportedParameter(body, var_valuespec, parameter_valuespec)
+             new ExportedParameter(body, var_value, parameter_value)
           ));
           // 	find Viewpoint(element, domainStereotypeInstance)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_element, var_domainStereotypeInstance), Viewpoint.instance().getInternalQueryRepresentation());
@@ -713,6 +717,12 @@ public final class Viewpoint_concern extends BaseGeneratedEMFQuerySpecification<
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
           new ConstantValue(body, var__virtual_0_, "concern");
           new PositivePatternCall(body, Tuples.flatTupleOf(var_domainStereotypeInstance, var__virtual_0_, var_valuespec), SlotValue.instance().getInternalQueryRepresentation());
+          // 	ElementValue.element(valuespec, value)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_valuespec), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ElementValue")));
+          PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_valuespec, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ElementValue", "element")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Element")));
+          new Equality(body, var__virtual_1_, var_value);
           bodies.add(body);
       }
       return bodies;
