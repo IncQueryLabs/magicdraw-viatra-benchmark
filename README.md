@@ -5,7 +5,7 @@ This benchmark is intended to showcase the performance of the [VIATRA](http://ec
 ## Master-UAF branch
 
 This branch contains UAF validation queries to be used in the benchmarks. Detailed information about the UAF validation rules can be found at [UAF Validation](https://github.com/IncQueryLabs/incquery-sysml-validation/wiki/IncQuery-UAF-Validation) .
-For futher information on UAF - Unified Architecture Modeling standard please check out the (OMG Specification of UAF)[https://www.omg.org/spec/UAF].
+For futher information on UAF - Unified Architecture Modeling standard please check out the [OMG Specification of UAF](https://www.omg.org/spec/UAF).
 
 ## Getting Started
 
