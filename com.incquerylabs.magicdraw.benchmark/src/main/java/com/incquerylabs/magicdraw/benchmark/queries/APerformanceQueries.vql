@@ -2,1086 +2,2794 @@ package com.incquerylabs.magicdraw.benchmark.queries
 
 import "http://www.nomagic.com/magicdraw/UML/2.5.1"
 
-pattern participantPropertyDifferentType(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty(property, _);
-	Property.type(property, type);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty_end(property, propertyEnd);
-	neg Property.type(propertyEnd, type);
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      Software
+ *******************************************************************************/
+pattern softwareNotBlock(class : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Software(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
 }
 
-pattern refineNotSingleClient(abstraction : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Refine(abstraction, _);
-	clients == count Abstraction.client(abstraction, _);
-	check(clients != 1);
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      OperationalExchange
+ *******************************************************************************/
+pattern operationalExchangeNotItemFlow(informationFlow : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalExchange(informationFlow, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow(informationFlow, _);
 }
 
-pattern requirementHasOperation(operation : Operation) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(class, _);
-	Class.ownedOperation(class, operation);
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      NodePort
+ *******************************************************************************/
+pattern nodePortNotFlowPort(port : Port) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.NodePort(port, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.FlowPort(port, _);
 }
 
-pattern requirementHasAttribute(attirubute : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(req, _);
-	Class.ownedAttribute(req, attirubute);
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      LightCondition
+ *******************************************************************************/
+pattern lightConditionNotValueType(dataType : DataType) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.LightCondition(dataType, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(dataType, _);
 }
 
-pattern
-requirementInAssociation(association : Association, requirement : Class) {
-	Association.memberEnd(association, memberEnd);
-	Property.type(memberEnd, requirement);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(requirement, _);
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      ResourceInteraction
+ *******************************************************************************/
+pattern resourceInteractionNotItemFlow(informationFlow : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceInteraction(informationFlow, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow(informationFlow, _);
 }
 
-pattern
-requirementInGeneralization(classifier : Classifier, requirement : Class) {
-	Classifier.generalization(classifier, generalization);
-	Generalization.general(generalization, requirement);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(requirement, _);
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      HighLevelOperationalConcept
+ *******************************************************************************/
+pattern highLevelOperationalConceptNotBlock(class : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.HighLevelOperationalConcept(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
 }
 
-pattern activityEdgeDiscreteAndContinuous(activityEdge : ActivityEdge) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Discrete(activityEdge, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Continuous(activityEdge, _);
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      LocationType
+ *******************************************************************************/
+pattern locationTypeNotValueType(dataType : DataType) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.LocationType(dataType, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(dataType, _);
 }
 
-pattern requirementAsType(element : TypedElement, requirement : Class) {
-	TypedElement.type(element, requirement);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(requirement, _);
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      ResourcePort
+ *******************************************************************************/
+pattern resourcePortNotFlowPort(port : Port) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourcePort(port, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.FlowPort(port, _);
 }
 
-pattern flowPropertyInvalidType(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.FlowProperty(property, _);
-	Property.type(property, type);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(type, _);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(type, _);
-	neg Signal(type);
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      Control
+ *******************************************************************************/
+pattern controlNotItemFlow(informationFlow : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Control(informationFlow, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow(informationFlow, _);
 }
 
-pattern interfaceBlockIsConjugated(port : Port, class : Class) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceBlock(class, _);
-	Port.type(port, class);
-	Port.isConjugated(port, true);
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      EntityItem
+ *******************************************************************************/
+pattern entityItemNotBlock(class : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.EntityItem(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
 }
 
-pattern noBufferAndOverwrite(objectNode : ObjectNode) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.NoBuffer(objectNode, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Overwrite(objectNode, _);
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      Climate
+ *******************************************************************************/
+pattern climateNotValueType(dataType : DataType) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Climate(dataType, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(dataType, _);
 }
 
-pattern notBinaryConnector(connector : Connector) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(block, _);
-	Class.ownedConnector(block, connector);
-	ends == count Connector.end(connector, _);
-	check(ends != 2);
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      Commands
+ *******************************************************************************/
+pattern commandsNotItemFlow(informationFlow : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Command(informationFlow, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow(informationFlow, _);
 }
 
-pattern allocateNotSingleClient(abstraction : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Allocate(abstraction, _);
-	clients == count Abstraction.client(abstraction, _);
-	check(clients != 1);
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      CapabilityConfiguration
+ *******************************************************************************/
+pattern capabilityConfigurationNotBlock(class : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.CapabilityConfiguration(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
 }
 
-pattern allocateNotSingleSupplier(abstraction : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Allocate(abstraction, _);
-	suppliers == count Abstraction.supplier(abstraction, _);
-	check(suppliers != 1);
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      EnterpriseGoal
+ *******************************************************************************/
+pattern enterpriseGoalNotRequirement(class : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.EnterpriseGoal(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(class, _);
 }
 
-pattern participantPropertyNotBlock(class : Class, property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty(property, _);
-	Class.ownedAttribute(class, property);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      Node
+ *******************************************************************************/
+pattern nodeNotBlock(class : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Node(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
 }
 
-pattern
-participationPropertyNotAssociation(class : Class, property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty(property, _);
-	Class.ownedAttribute(class, property);
-	neg AssociationClass(class);
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      System
+ *******************************************************************************/
+pattern systemNotBlock(class : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.System(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
 }
 
-pattern participantPropertyIsMemberEndOfAssociation(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty(property, _);
-	Association.memberEnd(_, property);
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      Energy
+ *******************************************************************************/
+pattern energyNotBlock(class : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Energy(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
 }
 
-pattern refineNotSingleSupplier(abstraction : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Refine(abstraction, _);
-	suppliers == count Abstraction.supplier(abstraction, _);
-	check(suppliers != 1);
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      ResourceArtifact
+ *******************************************************************************/
+pattern resourceArtifactNotBlock(class : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceArtifact(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
 }
 
-pattern participantPropertyAggregationKindNotNone(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty(property, _);
-	neg Property.aggregation(property, ::none);
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      Environment
+ *******************************************************************************/
+pattern environmentNotBlock(dataType : DataType) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Environment(dataType, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(dataType, _);
 }
 
-pattern fullPortIsBehavioral(port : Port) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.FullPort(port, _);
-	Port.isBehavior(port, true);
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      ExternalType
+ *******************************************************************************/
+pattern externalTypeNotBlock(class : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ExternalType(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
 }
 
-pattern interfaceBlockPortInvalidType(port : Port) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceBlock(class, _);
-	Class.ownedAttribute(class, port);
-	Port.type(port, type);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceBlock(type, _);
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      Capability
+ *******************************************************************************/
+pattern capabilityNotBlock(class : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Capability(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      MeasurementSet
+ *******************************************************************************/
+pattern measurementSetNotValueType(dataType : DataType) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.MeasurementSet(dataType, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(dataType, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      Condition
+ *******************************************************************************/
+pattern conditionNotValueType(dataType : DataType) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Condition(dataType, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(dataType, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      ExchangeElement
+ *******************************************************************************/
+pattern exchangeElementNotBlock(class : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ExchangeElement(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      GeoPoliticalExtentType
+ *******************************************************************************/
+pattern geoPoliticalExtentTypeNotValueType(dataType : DataType) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.GeoPoliticalExtentType(dataType, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(dataType, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      SecurityAttributesGroup
+ *******************************************************************************/
+pattern securityAttributesGroupNotValueType(dataType : DataType) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.SecurityAttributesGroup(dataType, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(dataType, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      LogicalArchitecture
+ *******************************************************************************/
+pattern logicalArchitectureNotBlock(class : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.LogicalArchitecture(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      Materiel
+ *******************************************************************************/
+pattern materielNotBlock(class : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Materiel(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      MeasureType
+ *******************************************************************************/
+pattern measureTypeNotValueType(dataType : DataType) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.MeasureType(dataType, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(dataType, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      Organization
+ *******************************************************************************/
+pattern organizationNotBlock(class : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Organization(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      OrganizationType
+ *******************************************************************************/
+pattern organizationTypeNotBlock(class : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OrganizationType(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      Performer
+ *******************************************************************************/
+pattern performerNotBlock(class : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Performer(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      PersonType
+ *******************************************************************************/
+pattern personTypeNotBlock(class : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.PersonType(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      PhysicalArchitecture
+ *******************************************************************************/
+pattern physicalArchitectureNotBlock(class : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.PhysicalArchitecture(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      Post
+ *******************************************************************************/
+pattern postNotBlock(class : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Post(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      SecurityDomain
+ *******************************************************************************/
+pattern securityDomainNotBlock(class : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.SecurityDomain(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      ServiceAccess
+ *******************************************************************************/
+pattern serviceAccessNotBlock(class : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceAccess(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      Responsibility
+ *******************************************************************************/
+pattern responsibilityNotBlock(class : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Responsibility(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:  UPDM L1
+ * UPDM Element:      RoleType
+ *******************************************************************************/
+pattern roleTypeNotBlock(class : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.RoleType(class, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ActualOrganization
+ * UPDM Constraint Id:  ActualOrganization.classifier
+ *******************************************************************************/
+
+pattern ActualOrganization_classifier(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualOrganization(element, _);
+    InstanceSpecification.classifier(element, classifier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Organization(classifier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ActualOrganization
+ * UPDM Constraint Id:  ActualOrganization.slot
+ *******************************************************************************/
+
+pattern ActualOrganization_slot(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualOrganization(element, _);
+    InstanceSpecification.slot(element, slot);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualOrganizationRole(slot, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ActualPost
+ * UPDM Constraint Id:  ActualPost.classifier
+ *******************************************************************************/
+
+pattern ActualPost_classifier(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualPost(element, _);
+    InstanceSpecification.classifier(element, classifier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Post(classifier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ActualOrganizationRelationship
+ * UPDM Constraint Id:  ActualOrganizationRelationship.source
+ *******************************************************************************/
+
+pattern actualOrganizationRelationship_source(element : InformationFlow) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualOrganizationRelationship(element, _);
+	InformationFlow.informationSource(element, source);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualOrganizationalResource(source, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ActualOrganizationRelationship
+ * UPDM Constraint Id:  ActualOrganizationRelationship.realization
+ *******************************************************************************/
+
+pattern ActualOrganizationRelationship_realization(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualOrganizationRelationship(element, _);
+    InformationFlow.realization(element, realization);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceInteraction(realization, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ActualOrganizationRelationship
+ * UPDM Constraint Id:  ActualOrganizationRelationship.target
+ *******************************************************************************/
+
+pattern actualOrganizationRelationship_target(element : InformationFlow) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualOrganizationRelationship(element, _);
+	InformationFlow.informationTarget(element, target);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceInteraction(target, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ActualOrganizationRelationship
+ * UPDM Constraint Id:  ActualOrganizationRelationship.conveyed
+ *******************************************************************************/
+
+pattern ActualOrganizationRelationship_conveyed(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualOrganizationRelationship(element, _);
+    InformationFlow.conveyed(element, conveyed);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ExchangeElement(conveyed, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ActualPerson
+ * UPDM Constraint Id:  ActualPerson.classifier
+ *******************************************************************************/
+
+pattern ActualPerson_classifier(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualPerson(element, _);
+    InstanceSpecification.classifier(element, classifier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Person(classifier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ActualOrganizationRole
+ * UPDM Constraint Id:  ActualOrganizationPart.owningInstance
+ *******************************************************************************/
+
+pattern ActualOrganizationPart_owningInstance(element : Slot) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualOrganizationRole(element, _);
+    Slot.owningInstance(element, owningInstance);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualOrganization(owningInstance, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ActualOrganizationRole
+ * UPDM Constraint Id:  ActualOrganizationPart.definingFeature
+ *******************************************************************************/
+
+pattern ActualOrganizationPart_definingFeature(element : Slot) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualOrganizationRole(element, _);
+    Slot.definingFeature(element, definingFeature);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceRole(definingFeature, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     FillsPost
+ * UPDM Constraint Id:  FillsPost.client
+ *******************************************************************************/
+
+pattern FillsPost_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.FillsPost(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualPerson(client, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     FillsPost
+ * UPDM Constraint Id:  FillsPost.supplier
+ *******************************************************************************/
+
+pattern FillsPost_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.FillsPost(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualPost(supplier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ProvidesCompetence
+ * UPDM Constraint Id:  ProvidesCompetence.client
+ *******************************************************************************/
+
+pattern ProvidesCompetence_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ProvidesCompetence(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.CompetenceProvider(client, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ProvidesCompetence
+ * UPDM Constraint Id:  ProvidesCompetence.supplier
+ *******************************************************************************/
+
+pattern ProvidesCompetence_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ProvidesCompetence(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Competence(supplier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     RequiresCompetence
+ * UPDM Constraint Id:  RequiresCompetence.client
+ *******************************************************************************/
+
+pattern RequiresCompetence_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.RequiresCompetence(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.CompetenceRequirer(client, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     RequiresCompetence
+ * UPDM Constraint Id:  RequiresCompetence.supplier
+ *******************************************************************************/
+
+pattern RequiresCompetence_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.RequiresCompetence(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Competence(supplier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ArbitraryConnector
+ * UPDM Constraint Id:  ArbitraryConnector.client
+ *******************************************************************************/
+
+pattern ArbitraryConnector_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ArbitraryConnector(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ConceptRole(client, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ArbitraryConnector
+ * UPDM Constraint Id:  ArbitraryConnector.supplier
+ *******************************************************************************/
+
+pattern ArbitraryConnector_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ArbitraryConnector(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ConceptRole(supplier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     NodeRole
+ * UPDM Constraint Id:  NodeRole.type
+ *******************************************************************************/
+
+pattern NodeRole_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.NodeRole(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Node(type, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     NodeRole
+ * UPDM Constraint Id:  NodeRole.class
+ *******************************************************************************/
+
+pattern nodeRole_class(element : Property) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.updm.NodeRole(element, _);
+	Class.ownedAttribute(class, element);
+	neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.NodeParent(class, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     HighLevelOperationalConcept
+ * UPDM Constraint Id:  HighLevelOperationalConcept.ownedAttribute
+ *******************************************************************************/
+
+pattern HighLevelOperationalConcept_ownedAttribute(element : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.HighLevelOperationalConcept(element, _);
+    Class.ownedAttribute(element, ownedAttribute);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ConceptRole(ownedAttribute, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ConceptRole
+ * UPDM Constraint Id:  ConceptRole.type
+ *******************************************************************************/
+
+pattern ConceptRole_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ConceptRole(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ConceptItem(type, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Needline
+ * UPDM Constraint Id:  Needline.end
+ *******************************************************************************/
+
+pattern needline_end(element : Connector) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Needline(element, _);
+    Connector.end(element, end);
+    ConnectorEnd.role(end, role);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.NodeRole(role, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.NodePort(role, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     OperationalConstraint
+ * UPDM Constraint Id:  OperationalConstraint.constrainedElement
+ *******************************************************************************/
+
+pattern OperationalConstraint_constrainedElement(element : Constraint) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalConstraint(element, _);
+    Constraint.constrainedElement(element, constrainedElement);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.SubjectOfOperationalConstraint(constrainedElement, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     NodePort
+ * UPDM Constraint Id:  NodePort.type
+ *******************************************************************************/
+
+pattern NodePort_type(element : Port) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.NodePort(element, _);
+    Port.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalExchangeItem(type, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     KnownResource
+ * UPDM Constraint Id:  KnownResrouce.type
+ *******************************************************************************/
+
+pattern KnownResrouce_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.KnownResource(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.SystemResource(type, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Node
+ * UPDM Constraint Id:  Node.isCapableOfPerforming
+ *******************************************************************************/
+
+pattern node_isCapableOfPerforming(element : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Node(element, _);
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.IsCapableOfPerforming(isCapableOfPerforming, _);
+    Dependency.client(isCapableOfPerforming, element);
+    Dependency.supplier(isCapableOfPerforming, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalActivity(supplier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Node
+ * UPDM Constraint Id:  Node.ownedPort
+ *******************************************************************************/
+
+pattern node_ownedPort(element : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Node(element, _);
+    Class.ownedAttribute(element, ownedPort);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.NodePort(ownedPort, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServicePort(ownedPort, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Node
+ * UPDM Constraint Id:  Node.ownedOperation
+ *******************************************************************************/
+
+pattern Node_ownedOperation(element : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Node(element, _);
+    Class.ownedOperation(element, ownedOperation);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.NodeOperation(ownedOperation, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     NodeOperation
+ * UPDM Constraint Id:  NodeOperation.ownedParameter
+ *******************************************************************************/
+
+pattern NodeOperation_ownedParameter(element : Operation) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.NodeOperation(element, _);
+    Operation.ownedParameter(element, ownedParameter);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalParameter(ownedParameter, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     OperationalParameter
+ * UPDM Constraint Id:  OperationalParameter.type
+ *******************************************************************************/
+
+pattern OperationalParameter_type(element : Parameter) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalParameter(element, _);
+    Parameter.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalExchangeItem(type, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     OperationalActivityAction
+ * UPDM Constraint Id:  OperationalActivityAction.behavior
+ *******************************************************************************/
+
+pattern OperationalActivityAction_behavior(element : CallBehaviorAction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalActivityAction(element, _);
+    CallBehaviorAction.behavior(element, behavior);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalActivity(behavior, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     OperationalActivityAction
+ * UPDM Constraint Id:  OperationalActivityAction.activity
+ *******************************************************************************/
+
+pattern OperationalActivityAction_activity(element : CallBehaviorAction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalActivityAction(element, _);
+    CallBehaviorAction.activity(element, activity);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalActivity(activity, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     OperationalActivity
+ * UPDM Constraint Id:  OperationalActivity.ownedParameter
+ *******************************************************************************/
+
+pattern OperationalActivity_ownedParameter(element : Activity) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalActivity(element, _);
+    Activity.ownedParameter(element, ownedParameter);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalParameter(ownedParameter, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     OperationalStateDescription
+ * UPDM Constraint Id:  OperationalStateDescription.owner
+ *******************************************************************************/
+
+pattern OperationalStateDescription_owner(element : StateMachine) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalStateDescription(element, _);
+    StateMachine.owner(element, owner);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.SubjectOfOperationalStateMachine(owner, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     OperationalStateDescription
+ * UPDM Constraint Id:  OperationalStateDescription.region.state
+ *******************************************************************************/
+
+pattern OperationalStateDescription_region_state(element : StateMachine) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalStateDescription(element, _);
+    StateMachine.region(element, region);
+    Region.state(region, state);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalState(state, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     OperationalActivityEdge
+ * UPDM Constraint Id:  OperationalActivityEdge.owner
+ *******************************************************************************/
+
+pattern OperationalActivityEdge_owner(element : ActivityEdge) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalActivityEdge(element, _);
+    ActivityEdge.owner+(element, owner);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalActivity(owner, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     SubjectOfOperationalStateMachine
+ * UPDM Constraint Id:  SubjectOfOperationalStateMachine.ownedBehavior
+ *******************************************************************************/
+
+pattern SubjectOfOperationalStateMachine_ownedBehavior(element : BehavioredClassifier) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.SubjectOfOperationalStateMachine(element, _);
+    BehavioredClassifier.ownedBehavior(element, ownedBehavior);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalStateDescription(ownedBehavior, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     OperationalEventTrace
+ * UPDM Constraint Id:  OperationalEventTrace.owner
+ *******************************************************************************/
+
+pattern OperationalEventTrace_owner(element : Interaction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalEventTrace(element, _);
+    Interaction.owner(element, owner);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Node(owner, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     OperationalEventTrace
+ * UPDM Constraint Id:  OperationalEventTrace.message
+ *******************************************************************************/
+
+pattern OperationalEventTrace_message(element : Interaction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalEventTrace(element, _);
+    Interaction.message(element, message);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalMessage(message, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Command
+ * UPDM Constraint Id:  Command.informationSource
+ *******************************************************************************/
+
+pattern Command_informationSource(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Command(element, _);
+    InformationFlow.informationSource(element, informationSource);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OrganizationalResource(informationSource, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Command
+ * UPDM Constraint Id:  Command.informationTarget
+ *******************************************************************************/
+
+pattern Command_informationTarget(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Command(element, _);
+    InformationFlow.informationTarget(element, informationTarget);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OrganizationalResource(informationTarget, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Command
+ * UPDM Constraint Id:  Command.conveyed
+ *******************************************************************************/
+
+pattern Command_conveyed(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Command(element, _);
+    InformationFlow.conveyed(element, conveyed);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ExchangeElement(conveyed, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     OperationalExchange
+ * UPDM Constraint Id:  OperationalExchange.realization/realizingConnector
+ *******************************************************************************/
+
+pattern OperationalExchange_realization(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalExchange(element, _);
+    InformationFlow.realization(element, realization);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Needline(realization, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.soaml.ServiceChannel(realization, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     
+ * UPDM Constraint Id:  
+ *******************************************************************************/
+
+pattern OperationalExchange_realizingConnector(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalExchange(element, _);
+    InformationFlow.realizingConnector(element, realizingConnector);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Needline(realizingConnector, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.soaml.ServiceChannel(realizingConnector, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     OperationalExchange
+ * UPDM Constraint Id:  OperationalExchange.realizingActivityEdge
+ *******************************************************************************/
+
+pattern OperationalExchange_realizingActivityEdge(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalExchange(element, _);
+    InformationFlow.realizingActivityEdge(element, realizingActivityEdge);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalActivityEdge(realizingActivityEdge, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     OperationalExchange
+ * UPDM Constraint Id:  OperationalExchange.informationSource
+ *******************************************************************************/
+
+pattern OperationalExchange_informationSource(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalExchange(element, _);
+    InformationFlow.informationSource(element, informationSource);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Node(informationSource, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     OperationalExchange
+ * UPDM Constraint Id:  OperationalExchange.informationTarget
+ *******************************************************************************/
+
+pattern OperationalExchange_informationTarget(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalExchange(element, _);
+    InformationFlow.informationTarget(element, informationTarget);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Node(informationTarget, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     OperationalExchange
+ * UPDM Constraint Id:  OperationalExchange.realizingMessage
+ *******************************************************************************/
+
+pattern OperationalExchange_realizingMessage(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalExchange(element, _);
+    InformationFlow.realizingMessage(element, realizingMessage);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalMessage(realizingMessage, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ResourcePort
+ * UPDM Constraint Id:  ResourcePort.type
+ *******************************************************************************/
+
+pattern ResourcePort_type(element : Port) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourcePort(element, _);
+    Port.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceInteractionItem(type, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ResourceRole
+ * UPDM Constraint Id:  ResourceRole.class
+ *******************************************************************************/
+
+pattern ResourceRole_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceRole(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.SystemResource(class, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ResourceRole
+ * UPDM Constraint Id:  ResouceRole.type
+ *******************************************************************************/
+
+pattern ResouceRole_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceRole(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.SystemResource(type, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ResourceInterface
+ * UPDM Constraint Id:  ResourceInterface.end
+ *******************************************************************************/
+
+pattern ResourceInterface_end(element : Connector) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceInterface(element, _);
+    Connector.end(element, end);
+    ConnectorEnd.role(end, role);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceRole(role, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     FieldedCapability
+ * UPDM Constraint Id:  FieldedCapability.classifier
+ *******************************************************************************/
+
+pattern FieldedCapability_classifier(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.FieldedCapability(element, _);
+    InstanceSpecification.classifier(element, classifier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.CapabilityConfiguration(classifier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Forecast
+ * UPDM Constraint Id:  Forecast.supplier
+ *******************************************************************************/
+
+pattern Forecast_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Forecast(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.SubjectOfForecast(supplier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Forecast
+ * UPDM Constraint Id:  Forecast.client
+ *******************************************************************************/
+
+pattern Forecast_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Forecast(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.SubjectOfForecast(client, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ResourceConnector
+ * UPDM Constraint Id:  ResourceConnector.end
+ *******************************************************************************/
+
+pattern ResourceConnector_end(element : Connector) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceConnector(element, _);
+    Connector.end(element, end);
+    ConnectorEnd.role(end, role);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourcePort(role, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ResourceConstraint
+ * UPDM Constraint Id:  ResourceConstraint.constrainedElement
+ *******************************************************************************/
+
+pattern ResourceConstraint_constrainedElement(element : Constraint) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceConstraint(element, _);
+    Constraint.constrainedElement(element, constrainedElement);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.SubjectOfResourceConstraint(constrainedElement, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     SystemResource
+ * UPDM Constraint Id:  Resource.ownedOperation
+ *******************************************************************************/
+
+pattern Resource_ownedOperation(element : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.SystemResource(element, _);
+    Class.ownedOperation(element, ownedOperation);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceOperation(ownedOperation, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     SystemResource
+ * UPDM Constraint Id:  Resource.performs
+ *******************************************************************************/
+
+pattern Resource_performs(element : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.SystemResource(element, _);
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.IsCapableOfPerforming(isCapableOfPerforming, _);
+	Dependency.client(isCapableOfPerforming, element);
+	Dependency.supplier(isCapableOfPerforming, performs);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Function(performs, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     SystemResource
+ * UPDM Constraint Id:  Resource.ownedPort
+ *******************************************************************************/
+
+pattern Resource_ownedPort(element : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.SystemResource(element, _);
+    Class.ownedAttribute(element, ownedPort);
+    neg find ServicePort(ownedPort);
+}
+
+private pattern ServicePort(element : Port) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServicePort(element, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     VersionOfConfiguration
+ * UPDM Constraint Id:  VersionOfConfiguration.class
+ *******************************************************************************/
+
+pattern VersionOfConfiguration_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.VersionOfConfiguration(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.WholeLifeConfiguration(class, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     VersionOfConfiguration
+ * UPDM Constraint Id:  VersionOfConfiguration.type
+ *******************************************************************************/
+
+pattern VersionOfConfiguration_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.VersionOfConfiguration(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.SystemResource(type, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ResourceInteraction
+ * UPDM Constraint Id:  ResourceInteraction.conveyedElement
+ *******************************************************************************/
+
+pattern ResourceInteraction_conveyedElement(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceInteraction(element, _);
+    InformationFlow.conveyed(element, conveyedElement);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceInteractionItem(conveyedElement, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ResourceInteraction
+ * UPDM Constraint Id:  ResourceInteraction.realizingActivityEdge
+ *******************************************************************************/
+
+pattern ResourceInteraction_realizingActivityEdge(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceInteraction(element, _);
+    InformationFlow.realizingActivityEdge(element, realizingActivityEdge);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.FunctionEdge(realizingActivityEdge, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ResourceInteraction
+ * UPDM Constraint Id:  ResourceInteraction.realizingConnector
+ *******************************************************************************/
+
+pattern ResourceInteraction_realizingConnector(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceInteraction(element, _);
+    InformationFlow.realizingConnector(element, realizingConnector);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceInterface(realizingConnector, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceConnector(realizingConnector, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.soaml.ServiceChannel(realizingConnector, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ResourceInteraction
+ * UPDM Constraint Id:  ResourceInteraction.informationSource
+ *******************************************************************************/
+
+pattern ResourceInteraction_informationSource(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceInteraction(element, _);
+    InformationFlow.informationSource(element, informationSource);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.SystemResource(informationSource, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ResourceInteraction
+ * UPDM Constraint Id:  ResourceInteraction.informationTarget
+ *******************************************************************************/
+
+pattern ResourceInteraction_informationTarget(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceInteraction(element, _);
+    InformationFlow.informationTarget(element, informationTarget);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.SystemResource(informationTarget, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ResourceInteraction
+ * UPDM Constraint Id:  ResourceInteraction.realization
+ *******************************************************************************/
+
+pattern ResourceInteraction_realization(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceInteraction(element, _);
+    InformationFlow.realization(element, realization);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceInterface(realization, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualOrganizationRelationship(realization, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ResourceStateMachine
+ * UPDM Constraint Id:  ResourceStateMachine.owner
+ *******************************************************************************/
+
+pattern ResourceStateMachine_owner(element : StateMachine) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceStateMachine(element, _);
+    StateMachine.owner(element, owner);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.SystemResource(owner, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ResourceStateMachine
+ * UPDM Constraint Id:  ResourceStateMachine.region.state
+ *******************************************************************************/
+
+pattern ResourceStateMachine_region_state(element : StateMachine) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceStateMachine(element, _);
+    StateMachine.region(element, region);
+    Region.state(region, state);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceState(state, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ResourceParameter
+ * UPDM Constraint Id:  ResourceParameter.type
+ *******************************************************************************/
+
+pattern ResourceParameter_type(element : Parameter) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceParameter(element, _);
+    Parameter.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceInteractionItem(type, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     FunctionEdge
+ * UPDM Constraint Id:  FunctionEdge.owner
+ *******************************************************************************/
+
+pattern FunctionEdge_owner(element : ActivityEdge) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.FunctionEdge(element, _);
+    ActivityEdge.owner+(element, owner);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.FunctionEdge(owner, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Function
+ * UPDM Constraint Id:  Function.ownedParameter
+ *******************************************************************************/
+
+pattern Function_ownedParameter(element : Activity) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Function(element, _);
+    Activity.ownedParameter(element, ownedParameter);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceParameter(ownedParameter, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ResourceEventTrace
+ * UPDM Constraint Id:  ResourceEventTrace.owner
+ *******************************************************************************/
+
+pattern ResourceEventTrace_owner(element : Interaction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceEventTrace(element, _);
+    Interaction.owner(element, owner);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Resource(owner, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ResourceEventTrace
+ * UPDM Constraint Id:  ResourceEventTrace.message
+ *******************************************************************************/
+
+pattern ResourceEventTrace_message(element : Interaction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceEventTrace(element, _);
+    Interaction.message(element, message);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceMessage(message, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ResourceOperation
+ * UPDM Constraint Id:  ResourceOperation.ownedParameter
+ *******************************************************************************/
+
+pattern ResourceOperation_ownedParameter(element : Operation) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceOperation(element, _);
+    Operation.ownedParameter(element, ownedParameter);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceParameter(ownedParameter, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     FunctionAction
+ * UPDM Constraint Id:  FunctionAction.activity
+ *******************************************************************************/
+
+pattern FunctionAction_activity(element : CallBehaviorAction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.FunctionAction(element, _);
+    CallBehaviorAction.activity(element, activity);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Function(activity, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     FunctionAction
+ * UPDM Constraint Id:  FunctionAction.behavior
+ *******************************************************************************/
+
+pattern FunctionAction_behavior(element : CallBehaviorAction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.FunctionAction(element, _);
+    CallBehaviorAction.behavior(element, behavior);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Function(behavior, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     DataModel
+ * UPDM Constraint Id:  DataModel.ownedElement
+ *******************************************************************************/
+
+pattern DataModel_ownedElement(element : Element) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.DataModel(element, _);
+    Element.ownedElement(element, ownedElement);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.EntityItem(ownedElement, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     PropertySet
+ * UPDM Constraint Id:  PropertySet.ownedAttribute
+ *******************************************************************************/
+
+pattern PropertySet_ownedAttribute(element : Element) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.PropertySet(element, _);
+    Class.ownedAttribute(element, ownedAttribute);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Property(ownedAttribute, _);
 } or {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceBlock(class, _);
-	Class.ownedAttribute(class, port);
-	neg Port.type(port, _);
-}
-
-pattern conformGeneralNotViewpoint(conform : Generalization) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Conform(conform, _);
-	Generalization.general(conform, general);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Viewpoint(general, _);
-}
-
-pattern conformSpecificNotView(conform : Generalization) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Conform(conform, _);
-	Generalization.specific(conform, specific);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.View(specific, _);
-}
-
-pattern boundReferenceNotConnectorEnd(boundReference : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference(boundReference, _);
-	neg find BoundReference_1_bindingconnector_end(boundReference);
-}
-
-private pattern
-BoundReference_1_bindingconnector_end(boundReference : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.BindingConnector(bindingConnector, _);
-	Connector.end(bindingConnector, connectorEnd);
-	ConnectorEnd.role(connectorEnd, role);
-	Property.redefinedProperty *(boundReference, role);
-}
-
-pattern
-connectionPropertyDifferentName(property : Property, connector : Connector) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty_connector(property, connector);
-	Property.name(property, propName);
-	Connector.name(connector, conName);
-	propName != conName;
-}
-
-pattern
-connectionPropertyNotTypedByAssociationBlock(property : Property, connector : Connector) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty_connector(property, connector);
-	Connector.type(connector, type);
-	neg find associationBlock(type);
-}
-
-private pattern associationBlock(class : AssociationClass) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
-}
-
-pattern connectorPropertyNotBlock(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty(property, _);
-	neg find owningBlock(property, _);
-}
-
-private pattern owningBlock(property : Property, class : Class) {
-	Class.ownedAttribute(class, property);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
-}
-
-pattern connectorPropertyNotComposite(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty(property, _);
-	neg Property.aggregation(property, ::composite);
-}
-
-pattern connectorPropertyNotOwnedOrInherited(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty(property, _);
-	neg find owningBlockTransitive(property, _);
-}
-
-private pattern general(specific : Classifier, general : Classifier) {
-	Classifier.generalization(specific, generalization);
-	Generalization.general(generalization, general);
-}
-
-private pattern owningBlockTransitive(property : Property, owner : Class) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(owner, _);
-	Class.ownedAttribute(owner, property);
-	find general *(owner, general);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty_connector(property, connector);
-	Class.ownedConnector(general, connector);
-}
-
-pattern valueTypeSpecializatonNotValueType(classifier : Classifier) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(valueType, _);
-	find general(classifier, valueType);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(classifier, _);
-}
-
-pattern blockValuePropertyNotComposite(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(block, _);
-	Class.ownedAttribute(block, property);
-	Property.type(property, type);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(type, _);
-	neg Property.aggregation(property, ::composite);
-}
-
-pattern valueTypeValuePropertyNotComposite(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(valueType, _);
-	DataType.ownedAttribute(valueType, property);
-	Property.type(property, type);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(type, _);
-	neg Property.aggregation(property, ::composite);
-}
-
-pattern parameterDiscreteAndContinuous(parameter : Parameter) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Discrete(parameter, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Continuous(parameter, _);
-}
-
-pattern probabilityInvalidStereotype(probability : NamedElement) {
-	ActivityEdge(probability);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Probability(probability, _);
-	ActivityEdge.source(probability, source);
-	neg DecisionNode(source);
-} or {
-	ParameterSet(probability);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Probability(probability, _);
-	ParameterSet.parameter(probability, parameter);
-	neg Parameter.direction(parameter, ::^out);
-}
-
-pattern probabilityAllOutgoingEdges(activityEdge : ActivityEdge) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Probability(activityEdge, _);
-	ActivityEdge.target(activityEdge, target);
-	ActivityNode.incoming(target, edge);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Probability(edge, _);
-}
-
-pattern rateNotStreaming(rate : Parameter) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Rate(rate, _);
-	Parameter.isStream(rate, false);
-}
-
-pattern copyClientNotRequirement(copy : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Copy(copy, _);
-	Abstraction.client(copy, client);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(client, _);
-}
-
-pattern copySupplierNotRequirement(copy : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Copy(copy, _);
-	Abstraction.supplier(copy, supplier);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(supplier, _);
-}
-
-pattern satisfySupplierNotRequirement(satisfy : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Satisfy(satisfy, _);
-	Abstraction.supplier(satisfy, supplier);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(supplier, _);
-}
-
-pattern stakeHolderInvalidStereotype(stakeholder : Classifier) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Stakeholder(stakeholder, _);
-	neg Actor(stakeholder);
-	neg find classNotAssociation(stakeholder);
-}
-
-private pattern classNotAssociation(classifier : Classifier) {
-	Class(classifier);
-	neg Association(classifier);
-}
-
-pattern endPathMiultiplicityNotRedefiniton(endPathMultiplicity : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.EndPathMultiplicity(endPathMultiplicity, _);
-	neg Property.redefinedProperty(endPathMultiplicity, _);
-} or {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.EndPathMultiplicity(endPathMultiplicity, _);
-	neg find redefinedBoundReferenceProperty(endPathMultiplicity, _);
-}
-
-private pattern
-redefinedBoundReferenceProperty(property : Property, boundReference : Property) {
-	Property.redefinedProperty(property, boundReference);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference(boundReference, _);
-}
-
-pattern endPathMiultiplicityNegative(endPathMultiplicity : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.EndPathMultiplicity(endPathMultiplicity, _);
-	Property.lowerValue(endPathMultiplicity, lower);
-	LiteralInteger.value(lower, value);
-	check(value < 0);
-}
-
-pattern participantPropertyEndOwner(participantProperty : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty(participantProperty, _);
-	neg find associationEnd(participantProperty);
-}
-
-private pattern associationEnd(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty_end(property, end);
-	Property.association(property, association);
-	Association.memberEnd(association, end);
-}
-
-pattern participantPropertyMultiplicity(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty(property, _);
-	Property.lowerValue(property, lower);
-	LiteralInteger.value(lower, value);
-	check(value != 1);
-} or {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty(property, _);
-	Property.upperValue(property, upper);
-	LiteralUnlimitedNatural.value(upper, value);
-	check(value != 1);
-}
-
-pattern propertySpecificTypeNotOneProperty(classifier : Classifier) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.PropertySpecificType(classifier, _);
-	number == count Property.type(_, classifier);
-	check(number != 1);
-}
-
-pattern adjunctPropertyCallActionInconsistent(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
-	neg find compositeAndConsistent(property);
-}
-
-private pattern compositeAndConsistent(property : Property) {
-	find checkEmptiness(property);
-} or {
-	neg find calledBehavior(property, _);
-	neg Property.type(property, _);
-} or {
-	find calledBehavior(property, called);
-	Property.type(property, type);
-	find general *(called, type);
-}
-
-private pattern checkEmptiness(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	CallOperationAction(principal);
-	CallOperationAction.operation(principal, operation);
-	neg Operation.method(operation, _);
-	neg Property.type(property, _);
-} or {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	CallOperationAction(principal);
-	CallOperationAction.operation(principal, operation);
-	Operation.method(operation, called);
-	Property.type(property, type);
-	find general(called, type);
-}
-
-private pattern calledBehavior(property : Property, behavior : Behavior) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	CallBehaviorAction(principal);
-	CallBehaviorAction.behavior(principal, behavior);
-} or {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	find StartObjectBehaviorActionBehavior(principal, behavior);
-}
-
-private pattern
-StartObjectBehaviorActionBehavior(action : StartObjectBehaviorAction, behavior : Behavior) {
-	StartObjectBehaviorAction.object(action, object);
-	InputPin.type(object, behavior);
-} or {
-	StartObjectBehaviorAction.object(action, object);
-	InputPin.type(object, type);
-	BehavioredClassifier(type);
-	BehavioredClassifier.classifierBehavior(type, behavior);
-}
-
-pattern adjunctPropertyConnectorNotAssociationBlock(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	Connector(principal);
-	neg find associationBlockOfConnector(principal);
-}
-
-private pattern associationBlockOfConnector(connector : Connector) {
-	Connector.type(connector, type);
-	Association(type);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(type, _);
-}
-
-pattern adjunctPropertyConnectorPropertyInconsistent(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, apPrincipal);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ConnectorProperty_connector(property, cpConnector);
-	apPrincipal != cpConnector;
-}
-
-pattern adjunctPropertyIncompatibleType(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	find connOrVarOrParam(property);
-	find principalType(principal, principalType);
-	Property.type(property, type);
-	neg find generalClosure(principalType, type);
-}
-
-private pattern connOrVarOrParam(element : Element) {
-	Connector(element);
-} or {
-	Variable(element);
-} or {
-	Parameter(element);
-}
-
-private pattern
-principalType(principal : Element, principalType : Classifier) {
-	Connector(principal);
-	Connector.type(principal, principalType);
-} or {
-	TypedElement.type(principal, principalType);
-}
-
-private pattern
-generalClosure(classifier : Classifier, general : Classifier) {
-	find general *(classifier, general);
-}
-
-pattern adjunctPropertyInvalidPrincipalKind(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	neg Connector(principal);
-	neg CallAction(principal);
-	neg ObjectNode(principal);
-	neg Variable(principal);
-	neg Parameter(principal);
-	neg InteractionUse(principal);
-	neg find submachineState(principal);
-}
-
-private pattern submachineState(state : State) {
-	State(state);
-	State.submachine(state, _);
-}
-
-pattern adjunctPropertyNotComposite(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	Connector(principal);
-	neg Property.aggregation(property, ::composite);
-} or {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	CallAction(principal);
-	neg Property.aggregation(property, ::composite);
-}
-
-pattern adjunctPropertyWrongName(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	NamedElement.name(principal, name);
-	neg Property.name(property, name);
-}
-
-pattern blockAssociationNotBinary(association : Association) {
-	neg find notAllEndsAreBlocks(association);
-	ends == count Association.memberEnd(association, _);
-	check(ends != 2);
-}
-
-private pattern notAllEndsAreBlocks(association : Association) {
-	Association.memberEnd(association, end);
-	Property.type(end, class);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
-}
-
-pattern blockSpecializationNotBlock(class : Class) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(block, _);
-	find general(class, block);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(class, _);
-}
-
-pattern classifierBehaviorPropertyInvalidOwner(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ClassifierBehaviorProperty(property, _);
-	neg find validOwner(property);
-}
-
-private pattern validOwner(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(block, _);
-	Class.ownedAttribute(block, property);
-	Class.classifierBehavior(block, _);
-}
-
-pattern classifierBehaviorPropertyInvalidType(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ClassifierBehaviorProperty(property, _);
-	neg find validType(property);
-}
-
-private pattern validType(property : Property) {
-	Class.ownedAttribute(class, property);
-	Class.classifierBehavior(class, clBehavior);
-	Property.type(property, type);
-	find general *(clBehavior, type);
-}
-
-pattern viewNotSingleViewpoint(view : Class) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.View(view, _);
-	size == count find viewConforms(view, _);
-	check(size != 1);
-}
-
-private pattern viewConforms(class : Class, conform : Generalization) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Conform(conform, _);
-	Generalization.specific(conform, class);
-}
-
-pattern viewStakeholderNotDerivedFromConform(view : Class) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.View(view, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.View_stakeholder(view, stakeholder);
-	neg find stakeholderDerivedFromConform(view, stakeholder, _);
-}
-
-private pattern
-stakeholderDerivedFromConform(view : Class, stakeholder : Class, conform : Generalization) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Conform(conform, _);
-	Generalization.specific(conform, view);
-	Generalization.general(conform, viewPoint);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Viewpoint_stakeholder(viewPoint, stakeholder);
-}
-
-pattern viewViewpointNotDerivedFromConform(view : Class) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.View(view, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.View_viewPoint(view, viewPoint);
-	neg find viewpointDerivedFromConform(view, viewPoint, _);
-}
-
-private pattern
-viewpointDerivedFromConform(view : Class, viewPoint : Class, conform : Generalization) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Conform(conform, _);
-	Generalization.specific(conform, view);
-	Generalization.general(conform, viewPoint);
-}
-
-pattern classifierBehaviorPropertyNotComposite(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ClassifierBehaviorProperty(property, _);
-	neg Property.aggregation(property, ::composite);
-}
-
-pattern requirementNestedClassifierNotRequirement(nested : Class) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(requirement, _);
-	Class.nestedClassifier(requirement, nested);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(nested, _);
-}
-
-pattern
-constraintBlockSpecializationNotConstraintBlock(constraintBlock : Class) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ConstraintBlock(constraintBlock, _);
-	Classifier(classifier);
-	Classifier.generalization(classifier, generalization);
-	Generalization.general(generalization, constraintBlock);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ConstraintBlock(classifier, _);
-}
-
-pattern distributedPropertyNotBlockOrValueType(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.DistributedProperty(property, _);
-	neg find propertyOwnedByBlock(property);
-	neg find propertyOwnedByValueType(property);
-}
-
-private pattern propertyOwnedByBlock(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Block(block, _);
-	Class.ownedAttribute(block, property);
-}
-
-private pattern propertyOwnedByValueType(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(valueType, _);
-	DataType.ownedAttribute(valueType, property);
-}
-
-pattern exposeClientNotView(expose : Dependency) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Expose(expose, _);
-	Dependency.client(expose, client);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.View(client, _);
-}
-
-pattern fullPortBoundToFullPort(port : Port) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.FullPort(port, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.BindingConnector(connector, _);
-	Connector.end(connector, end);
-	ConnectorEnd.role(end, port);
-	Connector.end(connector, otherEnd);
-	ConnectorEnd.role(otherEnd, role);
-	role != port;
-	find com.incquerylabs.magicdraw.benchmark.queries.library.FullPort(role, _);
-}
-
-pattern
-invocationOnNestedPortActionOnPortUndefined(action : InvocationAction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.InvocationOnNestedPortAction(action, _);
-	neg InvocationAction.onPort(action, _);
-}
-
-pattern itemFlowAssociationHasItemProperty(itemFlow : InformationFlow) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow(itemFlow, _);
-	InformationFlow.realization(itemFlow, realization);
-	Association(realization);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow_itemProperty(itemFlow, _);
-}
-
-pattern itemFlowDifferentType(itemFlow : InformationFlow) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow(itemFlow, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow_itemProperty(itemFlow, itemProperty);
-	Property.type(itemProperty, type);
-	neg InformationFlow.conveyed(itemFlow, type);
-}
-
-pattern itemFlowInvalidType(itemFlow : InformationFlow) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow(itemFlow, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow_itemProperty(itemFlow, itemProperty);
-	Property.type(itemProperty, type);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(type, _);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(type, _);
-	neg Signal(type);
-}
-
-pattern itemFlowItemPropertyDifferentName(itemFlow : InformationFlow) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow(itemFlow, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow_itemProperty(itemFlow, itemProperty);
-	InformationFlow.name(itemFlow, itemFlowName);
-	Property.name(itemProperty, itemPropertyName);
-	check(itemFlowName != itemPropertyName);
-}
-
-pattern proxyPortFullPort(port : Port) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ProxyPort(port, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.FullPort(port, _);
-}
-
-pattern proxyPortSubportNotProxyPort(port : Port) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ProxyPort(port, _);
-	Port.type(port, type);
-	Class.ownedAttribute(type, otherPort);
-	Port(otherPort);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ProxyPort(otherPort, _);
-}
-
-pattern proxyPortTypeNotInterfaceBlock(port : Port) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ProxyPort(port, _);
-	Port.type(port, type);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceBlock(type, _);
-}
-
-pattern traceNotSingleClient(trace : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Trace(trace, _);
-	size == count Abstraction.client(trace, _);
-	check(size != 1);
-}
-
-pattern triggerOnNestedPortBaseFullPort(trigger : Trigger) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.TriggerOnNestedPort(trigger, _);
-	Trigger.port(trigger, port);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.FullPort(port, _);
-}
-
-pattern triggerOnNestedPortFullPort(trigger : Trigger) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.TriggerOnNestedPort(trigger, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.TriggerOnNestedPort_onNestedPort(trigger, port);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.FullPort(port, _);
-}
-
-pattern triggerOnNestedPortNotSinglePort(trigger : Trigger) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.TriggerOnNestedPort(trigger, _);
-	size == count Trigger.port(trigger, _);
-	check(size != 1);
-}
-
-pattern verifySupplierNotRequirement(verify : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Verify(verify, _);
-	Abstraction.supplier(verify, supplier);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(supplier, _);
-}
-
-pattern acsfeActionOneTrigger(action : AcceptEventAction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AcceptChangeStructuralFeatureEventAction(action, _);
-	size == count AcceptEventAction.trigger(action, _);
-	check(size != 1);
-}
-
-pattern acsfeActionInvalidTrigger(action : AcceptEventAction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AcceptChangeStructuralFeatureEventAction(action, _);
-	AcceptEventAction.trigger(action, trigger);
-	neg find triggerEventIsChangeStructuralFeatureEvent(trigger);
-}
-
-private pattern
-triggerEventIsChangeStructuralFeatureEvent(trigger : Trigger) {
-	Trigger.event(trigger, event);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ChangeStructuralFeatureEvent(event, _);
-}
-
-pattern acsfeActionNotTwoResultpins(action : AcceptEventAction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AcceptChangeStructuralFeatureEventAction(action, _);
-	size == count AcceptEventAction.result(action, _);
-	check(size != 2);
-}
-
-pattern adjunctPropertyMultiplicityRestrictive(property : Property){
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	MultiplicityElement(principal);
-	find moreRestrictive(property);
-}
-
-private pattern moreRestrictive(property : Property){
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	Property.lowerValue(property, propLower);
-	MultiplicityElement.lowerValue(principal, princLower);
-	LiteralInteger.value(propLower, propLowerValue);
-	LiteralInteger.value(princLower, princLowerValue);
-	check(propLowerValue > princLowerValue);
-} or {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	Property.upperValue(property, propUpper);
-	MultiplicityElement.upperValue(principal, princUpper);
-	LiteralUnlimitedNatural.value(propUpper, propUpperValue);
-	LiteralUnlimitedNatural.value(princUpper, princUpperValue);
-	check (propUpperValue >= 0);
-	check(
-		propUpperValue < princUpperValue ||
-		-1 == princUpperValue
-	);
-}
-
-pattern adjunctPropertySubmachineOrInteraction(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	find interactionUseOrState(principal);
-	neg find correct(property);
-}
-
-private pattern interactionUseOrState(element : Element) {
-	InteractionUse(element);
-} or {
-	State(element);
-}
-
-private pattern correct(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	neg find principalBehavior(principal, _);
-	neg Property.type(property, _);
-} or {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	find principalBehavior(principal, behavior);
-	Property.type(property, type);
-	find general *(behavior, type);
-}
-
-private pattern principalBehavior(principal : Element, behavior : Behavior) {
-	InteractionUse(principal);
-	InteractionUse.refersTo(principal, behavior);
-} or {
-	State(principal);
-	State.submachine(principal, behavior);
-}
-
-pattern
-allocateActivityPartitionActionsOnClientEnds(activityPartition : ActivityPartition) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AllocateActivityPartition(activityPartition, _);
-	ActivityPartition.node(activityPartition, node);
-	Action(node);
-	neg find correctActPartNode(activityPartition, node);
-}
-
-private pattern
-correctActPartNode(activityPartition : ActivityPartition, action : Action) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Allocate(allocs, _);
-	Abstraction.client(allocs, action);
-	find representsSupplier(allocs, activityPartition);
-}
-
-private pattern
-representsSupplier(allocs : Abstraction, activityPartition : ActivityPartition) {
-	Abstraction.supplier(allocs, supplier);
-	ActivityPartition.represents(activityPartition, supplier);
-}
-
-pattern boundReferenceOpposite(boundReference : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference(boundReference, _);
-	neg find BoundReference_2_opposite_bindingconnector_end(boundReference);
-}
-
-private pattern
-BoundReference_2_opposite_bindingconnector_end(boundReference : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.BindingConnector(oppositeConnector, _);
-	Connector.end(oppositeConnector, opposite);
-	ConnectorEnd.role(opposite, role);
-	Property.redefinedProperty *(boundReference, role);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference_boundEnd(boundReference, boundEnd);
-	Connector.end(connector, opposite);
-	Connector.end(connector, boundEnd);
-	boundEnd != opposite;
-}
-
-pattern boundReferenceNotReferenceOrValueProperty(boundReference : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference(boundReference, _);
-	Property.type(boundReference, type);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(type, _);
-	Property.aggregation(boundReference, ::composite);
-}
-
-pattern boundReferenceNotOrdered(boundReference : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference(boundReference, _);
-	Property.upperValue(boundReference, upper);
-	find greaterThanOne(upper);
-	Property.isOrdered(boundReference, false);
-}
-
-private pattern greaterThanOne(op : LiteralUnlimitedNatural) {
-	LiteralUnlimitedNatural.value(op, value);
-	check(value > 1);
-} or {
-	LiteralUnlimitedNatural.value(op, value);
-	check(value < 0);
-}
-
-pattern boundReferenceUnique(boundReference : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference(boundReference, _);
-	Property.upperValue(boundReference, upper);
-	find greaterThanOne(upper);
-	Property.isUnique(boundReference, true);
-}
-
-pattern boundReferenceRedefined(boundReference : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference(boundReference, _);
-	Property.redefinedProperty(boundReference, redefined);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.BoundReference(redefined, _);
-}
-
-pattern constraintBlockPropertyNotComposite(constraintBlock : Class) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ConstraintBlock(constraintBlock, _);
-	Class.ownedAttribute(constraintBlock, property);
-	neg Property.aggregation(property, ::composite);
-}
-
-pattern controlOperatorOperationMethod(method : Behavior) {
-	Operation(controlOpertator);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ControlOperator(controlOpertator, _);
-	Operation.method(controlOpertator, method);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ControlOperator(method, _);
-}
-
-pattern deriveReqtSupplierNotReqt(deriveReqt : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.DeriveReqt(deriveReqt, _);
-	Abstraction.supplier(deriveReqt, supplier);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(supplier, _);
-}
-
-pattern deriveReqtClientNotReqt(deriveReqt : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.DeriveReqt(deriveReqt, _);
-	Abstraction.client(deriveReqt, client);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(client, _);
-}
-
-pattern direcredFeatureInvalidStereotype(feature : Feature) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.DirectedFeature(feature, _);
-	neg BehavioralFeature(feature);
-	neg find notFlowProperty(feature);
-}
-
-private pattern notFlowProperty(feature : Property) {
-	Property.redefinedProperty(feature, redefined);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.FlowProperty(redefined, _);
-	Property.subsettedProperty(feature, subsetted);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.FlowProperty(subsetted, _);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.FlowProperty(feature, _);
-}
-
-pattern optionalLowerNotZero(parameter : Parameter) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Optional(parameter, _);
-	Parameter.lowerValue(parameter, lower);
-	LiteralInteger.value(lower, lowerValue);
-	check(lowerValue != 0);
-}
-
-pattern optionalLowerZero(parameter : Parameter) {
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Optional(parameter, _);
-	Parameter.lowerValue(parameter, lower);
-	LiteralInteger.value(lower, lowerValue);
-	check(lowerValue == 0);
-}
-
-pattern adjunctPropertyIncorrectMultiplicity(property : Property){
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	ObjectNode(principal);
-	Property.lowerValue(property, lower);
-	LiteralInteger.value(lower, lowerValue);
-	check(lowerValue != 0);
-} or {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty(property, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal);
-	ObjectNode(principal);
-	Property.upperValue(property, propertyUpper);
-	ObjectNode.upperBound(principal, principalUpper);
-	
-	LiteralUnlimitedNatural.value(propertyUpper, propertyUpperValue);
-	LiteralUnlimitedNatural.value(principalUpper, principalUpperValue);
-	check (propertyUpperValue >= 0);
-	check(
-		principalUpperValue == -1 ||
-		propertyUpperValue < principalUpperValue
-	);
-
-}
-
-pattern traceNotSingleSupplier(trace : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Trace(trace, _);
-	size == count Abstraction.supplier(trace, _);
-	check(size != 1);
-}
-
-pattern acsfeActionIncorrectResultpins(action : AcceptEventAction){
-	find resultToCheck(action, event, trigger, result);
-	neg find correctTypeAndOrdering(action, event, trigger, result);
-}
-
-private pattern resultToCheck(action : AcceptEventAction, event : ChangeEvent, trigger: Trigger, result : OutputPin) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AcceptChangeStructuralFeatureEventAction(action, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ChangeStructuralFeatureEvent(event, _);
-	AcceptEventAction.trigger(action, trigger);
-	Trigger.event(trigger, event);
-	AcceptEventAction.result(action, result);
-}
-
-private pattern correctTypeAndOrdering(action : AcceptEventAction, event : ChangeEvent, trigger: Trigger, result : OutputPin){
-	find resultToCheck(action, event, trigger, result);
-
-	OutputPin.type(result, type);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ChangeStructuralFeatureEvent_structuralFeature(event, feature);
-	StructuralFeature.type(feature, type);
-	OutputPin.isOrdered(result, ordered);
-	StructuralFeature.isOrdered(feature, ordered);
-	
-	OutputPin.lowerValue(result, rLower);
-	StructuralFeature.lowerValue(feature, sfLower);
-	LiteralInteger.value(rLower, rLowerValue);
-	LiteralInteger.value(sfLower, sfLowerValue);
-	check(rLowerValue <= sfLowerValue);
-	
-	OutputPin.upperValue(result, rUpper);
-	StructuralFeature.upperValue(feature, sfUpper);
-	LiteralUnlimitedNatural.value(rUpper, rUpperValue);
-	LiteralUnlimitedNatural.value(sfUpper, sfUpperValue);
-	check((rUpperValue >= sfUpperValue) || (rUpperValue < 0));
-}
-
-pattern viewpointNoCreate(viewpoint : Class) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Viewpoint(viewpoint, _);
-	neg find hasCreateOperationamedView(viewpoint);
-}
-
-private pattern hasCreateOperationamedView(viewpoint : Class) {
-	Class.ownedOperation(viewpoint, operation);
-	Operation.name(operation, name);
-	check(name == "View");
-	find com.incquerylabs.magicdraw.benchmark.queries.library.stereotypedElement(operation, _, _, "Create");
-}
-
-pattern changeStructuralFeatureEventStatic(changeEvent : ChangeEvent) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ChangeStructuralFeatureEvent(changeEvent, _);
-	find
-	com.incquerylabs.magicdraw.benchmark.queries.library.ChangeStructuralFeatureEvent_structuralFeature(changeEvent, structuralFeature);
-	StructuralFeature.isStatic(structuralFeature, true);
-}
-
-pattern
-changeStructuralFeatureEventFeatureMultiplicity(changeEvent : ChangeEvent) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ChangeStructuralFeatureEvent(changeEvent, _);
-	size == count find
-	com.incquerylabs.magicdraw.benchmark.queries.library.ChangeStructuralFeatureEvent_structuralFeature(changeEvent, _);
-	check(size != 1);
-}
-
-pattern copyMultipleCopies(copy : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Copy(copy, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(req, _);
-	Abstraction.client(copy, req);
-	Abstraction.client(otherCopy, req);
-	copy != otherCopy;
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Copy(otherCopy, _);
-}
-
-pattern copyCycle(copy : Abstraction) {
-	find supplierCopy +(copy, copy);
-}
-
-private pattern supplierCopy(copy1 : Abstraction, copy2 : Abstraction) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Copy(copy1, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.Copy(copy2, _);
-	Abstraction.supplier(copy1, req);
-	Abstraction.client(copy2, req);
-}
-
-pattern requirementIdNotUnique(req : NamedElement) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(req, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement_Id(req, id);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(req2, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement_Id(req2, id);
-	req != req2;
-}
-
-pattern propertySpecificTypeNotOwnedByBlock(property : Property) {
-	Property.type(property, type);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.PropertySpecificType(type, _);
-	neg find owningBlock(property, _);
-}
-
-pattern valuePropertyNotValueType(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ValueProperty(property, _);
-	Property.type(property, type);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(type, _);
-}
-
-pattern flowPortOwnerNotBlock(port : Port) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.FlowPort(port, _);
-	neg find owningBlock(port, _);
-}
-
-pattern flowSpecificationInvalidApplication(property : Property) {
-	Property.type(property, type);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.FlowSpecification(type, _);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.FlowPort(property, _);
-}
-
-pattern flowPortDeprecated(port : Port) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.FlowPort(port, _);
-}
-
-pattern flowSpecificationDeprecated(flowSpec : Interface) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.FlowSpecification(flowSpec, _);
-}
-
-pattern interfaceBlockInvalidInheritance(interfaceBlock : Class) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceBlock(interfaceBlock, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.generalizedClassifier(interfaceBlock, general);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceBlock(general, _);
-}
-
-pattern partPropertyInvalidType(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.PartProperty(property, _);
-	Property.type(property, type);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(type, _);
-}
-
-pattern referencePropertyInvalidType(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.ReferenceProperty(property, _);
-	Property.type(property, type);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(type, _);
-}
-
-pattern sharedPropertyInvalidType(property : Property) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.SharedProperty(property, _);
-	Property.type(property, type);
-	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Block(type, _);
-}
-
-pattern activityStreamingNoNStreaming(activity : Activity) {
-	find com.incquerylabs.magicdraw.benchmark.queries.library.streaming(activity, _);
-	find com.incquerylabs.magicdraw.benchmark.queries.library.nonStreaming(activity, _);
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.PropertySet(element, _);
+    DataType.ownedAttribute(element, ownedAttribute);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Property(ownedAttribute, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ActualPropertySet
+ * UPDM Constraint Id:  ActualPropertySet.classifier
+ *******************************************************************************/
+
+pattern ActualPropertySet_classifier(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualPropertySet(element, _);
+    InstanceSpecification.classifier(element, classifier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.PropertySet(classifier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ActualPropertySet
+ * UPDM Constraint Id:  ActualPropertySet.slot
+ *******************************************************************************/
+
+pattern ActualPropertySet_slot(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualPropertySet(element, _);
+    InstanceSpecification.slot(element, slot);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualProperty(slot, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     MeasurementSet
+ * UPDM Constraint Id:  MeasurementSet.ownedAttributes
+ *******************************************************************************/
+
+pattern MeasurementSet_ownedAttributes(element : DataType) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.MeasurementSet(element, _);
+    DataType.ownedAttribute(element, ownedAttributes);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Measurement(ownedAttributes, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ActualProperty
+ * UPDM Constraint Id:  PropertyValue.definingFeature
+ *******************************************************************************/
+
+pattern PropertyValue_definingFeature(element : Slot) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualProperty(element, _);
+    Slot.definingFeature(element, definingFeature);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Property(definingFeature, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ActualProperty
+ * UPDM Constraint Id:  PropertyValue.owningInstance
+ *******************************************************************************/
+
+pattern PropertyValue_owningInstance(element : Slot) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualProperty(element, _);
+    Slot.owningInstance(element, owningInstance);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.PropertySet(owningInstance, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ActualMeasurement
+ * UPDM Constraint Id:  ActualMeasurement.definingFeature
+ *******************************************************************************/
+
+pattern ActualMeasurement_definingFeature(element : Slot) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualMeasurement(element, _);
+    Slot.definingFeature(element, definingFeature);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Measurement(definingFeature, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ActualLocation
+ * UPDM Constraint Id:  ActualLocation.classifier
+ *******************************************************************************/
+
+pattern ActualLocation_classifier(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualLocation(element, _);
+    InstanceSpecification.classifier(element, classifier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.LocationType(classifier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Environment
+ * UPDM Constraint Id:  Environment.ownedAttributes
+ *******************************************************************************/
+
+pattern Environment_ownedAttributes(element : DataType) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Environment(element, _);
+    DataType.ownedAttribute(element, ownedAttributes);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.EnvironmentProperty(ownedAttributes, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     EnvironmentProperty
+ * UPDM Constraint Id:  EnvironmentalProperty.class
+ *******************************************************************************/
+
+pattern EnvironmentalProperty_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.EnvironmentProperty(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Environment(class, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     EnvironmentProperty
+ * UPDM Constraint Id:  EnvironmentalProperty.type
+ *******************************************************************************/
+
+pattern EnvironmentalProperty_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.EnvironmentProperty(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ConditionType(type, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ArchitecturalReference
+ * UPDM Constraint Id:  ArchitecturalReference.client
+ *******************************************************************************/
+
+pattern ArchitecturalReference_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ArchitecturalReference(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ArchitecturalDescription(client, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ArchitecturalReference
+ * UPDM Constraint Id:  ArchitecturalReference.supplier
+ *******************************************************************************/
+
+pattern ArchitecturalReference_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ArchitecturalReference(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ArchitecturalDescription(supplier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ArchitectureMetadata
+ * UPDM Constraint Id:  ArchitectureMetadata.annotatedElement
+ *******************************************************************************/
+
+pattern ArchitectureMetadata_annotatedElement(element : Comment) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ArchitectureMetadata(element, _);
+    Comment.annotatedElement(element, annotatedElement);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ArchitecturalDescription(annotatedElement, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Participant
+ * UPDM Constraint Id:  Participant.ownedPort
+ *******************************************************************************/
+
+pattern Participant_ownedPort(element : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Participant(element, _);
+    Class.ownedAttribute(element, ownedPort);
+    neg find ServicePort(ownedPort);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     IsCapableOfPerforming
+ * UPDM Constraint Id:  IsCapableOfPerforming.client
+ *******************************************************************************/
+
+pattern IsCapableOfPerforming_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.IsCapableOfPerforming(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Node(client, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.SystemResource(client, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceInterface(client, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     IsCapableOfPerforming
+ * UPDM Constraint Id:  IsCapableOfPerforming.supplier
+ *******************************************************************************/
+
+pattern IsCapableOfPerforming_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.IsCapableOfPerforming(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalActivity(supplier, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Function(supplier, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceFunction(supplier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Implements
+ * UPDM Constraint Id:  Implements.client
+ *******************************************************************************/
+
+pattern Implements_client(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Implements(element, _);
+    Abstraction.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.SystemResource(client, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceInteraction(client, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Function(client, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceFunction(client, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Implements
+ * UPDM Constraint Id:  Implements.supplier
+ *******************************************************************************/
+
+pattern Implements_supplier(element : Abstraction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Implements(element, _);
+    Abstraction.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Node(supplier, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalActivity(supplier, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OperationalExchange(supplier, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Function(supplier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     StandardConfiguration
+ * UPDM Constraint Id:  StandardConfiguration.annotatedElement
+ *******************************************************************************/
+
+pattern StandardConfiguration_annotatedElement(element : Comment) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.StandardConfiguration(element, _);
+    Comment.annotatedElement(element, annotatedElement);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.CapabilityConfiguration(annotatedElement, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Details
+ * UPDM Constraint Id:  Details.supplier
+ *******************************************************************************/
+
+pattern Details_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Details(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ExchangeElement(supplier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Details
+ * UPDM Constraint Id:  Details.client
+ *******************************************************************************/
+
+pattern Details_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Details(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.EntityItem(client, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     EntityRelationship
+ * UPDM Constraint Id:  EntityRelationship.endType
+ *******************************************************************************/
+
+pattern EntityRelationship_endType(element : Association) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.EntityRelationship(element, _);
+    Association.ownedEnd(element, end);
+    Property.type(end, endType);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.EntityItem(endType, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     EntityAttribute
+ * UPDM Constraint Id:  EntityAttribute.canBeAppliedTo
+ *******************************************************************************/
+
+pattern EntityAttribute_canBeAppliedTo(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.EntityAttribute(element, _);
+    Class.ownedAttribute(owner, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.EntityAttribute(owner, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     EntityItem
+ * UPDM Constraint Id:  EntityItem.ownedAttribute
+ *******************************************************************************/
+
+pattern EntityItem_ownedAttribute(element : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.EntityItem(element, _);
+    Class.ownedAttribute(element, ownedAttribute);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.EntityAttribute(ownedAttribute, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ServiceInterface
+ * UPDM Constraint Id:  ServiceInterface.feature
+ *******************************************************************************/
+
+pattern ServiceInterface_feature(element : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceInterface(element, _);
+    Class.feature(element, feature);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceFeature(feature, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ServiceInterface
+ * UPDM Constraint Id:  ServiceInterface.ownedAttribute
+ *******************************************************************************/
+
+pattern ServiceInterface_ownedAttribute(element : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceInterface(element, _);
+    Class.ownedAttribute(element, ownedAttribute);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceAttribute(ownedAttribute, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ServicePort
+ * UPDM Constraint Id:  ServicePort.type
+ *******************************************************************************/
+
+pattern ServicePort_type(element : TypedElement) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServicePort(element, _);
+    TypedElement.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceInterface(type, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ServicePort
+ * UPDM Constraint Id:  ServicePort.actualPropertySets
+ *******************************************************************************/
+
+pattern ServicePort_actualPropertySets(element : Element) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServicePort_actualPropertySet(element, actualPropertySets);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceLevelValueSet(actualPropertySets, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ServiceLevelValueSet
+ * UPDM Constraint Id:  ServiceLevelValueSet.slot
+ *******************************************************************************/
+
+pattern ServiceLevelValueSet_slot(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceLevelValueSet(element, _);
+    InstanceSpecification.slot(element, slot);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceLevelValue(slot, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ServicePolicy
+ * UPDM Constraint Id:  ServicePolicy.constrainedElement
+ *******************************************************************************/
+
+pattern ServicePolicy_constrainedElement(element : Constraint) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServicePolicy(element, _);
+    Constraint.constrainedElement(element, constrainedElement);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceInterface(constrainedElement, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ServiceMessageHandler
+ * UPDM Constraint Id:  ServiceMessageHandler.signal
+ *******************************************************************************/
+
+pattern ServiceMessageHandler_signal(element : Reception) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceMessageHandler(element, _);
+    Reception.signal(element, signal);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.AsynchronousMessage(signal, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ServiceOperation
+ * UPDM Constraint Id:  ServiceOperation.ownedParameter
+ *******************************************************************************/
+
+pattern ServiceOperation_ownedParameter(element : Operation) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceOperation(element, _);
+    Operation.ownedParameter(element, ownedParameter);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceParameter(ownedParameter, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ServiceFeature
+ * UPDM Constraint Id:  ServiceFeature.ownedParameter
+ *******************************************************************************/
+
+pattern ServiceFeature_ownedParameter(element : Feature) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceFeature(element, _);
+    Feature.ownedElement(element, ownedParameter);
+    Parameter(ownedParameter);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceParameter(ownedParameter, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ServiceFeature
+ * UPDM Constraint Id:  ServiceFeature.owner
+ *******************************************************************************/
+
+pattern ServiceFeature_owner(element : Feature) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceFeature(element, _);
+    Feature.owner(element, owner);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceInterface(owner, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ServiceInteraction
+ * UPDM Constraint Id:  ServiceInteraction.owner
+ *******************************************************************************/
+
+pattern ServiceInteraction_owner(element : Interaction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceInteraction(element, _);
+    Interaction.owner(element, owner);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceInterface(owner, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ServiceInteraction
+ * UPDM Constraint Id:  ServiceInteraction.message
+ *******************************************************************************/
+
+pattern ServiceInteraction_message(element : Interaction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceInteraction(element, _);
+    Interaction.message(element, message);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceMessage(message, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ServiceFunctionEdge
+ * UPDM Constraint Id:  ServiceFunctionEdge.owner
+ *******************************************************************************/
+
+pattern ServiceFunctionEdge_owner(element : ActivityEdge) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceFunctionEdge(element, _);
+    ActivityEdge.owner(element, owner);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceFunction(owner, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ServiceFunction
+ * UPDM Constraint Id:  ServiceFunction.ownedParameter
+ *******************************************************************************/
+
+pattern ServiceFunction_ownedParameter(element : Activity) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceFunction(element, _);
+    Activity.ownedParameter(element, ownedParameter);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceParameter(ownedParameter, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ServiceStateMachine
+ * UPDM Constraint Id:  ServiceStateMachine.owner
+ *******************************************************************************/
+
+pattern ServiceStateMachine_owner(element : StateMachine) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceStateMachine(element, _);
+    StateMachine.owner(element, owner);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceInterface(owner, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ServiceParameter
+ * UPDM Constraint Id:  ServiceParameter.type
+ *******************************************************************************/
+
+pattern ServiceParameter_type(element : Parameter) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceParameter(element, _);
+    Parameter.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Resource(type, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ServiceFunctionAction
+ * UPDM Constraint Id:  ServiceFunctionAction.behavior
+ *******************************************************************************/
+
+pattern ServiceFunctionAction_behavior(element : CallBehaviorAction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceFunctionAction(element, _);
+    CallBehaviorAction.behavior(element, behavior);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceFunction(behavior, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ServiceFunctionAction
+ * UPDM Constraint Id:  ServiceFunctionAction.activity
+ *******************************************************************************/
+
+pattern ServiceFunctionAction_activity(element : CallBehaviorAction) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceFunctionAction(element, _);
+    CallBehaviorAction.activity(element, activity);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceFunction(activity, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Structure
+ * UPDM Constraint Id:  Expose.client
+ *******************************************************************************/
+
+pattern Expose_client(element : Dependency) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.soaml.Expose(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ServiceInterface(client, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Structure
+ * UPDM Constraint Id:  Expose.supplier
+ *******************************************************************************/
+
+pattern Expose_supplier(element : Dependency) {
+	find com.incquerylabs.magicdraw.benchmark.queries.library.soaml.Expose(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Capability(supplier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     MapsToCapability
+ * UPDM Constraint Id:  MapsToCapability.client
+ *******************************************************************************/
+
+pattern MapsToCapability_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.MapsToCapability(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Activity(client, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     MapsToCapability
+ * UPDM Constraint Id:  MapsToCapability.supplier
+ *******************************************************************************/
+
+pattern MapsToCapability_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.MapsToCapability(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Capability(supplier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     TemporalPart
+ * UPDM Constraint Id:  TemporalPart.type
+ *******************************************************************************/
+
+pattern TemporalPart_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.TemporalPart(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.EnterprisePhase(type, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     TemporalPart
+ * UPDM Constraint Id:  TemporalPart.class
+ *******************************************************************************/
+
+pattern TemporalPart_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.TemporalPart(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.EnterprisePhase(class, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Exhibits
+ * UPDM Constraint Id:  Exhibits.client
+ *******************************************************************************/
+
+pattern Exhibits_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Exhibits(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.CapableElement(client, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Exhibits
+ * UPDM Constraint Id:  Exhibits.supplier
+ *******************************************************************************/
+
+pattern Exhibits_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Exhibits(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Capability(supplier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     CapabilityProperty
+ * UPDM Constraint Id:  CapabilityProperty.type
+ *******************************************************************************/
+
+pattern CapabilityProperty_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.CapabilityProperty(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Capability(type, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     StructuralPart
+ * UPDM Constraint Id:  StructuralPart.class
+ *******************************************************************************/
+
+pattern StructuralPart_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.StructuralPart(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.EnterprisePhase(class, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     StructuralPart
+ * UPDM Constraint Id:  StructuralPart.type
+ *******************************************************************************/
+
+pattern StructuralPart_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.StructuralPart(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.EnterprisePhase(type, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Capability
+ * UPDM Constraint Id:  Capability.ownedAttribute
+ *******************************************************************************/
+
+pattern Capability_ownedAttribute(element : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Capability(element, _);
+    Class.ownedAttribute(element, ownedAttribute);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.CapabilityProperty(ownedAttribute, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ActualProject
+ * UPDM Constraint Id:  ActualProject.classifier
+ *******************************************************************************/
+
+pattern ActualProject_classifier(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualProject(element, _);
+    InstanceSpecification.classifier(element, classifier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ProjectType(classifier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ActualProjectMilestoneRole
+ * UPDM Constraint Id:  ActualProjectMilestoneRole.definingFeature
+ *******************************************************************************/
+
+pattern ActualProjectMilestoneRole_definingFeature(element : Slot) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualProjectMilestoneRole(element, _);
+    Slot.definingFeature(element, definingFeature);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ProjectMilestoneRole(definingFeature, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ActualProjectMilestoneRole
+ * UPDM Constraint Id:  ActualProjectMilestoneRole.owningInstance
+ *******************************************************************************/
+
+pattern ActualProjectMilestoneRole_owningInstance(element : Slot) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualProjectMilestoneRole(element, _);
+    Slot.owningInstance(element, owningInstance);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualProject(owningInstance, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ProjectMilestoneRole
+ * UPDM Constraint Id:  ProjectMilestoneRole.class
+ *******************************************************************************/
+
+pattern ProjectMilestoneRole_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ProjectMilestoneRole(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ProjectType(class, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ProjectMilestoneRole
+ * UPDM Constraint Id:  ProjectMilestoneRole.type
+ *******************************************************************************/
+
+pattern ProjectMilestoneRole_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ProjectMilestoneRole(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ProjectMilestone(type, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ProjectType
+ * UPDM Constraint Id:  Project.ownedAttribute
+ *******************************************************************************/
+
+pattern Project_ownedAttribute(element : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ProjectType(element, _);
+    Class.ownedAttribute(element, ownedAttribute);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ProjectMilestoneRole(ownedAttribute, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     OrganizationalProjectRelationship
+ * UPDM Constraint Id:  OrganizationalProjectRelationship.client
+ *******************************************************************************/
+
+pattern OrganizationalProjectRelationship_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OrganizationalProjectRelationship(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualProject(client, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     OrganizationalProjectRelationship
+ * UPDM Constraint Id:  OrganizationalProjectRelationship.supplier
+ *******************************************************************************/
+
+pattern OrganizationalProjectRelationship_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OrganizationalProjectRelationship(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualOrganizationalResource(supplier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Information
+ * UPDM Constraint Id:  Information.annotatedElement
+ *******************************************************************************/
+
+pattern Information_annotatedElement(element : Comment) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Information(element, _);
+    Comment.annotatedElement(element, annotatedElement);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.UPDMElement(annotatedElement, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ConditionProperty
+ * UPDM Constraint Id:  ConditionProperty.class
+ *******************************************************************************/
+
+pattern ConditionProperty_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ConditionProperty(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Condition(class, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Condition
+ * UPDM Constraint Id:  Condition.ownedAttribute
+ *******************************************************************************/
+
+pattern Condition_ownedAttribute(element : DataType) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Condition(element, _);
+    DataType.ownedAttribute(element, ownedAttribute);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ConditionProperty(ownedAttribute, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     GeoPoliticalExtent
+ * UPDM Constraint Id:  GeoPoliticalExtent.classifier
+ *******************************************************************************/
+
+pattern GeoPoliticalExtent_classifier(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.GeoPoliticalExtent(element, _);
+    InstanceSpecification.classifier(element, classifier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.GeoPoliticalExtentType(classifier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ActivityPartOfProject
+ * UPDM Constraint Id:  ActivityPartOfProject.supplier
+ *******************************************************************************/
+
+pattern ActivityPartOfProject_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActivityPartOfProject(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualProject(supplier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ActivityPartOfProject
+ * UPDM Constraint Id:  ActivityPartOfProject.client
+ *******************************************************************************/
+
+pattern ActivityPartOfProject_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActivityPartOfProject(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ProjectActivity(client, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     DesiredEffect
+ * UPDM Constraint Id:  DesiredEffect.client
+ *******************************************************************************/
+
+pattern DesiredEffect_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.DesiredEffect(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Desirer(client, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     DesiredEffect
+ * UPDM Constraint Id:  DesiredEffect.supplier
+ *******************************************************************************/
+
+pattern DesiredEffect_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.DesiredEffect(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.DesiredState(supplier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Trustline
+ * UPDM Constraint Id:  Trustline.client
+ *******************************************************************************/
+
+pattern Trustline_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Trustline(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Node(client, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Trustline
+ * UPDM Constraint Id:  Trustline.supplier
+ *******************************************************************************/
+
+pattern Trustline_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Trustline(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Node(supplier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ProblemDomain
+ * UPDM Constraint Id:  ProblemDomain.class
+ *******************************************************************************/
+
+pattern ProblemDomain_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ProblemDomain(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.LogicalArchitecture(class, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ProblemDomain
+ * UPDM Constraint Id:  ProblemDomain.type
+ *******************************************************************************/
+
+pattern ProblemDomain_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ProblemDomain(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Node(type, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     OwnsProcess
+ * UPDM Constraint Id:  OwnsProcess.supplier
+ *******************************************************************************/
+
+pattern OwnsProcess_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OwnsProcess(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Process(supplier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     OwnsProcess
+ * UPDM Constraint Id:  OwnsProcess.client
+ *******************************************************************************/
+
+pattern OwnsProcess_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OwnsProcess(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualOrganizationalResource(client, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Control
+ * UPDM Constraint Id:  Control.conveyed
+ *******************************************************************************/
+
+pattern Control_conveyed(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Control(element, _);
+    InformationFlow.conveyed(element, conveyed);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ExchangeElement(conveyed, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Control
+ * UPDM Constraint Id:  Control.informationTarget
+ *******************************************************************************/
+
+pattern Control_informationTarget(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Control(element, _);
+    InformationFlow.informationTarget(element, informationTarget);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ResourceArtifact(informationTarget, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Control
+ * UPDM Constraint Id:  Control.informationSource
+ *******************************************************************************/
+
+pattern Control_informationSource(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Control(element, _);
+    InformationFlow.informationSource(element, informationSource);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.OrganizationalResource(informationSource, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ProjectSequence
+ * UPDM Constraint Id:  ProjectSequence.client
+ *******************************************************************************/
+
+pattern ProjectSequence_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ProjectSequence(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualProject(client, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ProjectSequence
+ * UPDM Constraint Id:  ProjectSequence.supplier
+ *******************************************************************************/
+
+pattern ProjectSequence_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ProjectSequence(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualProject(supplier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ActualProjectMilestone
+ * UPDM Constraint Id:  ActualProjectMilestone.classifier
+ *******************************************************************************/
+
+pattern ActualProjectMilestone_classifier(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualProjectMilestone(element, _);
+    InstanceSpecification.classifier(element, classifier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ProjectMilestone(classifier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ActualProjectMilestone
+ * UPDM Constraint Id:  ActualProjectMilestone.slot
+ *******************************************************************************/
+
+pattern ActualProjectMilestone_slot(element : InstanceSpecification) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ActualProjectMilestone(element, _);
+    InstanceSpecification.slot(element, slot);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ProjectStatus(slot, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     MilestoneSequence
+ * UPDM Constraint Id:  MilestoneSequence.client
+ *******************************************************************************/
+
+pattern MilestoneSequence_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.MilestoneSequence(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ProjectMilestone(client, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     MilestoneSequence
+ * UPDM Constraint Id:  MilestoneSequence.supplier
+ *******************************************************************************/
+
+pattern MilestoneSequence_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.MilestoneSequence(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ProjectMilestone(supplier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ProjectMilestone
+ * UPDM Constraint Id:  ProjectMilestone.ownedAttributes
+ *******************************************************************************/
+
+pattern ProjectMilestone_ownedAttributes(element : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ProjectMilestone(element, _);
+    Class.ownedAttribute(element, ownedAttributes);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ProjectTheme(ownedAttributes, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ProjectStatus
+ * UPDM Constraint Id:  ProjectStatus.definingFeature
+ *******************************************************************************/
+
+pattern ProjectStatus_definingFeature(element : Slot) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ProjectStatus(element, _);
+    Slot.definingFeature(element, definingFeature);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ProjectTheme(definingFeature, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ProjectTheme
+ * UPDM Constraint Id:  ProjecTheme.type
+ *******************************************************************************/
+
+pattern ProjecTheme_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ProjectTheme(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.StatusIndicators(type, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ProtocolLayer
+ * UPDM Constraint Id:  ProtocolLayer.class
+ *******************************************************************************/
+
+pattern ProtocolLayer_class(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ProtocolLayer(element, _);
+    Class.ownedAttribute(class, element);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Protocol(class, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     ProtocolLayer
+ * UPDM Constraint Id:  ProtocolLayer.type
+ *******************************************************************************/
+
+pattern ProtocolLayer_type(element : Property) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.ProtocolLayer(element, _);
+    Property.type(element, type);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Protocol(type, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     SameAs
+ * UPDM Constraint Id:  SameAs.client
+ *******************************************************************************/
+
+pattern SameAs_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.SameAs(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.UPDMElement(client, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     SameAs
+ * UPDM Constraint Id:  SameAs.supplier
+ *******************************************************************************/
+
+pattern SameAs_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.SameAs(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.UPDMElement(supplier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Definition
+ * UPDM Constraint Id:  Definition.annotatedElement
+ *******************************************************************************/
+
+pattern Definition_annotatedElement(element : Comment) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Definition(element, _);
+    Comment.annotatedElement(element, annotatedElement);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.UPDMElement(annotatedElement, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Alias
+ * UPDM Constraint Id:  Allias.annotatedElement
+ *******************************************************************************/
+
+pattern Allias_annotatedElement(element : Comment) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Alias(element, _);
+    Comment.annotatedElement(element, annotatedElement);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.UPDMElement(annotatedElement, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     StereotypeExtension
+ * UPDM Constraint Id:  StereotypeExtension.annotatedElement
+ *******************************************************************************/
+
+pattern StereotypeExtension_annotatedElement(element : Comment) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.StereotypeExtension(element, _);
+    Comment.annotatedElement(element, annotatedElement);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.UPDMElement(annotatedElement, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Overlap
+ * UPDM Constraint Id:  Overlap.client
+ *******************************************************************************/
+
+pattern Overlap_client(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Overlap(element, _);
+    Dependency.client(element, client);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.UPDMElement(client, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Overlap
+ * UPDM Constraint Id:  Overlap.supplier
+ *******************************************************************************/
+
+pattern Overlap_supplier(element : Dependency) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Overlap(element, _);
+    Dependency.supplier(element, supplier);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.UPDMElement(supplier, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Transactional
+ * UPDM Constraint Id:  Transactional.ownedAttribute
+ *******************************************************************************/
+
+pattern Transactional_ownedAttribute(element : DataType) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Transactional(element, _);
+    DataType.ownedAttribute(element, ownedAttribute);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.TransactionalAttribute(ownedAttribute, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Wrapper
+ * UPDM Constraint Id:  Wrapper.ownedAttribute
+ *******************************************************************************/
+
+pattern Wrapper_ownedAttribute(element : Class) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Wrapper(element, _);
+    Class.ownedAttribute(element, ownedAttribute);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.WrapperAttribute(ownedAttribute, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Semantic
+ * UPDM Constraint Id:  Semantic.ownedAttribute
+ *******************************************************************************/
+
+pattern Semantic_ownedAttribute(element : DataType) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Semantic(element, _);
+    DataType.ownedAttribute(element, ownedAttribute);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.SemanticAttribute(ownedAttribute, _);
+}
+
+/*******************************************************************************
+ * UPDM Standard:       Version 2.1.1
+ * Compliance Level:   UPDM L0
+ * UPDM Element:     Contract
+ * UPDM Constraint Id:  Contract.conveyed
+ *******************************************************************************/
+
+pattern Contract_conveyed(element : InformationFlow) {
+    find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Contract(element, _);
+    InformationFlow.conveyed(element, conveyed);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Semantic(conveyed, _);
+    neg find com.incquerylabs.magicdraw.benchmark.queries.library.updm.Transactional(conveyed, _);
 }

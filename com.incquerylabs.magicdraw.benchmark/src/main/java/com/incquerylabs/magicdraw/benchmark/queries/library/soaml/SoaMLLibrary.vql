@@ -1,0 +1,339 @@
+package com.incquerylabs.magicdraw.benchmark.queries.library.soaml
+
+import "http://www.nomagic.com/magicdraw/UML/2.5.1"
+
+/*
+ * Pattern that queries elements with the stereotype 'Agent' or other stereotypes generalizing it.
+ *
+ * Parameters:
+ * element : 'Class' object with the stereotype Agent.
+ * domainStereotypeInstance : Stereotype Application instance
+ */
+pattern Agent(element : Class, domainStereotypeInstance : InstanceSpecification){
+	find com.incquerylabs.magicdraw.benchmark.queries.library.stereotypedElement(element, domainStereotypeInstance, "SoaML Profile", "Agent");
+}
+/*
+ * Pattern that queries elements with the stereotype 'Attachment' or other stereotypes generalizing it.
+ *
+ * Parameters:
+ * element : 'Property' object with the stereotype Attachment.
+ * domainStereotypeInstance : Stereotype Application instance
+ */
+pattern Attachment(element : Property, domainStereotypeInstance : InstanceSpecification){
+	find com.incquerylabs.magicdraw.benchmark.queries.library.stereotypedElement(element, domainStereotypeInstance, "SoaML Profile", "Attachment");
+}
+/*
+ * Pattern that queries the 'encoding' attribute of elements with the stereotype 'Attachment'.
+ * 
+ * Parameters: 
+ * 	element: 'Property' object with the stereotype 'Attachment'.
+ * 	valuespec : LiteralString : A value of the attribute 'encoding'.
+ */
+pattern Attachment_encoding(element : Property, valuespec : LiteralString){
+	find Attachment(element, domainStereotypeInstance);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.slotValue(domainStereotypeInstance, "encoding", valuespec);
+}
+/*
+ * Pattern that queries the 'mimeType' attribute of elements with the stereotype 'Attachment'.
+ * 
+ * Parameters: 
+ * 	element: 'Property' object with the stereotype 'Attachment'.
+ * 	valuespec : LiteralString : A value of the attribute 'mimeType'.
+ */
+pattern Attachment_mimeType(element : Property, valuespec : LiteralString){
+	find Attachment(element, domainStereotypeInstance);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.slotValue(domainStereotypeInstance, "mimeType", valuespec);
+}
+/*
+ * Pattern that queries elements with the stereotype 'Capability' or other stereotypes generalizing it.
+ *
+ * Parameters:
+ * element : 'Class' object with the stereotype Capability.
+ * domainStereotypeInstance : Stereotype Application instance
+ */
+pattern Capability(element : Class, domainStereotypeInstance : InstanceSpecification){
+	find com.incquerylabs.magicdraw.benchmark.queries.library.stereotypedElement(element, domainStereotypeInstance, "SoaML Profile", "Capability");
+}
+/*
+ * Pattern that queries elements with the stereotype 'Collaboration' or other stereotypes generalizing it.
+ *
+ * Parameters:
+ * element : 'Collaboration' object with the stereotype Collaboration.
+ * domainStereotypeInstance : Stereotype Application instance
+ */
+pattern Collaboration(element : Collaboration, domainStereotypeInstance : InstanceSpecification){
+	find com.incquerylabs.magicdraw.benchmark.queries.library.stereotypedElement(element, domainStereotypeInstance, "SoaML Profile", "Collaboration");
+}
+/*
+ * Pattern that queries the 'isStrict' attribute of elements with the stereotype 'Collaboration'.
+ * 
+ * Parameters: 
+ * 	element: 'Collaboration' object with the stereotype 'Collaboration'.
+ * 	valuespec : LiteralBoolean : A value of the attribute 'isStrict'.
+ */
+pattern Collaboration_isStrict(element : Collaboration, valuespec : LiteralBoolean){
+	find Collaboration(element, domainStereotypeInstance);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.slotValue(domainStereotypeInstance, "isStrict", valuespec);
+}
+/*
+ * Pattern that queries elements with the stereotype 'Composite' or other stereotypes generalizing it.
+ *
+ * Parameters:
+ * element : 'Class' object with the stereotype Composite.
+ * domainStereotypeInstance : Stereotype Application instance
+ */
+pattern Composite(element : Class, domainStereotypeInstance : InstanceSpecification){
+	find com.incquerylabs.magicdraw.benchmark.queries.library.stereotypedElement(element, domainStereotypeInstance, "SoaML Profile", "Composite");
+}
+/*
+ * Pattern that queries elements with the stereotype 'Consumer' or other stereotypes generalizing it.
+ *
+ * Parameters:
+ * element : 'Classifier' object with the stereotype Consumer.
+ * domainStereotypeInstance : Stereotype Application instance
+ */
+pattern Consumer(element : Classifier, domainStereotypeInstance : InstanceSpecification){
+	find com.incquerylabs.magicdraw.benchmark.queries.library.stereotypedElement(element, domainStereotypeInstance, "SoaML Profile", "Consumer");
+}
+/*
+ * Pattern that queries elements with the stereotype 'Expose' or other stereotypes generalizing it.
+ *
+ * Parameters:
+ * element : 'Dependency' object with the stereotype Expose.
+ * domainStereotypeInstance : Stereotype Application instance
+ */
+pattern Expose(element : Dependency, domainStereotypeInstance : InstanceSpecification){
+	find com.incquerylabs.magicdraw.benchmark.queries.library.stereotypedElement(element, domainStereotypeInstance, "SoaML Profile", "Expose");
+}
+/*
+ * Pattern that queries elements with the stereotype 'MessageType' or other stereotypes generalizing it.
+ *
+ * Parameters:
+ * element : 'Classifier' object with the stereotype MessageType.
+ * domainStereotypeInstance : Stereotype Application instance
+ */
+pattern MessageType(element : Classifier, domainStereotypeInstance : InstanceSpecification){
+	find com.incquerylabs.magicdraw.benchmark.queries.library.stereotypedElement(element, domainStereotypeInstance, "SoaML Profile", "MessageType");
+}
+/*
+ * Pattern that queries the 'encoding' attribute of elements with the stereotype 'MessageType'.
+ * 
+ * Parameters: 
+ * 	element: 'Classifier' object with the stereotype 'MessageType'.
+ * 	valuespec : LiteralString : A value of the attribute 'encoding'.
+ */
+pattern MessageType_encoding(element : Classifier, valuespec : LiteralString){
+	find MessageType(element, domainStereotypeInstance);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.slotValue(domainStereotypeInstance, "encoding", valuespec);
+}
+/*
+ * Pattern that queries elements with the stereotype 'Milestone' or other stereotypes generalizing it.
+ *
+ * Parameters:
+ * element : 'Comment' object with the stereotype Milestone.
+ * domainStereotypeInstance : Stereotype Application instance
+ */
+pattern Milestone(element : Comment, domainStereotypeInstance : InstanceSpecification){
+	find com.incquerylabs.magicdraw.benchmark.queries.library.stereotypedElement(element, domainStereotypeInstance, "SoaML Profile", "Milestone");
+}
+/*
+ * Pattern that queries the 'progress' attribute of elements with the stereotype 'Milestone'.
+ * 
+ * Parameters: 
+ * 	element: 'Comment' object with the stereotype 'Milestone'.
+ * 	valuespec : LiteralInteger : A value of the attribute 'progress'.
+ */
+pattern Milestone_progress(element : Comment, valuespec : LiteralInteger){
+	find Milestone(element, domainStereotypeInstance);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.slotValue(domainStereotypeInstance, "progress", valuespec);
+}
+/*
+ * Pattern that queries the 'signal' attribute of elements with the stereotype 'Milestone'.
+ * 
+ * Parameters: 
+ * 	element: 'Comment' object with the stereotype 'Milestone'.
+ * 	value : Signal : A value of the attribute 'signal'.
+ */
+pattern Milestone_signal(element : Comment, value : Signal){
+	find Milestone(element, domainStereotypeInstance);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.slotValue(domainStereotypeInstance, "signal", valuespec);
+	ElementValue.element(valuespec, value);
+}
+/*
+ * Pattern that queries the 'value' attribute of elements with the stereotype 'Milestone'.
+ * 
+ * Parameters: 
+ * 	element: 'Comment' object with the stereotype 'Milestone'.
+ * 	value : ValueSpecification : A value of the attribute 'value'.
+ */
+pattern Milestone_value(element : Comment, value : ValueSpecification){
+	find Milestone(element, domainStereotypeInstance);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.slotValue(domainStereotypeInstance, "value", valuespec);
+	ElementValue.element(valuespec, value);
+}
+/*
+ * Pattern that queries elements with the stereotype 'Participant' or other stereotypes generalizing it.
+ *
+ * Parameters:
+ * element : 'Class' object with the stereotype Participant.
+ * domainStereotypeInstance : Stereotype Application instance
+ */
+pattern Participant(element : Class, domainStereotypeInstance : InstanceSpecification){
+	find com.incquerylabs.magicdraw.benchmark.queries.library.stereotypedElement(element, domainStereotypeInstance, "SoaML Profile", "Participant");
+}
+/*
+ * Pattern that queries elements with the stereotype 'Port' or other stereotypes generalizing it.
+ *
+ * Parameters:
+ * element : 'Port' object with the stereotype Port.
+ * domainStereotypeInstance : Stereotype Application instance
+ */
+pattern Port(element : Port, domainStereotypeInstance : InstanceSpecification){
+	find com.incquerylabs.magicdraw.benchmark.queries.library.stereotypedElement(element, domainStereotypeInstance, "SoaML Profile", "Port");
+}
+/*
+ * Pattern that queries the 'connectorRequired' attribute of elements with the stereotype 'Port'.
+ * 
+ * Parameters: 
+ * 	element: 'Port' object with the stereotype 'Port'.
+ * 	valuespec : LiteralBoolean : A value of the attribute 'connectorRequired'.
+ */
+pattern Port_connectorRequired(element : Port, valuespec : LiteralBoolean){
+	find Port(element, domainStereotypeInstance);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.slotValue(domainStereotypeInstance, "connectorRequired", valuespec);
+}
+/*
+ * Pattern that queries elements with the stereotype 'Property' or other stereotypes generalizing it.
+ *
+ * Parameters:
+ * element : 'Property' object with the stereotype Property.
+ * domainStereotypeInstance : Stereotype Application instance
+ */
+pattern Property(element : Property, domainStereotypeInstance : InstanceSpecification){
+	find com.incquerylabs.magicdraw.benchmark.queries.library.stereotypedElement(element, domainStereotypeInstance, "SoaML Profile", "Property");
+}
+/*
+ * Pattern that queries the 'isID' attribute of elements with the stereotype 'Property'.
+ * 
+ * Parameters: 
+ * 	element: 'Property' object with the stereotype 'Property'.
+ * 	valuespec : LiteralBoolean : A value of the attribute 'isID'.
+ */
+pattern Property_isID(element : Property, valuespec : LiteralBoolean){
+	find Property(element, domainStereotypeInstance);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.slotValue(domainStereotypeInstance, "isID", valuespec);
+}
+/*
+ * Pattern that queries elements with the stereotype 'Provider' or other stereotypes generalizing it.
+ *
+ * Parameters:
+ * element : 'Classifier' object with the stereotype Provider.
+ * domainStereotypeInstance : Stereotype Application instance
+ */
+pattern Provider(element : Classifier, domainStereotypeInstance : InstanceSpecification){
+	find com.incquerylabs.magicdraw.benchmark.queries.library.stereotypedElement(element, domainStereotypeInstance, "SoaML Profile", "Provider");
+}
+/*
+ * Pattern that queries elements with the stereotype 'Request' or other stereotypes generalizing it.
+ *
+ * Parameters:
+ * element : 'Port' object with the stereotype Request.
+ * domainStereotypeInstance : Stereotype Application instance
+ */
+pattern Request(element : Port, domainStereotypeInstance : InstanceSpecification){
+	find com.incquerylabs.magicdraw.benchmark.queries.library.stereotypedElement(element, domainStereotypeInstance, "SoaML Profile", "Request");
+}
+/*
+ * Pattern that queries the 'connectorRequired' attribute of elements with the stereotype 'Request'.
+ * 
+ * Parameters: 
+ * 	element: 'Port' object with the stereotype 'Request'.
+ * 	valuespec : LiteralBoolean : A value of the attribute 'connectorRequired'.
+ */
+pattern Request_connectorRequired(element : Port, valuespec : LiteralBoolean){
+	find Request(element, domainStereotypeInstance);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.slotValue(domainStereotypeInstance, "connectorRequired", valuespec);
+}
+/*
+ * Pattern that queries elements with the stereotype 'Service' or other stereotypes generalizing it.
+ *
+ * Parameters:
+ * element : 'Port' object with the stereotype Service.
+ * domainStereotypeInstance : Stereotype Application instance
+ */
+pattern Service(element : Port, domainStereotypeInstance : InstanceSpecification){
+	find com.incquerylabs.magicdraw.benchmark.queries.library.stereotypedElement(element, domainStereotypeInstance, "SoaML Profile", "Service");
+}
+/*
+ * Pattern that queries the 'connectorRequired' attribute of elements with the stereotype 'Service'.
+ * 
+ * Parameters: 
+ * 	element: 'Port' object with the stereotype 'Service'.
+ * 	valuespec : LiteralBoolean : A value of the attribute 'connectorRequired'.
+ */
+pattern Service_connectorRequired(element : Port, valuespec : LiteralBoolean){
+	find Service(element, domainStereotypeInstance);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.slotValue(domainStereotypeInstance, "connectorRequired", valuespec);
+}
+/*
+ * Pattern that queries elements with the stereotype 'ServiceChannel' or other stereotypes generalizing it.
+ *
+ * Parameters:
+ * element : 'Connector' object with the stereotype ServiceChannel.
+ * domainStereotypeInstance : Stereotype Application instance
+ */
+pattern ServiceChannel(element : Connector, domainStereotypeInstance : InstanceSpecification){
+	find com.incquerylabs.magicdraw.benchmark.queries.library.stereotypedElement(element, domainStereotypeInstance, "SoaML Profile", "ServiceChannel");
+}
+/*
+ * Pattern that queries elements with the stereotype 'ServiceContract' or other stereotypes generalizing it.
+ *
+ * Parameters:
+ * element : 'Collaboration' object with the stereotype ServiceContract.
+ * domainStereotypeInstance : Stereotype Application instance
+ */
+pattern ServiceContract(element : Collaboration, domainStereotypeInstance : InstanceSpecification){
+	find com.incquerylabs.magicdraw.benchmark.queries.library.stereotypedElement(element, domainStereotypeInstance, "SoaML Profile", "ServiceContract");
+}
+/*
+ * Pattern that queries the 'isStrict' attribute of elements with the stereotype 'ServiceContract'.
+ * 
+ * Parameters: 
+ * 	element: 'Collaboration' object with the stereotype 'ServiceContract'.
+ * 	valuespec : LiteralBoolean : A value of the attribute 'isStrict'.
+ */
+pattern ServiceContract_isStrict(element : Collaboration, valuespec : LiteralBoolean){
+	find ServiceContract(element, domainStereotypeInstance);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.slotValue(domainStereotypeInstance, "isStrict", valuespec);
+}
+/*
+ * Pattern that queries elements with the stereotype 'ServiceInterface' or other stereotypes generalizing it.
+ *
+ * Parameters:
+ * element : 'Class' object with the stereotype ServiceInterface.
+ * domainStereotypeInstance : Stereotype Application instance
+ */
+pattern ServiceInterface(element : Class, domainStereotypeInstance : InstanceSpecification){
+	find com.incquerylabs.magicdraw.benchmark.queries.library.stereotypedElement(element, domainStereotypeInstance, "SoaML Profile", "ServiceInterface");
+}
+/*
+ * Pattern that queries elements with the stereotype 'ServicesArchitecture' or other stereotypes generalizing it.
+ *
+ * Parameters:
+ * element : 'Collaboration' object with the stereotype ServicesArchitecture.
+ * domainStereotypeInstance : Stereotype Application instance
+ */
+pattern ServicesArchitecture(element : Collaboration, domainStereotypeInstance : InstanceSpecification){
+	find com.incquerylabs.magicdraw.benchmark.queries.library.stereotypedElement(element, domainStereotypeInstance, "SoaML Profile", "ServicesArchitecture");
+}
+/*
+ * Pattern that queries the 'isStrict' attribute of elements with the stereotype 'ServicesArchitecture'.
+ * 
+ * Parameters: 
+ * 	element: 'Collaboration' object with the stereotype 'ServicesArchitecture'.
+ * 	valuespec : LiteralBoolean : A value of the attribute 'isStrict'.
+ */
+pattern ServicesArchitecture_isStrict(element : Collaboration, valuespec : LiteralBoolean){
+	find ServicesArchitecture(element, domainStereotypeInstance);
+	find com.incquerylabs.magicdraw.benchmark.queries.library.slotValue(domainStereotypeInstance, "isStrict", valuespec);
+}
