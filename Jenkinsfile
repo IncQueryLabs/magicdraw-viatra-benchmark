@@ -41,8 +41,8 @@ pipeline {
 		buildDiscarder(logRotator(numToKeepStr: '5'))
 	}
 	
-	tools { 
-        jdk 'Oracle JDK 8' 
+    tools { 
+        jdk 'OpenJDK 8' 
     }
 	 
     stages { 
