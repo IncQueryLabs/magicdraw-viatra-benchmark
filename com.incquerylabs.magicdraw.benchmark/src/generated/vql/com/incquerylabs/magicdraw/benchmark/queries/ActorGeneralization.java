@@ -652,9 +652,9 @@ public final class ActorGeneralization extends BaseGeneratedEMFQuerySpecificatio
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final ActorGeneralization.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_actor = new PParameter("actor", "com.nomagic.uml2.ext.magicdraw.mdusecases.Actor", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Actor")), PParameterDirection.INOUT);
+    private final PParameter parameter_actor = new PParameter("actor", "com.nomagic.uml2.ext.magicdraw.mdusecases.Actor", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Actor")), PParameterDirection.INOUT);
     
-    private final PParameter parameter_generalActor = new PParameter("generalActor", "com.nomagic.uml2.ext.magicdraw.classes.mdpowertypes.GeneralizationSet", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "GeneralizationSet")), PParameterDirection.INOUT);
+    private final PParameter parameter_generalActor = new PParameter("generalActor", "com.nomagic.uml2.ext.magicdraw.classes.mdpowertypes.GeneralizationSet", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "GeneralizationSet")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_actor, parameter_generalActor);
     
@@ -685,20 +685,20 @@ public final class ActorGeneralization extends BaseGeneratedEMFQuerySpecificatio
           PBody body = new PBody(this);
           PVariable var_actor = body.getOrCreateVariableByName("actor");
           PVariable var_generalActor = body.getOrCreateVariableByName("generalActor");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_actor), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Actor")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var_generalActor), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "GeneralizationSet")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_actor), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Actor")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_generalActor), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "GeneralizationSet")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_actor, parameter_actor),
              new ExportedParameter(body, var_generalActor, parameter_generalActor)
           ));
           // 	Actor.generalization.generalizationSet(actor, generalActor)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_actor), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Actor")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_actor), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Actor")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_actor, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Classifier", "generalization")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Generalization")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_actor, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Classifier", "generalization")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Generalization")));
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Generalization", "generalizationSet")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "GeneralizationSet")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Generalization", "generalizationSet")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "GeneralizationSet")));
           new Equality(body, var__virtual_1_, var_generalActor);
           bodies.add(body);
       }

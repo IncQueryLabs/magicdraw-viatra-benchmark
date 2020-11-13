@@ -509,7 +509,7 @@ public final class RateNotStreaming extends BaseGeneratedEMFQuerySpecification<R
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final RateNotStreaming.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_rate = new PParameter("rate", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Parameter", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Parameter")), PParameterDirection.INOUT);
+    private final PParameter parameter_rate = new PParameter("rate", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Parameter", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Parameter")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_rate);
     
@@ -540,7 +540,7 @@ public final class RateNotStreaming extends BaseGeneratedEMFQuerySpecification<R
           PBody body = new PBody(this);
           PVariable var_rate = body.getOrCreateVariableByName("rate");
           PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_rate), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Parameter")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_rate), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Parameter")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_rate, parameter_rate)
           ));
@@ -549,10 +549,10 @@ public final class RateNotStreaming extends BaseGeneratedEMFQuerySpecification<R
           // 	Parameter.isStream(rate, false)
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
           new ConstantValue(body, var__virtual_0_, false);
-          new TypeConstraint(body, Tuples.flatTupleOf(var_rate), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Parameter")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_rate), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Parameter")));
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_rate, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Parameter", "isStream")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Boolean")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_rate, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Parameter", "isStream")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Boolean")));
           new Equality(body, var__virtual_1_, var__virtual_0_);
           bodies.add(body);
       }

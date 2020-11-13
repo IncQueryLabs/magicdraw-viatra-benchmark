@@ -660,9 +660,9 @@ public final class AlphabeticalDependencies extends BaseGeneratedEMFQuerySpecifi
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final AlphabeticalDependencies.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_source = new PParameter("source", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.NamedElement", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "NamedElement")), PParameterDirection.INOUT);
+    private final PParameter parameter_source = new PParameter("source", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.NamedElement", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "NamedElement")), PParameterDirection.INOUT);
     
-    private final PParameter parameter_target = new PParameter("target", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.NamedElement", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "NamedElement")), PParameterDirection.INOUT);
+    private final PParameter parameter_target = new PParameter("target", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.NamedElement", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "NamedElement")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_source, parameter_target);
     
@@ -695,8 +695,8 @@ public final class AlphabeticalDependencies extends BaseGeneratedEMFQuerySpecifi
           PVariable var_target = body.getOrCreateVariableByName("target");
           PVariable var_sourceName = body.getOrCreateVariableByName("sourceName");
           PVariable var_targetName = body.getOrCreateVariableByName("targetName");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_source), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "NamedElement")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var_target), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "NamedElement")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_source), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "NamedElement")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_target), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "NamedElement")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_source, parameter_source),
              new ExportedParameter(body, var_target, parameter_target)

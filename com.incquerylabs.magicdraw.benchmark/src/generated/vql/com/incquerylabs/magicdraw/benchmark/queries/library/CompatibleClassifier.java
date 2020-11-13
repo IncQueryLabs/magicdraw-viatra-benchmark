@@ -43,12 +43,9 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         Matches if the parameter`classifier` can be substituted with the parameter
- *           `classifier`: they are either the same, or there is an `indirectGeneralization`
- *           relationship between them. 
- *          
- *         pattern compatibleClassifier(classifier : Classifier, general: Classifier) {
- *         	find generalizedClassifier(classifier, general);	
+ *         //Matches if the parameter`classifier` can be substituted with the parameter`classifier`: they are either the same, or there is an `indirectGeneralization`relationship between them. 
+ *         pattern compatibleClassifier(Classifier : Classifier, General : Classifier) {
+ *         	find generalizedClassifier (Classifier, General);
  *         }
  * </pre></code>
  * 
@@ -75,7 +72,7 @@ public final class CompatibleClassifier extends BaseGeneratedEMFQuerySpecificati
     
     private Classifier fGeneral;
     
-    private static List<String> parameterNames = makeImmutableList("classifier", "general");
+    private static List<String> parameterNames = makeImmutableList("Classifier", "General");
     
     private Match(final Classifier pClassifier, final Classifier pGeneral) {
       this.fClassifier = pClassifier;
@@ -85,8 +82,8 @@ public final class CompatibleClassifier extends BaseGeneratedEMFQuerySpecificati
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
-          case "classifier": return this.fClassifier;
-          case "general": return this.fGeneral;
+          case "Classifier": return this.fClassifier;
+          case "General": return this.fGeneral;
           default: return null;
       }
     }
@@ -111,11 +108,11 @@ public final class CompatibleClassifier extends BaseGeneratedEMFQuerySpecificati
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      if ("classifier".equals(parameterName) ) {
+      if ("Classifier".equals(parameterName) ) {
           this.fClassifier = (Classifier) newValue;
           return true;
       }
-      if ("general".equals(parameterName) ) {
+      if ("General".equals(parameterName) ) {
           this.fGeneral = (Classifier) newValue;
           return true;
       }
@@ -155,8 +152,8 @@ public final class CompatibleClassifier extends BaseGeneratedEMFQuerySpecificati
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
-      result.append("\"classifier\"=" + prettyPrintValue(fClassifier) + ", ");
-      result.append("\"general\"=" + prettyPrintValue(fGeneral));
+      result.append("\"Classifier\"=" + prettyPrintValue(fClassifier) + ", ");
+      result.append("\"General\"=" + prettyPrintValue(fGeneral));
       return result.toString();
     }
     
@@ -205,8 +202,8 @@ public final class CompatibleClassifier extends BaseGeneratedEMFQuerySpecificati
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
      * 
-     * @param pClassifier the fixed value of pattern parameter classifier, or null if not bound.
-     * @param pGeneral the fixed value of pattern parameter general, or null if not bound.
+     * @param pClassifier the fixed value of pattern parameter Classifier, or null if not bound.
+     * @param pGeneral the fixed value of pattern parameter General, or null if not bound.
      * @return the new, mutable (partial) match object.
      * 
      */
@@ -218,8 +215,8 @@ public final class CompatibleClassifier extends BaseGeneratedEMFQuerySpecificati
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pClassifier the fixed value of pattern parameter classifier, or null if not bound.
-     * @param pGeneral the fixed value of pattern parameter general, or null if not bound.
+     * @param pClassifier the fixed value of pattern parameter Classifier, or null if not bound.
+     * @param pGeneral the fixed value of pattern parameter General, or null if not bound.
      * @return the (partial) match object.
      * 
      */
@@ -261,12 +258,9 @@ public final class CompatibleClassifier extends BaseGeneratedEMFQuerySpecificati
    * 
    * <p>Original source:
    * <code><pre>
-   * Matches if the parameter`classifier` can be substituted with the parameter
-   *   `classifier`: they are either the same, or there is an `indirectGeneralization`
-   *   relationship between them. 
-   *  
-   * pattern compatibleClassifier(classifier : Classifier, general: Classifier) {
-   * 	find generalizedClassifier(classifier, general);	
+   * //Matches if the parameter`classifier` can be substituted with the parameter`classifier`: they are either the same, or there is an `indirectGeneralization`relationship between them. 
+   * pattern compatibleClassifier(Classifier : Classifier, General : Classifier) {
+   * 	find generalizedClassifier (Classifier, General);
    * }
    * </pre></code>
    * 
@@ -322,8 +316,8 @@ public final class CompatibleClassifier extends BaseGeneratedEMFQuerySpecificati
     
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pClassifier the fixed value of pattern parameter classifier, or null if not bound.
-     * @param pGeneral the fixed value of pattern parameter general, or null if not bound.
+     * @param pClassifier the fixed value of pattern parameter Classifier, or null if not bound.
+     * @param pGeneral the fixed value of pattern parameter General, or null if not bound.
      * @return matches represented as a Match object.
      * 
      */
@@ -337,8 +331,8 @@ public final class CompatibleClassifier extends BaseGeneratedEMFQuerySpecificati
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
      * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
-     * @param pClassifier the fixed value of pattern parameter classifier, or null if not bound.
-     * @param pGeneral the fixed value of pattern parameter general, or null if not bound.
+     * @param pClassifier the fixed value of pattern parameter Classifier, or null if not bound.
+     * @param pGeneral the fixed value of pattern parameter General, or null if not bound.
      * @return a stream of matches represented as a Match object.
      * 
      */
@@ -349,8 +343,8 @@ public final class CompatibleClassifier extends BaseGeneratedEMFQuerySpecificati
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pClassifier the fixed value of pattern parameter classifier, or null if not bound.
-     * @param pGeneral the fixed value of pattern parameter general, or null if not bound.
+     * @param pClassifier the fixed value of pattern parameter Classifier, or null if not bound.
+     * @param pGeneral the fixed value of pattern parameter General, or null if not bound.
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
@@ -361,8 +355,8 @@ public final class CompatibleClassifier extends BaseGeneratedEMFQuerySpecificati
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
-     * @param pClassifier the fixed value of pattern parameter classifier, or null if not bound.
-     * @param pGeneral the fixed value of pattern parameter general, or null if not bound.
+     * @param pClassifier the fixed value of pattern parameter Classifier, or null if not bound.
+     * @param pGeneral the fixed value of pattern parameter General, or null if not bound.
      * @return true if the input is a valid (partial) match of the pattern.
      * 
      */
@@ -372,8 +366,8 @@ public final class CompatibleClassifier extends BaseGeneratedEMFQuerySpecificati
     
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pClassifier the fixed value of pattern parameter classifier, or null if not bound.
-     * @param pGeneral the fixed value of pattern parameter general, or null if not bound.
+     * @param pClassifier the fixed value of pattern parameter Classifier, or null if not bound.
+     * @param pGeneral the fixed value of pattern parameter General, or null if not bound.
      * @return the number of pattern matches found.
      * 
      */
@@ -384,8 +378,8 @@ public final class CompatibleClassifier extends BaseGeneratedEMFQuerySpecificati
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pClassifier the fixed value of pattern parameter classifier, or null if not bound.
-     * @param pGeneral the fixed value of pattern parameter general, or null if not bound.
+     * @param pClassifier the fixed value of pattern parameter Classifier, or null if not bound.
+     * @param pGeneral the fixed value of pattern parameter General, or null if not bound.
      * @param processor the action that will process the selected match.
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
@@ -398,8 +392,8 @@ public final class CompatibleClassifier extends BaseGeneratedEMFQuerySpecificati
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pClassifier the fixed value of pattern parameter classifier, or null if not bound.
-     * @param pGeneral the fixed value of pattern parameter general, or null if not bound.
+     * @param pClassifier the fixed value of pattern parameter Classifier, or null if not bound.
+     * @param pGeneral the fixed value of pattern parameter General, or null if not bound.
      * @return the (partial) match object.
      * 
      */
@@ -408,34 +402,34 @@ public final class CompatibleClassifier extends BaseGeneratedEMFQuerySpecificati
     }
     
     /**
-     * Retrieve the set of values that occur in matches for classifier.
+     * Retrieve the set of values that occur in matches for Classifier.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<Classifier> rawStreamAllValuesOfclassifier(final Object[] parameters) {
+    protected Stream<Classifier> rawStreamAllValuesOfClassifier(final Object[] parameters) {
       return rawStreamAllValues(POSITION_CLASSIFIER, parameters).map(Classifier.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for classifier.
+     * Retrieve the set of values that occur in matches for Classifier.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Classifier> getAllValuesOfclassifier() {
-      return rawStreamAllValuesOfclassifier(emptyArray()).collect(Collectors.toSet());
+    public Set<Classifier> getAllValuesOfClassifier() {
+      return rawStreamAllValuesOfClassifier(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for classifier.
+     * Retrieve the set of values that occur in matches for Classifier.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<Classifier> streamAllValuesOfclassifier() {
-      return rawStreamAllValuesOfclassifier(emptyArray());
+    public Stream<Classifier> streamAllValuesOfClassifier() {
+      return rawStreamAllValuesOfClassifier(emptyArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for classifier.
+     * Retrieve the set of values that occur in matches for Classifier.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -444,12 +438,12 @@ public final class CompatibleClassifier extends BaseGeneratedEMFQuerySpecificati
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Classifier> streamAllValuesOfclassifier(final CompatibleClassifier.Match partialMatch) {
-      return rawStreamAllValuesOfclassifier(partialMatch.toArray());
+    public Stream<Classifier> streamAllValuesOfClassifier(final CompatibleClassifier.Match partialMatch) {
+      return rawStreamAllValuesOfClassifier(partialMatch.toArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for classifier.
+     * Retrieve the set of values that occur in matches for Classifier.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -458,57 +452,57 @@ public final class CompatibleClassifier extends BaseGeneratedEMFQuerySpecificati
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Classifier> streamAllValuesOfclassifier(final Classifier pGeneral) {
-      return rawStreamAllValuesOfclassifier(new Object[]{null, pGeneral});
+    public Stream<Classifier> streamAllValuesOfClassifier(final Classifier pGeneral) {
+      return rawStreamAllValuesOfClassifier(new Object[]{null, pGeneral});
     }
     
     /**
-     * Retrieve the set of values that occur in matches for classifier.
+     * Retrieve the set of values that occur in matches for Classifier.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Classifier> getAllValuesOfclassifier(final CompatibleClassifier.Match partialMatch) {
-      return rawStreamAllValuesOfclassifier(partialMatch.toArray()).collect(Collectors.toSet());
+    public Set<Classifier> getAllValuesOfClassifier(final CompatibleClassifier.Match partialMatch) {
+      return rawStreamAllValuesOfClassifier(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for classifier.
+     * Retrieve the set of values that occur in matches for Classifier.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Classifier> getAllValuesOfclassifier(final Classifier pGeneral) {
-      return rawStreamAllValuesOfclassifier(new Object[]{null, pGeneral}).collect(Collectors.toSet());
+    public Set<Classifier> getAllValuesOfClassifier(final Classifier pGeneral) {
+      return rawStreamAllValuesOfClassifier(new Object[]{null, pGeneral}).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for general.
+     * Retrieve the set of values that occur in matches for General.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<Classifier> rawStreamAllValuesOfgeneral(final Object[] parameters) {
+    protected Stream<Classifier> rawStreamAllValuesOfGeneral(final Object[] parameters) {
       return rawStreamAllValues(POSITION_GENERAL, parameters).map(Classifier.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for general.
+     * Retrieve the set of values that occur in matches for General.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Classifier> getAllValuesOfgeneral() {
-      return rawStreamAllValuesOfgeneral(emptyArray()).collect(Collectors.toSet());
+    public Set<Classifier> getAllValuesOfGeneral() {
+      return rawStreamAllValuesOfGeneral(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for general.
+     * Retrieve the set of values that occur in matches for General.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<Classifier> streamAllValuesOfgeneral() {
-      return rawStreamAllValuesOfgeneral(emptyArray());
+    public Stream<Classifier> streamAllValuesOfGeneral() {
+      return rawStreamAllValuesOfGeneral(emptyArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for general.
+     * Retrieve the set of values that occur in matches for General.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -517,12 +511,12 @@ public final class CompatibleClassifier extends BaseGeneratedEMFQuerySpecificati
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Classifier> streamAllValuesOfgeneral(final CompatibleClassifier.Match partialMatch) {
-      return rawStreamAllValuesOfgeneral(partialMatch.toArray());
+    public Stream<Classifier> streamAllValuesOfGeneral(final CompatibleClassifier.Match partialMatch) {
+      return rawStreamAllValuesOfGeneral(partialMatch.toArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for general.
+     * Retrieve the set of values that occur in matches for General.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -531,26 +525,26 @@ public final class CompatibleClassifier extends BaseGeneratedEMFQuerySpecificati
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Classifier> streamAllValuesOfgeneral(final Classifier pClassifier) {
-      return rawStreamAllValuesOfgeneral(new Object[]{pClassifier, null});
+    public Stream<Classifier> streamAllValuesOfGeneral(final Classifier pClassifier) {
+      return rawStreamAllValuesOfGeneral(new Object[]{pClassifier, null});
     }
     
     /**
-     * Retrieve the set of values that occur in matches for general.
+     * Retrieve the set of values that occur in matches for General.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Classifier> getAllValuesOfgeneral(final CompatibleClassifier.Match partialMatch) {
-      return rawStreamAllValuesOfgeneral(partialMatch.toArray()).collect(Collectors.toSet());
+    public Set<Classifier> getAllValuesOfGeneral(final CompatibleClassifier.Match partialMatch) {
+      return rawStreamAllValuesOfGeneral(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for general.
+     * Retrieve the set of values that occur in matches for General.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Classifier> getAllValuesOfgeneral(final Classifier pClassifier) {
-      return rawStreamAllValuesOfgeneral(new Object[]{pClassifier, null}).collect(Collectors.toSet());
+    public Set<Classifier> getAllValuesOfGeneral(final Classifier pClassifier) {
+      return rawStreamAllValuesOfGeneral(new Object[]{pClassifier, null}).collect(Collectors.toSet());
     }
     
     @Override
@@ -659,11 +653,11 @@ public final class CompatibleClassifier extends BaseGeneratedEMFQuerySpecificati
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final CompatibleClassifier.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_classifier = new PParameter("classifier", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Classifier")), PParameterDirection.INOUT);
+    private final PParameter parameter_Classifier = new PParameter("Classifier", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Classifier")), PParameterDirection.INOUT);
     
-    private final PParameter parameter_general = new PParameter("general", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Classifier")), PParameterDirection.INOUT);
+    private final PParameter parameter_General = new PParameter("General", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Classifier")), PParameterDirection.INOUT);
     
-    private final List<PParameter> parameters = Arrays.asList(parameter_classifier, parameter_general);
+    private final List<PParameter> parameters = Arrays.asList(parameter_Classifier, parameter_General);
     
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
@@ -676,7 +670,7 @@ public final class CompatibleClassifier extends BaseGeneratedEMFQuerySpecificati
     
     @Override
     public List<String> getParameterNames() {
-      return Arrays.asList("classifier","general");
+      return Arrays.asList("Classifier","General");
     }
     
     @Override
@@ -690,16 +684,16 @@ public final class CompatibleClassifier extends BaseGeneratedEMFQuerySpecificati
       Set<PBody> bodies = new LinkedHashSet<>();
       {
           PBody body = new PBody(this);
-          PVariable var_classifier = body.getOrCreateVariableByName("classifier");
-          PVariable var_general = body.getOrCreateVariableByName("general");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_classifier), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Classifier")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var_general), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Classifier")));
+          PVariable var_Classifier = body.getOrCreateVariableByName("Classifier");
+          PVariable var_General = body.getOrCreateVariableByName("General");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_Classifier), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Classifier")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_General), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Classifier")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-             new ExportedParameter(body, var_classifier, parameter_classifier),
-             new ExportedParameter(body, var_general, parameter_general)
+             new ExportedParameter(body, var_Classifier, parameter_Classifier),
+             new ExportedParameter(body, var_General, parameter_General)
           ));
-          // 	find generalizedClassifier*(classifier, general)
-          new BinaryReflexiveTransitiveClosure(body, Tuples.flatTupleOf(var_classifier, var_general), GeneralizedClassifier.instance().getInternalQueryRepresentation(), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Classifier")));
+          // 	find generalizedClassifier *(Classifier, General)
+          new BinaryReflexiveTransitiveClosure(body, Tuples.flatTupleOf(var_Classifier, var_General), GeneralizedClassifier.instance().getInternalQueryRepresentation(), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Classifier")));
           bodies.add(body);
       }
       return bodies;

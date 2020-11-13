@@ -3,10 +3,10 @@
  */
 package com.incquerylabs.magicdraw.benchmark.queries.library;
 
-import com.incquerylabs.magicdraw.benchmark.queries.library.SlotValue;
+import com.incquerylabs.magicdraw.benchmark.queries.library.TaggedValue;
 import com.incquerylabs.magicdraw.benchmark.queries.library.View;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier;
-import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Namespace;
+import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.PackageableElement;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -48,16 +48,11 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         Pattern that queries the 'stakeholder' attribute of elements with the stereotype 'View'.
- *           
- *           Parameters: 
- *           	element: 'Namespace' object with the stereotype 'View'.
- *           	value : Classifier : A value of the attribute 'stakeholder'.
- *          
- *         pattern View_stakeholder(element : Namespace, value : Classifier){
- *         	find View(element, domainStereotypeInstance);
- *         	find slotValue(domainStereotypeInstance, "stakeholder", valuespec);
- *         	ElementValue.element(valuespec, value);
+ *         //Pattern that queries the 'stakeholder' attribute of elements with the stereotype 'View'.
+ *         pattern View_stakeholder(Element : PackageableElement, Value: Classifier) {
+ *         	find View(Element, stereotype);
+ *         	find taggedValue(Element, stereotype, "stakeholder", taggedValue);
+ *         	ElementTaggedValue.value(taggedValue, Value);
  *         }
  * </pre></code>
  * 
@@ -80,13 +75,13 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
    * 
    */
   public static abstract class Match extends BasePatternMatch {
-    private Namespace fElement;
+    private PackageableElement fElement;
     
     private Classifier fValue;
     
-    private static List<String> parameterNames = makeImmutableList("element", "value");
+    private static List<String> parameterNames = makeImmutableList("Element", "Value");
     
-    private Match(final Namespace pElement, final Classifier pValue) {
+    private Match(final PackageableElement pElement, final Classifier pValue) {
       this.fElement = pElement;
       this.fValue = pValue;
     }
@@ -94,8 +89,8 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
-          case "element": return this.fElement;
-          case "value": return this.fValue;
+          case "Element": return this.fElement;
+          case "Value": return this.fValue;
           default: return null;
       }
     }
@@ -109,7 +104,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
       }
     }
     
-    public Namespace getElement() {
+    public PackageableElement getElement() {
       return this.fElement;
     }
     
@@ -120,18 +115,18 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      if ("element".equals(parameterName) ) {
-          this.fElement = (Namespace) newValue;
+      if ("Element".equals(parameterName) ) {
+          this.fElement = (PackageableElement) newValue;
           return true;
       }
-      if ("value".equals(parameterName) ) {
+      if ("Value".equals(parameterName) ) {
           this.fValue = (Classifier) newValue;
           return true;
       }
       return false;
     }
     
-    public void setElement(final Namespace pElement) {
+    public void setElement(final PackageableElement pElement) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fElement = pElement;
     }
@@ -164,8 +159,8 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
-      result.append("\"element\"=" + prettyPrintValue(fElement) + ", ");
-      result.append("\"value\"=" + prettyPrintValue(fValue));
+      result.append("\"Element\"=" + prettyPrintValue(fElement) + ", ");
+      result.append("\"Value\"=" + prettyPrintValue(fValue));
       return result.toString();
     }
     
@@ -214,12 +209,12 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
      * 
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static View_stakeholder.Match newMutableMatch(final Namespace pElement, final Classifier pValue) {
+    public static View_stakeholder.Match newMutableMatch(final PackageableElement pElement, final Classifier pValue) {
       return new Mutable(pElement, pValue);
     }
     
@@ -227,17 +222,17 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public static View_stakeholder.Match newMatch(final Namespace pElement, final Classifier pValue) {
+    public static View_stakeholder.Match newMatch(final PackageableElement pElement, final Classifier pValue) {
       return new Immutable(pElement, pValue);
     }
     
     private static final class Mutable extends View_stakeholder.Match {
-      Mutable(final Namespace pElement, final Classifier pValue) {
+      Mutable(final PackageableElement pElement, final Classifier pValue) {
         super(pElement, pValue);
       }
       
@@ -248,7 +243,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
     }
     
     private static final class Immutable extends View_stakeholder.Match {
-      Immutable(final Namespace pElement, final Classifier pValue) {
+      Immutable(final PackageableElement pElement, final Classifier pValue) {
         super(pElement, pValue);
       }
       
@@ -270,16 +265,11 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
    * 
    * <p>Original source:
    * <code><pre>
-   * Pattern that queries the 'stakeholder' attribute of elements with the stereotype 'View'.
-   *   
-   *   Parameters: 
-   *   	element: 'Namespace' object with the stereotype 'View'.
-   *   	value : Classifier : A value of the attribute 'stakeholder'.
-   *  
-   * pattern View_stakeholder(element : Namespace, value : Classifier){
-   * 	find View(element, domainStereotypeInstance);
-   * 	find slotValue(domainStereotypeInstance, "stakeholder", valuespec);
-   * 	ElementValue.element(valuespec, value);
+   * //Pattern that queries the 'stakeholder' attribute of elements with the stereotype 'View'.
+   * pattern View_stakeholder(Element : PackageableElement, Value: Classifier) {
+   * 	find View(Element, stereotype);
+   * 	find taggedValue(Element, stereotype, "stakeholder", taggedValue);
+   * 	ElementTaggedValue.value(taggedValue, Value);
    * }
    * </pre></code>
    * 
@@ -335,12 +325,12 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
     
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<View_stakeholder.Match> getAllMatches(final Namespace pElement, final Classifier pValue) {
+    public Collection<View_stakeholder.Match> getAllMatches(final PackageableElement pElement, final Classifier pValue) {
       return rawStreamAllMatches(new Object[]{pElement, pValue}).collect(Collectors.toSet());
     }
     
@@ -350,60 +340,60 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
      * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<View_stakeholder.Match> streamAllMatches(final Namespace pElement, final Classifier pValue) {
+    public Stream<View_stakeholder.Match> streamAllMatches(final PackageableElement pElement, final Classifier pValue) {
       return rawStreamAllMatches(new Object[]{pElement, pValue});
     }
     
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<View_stakeholder.Match> getOneArbitraryMatch(final Namespace pElement, final Classifier pValue) {
+    public Optional<View_stakeholder.Match> getOneArbitraryMatch(final PackageableElement pElement, final Classifier pValue) {
       return rawGetOneArbitraryMatch(new Object[]{pElement, pValue});
     }
     
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return true if the input is a valid (partial) match of the pattern.
      * 
      */
-    public boolean hasMatch(final Namespace pElement, final Classifier pValue) {
+    public boolean hasMatch(final PackageableElement pElement, final Classifier pValue) {
       return rawHasMatch(new Object[]{pElement, pValue});
     }
     
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return the number of pattern matches found.
      * 
      */
-    public int countMatches(final Namespace pElement, final Classifier pValue) {
+    public int countMatches(final PackageableElement pElement, final Classifier pValue) {
       return rawCountMatches(new Object[]{pElement, pValue});
     }
     
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @param processor the action that will process the selected match.
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final Namespace pElement, final Classifier pValue, final Consumer<? super View_stakeholder.Match> processor) {
+    public boolean forOneArbitraryMatch(final PackageableElement pElement, final Classifier pValue, final Consumer<? super View_stakeholder.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pElement, pValue}, processor);
     }
     
@@ -411,44 +401,44 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public View_stakeholder.Match newMatch(final Namespace pElement, final Classifier pValue) {
+    public View_stakeholder.Match newMatch(final PackageableElement pElement, final Classifier pValue) {
       return View_stakeholder.Match.newMatch(pElement, pValue);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<Namespace> rawStreamAllValuesOfelement(final Object[] parameters) {
-      return rawStreamAllValues(POSITION_ELEMENT, parameters).map(Namespace.class::cast);
+    protected Stream<PackageableElement> rawStreamAllValuesOfElement(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_ELEMENT, parameters).map(PackageableElement.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Namespace> getAllValuesOfelement() {
-      return rawStreamAllValuesOfelement(emptyArray()).collect(Collectors.toSet());
+    public Set<PackageableElement> getAllValuesOfElement() {
+      return rawStreamAllValuesOfElement(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<Namespace> streamAllValuesOfelement() {
-      return rawStreamAllValuesOfelement(emptyArray());
+    public Stream<PackageableElement> streamAllValuesOfElement() {
+      return rawStreamAllValuesOfElement(emptyArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -457,12 +447,12 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Namespace> streamAllValuesOfelement(final View_stakeholder.Match partialMatch) {
-      return rawStreamAllValuesOfelement(partialMatch.toArray());
+    public Stream<PackageableElement> streamAllValuesOfElement(final View_stakeholder.Match partialMatch) {
+      return rawStreamAllValuesOfElement(partialMatch.toArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -471,57 +461,57 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Namespace> streamAllValuesOfelement(final Classifier pValue) {
-      return rawStreamAllValuesOfelement(new Object[]{null, pValue});
+    public Stream<PackageableElement> streamAllValuesOfElement(final Classifier pValue) {
+      return rawStreamAllValuesOfElement(new Object[]{null, pValue});
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Namespace> getAllValuesOfelement(final View_stakeholder.Match partialMatch) {
-      return rawStreamAllValuesOfelement(partialMatch.toArray()).collect(Collectors.toSet());
+    public Set<PackageableElement> getAllValuesOfElement(final View_stakeholder.Match partialMatch) {
+      return rawStreamAllValuesOfElement(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Namespace> getAllValuesOfelement(final Classifier pValue) {
-      return rawStreamAllValuesOfelement(new Object[]{null, pValue}).collect(Collectors.toSet());
+    public Set<PackageableElement> getAllValuesOfElement(final Classifier pValue) {
+      return rawStreamAllValuesOfElement(new Object[]{null, pValue}).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<Classifier> rawStreamAllValuesOfvalue(final Object[] parameters) {
+    protected Stream<Classifier> rawStreamAllValuesOfValue(final Object[] parameters) {
       return rawStreamAllValues(POSITION_VALUE, parameters).map(Classifier.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Classifier> getAllValuesOfvalue() {
-      return rawStreamAllValuesOfvalue(emptyArray()).collect(Collectors.toSet());
+    public Set<Classifier> getAllValuesOfValue() {
+      return rawStreamAllValuesOfValue(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<Classifier> streamAllValuesOfvalue() {
-      return rawStreamAllValuesOfvalue(emptyArray());
+    public Stream<Classifier> streamAllValuesOfValue() {
+      return rawStreamAllValuesOfValue(emptyArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -530,12 +520,12 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Classifier> streamAllValuesOfvalue(final View_stakeholder.Match partialMatch) {
-      return rawStreamAllValuesOfvalue(partialMatch.toArray());
+    public Stream<Classifier> streamAllValuesOfValue(final View_stakeholder.Match partialMatch) {
+      return rawStreamAllValuesOfValue(partialMatch.toArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -544,32 +534,32 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Classifier> streamAllValuesOfvalue(final Namespace pElement) {
-      return rawStreamAllValuesOfvalue(new Object[]{pElement, null});
+    public Stream<Classifier> streamAllValuesOfValue(final PackageableElement pElement) {
+      return rawStreamAllValuesOfValue(new Object[]{pElement, null});
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Classifier> getAllValuesOfvalue(final View_stakeholder.Match partialMatch) {
-      return rawStreamAllValuesOfvalue(partialMatch.toArray()).collect(Collectors.toSet());
+    public Set<Classifier> getAllValuesOfValue(final View_stakeholder.Match partialMatch) {
+      return rawStreamAllValuesOfValue(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Classifier> getAllValuesOfvalue(final Namespace pElement) {
-      return rawStreamAllValuesOfvalue(new Object[]{pElement, null}).collect(Collectors.toSet());
+    public Set<Classifier> getAllValuesOfValue(final PackageableElement pElement) {
+      return rawStreamAllValuesOfValue(new Object[]{pElement, null}).collect(Collectors.toSet());
     }
     
     @Override
     protected View_stakeholder.Match tupleToMatch(final Tuple t) {
       try {
-          return View_stakeholder.Match.newMatch((Namespace) t.get(POSITION_ELEMENT), (Classifier) t.get(POSITION_VALUE));
+          return View_stakeholder.Match.newMatch((PackageableElement) t.get(POSITION_ELEMENT), (Classifier) t.get(POSITION_VALUE));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -579,7 +569,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
     @Override
     protected View_stakeholder.Match arrayToMatch(final Object[] match) {
       try {
-          return View_stakeholder.Match.newMatch((Namespace) match[POSITION_ELEMENT], (Classifier) match[POSITION_VALUE]);
+          return View_stakeholder.Match.newMatch((PackageableElement) match[POSITION_ELEMENT], (Classifier) match[POSITION_VALUE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -589,7 +579,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
     @Override
     protected View_stakeholder.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return View_stakeholder.Match.newMutableMatch((Namespace) match[POSITION_ELEMENT], (Classifier) match[POSITION_VALUE]);
+          return View_stakeholder.Match.newMutableMatch((PackageableElement) match[POSITION_ELEMENT], (Classifier) match[POSITION_VALUE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -640,7 +630,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
   
   @Override
   public View_stakeholder.Match newMatch(final Object... parameters) {
-    return View_stakeholder.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Namespace) parameters[0], (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier) parameters[1]);
+    return View_stakeholder.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.PackageableElement) parameters[0], (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier) parameters[1]);
   }
   
   /**
@@ -672,11 +662,11 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final View_stakeholder.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_element = new PParameter("element", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Namespace", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Namespace")), PParameterDirection.INOUT);
+    private final PParameter parameter_Element = new PParameter("Element", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.PackageableElement", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "PackageableElement")), PParameterDirection.INOUT);
     
-    private final PParameter parameter_value = new PParameter("value", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Classifier")), PParameterDirection.INOUT);
+    private final PParameter parameter_Value = new PParameter("Value", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Classifier")), PParameterDirection.INOUT);
     
-    private final List<PParameter> parameters = Arrays.asList(parameter_element, parameter_value);
+    private final List<PParameter> parameters = Arrays.asList(parameter_Element, parameter_Value);
     
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
@@ -689,7 +679,7 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
     
     @Override
     public List<String> getParameterNames() {
-      return Arrays.asList("element","value");
+      return Arrays.asList("Element","Value");
     }
     
     @Override
@@ -703,28 +693,28 @@ public final class View_stakeholder extends BaseGeneratedEMFQuerySpecification<V
       Set<PBody> bodies = new LinkedHashSet<>();
       {
           PBody body = new PBody(this);
-          PVariable var_element = body.getOrCreateVariableByName("element");
-          PVariable var_value = body.getOrCreateVariableByName("value");
-          PVariable var_domainStereotypeInstance = body.getOrCreateVariableByName("domainStereotypeInstance");
-          PVariable var_valuespec = body.getOrCreateVariableByName("valuespec");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Namespace")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var_value), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Classifier")));
+          PVariable var_Element = body.getOrCreateVariableByName("Element");
+          PVariable var_Value = body.getOrCreateVariableByName("Value");
+          PVariable var_stereotype = body.getOrCreateVariableByName("stereotype");
+          PVariable var_taggedValue = body.getOrCreateVariableByName("taggedValue");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_Element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "PackageableElement")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_Value), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Classifier")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-             new ExportedParameter(body, var_element, parameter_element),
-             new ExportedParameter(body, var_value, parameter_value)
+             new ExportedParameter(body, var_Element, parameter_Element),
+             new ExportedParameter(body, var_Value, parameter_Value)
           ));
-          // 	find View(element, domainStereotypeInstance)
-          new PositivePatternCall(body, Tuples.flatTupleOf(var_element, var_domainStereotypeInstance), View.instance().getInternalQueryRepresentation());
-          // 	find slotValue(domainStereotypeInstance, "stakeholder", valuespec)
+          // 	find View(Element, stereotype)
+          new PositivePatternCall(body, Tuples.flatTupleOf(var_Element, var_stereotype), View.instance().getInternalQueryRepresentation());
+          // 	find taggedValue(Element, stereotype, "stakeholder", taggedValue)
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
           new ConstantValue(body, var__virtual_0_, "stakeholder");
-          new PositivePatternCall(body, Tuples.flatTupleOf(var_domainStereotypeInstance, var__virtual_0_, var_valuespec), SlotValue.instance().getInternalQueryRepresentation());
-          // 	ElementValue.element(valuespec, value)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_valuespec), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ElementValue")));
+          new PositivePatternCall(body, Tuples.flatTupleOf(var_Element, var_stereotype, var__virtual_0_, var_taggedValue), TaggedValue.instance().getInternalQueryRepresentation());
+          // 	ElementTaggedValue.value(taggedValue, Value)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_taggedValue), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ElementTaggedValue")));
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_valuespec, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ElementValue", "element")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Element")));
-          new Equality(body, var__virtual_1_, var_value);
+          new TypeConstraint(body, Tuples.flatTupleOf(var_taggedValue, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ElementTaggedValue", "value")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Element")));
+          new Equality(body, var__virtual_1_, var_Value);
           bodies.add(body);
       }
       return bodies;

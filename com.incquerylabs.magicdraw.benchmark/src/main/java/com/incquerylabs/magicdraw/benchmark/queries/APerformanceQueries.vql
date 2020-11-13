@@ -25,15 +25,13 @@ pattern requirementHasAttribute(attirubute : Property) {
 	Class.ownedAttribute(req, attirubute);
 }
 
-pattern
-requirementInAssociation(association : Association, requirement : Class) {
+pattern requirementInAssociation(association : Association, requirement : Class) {
 	Association.memberEnd(association, memberEnd);
 	Property.type(memberEnd, requirement);
 	find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(requirement, _);
 }
 
-pattern
-requirementInGeneralization(classifier : Classifier, requirement : Class) {
+pattern requirementInGeneralization(classifier : Classifier, requirement : Class) {
 	Classifier.generalization(classifier, generalization);
 	Generalization.general(generalization, requirement);
 	find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(requirement, _);

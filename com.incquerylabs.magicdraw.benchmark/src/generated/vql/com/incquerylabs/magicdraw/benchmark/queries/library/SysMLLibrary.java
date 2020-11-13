@@ -15,6 +15,8 @@ import com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement_
 import com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement_VerifiedBy;
 import com.incquerylabs.magicdraw.benchmark.queries.library.AcceptChangeStructuralFeatureEventAction;
 import com.incquerylabs.magicdraw.benchmark.queries.library.Actuator;
+import com.incquerylabs.magicdraw.benchmark.queries.library.AddFlowPropertyValueOnNestedPortAction;
+import com.incquerylabs.magicdraw.benchmark.queries.library.AddFlowPropertyValueOnNestedPortAction_onNestedPort;
 import com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty;
 import com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal;
 import com.incquerylabs.magicdraw.benchmark.queries.library.Allocate;
@@ -49,9 +51,6 @@ import com.incquerylabs.magicdraw.benchmark.queries.library.BusinessRequirement_
 import com.incquerylabs.magicdraw.benchmark.queries.library.BusinessRequirement_Text;
 import com.incquerylabs.magicdraw.benchmark.queries.library.BusinessRequirement_TracedTo;
 import com.incquerylabs.magicdraw.benchmark.queries.library.BusinessRequirement_VerifiedBy;
-import com.incquerylabs.magicdraw.benchmark.queries.library.BusinessRequirement_risk;
-import com.incquerylabs.magicdraw.benchmark.queries.library.BusinessRequirement_source;
-import com.incquerylabs.magicdraw.benchmark.queries.library.BusinessRequirement_verifyMethod;
 import com.incquerylabs.magicdraw.benchmark.queries.library.ChangeStructuralFeatureEvent;
 import com.incquerylabs.magicdraw.benchmark.queries.library.ChangeStructuralFeatureEvent_structuralFeature;
 import com.incquerylabs.magicdraw.benchmark.queries.library.ClassifierBehaviorProperty;
@@ -84,9 +83,6 @@ import com.incquerylabs.magicdraw.benchmark.queries.library.DesignConstraint_Sat
 import com.incquerylabs.magicdraw.benchmark.queries.library.DesignConstraint_Text;
 import com.incquerylabs.magicdraw.benchmark.queries.library.DesignConstraint_TracedTo;
 import com.incquerylabs.magicdraw.benchmark.queries.library.DesignConstraint_VerifiedBy;
-import com.incquerylabs.magicdraw.benchmark.queries.library.DesignConstraint_risk;
-import com.incquerylabs.magicdraw.benchmark.queries.library.DesignConstraint_source;
-import com.incquerylabs.magicdraw.benchmark.queries.library.DesignConstraint_verifyMethod;
 import com.incquerylabs.magicdraw.benchmark.queries.library.DiagramDescription;
 import com.incquerylabs.magicdraw.benchmark.queries.library.DiagramDescription_Completionstatus;
 import com.incquerylabs.magicdraw.benchmark.queries.library.DiagramDescription_Description;
@@ -152,11 +148,9 @@ import com.incquerylabs.magicdraw.benchmark.queries.library.FunctionalRequiremen
 import com.incquerylabs.magicdraw.benchmark.queries.library.FunctionalRequirement_Text;
 import com.incquerylabs.magicdraw.benchmark.queries.library.FunctionalRequirement_TracedTo;
 import com.incquerylabs.magicdraw.benchmark.queries.library.FunctionalRequirement_VerifiedBy;
-import com.incquerylabs.magicdraw.benchmark.queries.library.FunctionalRequirement_risk;
-import com.incquerylabs.magicdraw.benchmark.queries.library.FunctionalRequirement_source;
-import com.incquerylabs.magicdraw.benchmark.queries.library.FunctionalRequirement_verifyMethod;
 import com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceBlock;
 import com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceBlock_isEncapsulated;
+import com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceBlock_original;
 import com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceRequirement;
 import com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceRequirement_Derived;
 import com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceRequirement_DerivedFrom;
@@ -167,12 +161,7 @@ import com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceRequirement
 import com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceRequirement_Text;
 import com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceRequirement_TracedTo;
 import com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceRequirement_VerifiedBy;
-import com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceRequirement_risk;
-import com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceRequirement_source;
-import com.incquerylabs.magicdraw.benchmark.queries.library.InterfaceRequirement_verifyMethod;
 import com.incquerylabs.magicdraw.benchmark.queries.library.Interval;
-import com.incquerylabs.magicdraw.benchmark.queries.library.Interval_max;
-import com.incquerylabs.magicdraw.benchmark.queries.library.Interval_min;
 import com.incquerylabs.magicdraw.benchmark.queries.library.InvocationOnNestedPortAction;
 import com.incquerylabs.magicdraw.benchmark.queries.library.InvocationOnNestedPortAction_onNestedPort;
 import com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow;
@@ -199,9 +188,6 @@ import com.incquerylabs.magicdraw.benchmark.queries.library.PerformanceRequireme
 import com.incquerylabs.magicdraw.benchmark.queries.library.PerformanceRequirement_Text;
 import com.incquerylabs.magicdraw.benchmark.queries.library.PerformanceRequirement_TracedTo;
 import com.incquerylabs.magicdraw.benchmark.queries.library.PerformanceRequirement_VerifiedBy;
-import com.incquerylabs.magicdraw.benchmark.queries.library.PerformanceRequirement_risk;
-import com.incquerylabs.magicdraw.benchmark.queries.library.PerformanceRequirement_source;
-import com.incquerylabs.magicdraw.benchmark.queries.library.PerformanceRequirement_verifyMethod;
 import com.incquerylabs.magicdraw.benchmark.queries.library.PhysicalRequirement;
 import com.incquerylabs.magicdraw.benchmark.queries.library.PhysicalRequirement_Derived;
 import com.incquerylabs.magicdraw.benchmark.queries.library.PhysicalRequirement_DerivedFrom;
@@ -212,9 +198,6 @@ import com.incquerylabs.magicdraw.benchmark.queries.library.PhysicalRequirement_
 import com.incquerylabs.magicdraw.benchmark.queries.library.PhysicalRequirement_Text;
 import com.incquerylabs.magicdraw.benchmark.queries.library.PhysicalRequirement_TracedTo;
 import com.incquerylabs.magicdraw.benchmark.queries.library.PhysicalRequirement_VerifiedBy;
-import com.incquerylabs.magicdraw.benchmark.queries.library.PhysicalRequirement_risk;
-import com.incquerylabs.magicdraw.benchmark.queries.library.PhysicalRequirement_source;
-import com.incquerylabs.magicdraw.benchmark.queries.library.PhysicalRequirement_verifyMethod;
 import com.incquerylabs.magicdraw.benchmark.queries.library.Probability;
 import com.incquerylabs.magicdraw.benchmark.queries.library.Probability_probability;
 import com.incquerylabs.magicdraw.benchmark.queries.library.Problem;
@@ -270,8 +253,6 @@ import com.incquerylabs.magicdraw.benchmark.queries.library.Trace_targetProperty
 import com.incquerylabs.magicdraw.benchmark.queries.library.TriggerOnNestedPort;
 import com.incquerylabs.magicdraw.benchmark.queries.library.TriggerOnNestedPort_onNestedPort;
 import com.incquerylabs.magicdraw.benchmark.queries.library.Uniform;
-import com.incquerylabs.magicdraw.benchmark.queries.library.Uniform_max;
-import com.incquerylabs.magicdraw.benchmark.queries.library.Uniform_min;
 import com.incquerylabs.magicdraw.benchmark.queries.library.UsabilityRequirement;
 import com.incquerylabs.magicdraw.benchmark.queries.library.UsabilityRequirement_Derived;
 import com.incquerylabs.magicdraw.benchmark.queries.library.UsabilityRequirement_DerivedFrom;
@@ -282,9 +263,6 @@ import com.incquerylabs.magicdraw.benchmark.queries.library.UsabilityRequirement
 import com.incquerylabs.magicdraw.benchmark.queries.library.UsabilityRequirement_Text;
 import com.incquerylabs.magicdraw.benchmark.queries.library.UsabilityRequirement_TracedTo;
 import com.incquerylabs.magicdraw.benchmark.queries.library.UsabilityRequirement_VerifiedBy;
-import com.incquerylabs.magicdraw.benchmark.queries.library.UsabilityRequirement_risk;
-import com.incquerylabs.magicdraw.benchmark.queries.library.UsabilityRequirement_source;
-import com.incquerylabs.magicdraw.benchmark.queries.library.UsabilityRequirement_verifyMethod;
 import com.incquerylabs.magicdraw.benchmark.queries.library.Usersystem;
 import com.incquerylabs.magicdraw.benchmark.queries.library.ValueType;
 import com.incquerylabs.magicdraw.benchmark.queries.library.ValueType_quantityKind;
@@ -316,12 +294,6 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * in order to achieve better performance than one-by-one on-demand matcher initialization.
  * 
  * <p> From package com.incquerylabs.magicdraw.benchmark.queries.library, the group contains the definition of the following patterns: <ul>
- * <li>Allocate</li>
- * <li>Allocate_sourceContext</li>
- * <li>Allocate_sourcePropertyPath</li>
- * <li>Allocate_targetContext</li>
- * <li>Allocate_targetPropertyPath</li>
- * <li>AllocateActivityPartition</li>
  * <li>Continuous</li>
  * <li>Continuous_rate</li>
  * <li>ControlOperator</li>
@@ -334,8 +306,12 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * <li>Probability_probability</li>
  * <li>Rate</li>
  * <li>Rate_rate</li>
- * <li>ConstraintBlock</li>
- * <li>ConstraintBlock_isEncapsulated</li>
+ * <li>Allocate</li>
+ * <li>Allocate_sourceContext</li>
+ * <li>Allocate_sourcePropertyPath</li>
+ * <li>Allocate_targetContext</li>
+ * <li>Allocate_targetPropertyPath</li>
+ * <li>AllocateActivityPartition</li>
  * <li>AdjunctProperty</li>
  * <li>AdjunctProperty_principal</li>
  * <li>BindingConnector</li>
@@ -366,6 +342,20 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * <li>ValueType</li>
  * <li>ValueType_quantityKind</li>
  * <li>ValueType_unit</li>
+ * <li>ConstraintBlock</li>
+ * <li>ConstraintBlock_isEncapsulated</li>
+ * <li>Allocated</li>
+ * <li>Allocated_allocatedFrom</li>
+ * <li>Allocated_allocatedTo</li>
+ * <li>FlowPort</li>
+ * <li>FlowPort_direction</li>
+ * <li>FlowPort_isAtomic</li>
+ * <li>FlowSpecification</li>
+ * <li>RequirementRelated</li>
+ * <li>RequirementRelated_Refines</li>
+ * <li>RequirementRelated_Satisfies</li>
+ * <li>RequirementRelated_TracedFrom</li>
+ * <li>RequirementRelated_Verifies</li>
  * <li>Conform</li>
  * <li>ElementGroup</li>
  * <li>ElementGroup_criterion</li>
@@ -424,14 +414,10 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * <li>BasicInterval_max</li>
  * <li>BasicInterval_min</li>
  * <li>Interval</li>
- * <li>Interval_max</li>
- * <li>Interval_min</li>
  * <li>Normal</li>
  * <li>Normal_mean</li>
  * <li>Normal_standardDeviation</li>
  * <li>Uniform</li>
- * <li>Uniform_max</li>
- * <li>Uniform_min</li>
  * <li>moe</li>
  * <li>objectiveFunction</li>
  * <li>businessRequirement</li>
@@ -444,9 +430,6 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * <li>businessRequirement_Text</li>
  * <li>businessRequirement_TracedTo</li>
  * <li>businessRequirement_VerifiedBy</li>
- * <li>businessRequirement_risk</li>
- * <li>businessRequirement_source</li>
- * <li>businessRequirement_verifyMethod</li>
  * <li>designConstraint</li>
  * <li>designConstraint_Derived</li>
  * <li>designConstraint_DerivedFrom</li>
@@ -457,9 +440,6 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * <li>designConstraint_Text</li>
  * <li>designConstraint_TracedTo</li>
  * <li>designConstraint_VerifiedBy</li>
- * <li>designConstraint_risk</li>
- * <li>designConstraint_source</li>
- * <li>designConstraint_verifyMethod</li>
  * <li>extendedRequirement</li>
  * <li>extendedRequirement_Derived</li>
  * <li>extendedRequirement_DerivedFrom</li>
@@ -483,9 +463,6 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * <li>functionalRequirement_Text</li>
  * <li>functionalRequirement_TracedTo</li>
  * <li>functionalRequirement_VerifiedBy</li>
- * <li>functionalRequirement_risk</li>
- * <li>functionalRequirement_source</li>
- * <li>functionalRequirement_verifyMethod</li>
  * <li>interfaceRequirement</li>
  * <li>interfaceRequirement_Derived</li>
  * <li>interfaceRequirement_DerivedFrom</li>
@@ -496,9 +473,6 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * <li>interfaceRequirement_Text</li>
  * <li>interfaceRequirement_TracedTo</li>
  * <li>interfaceRequirement_VerifiedBy</li>
- * <li>interfaceRequirement_risk</li>
- * <li>interfaceRequirement_source</li>
- * <li>interfaceRequirement_verifyMethod</li>
  * <li>performanceRequirement</li>
  * <li>performanceRequirement_Derived</li>
  * <li>performanceRequirement_DerivedFrom</li>
@@ -509,9 +483,6 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * <li>performanceRequirement_Text</li>
  * <li>performanceRequirement_TracedTo</li>
  * <li>performanceRequirement_VerifiedBy</li>
- * <li>performanceRequirement_risk</li>
- * <li>performanceRequirement_source</li>
- * <li>performanceRequirement_verifyMethod</li>
  * <li>physicalRequirement</li>
  * <li>physicalRequirement_Derived</li>
  * <li>physicalRequirement_DerivedFrom</li>
@@ -522,9 +493,6 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * <li>physicalRequirement_Text</li>
  * <li>physicalRequirement_TracedTo</li>
  * <li>physicalRequirement_VerifiedBy</li>
- * <li>physicalRequirement_risk</li>
- * <li>physicalRequirement_source</li>
- * <li>physicalRequirement_verifyMethod</li>
  * <li>usabilityRequirement</li>
  * <li>usabilityRequirement_Derived</li>
  * <li>usabilityRequirement_DerivedFrom</li>
@@ -535,10 +503,9 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * <li>usabilityRequirement_Text</li>
  * <li>usabilityRequirement_TracedTo</li>
  * <li>usabilityRequirement_VerifiedBy</li>
- * <li>usabilityRequirement_risk</li>
- * <li>usabilityRequirement_source</li>
- * <li>usabilityRequirement_verifyMethod</li>
  * <li>AcceptChangeStructuralFeatureEventAction</li>
+ * <li>AddFlowPropertyValueOnNestedPortAction</li>
+ * <li>AddFlowPropertyValueOnNestedPortAction_onNestedPort</li>
  * <li>ChangeStructuralFeatureEvent</li>
  * <li>ChangeStructuralFeatureEvent_structuralFeature</li>
  * <li>DirectedFeature</li>
@@ -555,6 +522,7 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * <li>ProxyPort</li>
  * <li>TriggerOnNestedPort</li>
  * <li>TriggerOnNestedPort_onNestedPort</li>
+ * <li>InterfaceBlock_original</li>
  * <li>AbstractRequirement</li>
  * <li>AbstractRequirement_Derived</li>
  * <li>AbstractRequirement_DerivedFrom</li>
@@ -606,18 +574,6 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * <li>Verify_sourcePropertyPath</li>
  * <li>Verify_targetContext</li>
  * <li>Verify_targetPropertyPath</li>
- * <li>Allocated</li>
- * <li>Allocated_allocatedFrom</li>
- * <li>Allocated_allocatedTo</li>
- * <li>FlowPort</li>
- * <li>FlowPort_direction</li>
- * <li>FlowPort_isAtomic</li>
- * <li>FlowSpecification</li>
- * <li>RequirementRelated</li>
- * <li>RequirementRelated_Refines</li>
- * <li>RequirementRelated_Satisfies</li>
- * <li>RequirementRelated_TracedFrom</li>
- * <li>RequirementRelated_Verifies</li>
  * </ul>
  * 
  * @see IQueryGroup
@@ -642,12 +598,6 @@ public final class SysMLLibrary extends BaseGeneratedPatternGroup {
   private static SysMLLibrary INSTANCE;
   
   private SysMLLibrary() {
-    querySpecifications.add(Allocate.instance());
-    querySpecifications.add(Allocate_sourceContext.instance());
-    querySpecifications.add(Allocate_sourcePropertyPath.instance());
-    querySpecifications.add(Allocate_targetContext.instance());
-    querySpecifications.add(Allocate_targetPropertyPath.instance());
-    querySpecifications.add(AllocateActivityPartition.instance());
     querySpecifications.add(Continuous.instance());
     querySpecifications.add(Continuous_rate.instance());
     querySpecifications.add(ControlOperator.instance());
@@ -660,8 +610,12 @@ public final class SysMLLibrary extends BaseGeneratedPatternGroup {
     querySpecifications.add(Probability_probability.instance());
     querySpecifications.add(Rate.instance());
     querySpecifications.add(Rate_rate.instance());
-    querySpecifications.add(ConstraintBlock.instance());
-    querySpecifications.add(ConstraintBlock_isEncapsulated.instance());
+    querySpecifications.add(Allocate.instance());
+    querySpecifications.add(Allocate_sourceContext.instance());
+    querySpecifications.add(Allocate_sourcePropertyPath.instance());
+    querySpecifications.add(Allocate_targetContext.instance());
+    querySpecifications.add(Allocate_targetPropertyPath.instance());
+    querySpecifications.add(AllocateActivityPartition.instance());
     querySpecifications.add(AdjunctProperty.instance());
     querySpecifications.add(AdjunctProperty_principal.instance());
     querySpecifications.add(BindingConnector.instance());
@@ -692,6 +646,20 @@ public final class SysMLLibrary extends BaseGeneratedPatternGroup {
     querySpecifications.add(ValueType.instance());
     querySpecifications.add(ValueType_quantityKind.instance());
     querySpecifications.add(ValueType_unit.instance());
+    querySpecifications.add(ConstraintBlock.instance());
+    querySpecifications.add(ConstraintBlock_isEncapsulated.instance());
+    querySpecifications.add(Allocated.instance());
+    querySpecifications.add(Allocated_allocatedFrom.instance());
+    querySpecifications.add(Allocated_allocatedTo.instance());
+    querySpecifications.add(FlowPort.instance());
+    querySpecifications.add(FlowPort_direction.instance());
+    querySpecifications.add(FlowPort_isAtomic.instance());
+    querySpecifications.add(FlowSpecification.instance());
+    querySpecifications.add(RequirementRelated.instance());
+    querySpecifications.add(RequirementRelated_Refines.instance());
+    querySpecifications.add(RequirementRelated_Satisfies.instance());
+    querySpecifications.add(RequirementRelated_TracedFrom.instance());
+    querySpecifications.add(RequirementRelated_Verifies.instance());
     querySpecifications.add(Conform.instance());
     querySpecifications.add(ElementGroup.instance());
     querySpecifications.add(ElementGroup_criterion.instance());
@@ -750,14 +718,10 @@ public final class SysMLLibrary extends BaseGeneratedPatternGroup {
     querySpecifications.add(BasicInterval_max.instance());
     querySpecifications.add(BasicInterval_min.instance());
     querySpecifications.add(Interval.instance());
-    querySpecifications.add(Interval_max.instance());
-    querySpecifications.add(Interval_min.instance());
     querySpecifications.add(Normal.instance());
     querySpecifications.add(Normal_mean.instance());
     querySpecifications.add(Normal_standardDeviation.instance());
     querySpecifications.add(Uniform.instance());
-    querySpecifications.add(Uniform_max.instance());
-    querySpecifications.add(Uniform_min.instance());
     querySpecifications.add(Moe.instance());
     querySpecifications.add(ObjectiveFunction.instance());
     querySpecifications.add(BusinessRequirement.instance());
@@ -770,9 +734,6 @@ public final class SysMLLibrary extends BaseGeneratedPatternGroup {
     querySpecifications.add(BusinessRequirement_Text.instance());
     querySpecifications.add(BusinessRequirement_TracedTo.instance());
     querySpecifications.add(BusinessRequirement_VerifiedBy.instance());
-    querySpecifications.add(BusinessRequirement_risk.instance());
-    querySpecifications.add(BusinessRequirement_source.instance());
-    querySpecifications.add(BusinessRequirement_verifyMethod.instance());
     querySpecifications.add(DesignConstraint.instance());
     querySpecifications.add(DesignConstraint_Derived.instance());
     querySpecifications.add(DesignConstraint_DerivedFrom.instance());
@@ -783,9 +744,6 @@ public final class SysMLLibrary extends BaseGeneratedPatternGroup {
     querySpecifications.add(DesignConstraint_Text.instance());
     querySpecifications.add(DesignConstraint_TracedTo.instance());
     querySpecifications.add(DesignConstraint_VerifiedBy.instance());
-    querySpecifications.add(DesignConstraint_risk.instance());
-    querySpecifications.add(DesignConstraint_source.instance());
-    querySpecifications.add(DesignConstraint_verifyMethod.instance());
     querySpecifications.add(ExtendedRequirement.instance());
     querySpecifications.add(ExtendedRequirement_Derived.instance());
     querySpecifications.add(ExtendedRequirement_DerivedFrom.instance());
@@ -809,9 +767,6 @@ public final class SysMLLibrary extends BaseGeneratedPatternGroup {
     querySpecifications.add(FunctionalRequirement_Text.instance());
     querySpecifications.add(FunctionalRequirement_TracedTo.instance());
     querySpecifications.add(FunctionalRequirement_VerifiedBy.instance());
-    querySpecifications.add(FunctionalRequirement_risk.instance());
-    querySpecifications.add(FunctionalRequirement_source.instance());
-    querySpecifications.add(FunctionalRequirement_verifyMethod.instance());
     querySpecifications.add(InterfaceRequirement.instance());
     querySpecifications.add(InterfaceRequirement_Derived.instance());
     querySpecifications.add(InterfaceRequirement_DerivedFrom.instance());
@@ -822,9 +777,6 @@ public final class SysMLLibrary extends BaseGeneratedPatternGroup {
     querySpecifications.add(InterfaceRequirement_Text.instance());
     querySpecifications.add(InterfaceRequirement_TracedTo.instance());
     querySpecifications.add(InterfaceRequirement_VerifiedBy.instance());
-    querySpecifications.add(InterfaceRequirement_risk.instance());
-    querySpecifications.add(InterfaceRequirement_source.instance());
-    querySpecifications.add(InterfaceRequirement_verifyMethod.instance());
     querySpecifications.add(PerformanceRequirement.instance());
     querySpecifications.add(PerformanceRequirement_Derived.instance());
     querySpecifications.add(PerformanceRequirement_DerivedFrom.instance());
@@ -835,9 +787,6 @@ public final class SysMLLibrary extends BaseGeneratedPatternGroup {
     querySpecifications.add(PerformanceRequirement_Text.instance());
     querySpecifications.add(PerformanceRequirement_TracedTo.instance());
     querySpecifications.add(PerformanceRequirement_VerifiedBy.instance());
-    querySpecifications.add(PerformanceRequirement_risk.instance());
-    querySpecifications.add(PerformanceRequirement_source.instance());
-    querySpecifications.add(PerformanceRequirement_verifyMethod.instance());
     querySpecifications.add(PhysicalRequirement.instance());
     querySpecifications.add(PhysicalRequirement_Derived.instance());
     querySpecifications.add(PhysicalRequirement_DerivedFrom.instance());
@@ -848,9 +797,6 @@ public final class SysMLLibrary extends BaseGeneratedPatternGroup {
     querySpecifications.add(PhysicalRequirement_Text.instance());
     querySpecifications.add(PhysicalRequirement_TracedTo.instance());
     querySpecifications.add(PhysicalRequirement_VerifiedBy.instance());
-    querySpecifications.add(PhysicalRequirement_risk.instance());
-    querySpecifications.add(PhysicalRequirement_source.instance());
-    querySpecifications.add(PhysicalRequirement_verifyMethod.instance());
     querySpecifications.add(UsabilityRequirement.instance());
     querySpecifications.add(UsabilityRequirement_Derived.instance());
     querySpecifications.add(UsabilityRequirement_DerivedFrom.instance());
@@ -861,10 +807,9 @@ public final class SysMLLibrary extends BaseGeneratedPatternGroup {
     querySpecifications.add(UsabilityRequirement_Text.instance());
     querySpecifications.add(UsabilityRequirement_TracedTo.instance());
     querySpecifications.add(UsabilityRequirement_VerifiedBy.instance());
-    querySpecifications.add(UsabilityRequirement_risk.instance());
-    querySpecifications.add(UsabilityRequirement_source.instance());
-    querySpecifications.add(UsabilityRequirement_verifyMethod.instance());
     querySpecifications.add(AcceptChangeStructuralFeatureEventAction.instance());
+    querySpecifications.add(AddFlowPropertyValueOnNestedPortAction.instance());
+    querySpecifications.add(AddFlowPropertyValueOnNestedPortAction_onNestedPort.instance());
     querySpecifications.add(ChangeStructuralFeatureEvent.instance());
     querySpecifications.add(ChangeStructuralFeatureEvent_structuralFeature.instance());
     querySpecifications.add(DirectedFeature.instance());
@@ -881,6 +826,7 @@ public final class SysMLLibrary extends BaseGeneratedPatternGroup {
     querySpecifications.add(ProxyPort.instance());
     querySpecifications.add(TriggerOnNestedPort.instance());
     querySpecifications.add(TriggerOnNestedPort_onNestedPort.instance());
+    querySpecifications.add(InterfaceBlock_original.instance());
     querySpecifications.add(AbstractRequirement.instance());
     querySpecifications.add(AbstractRequirement_Derived.instance());
     querySpecifications.add(AbstractRequirement_DerivedFrom.instance());
@@ -932,66 +878,6 @@ public final class SysMLLibrary extends BaseGeneratedPatternGroup {
     querySpecifications.add(Verify_sourcePropertyPath.instance());
     querySpecifications.add(Verify_targetContext.instance());
     querySpecifications.add(Verify_targetPropertyPath.instance());
-    querySpecifications.add(Allocated.instance());
-    querySpecifications.add(Allocated_allocatedFrom.instance());
-    querySpecifications.add(Allocated_allocatedTo.instance());
-    querySpecifications.add(FlowPort.instance());
-    querySpecifications.add(FlowPort_direction.instance());
-    querySpecifications.add(FlowPort_isAtomic.instance());
-    querySpecifications.add(FlowSpecification.instance());
-    querySpecifications.add(RequirementRelated.instance());
-    querySpecifications.add(RequirementRelated_Refines.instance());
-    querySpecifications.add(RequirementRelated_Satisfies.instance());
-    querySpecifications.add(RequirementRelated_TracedFrom.instance());
-    querySpecifications.add(RequirementRelated_Verifies.instance());
-  }
-  
-  public Allocate getAllocate() {
-    return Allocate.instance();
-  }
-  
-  public Allocate.Matcher getAllocate(final ViatraQueryEngine engine) {
-    return Allocate.Matcher.on(engine);
-  }
-  
-  public Allocate_sourceContext getAllocate_sourceContext() {
-    return Allocate_sourceContext.instance();
-  }
-  
-  public Allocate_sourceContext.Matcher getAllocate_sourceContext(final ViatraQueryEngine engine) {
-    return Allocate_sourceContext.Matcher.on(engine);
-  }
-  
-  public Allocate_sourcePropertyPath getAllocate_sourcePropertyPath() {
-    return Allocate_sourcePropertyPath.instance();
-  }
-  
-  public Allocate_sourcePropertyPath.Matcher getAllocate_sourcePropertyPath(final ViatraQueryEngine engine) {
-    return Allocate_sourcePropertyPath.Matcher.on(engine);
-  }
-  
-  public Allocate_targetContext getAllocate_targetContext() {
-    return Allocate_targetContext.instance();
-  }
-  
-  public Allocate_targetContext.Matcher getAllocate_targetContext(final ViatraQueryEngine engine) {
-    return Allocate_targetContext.Matcher.on(engine);
-  }
-  
-  public Allocate_targetPropertyPath getAllocate_targetPropertyPath() {
-    return Allocate_targetPropertyPath.instance();
-  }
-  
-  public Allocate_targetPropertyPath.Matcher getAllocate_targetPropertyPath(final ViatraQueryEngine engine) {
-    return Allocate_targetPropertyPath.Matcher.on(engine);
-  }
-  
-  public AllocateActivityPartition getAllocateActivityPartition() {
-    return AllocateActivityPartition.instance();
-  }
-  
-  public AllocateActivityPartition.Matcher getAllocateActivityPartition(final ViatraQueryEngine engine) {
-    return AllocateActivityPartition.Matcher.on(engine);
   }
   
   public Continuous getContinuous() {
@@ -1090,20 +976,52 @@ public final class SysMLLibrary extends BaseGeneratedPatternGroup {
     return Rate_rate.Matcher.on(engine);
   }
   
-  public ConstraintBlock getConstraintBlock() {
-    return ConstraintBlock.instance();
+  public Allocate getAllocate() {
+    return Allocate.instance();
   }
   
-  public ConstraintBlock.Matcher getConstraintBlock(final ViatraQueryEngine engine) {
-    return ConstraintBlock.Matcher.on(engine);
+  public Allocate.Matcher getAllocate(final ViatraQueryEngine engine) {
+    return Allocate.Matcher.on(engine);
   }
   
-  public ConstraintBlock_isEncapsulated getConstraintBlock_isEncapsulated() {
-    return ConstraintBlock_isEncapsulated.instance();
+  public Allocate_sourceContext getAllocate_sourceContext() {
+    return Allocate_sourceContext.instance();
   }
   
-  public ConstraintBlock_isEncapsulated.Matcher getConstraintBlock_isEncapsulated(final ViatraQueryEngine engine) {
-    return ConstraintBlock_isEncapsulated.Matcher.on(engine);
+  public Allocate_sourceContext.Matcher getAllocate_sourceContext(final ViatraQueryEngine engine) {
+    return Allocate_sourceContext.Matcher.on(engine);
+  }
+  
+  public Allocate_sourcePropertyPath getAllocate_sourcePropertyPath() {
+    return Allocate_sourcePropertyPath.instance();
+  }
+  
+  public Allocate_sourcePropertyPath.Matcher getAllocate_sourcePropertyPath(final ViatraQueryEngine engine) {
+    return Allocate_sourcePropertyPath.Matcher.on(engine);
+  }
+  
+  public Allocate_targetContext getAllocate_targetContext() {
+    return Allocate_targetContext.instance();
+  }
+  
+  public Allocate_targetContext.Matcher getAllocate_targetContext(final ViatraQueryEngine engine) {
+    return Allocate_targetContext.Matcher.on(engine);
+  }
+  
+  public Allocate_targetPropertyPath getAllocate_targetPropertyPath() {
+    return Allocate_targetPropertyPath.instance();
+  }
+  
+  public Allocate_targetPropertyPath.Matcher getAllocate_targetPropertyPath(final ViatraQueryEngine engine) {
+    return Allocate_targetPropertyPath.Matcher.on(engine);
+  }
+  
+  public AllocateActivityPartition getAllocateActivityPartition() {
+    return AllocateActivityPartition.instance();
+  }
+  
+  public AllocateActivityPartition.Matcher getAllocateActivityPartition(final ViatraQueryEngine engine) {
+    return AllocateActivityPartition.Matcher.on(engine);
   }
   
   public AdjunctProperty getAdjunctProperty() {
@@ -1344,6 +1262,118 @@ public final class SysMLLibrary extends BaseGeneratedPatternGroup {
   
   public ValueType_unit.Matcher getValueType_unit(final ViatraQueryEngine engine) {
     return ValueType_unit.Matcher.on(engine);
+  }
+  
+  public ConstraintBlock getConstraintBlock() {
+    return ConstraintBlock.instance();
+  }
+  
+  public ConstraintBlock.Matcher getConstraintBlock(final ViatraQueryEngine engine) {
+    return ConstraintBlock.Matcher.on(engine);
+  }
+  
+  public ConstraintBlock_isEncapsulated getConstraintBlock_isEncapsulated() {
+    return ConstraintBlock_isEncapsulated.instance();
+  }
+  
+  public ConstraintBlock_isEncapsulated.Matcher getConstraintBlock_isEncapsulated(final ViatraQueryEngine engine) {
+    return ConstraintBlock_isEncapsulated.Matcher.on(engine);
+  }
+  
+  public Allocated getAllocated() {
+    return Allocated.instance();
+  }
+  
+  public Allocated.Matcher getAllocated(final ViatraQueryEngine engine) {
+    return Allocated.Matcher.on(engine);
+  }
+  
+  public Allocated_allocatedFrom getAllocated_allocatedFrom() {
+    return Allocated_allocatedFrom.instance();
+  }
+  
+  public Allocated_allocatedFrom.Matcher getAllocated_allocatedFrom(final ViatraQueryEngine engine) {
+    return Allocated_allocatedFrom.Matcher.on(engine);
+  }
+  
+  public Allocated_allocatedTo getAllocated_allocatedTo() {
+    return Allocated_allocatedTo.instance();
+  }
+  
+  public Allocated_allocatedTo.Matcher getAllocated_allocatedTo(final ViatraQueryEngine engine) {
+    return Allocated_allocatedTo.Matcher.on(engine);
+  }
+  
+  public FlowPort getFlowPort() {
+    return FlowPort.instance();
+  }
+  
+  public FlowPort.Matcher getFlowPort(final ViatraQueryEngine engine) {
+    return FlowPort.Matcher.on(engine);
+  }
+  
+  public FlowPort_direction getFlowPort_direction() {
+    return FlowPort_direction.instance();
+  }
+  
+  public FlowPort_direction.Matcher getFlowPort_direction(final ViatraQueryEngine engine) {
+    return FlowPort_direction.Matcher.on(engine);
+  }
+  
+  public FlowPort_isAtomic getFlowPort_isAtomic() {
+    return FlowPort_isAtomic.instance();
+  }
+  
+  public FlowPort_isAtomic.Matcher getFlowPort_isAtomic(final ViatraQueryEngine engine) {
+    return FlowPort_isAtomic.Matcher.on(engine);
+  }
+  
+  public FlowSpecification getFlowSpecification() {
+    return FlowSpecification.instance();
+  }
+  
+  public FlowSpecification.Matcher getFlowSpecification(final ViatraQueryEngine engine) {
+    return FlowSpecification.Matcher.on(engine);
+  }
+  
+  public RequirementRelated getRequirementRelated() {
+    return RequirementRelated.instance();
+  }
+  
+  public RequirementRelated.Matcher getRequirementRelated(final ViatraQueryEngine engine) {
+    return RequirementRelated.Matcher.on(engine);
+  }
+  
+  public RequirementRelated_Refines getRequirementRelated_Refines() {
+    return RequirementRelated_Refines.instance();
+  }
+  
+  public RequirementRelated_Refines.Matcher getRequirementRelated_Refines(final ViatraQueryEngine engine) {
+    return RequirementRelated_Refines.Matcher.on(engine);
+  }
+  
+  public RequirementRelated_Satisfies getRequirementRelated_Satisfies() {
+    return RequirementRelated_Satisfies.instance();
+  }
+  
+  public RequirementRelated_Satisfies.Matcher getRequirementRelated_Satisfies(final ViatraQueryEngine engine) {
+    return RequirementRelated_Satisfies.Matcher.on(engine);
+  }
+  
+  public RequirementRelated_TracedFrom getRequirementRelated_TracedFrom() {
+    return RequirementRelated_TracedFrom.instance();
+  }
+  
+  public RequirementRelated_TracedFrom.Matcher getRequirementRelated_TracedFrom(final ViatraQueryEngine engine) {
+    return RequirementRelated_TracedFrom.Matcher.on(engine);
+  }
+  
+  public RequirementRelated_Verifies getRequirementRelated_Verifies() {
+    return RequirementRelated_Verifies.instance();
+  }
+  
+  public RequirementRelated_Verifies.Matcher getRequirementRelated_Verifies(final ViatraQueryEngine engine) {
+    return RequirementRelated_Verifies.Matcher.on(engine);
   }
   
   public Conform getConform() {
@@ -1810,22 +1840,6 @@ public final class SysMLLibrary extends BaseGeneratedPatternGroup {
     return Interval.Matcher.on(engine);
   }
   
-  public Interval_max getInterval_max() {
-    return Interval_max.instance();
-  }
-  
-  public Interval_max.Matcher getInterval_max(final ViatraQueryEngine engine) {
-    return Interval_max.Matcher.on(engine);
-  }
-  
-  public Interval_min getInterval_min() {
-    return Interval_min.instance();
-  }
-  
-  public Interval_min.Matcher getInterval_min(final ViatraQueryEngine engine) {
-    return Interval_min.Matcher.on(engine);
-  }
-  
   public Normal getNormal() {
     return Normal.instance();
   }
@@ -1856,22 +1870,6 @@ public final class SysMLLibrary extends BaseGeneratedPatternGroup {
   
   public Uniform.Matcher getUniform(final ViatraQueryEngine engine) {
     return Uniform.Matcher.on(engine);
-  }
-  
-  public Uniform_max getUniform_max() {
-    return Uniform_max.instance();
-  }
-  
-  public Uniform_max.Matcher getUniform_max(final ViatraQueryEngine engine) {
-    return Uniform_max.Matcher.on(engine);
-  }
-  
-  public Uniform_min getUniform_min() {
-    return Uniform_min.instance();
-  }
-  
-  public Uniform_min.Matcher getUniform_min(final ViatraQueryEngine engine) {
-    return Uniform_min.Matcher.on(engine);
   }
   
   public Moe getMoe() {
@@ -1970,30 +1968,6 @@ public final class SysMLLibrary extends BaseGeneratedPatternGroup {
     return BusinessRequirement_VerifiedBy.Matcher.on(engine);
   }
   
-  public BusinessRequirement_risk getBusinessRequirement_risk() {
-    return BusinessRequirement_risk.instance();
-  }
-  
-  public BusinessRequirement_risk.Matcher getBusinessRequirement_risk(final ViatraQueryEngine engine) {
-    return BusinessRequirement_risk.Matcher.on(engine);
-  }
-  
-  public BusinessRequirement_source getBusinessRequirement_source() {
-    return BusinessRequirement_source.instance();
-  }
-  
-  public BusinessRequirement_source.Matcher getBusinessRequirement_source(final ViatraQueryEngine engine) {
-    return BusinessRequirement_source.Matcher.on(engine);
-  }
-  
-  public BusinessRequirement_verifyMethod getBusinessRequirement_verifyMethod() {
-    return BusinessRequirement_verifyMethod.instance();
-  }
-  
-  public BusinessRequirement_verifyMethod.Matcher getBusinessRequirement_verifyMethod(final ViatraQueryEngine engine) {
-    return BusinessRequirement_verifyMethod.Matcher.on(engine);
-  }
-  
   public DesignConstraint getDesignConstraint() {
     return DesignConstraint.instance();
   }
@@ -2072,30 +2046,6 @@ public final class SysMLLibrary extends BaseGeneratedPatternGroup {
   
   public DesignConstraint_VerifiedBy.Matcher getDesignConstraint_VerifiedBy(final ViatraQueryEngine engine) {
     return DesignConstraint_VerifiedBy.Matcher.on(engine);
-  }
-  
-  public DesignConstraint_risk getDesignConstraint_risk() {
-    return DesignConstraint_risk.instance();
-  }
-  
-  public DesignConstraint_risk.Matcher getDesignConstraint_risk(final ViatraQueryEngine engine) {
-    return DesignConstraint_risk.Matcher.on(engine);
-  }
-  
-  public DesignConstraint_source getDesignConstraint_source() {
-    return DesignConstraint_source.instance();
-  }
-  
-  public DesignConstraint_source.Matcher getDesignConstraint_source(final ViatraQueryEngine engine) {
-    return DesignConstraint_source.Matcher.on(engine);
-  }
-  
-  public DesignConstraint_verifyMethod getDesignConstraint_verifyMethod() {
-    return DesignConstraint_verifyMethod.instance();
-  }
-  
-  public DesignConstraint_verifyMethod.Matcher getDesignConstraint_verifyMethod(final ViatraQueryEngine engine) {
-    return DesignConstraint_verifyMethod.Matcher.on(engine);
   }
   
   public ExtendedRequirement getExtendedRequirement() {
@@ -2282,30 +2232,6 @@ public final class SysMLLibrary extends BaseGeneratedPatternGroup {
     return FunctionalRequirement_VerifiedBy.Matcher.on(engine);
   }
   
-  public FunctionalRequirement_risk getFunctionalRequirement_risk() {
-    return FunctionalRequirement_risk.instance();
-  }
-  
-  public FunctionalRequirement_risk.Matcher getFunctionalRequirement_risk(final ViatraQueryEngine engine) {
-    return FunctionalRequirement_risk.Matcher.on(engine);
-  }
-  
-  public FunctionalRequirement_source getFunctionalRequirement_source() {
-    return FunctionalRequirement_source.instance();
-  }
-  
-  public FunctionalRequirement_source.Matcher getFunctionalRequirement_source(final ViatraQueryEngine engine) {
-    return FunctionalRequirement_source.Matcher.on(engine);
-  }
-  
-  public FunctionalRequirement_verifyMethod getFunctionalRequirement_verifyMethod() {
-    return FunctionalRequirement_verifyMethod.instance();
-  }
-  
-  public FunctionalRequirement_verifyMethod.Matcher getFunctionalRequirement_verifyMethod(final ViatraQueryEngine engine) {
-    return FunctionalRequirement_verifyMethod.Matcher.on(engine);
-  }
-  
   public InterfaceRequirement getInterfaceRequirement() {
     return InterfaceRequirement.instance();
   }
@@ -2384,30 +2310,6 @@ public final class SysMLLibrary extends BaseGeneratedPatternGroup {
   
   public InterfaceRequirement_VerifiedBy.Matcher getInterfaceRequirement_VerifiedBy(final ViatraQueryEngine engine) {
     return InterfaceRequirement_VerifiedBy.Matcher.on(engine);
-  }
-  
-  public InterfaceRequirement_risk getInterfaceRequirement_risk() {
-    return InterfaceRequirement_risk.instance();
-  }
-  
-  public InterfaceRequirement_risk.Matcher getInterfaceRequirement_risk(final ViatraQueryEngine engine) {
-    return InterfaceRequirement_risk.Matcher.on(engine);
-  }
-  
-  public InterfaceRequirement_source getInterfaceRequirement_source() {
-    return InterfaceRequirement_source.instance();
-  }
-  
-  public InterfaceRequirement_source.Matcher getInterfaceRequirement_source(final ViatraQueryEngine engine) {
-    return InterfaceRequirement_source.Matcher.on(engine);
-  }
-  
-  public InterfaceRequirement_verifyMethod getInterfaceRequirement_verifyMethod() {
-    return InterfaceRequirement_verifyMethod.instance();
-  }
-  
-  public InterfaceRequirement_verifyMethod.Matcher getInterfaceRequirement_verifyMethod(final ViatraQueryEngine engine) {
-    return InterfaceRequirement_verifyMethod.Matcher.on(engine);
   }
   
   public PerformanceRequirement getPerformanceRequirement() {
@@ -2490,30 +2392,6 @@ public final class SysMLLibrary extends BaseGeneratedPatternGroup {
     return PerformanceRequirement_VerifiedBy.Matcher.on(engine);
   }
   
-  public PerformanceRequirement_risk getPerformanceRequirement_risk() {
-    return PerformanceRequirement_risk.instance();
-  }
-  
-  public PerformanceRequirement_risk.Matcher getPerformanceRequirement_risk(final ViatraQueryEngine engine) {
-    return PerformanceRequirement_risk.Matcher.on(engine);
-  }
-  
-  public PerformanceRequirement_source getPerformanceRequirement_source() {
-    return PerformanceRequirement_source.instance();
-  }
-  
-  public PerformanceRequirement_source.Matcher getPerformanceRequirement_source(final ViatraQueryEngine engine) {
-    return PerformanceRequirement_source.Matcher.on(engine);
-  }
-  
-  public PerformanceRequirement_verifyMethod getPerformanceRequirement_verifyMethod() {
-    return PerformanceRequirement_verifyMethod.instance();
-  }
-  
-  public PerformanceRequirement_verifyMethod.Matcher getPerformanceRequirement_verifyMethod(final ViatraQueryEngine engine) {
-    return PerformanceRequirement_verifyMethod.Matcher.on(engine);
-  }
-  
   public PhysicalRequirement getPhysicalRequirement() {
     return PhysicalRequirement.instance();
   }
@@ -2592,30 +2470,6 @@ public final class SysMLLibrary extends BaseGeneratedPatternGroup {
   
   public PhysicalRequirement_VerifiedBy.Matcher getPhysicalRequirement_VerifiedBy(final ViatraQueryEngine engine) {
     return PhysicalRequirement_VerifiedBy.Matcher.on(engine);
-  }
-  
-  public PhysicalRequirement_risk getPhysicalRequirement_risk() {
-    return PhysicalRequirement_risk.instance();
-  }
-  
-  public PhysicalRequirement_risk.Matcher getPhysicalRequirement_risk(final ViatraQueryEngine engine) {
-    return PhysicalRequirement_risk.Matcher.on(engine);
-  }
-  
-  public PhysicalRequirement_source getPhysicalRequirement_source() {
-    return PhysicalRequirement_source.instance();
-  }
-  
-  public PhysicalRequirement_source.Matcher getPhysicalRequirement_source(final ViatraQueryEngine engine) {
-    return PhysicalRequirement_source.Matcher.on(engine);
-  }
-  
-  public PhysicalRequirement_verifyMethod getPhysicalRequirement_verifyMethod() {
-    return PhysicalRequirement_verifyMethod.instance();
-  }
-  
-  public PhysicalRequirement_verifyMethod.Matcher getPhysicalRequirement_verifyMethod(final ViatraQueryEngine engine) {
-    return PhysicalRequirement_verifyMethod.Matcher.on(engine);
   }
   
   public UsabilityRequirement getUsabilityRequirement() {
@@ -2698,36 +2552,28 @@ public final class SysMLLibrary extends BaseGeneratedPatternGroup {
     return UsabilityRequirement_VerifiedBy.Matcher.on(engine);
   }
   
-  public UsabilityRequirement_risk getUsabilityRequirement_risk() {
-    return UsabilityRequirement_risk.instance();
-  }
-  
-  public UsabilityRequirement_risk.Matcher getUsabilityRequirement_risk(final ViatraQueryEngine engine) {
-    return UsabilityRequirement_risk.Matcher.on(engine);
-  }
-  
-  public UsabilityRequirement_source getUsabilityRequirement_source() {
-    return UsabilityRequirement_source.instance();
-  }
-  
-  public UsabilityRequirement_source.Matcher getUsabilityRequirement_source(final ViatraQueryEngine engine) {
-    return UsabilityRequirement_source.Matcher.on(engine);
-  }
-  
-  public UsabilityRequirement_verifyMethod getUsabilityRequirement_verifyMethod() {
-    return UsabilityRequirement_verifyMethod.instance();
-  }
-  
-  public UsabilityRequirement_verifyMethod.Matcher getUsabilityRequirement_verifyMethod(final ViatraQueryEngine engine) {
-    return UsabilityRequirement_verifyMethod.Matcher.on(engine);
-  }
-  
   public AcceptChangeStructuralFeatureEventAction getAcceptChangeStructuralFeatureEventAction() {
     return AcceptChangeStructuralFeatureEventAction.instance();
   }
   
   public AcceptChangeStructuralFeatureEventAction.Matcher getAcceptChangeStructuralFeatureEventAction(final ViatraQueryEngine engine) {
     return AcceptChangeStructuralFeatureEventAction.Matcher.on(engine);
+  }
+  
+  public AddFlowPropertyValueOnNestedPortAction getAddFlowPropertyValueOnNestedPortAction() {
+    return AddFlowPropertyValueOnNestedPortAction.instance();
+  }
+  
+  public AddFlowPropertyValueOnNestedPortAction.Matcher getAddFlowPropertyValueOnNestedPortAction(final ViatraQueryEngine engine) {
+    return AddFlowPropertyValueOnNestedPortAction.Matcher.on(engine);
+  }
+  
+  public AddFlowPropertyValueOnNestedPortAction_onNestedPort getAddFlowPropertyValueOnNestedPortAction_onNestedPort() {
+    return AddFlowPropertyValueOnNestedPortAction_onNestedPort.instance();
+  }
+  
+  public AddFlowPropertyValueOnNestedPortAction_onNestedPort.Matcher getAddFlowPropertyValueOnNestedPortAction_onNestedPort(final ViatraQueryEngine engine) {
+    return AddFlowPropertyValueOnNestedPortAction_onNestedPort.Matcher.on(engine);
   }
   
   public ChangeStructuralFeatureEvent getChangeStructuralFeatureEvent() {
@@ -2856,6 +2702,14 @@ public final class SysMLLibrary extends BaseGeneratedPatternGroup {
   
   public TriggerOnNestedPort_onNestedPort.Matcher getTriggerOnNestedPort_onNestedPort(final ViatraQueryEngine engine) {
     return TriggerOnNestedPort_onNestedPort.Matcher.on(engine);
+  }
+  
+  public InterfaceBlock_original getInterfaceBlock_original() {
+    return InterfaceBlock_original.instance();
+  }
+  
+  public InterfaceBlock_original.Matcher getInterfaceBlock_original(final ViatraQueryEngine engine) {
+    return InterfaceBlock_original.Matcher.on(engine);
   }
   
   public AbstractRequirement getAbstractRequirement() {
@@ -3264,101 +3118,5 @@ public final class SysMLLibrary extends BaseGeneratedPatternGroup {
   
   public Verify_targetPropertyPath.Matcher getVerify_targetPropertyPath(final ViatraQueryEngine engine) {
     return Verify_targetPropertyPath.Matcher.on(engine);
-  }
-  
-  public Allocated getAllocated() {
-    return Allocated.instance();
-  }
-  
-  public Allocated.Matcher getAllocated(final ViatraQueryEngine engine) {
-    return Allocated.Matcher.on(engine);
-  }
-  
-  public Allocated_allocatedFrom getAllocated_allocatedFrom() {
-    return Allocated_allocatedFrom.instance();
-  }
-  
-  public Allocated_allocatedFrom.Matcher getAllocated_allocatedFrom(final ViatraQueryEngine engine) {
-    return Allocated_allocatedFrom.Matcher.on(engine);
-  }
-  
-  public Allocated_allocatedTo getAllocated_allocatedTo() {
-    return Allocated_allocatedTo.instance();
-  }
-  
-  public Allocated_allocatedTo.Matcher getAllocated_allocatedTo(final ViatraQueryEngine engine) {
-    return Allocated_allocatedTo.Matcher.on(engine);
-  }
-  
-  public FlowPort getFlowPort() {
-    return FlowPort.instance();
-  }
-  
-  public FlowPort.Matcher getFlowPort(final ViatraQueryEngine engine) {
-    return FlowPort.Matcher.on(engine);
-  }
-  
-  public FlowPort_direction getFlowPort_direction() {
-    return FlowPort_direction.instance();
-  }
-  
-  public FlowPort_direction.Matcher getFlowPort_direction(final ViatraQueryEngine engine) {
-    return FlowPort_direction.Matcher.on(engine);
-  }
-  
-  public FlowPort_isAtomic getFlowPort_isAtomic() {
-    return FlowPort_isAtomic.instance();
-  }
-  
-  public FlowPort_isAtomic.Matcher getFlowPort_isAtomic(final ViatraQueryEngine engine) {
-    return FlowPort_isAtomic.Matcher.on(engine);
-  }
-  
-  public FlowSpecification getFlowSpecification() {
-    return FlowSpecification.instance();
-  }
-  
-  public FlowSpecification.Matcher getFlowSpecification(final ViatraQueryEngine engine) {
-    return FlowSpecification.Matcher.on(engine);
-  }
-  
-  public RequirementRelated getRequirementRelated() {
-    return RequirementRelated.instance();
-  }
-  
-  public RequirementRelated.Matcher getRequirementRelated(final ViatraQueryEngine engine) {
-    return RequirementRelated.Matcher.on(engine);
-  }
-  
-  public RequirementRelated_Refines getRequirementRelated_Refines() {
-    return RequirementRelated_Refines.instance();
-  }
-  
-  public RequirementRelated_Refines.Matcher getRequirementRelated_Refines(final ViatraQueryEngine engine) {
-    return RequirementRelated_Refines.Matcher.on(engine);
-  }
-  
-  public RequirementRelated_Satisfies getRequirementRelated_Satisfies() {
-    return RequirementRelated_Satisfies.instance();
-  }
-  
-  public RequirementRelated_Satisfies.Matcher getRequirementRelated_Satisfies(final ViatraQueryEngine engine) {
-    return RequirementRelated_Satisfies.Matcher.on(engine);
-  }
-  
-  public RequirementRelated_TracedFrom getRequirementRelated_TracedFrom() {
-    return RequirementRelated_TracedFrom.instance();
-  }
-  
-  public RequirementRelated_TracedFrom.Matcher getRequirementRelated_TracedFrom(final ViatraQueryEngine engine) {
-    return RequirementRelated_TracedFrom.Matcher.on(engine);
-  }
-  
-  public RequirementRelated_Verifies getRequirementRelated_Verifies() {
-    return RequirementRelated_Verifies.instance();
-  }
-  
-  public RequirementRelated_Verifies.Matcher getRequirementRelated_Verifies(final ViatraQueryEngine engine) {
-    return RequirementRelated_Verifies.Matcher.on(engine);
   }
 }

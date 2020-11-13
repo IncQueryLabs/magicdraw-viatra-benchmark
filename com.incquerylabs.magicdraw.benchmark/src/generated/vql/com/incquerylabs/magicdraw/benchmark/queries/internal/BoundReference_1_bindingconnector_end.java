@@ -93,14 +93,14 @@ public final class BoundReference_1_bindingconnector_end extends BaseGeneratedEM
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final BoundReference_1_bindingconnector_end.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_boundReference = new PParameter("boundReference", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")), PParameterDirection.INOUT);
+    private final PParameter parameter_boundReference = new PParameter("boundReference", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Property")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_boundReference);
     
     private class Embedded_1_Property_redefinedProperty extends BaseGeneratedEMFPQuery {
-      private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")), PParameterDirection.INOUT);
+      private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Property")), PParameterDirection.INOUT);
       
-      private final PParameter parameter_p1 = new PParameter("p1", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")), PParameterDirection.INOUT);
+      private final PParameter parameter_p1 = new PParameter("p1", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Property")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
       
@@ -128,10 +128,10 @@ public final class BoundReference_1_bindingconnector_end extends BaseGeneratedEM
            new ExportedParameter(body, var_p1, parameter_p1)
         ));
         // 	Property.redefinedProperty *(boundReference, role)
-        new TypeConstraint(body, Tuples.flatTupleOf(var_p0), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")));
+        new TypeConstraint(body, Tuples.flatTupleOf(var_p0), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Property")));
         PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-        new TypeConstraint(body, Tuples.flatTupleOf(var_p0, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property", "redefinedProperty")));
-        new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")));
+        new TypeConstraint(body, Tuples.flatTupleOf(var_p0, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Property", "redefinedProperty")));
+        new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Property")));
         new Equality(body, var__virtual_0_, var_p1);
         return Collections.singleton(body);
       }
@@ -167,26 +167,26 @@ public final class BoundReference_1_bindingconnector_end extends BaseGeneratedEM
           PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
           PVariable var_connectorEnd = body.getOrCreateVariableByName("connectorEnd");
           PVariable var_role = body.getOrCreateVariableByName("role");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_boundReference), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_boundReference), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Property")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_boundReference, parameter_boundReference)
           ));
           // 	find com.incquerylabs.magicdraw.benchmark.queries.library.BindingConnector(bindingConnector, _)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_bindingConnector, var___0_), BindingConnector.instance().getInternalQueryRepresentation());
           // 	Connector.end(bindingConnector, connectorEnd)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_bindingConnector), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Connector")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_bindingConnector), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Connector")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_bindingConnector, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Connector", "end")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ConnectorEnd")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_bindingConnector, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Connector", "end")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ConnectorEnd")));
           new Equality(body, var__virtual_0_, var_connectorEnd);
           // 	ConnectorEnd.role(connectorEnd, role)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_connectorEnd), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ConnectorEnd")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_connectorEnd), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ConnectorEnd")));
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_connectorEnd, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ConnectorEnd", "role")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ConnectableElement")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_connectorEnd, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ConnectorEnd", "role")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ConnectableElement")));
           new Equality(body, var__virtual_1_, var_role);
           // 	Property.redefinedProperty *(boundReference, role)
-          new BinaryReflexiveTransitiveClosure(body, Tuples.flatTupleOf(var_boundReference, var_role), new BoundReference_1_bindingconnector_end.GeneratedPQuery.Embedded_1_Property_redefinedProperty(), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")));
+          new BinaryReflexiveTransitiveClosure(body, Tuples.flatTupleOf(var_boundReference, var_role), new BoundReference_1_bindingconnector_end.GeneratedPQuery.Embedded_1_Property_redefinedProperty(), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Property")));
           bodies.add(body);
       }
       return bodies;

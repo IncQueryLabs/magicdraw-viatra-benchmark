@@ -502,7 +502,7 @@ public final class FlowSpecificationDeprecated extends BaseGeneratedEMFQuerySpec
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final FlowSpecificationDeprecated.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_flowSpec = new PParameter("flowSpec", "com.nomagic.uml2.ext.magicdraw.classes.mdinterfaces.Interface", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Interface")), PParameterDirection.INOUT);
+    private final PParameter parameter_flowSpec = new PParameter("flowSpec", "com.nomagic.uml2.ext.magicdraw.classes.mdinterfaces.Interface", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Interface")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_flowSpec);
     
@@ -533,7 +533,7 @@ public final class FlowSpecificationDeprecated extends BaseGeneratedEMFQuerySpec
           PBody body = new PBody(this);
           PVariable var_flowSpec = body.getOrCreateVariableByName("flowSpec");
           PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_flowSpec), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Interface")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_flowSpec), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Interface")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_flowSpec, parameter_flowSpec)
           ));

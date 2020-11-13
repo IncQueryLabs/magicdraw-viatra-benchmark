@@ -506,7 +506,7 @@ public final class AcsfeActionIncorrectResultpins extends BaseGeneratedEMFQueryS
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final AcsfeActionIncorrectResultpins.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_action = new PParameter("action", "com.nomagic.uml2.ext.magicdraw.actions.mdcompleteactions.AcceptEventAction", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "AcceptEventAction")), PParameterDirection.INOUT);
+    private final PParameter parameter_action = new PParameter("action", "com.nomagic.uml2.ext.magicdraw.actions.mdcompleteactions.AcceptEventAction", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "AcceptEventAction")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_action);
     
@@ -539,7 +539,7 @@ public final class AcsfeActionIncorrectResultpins extends BaseGeneratedEMFQueryS
           PVariable var_event = body.getOrCreateVariableByName("event");
           PVariable var_trigger = body.getOrCreateVariableByName("trigger");
           PVariable var_result = body.getOrCreateVariableByName("result");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_action), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "AcceptEventAction")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_action), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "AcceptEventAction")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_action, parameter_action)
           ));

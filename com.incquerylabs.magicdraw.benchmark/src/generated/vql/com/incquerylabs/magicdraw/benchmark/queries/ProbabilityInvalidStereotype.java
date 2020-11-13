@@ -525,12 +525,12 @@ public final class ProbabilityInvalidStereotype extends BaseGeneratedEMFQuerySpe
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final ProbabilityInvalidStereotype.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_probability = new PParameter("probability", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.NamedElement", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "NamedElement")), PParameterDirection.INOUT);
+    private final PParameter parameter_probability = new PParameter("probability", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.NamedElement", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "NamedElement")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_probability);
     
     private class Embedded_1_DecisionNode extends BaseGeneratedEMFPQuery {
-      private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.activities.mdintermediateactivities.DecisionNode", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "DecisionNode")), PParameterDirection.INOUT);
+      private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.activities.mdintermediateactivities.DecisionNode", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "DecisionNode")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0);
       
@@ -556,15 +556,15 @@ public final class ProbabilityInvalidStereotype extends BaseGeneratedEMFQuerySpe
            new ExportedParameter(body, var_p0, parameter_p0)
         ));
         //  DecisionNode(source)
-        new TypeConstraint(body, Tuples.flatTupleOf(var_p0), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "DecisionNode")));
+        new TypeConstraint(body, Tuples.flatTupleOf(var_p0), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "DecisionNode")));
         return Collections.singleton(body);
       }
     }
     
     private class Embedded_2_Parameter_direction extends BaseGeneratedEMFPQuery {
-      private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Parameter", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Parameter")), PParameterDirection.INOUT);
+      private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Parameter", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Parameter")), PParameterDirection.INOUT);
       
-      private final PParameter parameter_p1 = new PParameter("p1", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.ParameterDirectionKind", new EDataTypeInSlotsKey((EDataType)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "ParameterDirectionKind")), PParameterDirection.INOUT);
+      private final PParameter parameter_p1 = new PParameter("p1", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.ParameterDirectionKind", new EDataTypeInSlotsKey((EDataType)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ParameterDirectionKind")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0, parameter_p1);
       
@@ -592,10 +592,10 @@ public final class ProbabilityInvalidStereotype extends BaseGeneratedEMFQuerySpe
            new ExportedParameter(body, var_p1, parameter_p1)
         ));
         //  Parameter.direction(parameter, ::^out)
-        new TypeConstraint(body, Tuples.flatTupleOf(var_p0), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Parameter")));
+        new TypeConstraint(body, Tuples.flatTupleOf(var_p0), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Parameter")));
         PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-        new TypeConstraint(body, Tuples.flatTupleOf(var_p0, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Parameter", "direction")));
-        new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ParameterDirectionKind")));
+        new TypeConstraint(body, Tuples.flatTupleOf(var_p0, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Parameter", "direction")));
+        new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ParameterDirectionKind")));
         new Equality(body, var__virtual_0_, var_p1);
         return Collections.singleton(body);
       }
@@ -629,19 +629,19 @@ public final class ProbabilityInvalidStereotype extends BaseGeneratedEMFQuerySpe
           PVariable var_probability = body.getOrCreateVariableByName("probability");
           PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
           PVariable var_source = body.getOrCreateVariableByName("source");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_probability), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "NamedElement")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_probability), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "NamedElement")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_probability, parameter_probability)
           ));
           // 	ActivityEdge(probability)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_probability), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ActivityEdge")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_probability), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ActivityEdge")));
           // 	find com.incquerylabs.magicdraw.benchmark.queries.library.Probability(probability, _)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_probability, var___0_), Probability.instance().getInternalQueryRepresentation());
           // 	ActivityEdge.source(probability, source)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_probability), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ActivityEdge")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_probability), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ActivityEdge")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_probability, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ActivityEdge", "source")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ActivityNode")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_probability, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ActivityEdge", "source")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ActivityNode")));
           new Equality(body, var__virtual_0_, var_source);
           // 	neg DecisionNode(source)
           new NegativePatternCall(body, Tuples.flatTupleOf(var_source), new ProbabilityInvalidStereotype.GeneratedPQuery.Embedded_1_DecisionNode());
@@ -652,19 +652,19 @@ public final class ProbabilityInvalidStereotype extends BaseGeneratedEMFQuerySpe
           PVariable var_probability = body.getOrCreateVariableByName("probability");
           PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
           PVariable var_parameter = body.getOrCreateVariableByName("parameter");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_probability), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "NamedElement")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_probability), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "NamedElement")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_probability, parameter_probability)
           ));
           // 	ParameterSet(probability)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_probability), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ParameterSet")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_probability), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ParameterSet")));
           // 	find com.incquerylabs.magicdraw.benchmark.queries.library.Probability(probability, _)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_probability, var___0_), Probability.instance().getInternalQueryRepresentation());
           // 	ParameterSet.parameter(probability, parameter)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_probability), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ParameterSet")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_probability), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ParameterSet")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_probability, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ParameterSet", "parameter")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Parameter")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_probability, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ParameterSet", "parameter")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Parameter")));
           new Equality(body, var__virtual_0_, var_parameter);
           // 	neg Parameter.direction(parameter, ::^out)
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");

@@ -509,7 +509,7 @@ public final class TriggerOnNestedPortBaseFullPort extends BaseGeneratedEMFQuery
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final TriggerOnNestedPortBaseFullPort.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_trigger = new PParameter("trigger", "com.nomagic.uml2.ext.magicdraw.commonbehaviors.mdcommunications.Trigger", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Trigger")), PParameterDirection.INOUT);
+    private final PParameter parameter_trigger = new PParameter("trigger", "com.nomagic.uml2.ext.magicdraw.commonbehaviors.mdcommunications.Trigger", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Trigger")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_trigger);
     
@@ -542,17 +542,17 @@ public final class TriggerOnNestedPortBaseFullPort extends BaseGeneratedEMFQuery
           PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
           PVariable var_port = body.getOrCreateVariableByName("port");
           PVariable var___1_ = body.getOrCreateVariableByName("_<1>");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_trigger), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Trigger")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_trigger), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Trigger")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_trigger, parameter_trigger)
           ));
           // 	find com.incquerylabs.magicdraw.benchmark.queries.library.TriggerOnNestedPort(trigger, _)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_trigger, var___0_), TriggerOnNestedPort.instance().getInternalQueryRepresentation());
           // 	Trigger.port(trigger, port)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_trigger), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Trigger")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_trigger), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Trigger")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_trigger, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Trigger", "port")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Port")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_trigger, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Trigger", "port")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Port")));
           new Equality(body, var__virtual_0_, var_port);
           // 	find com.incquerylabs.magicdraw.benchmark.queries.library.FullPort(port, _)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_port, var___1_), FullPort.instance().getInternalQueryRepresentation());

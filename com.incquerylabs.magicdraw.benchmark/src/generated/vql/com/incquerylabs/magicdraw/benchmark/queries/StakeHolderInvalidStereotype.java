@@ -509,12 +509,12 @@ public final class StakeHolderInvalidStereotype extends BaseGeneratedEMFQuerySpe
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final StakeHolderInvalidStereotype.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_stakeholder = new PParameter("stakeholder", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Classifier")), PParameterDirection.INOUT);
+    private final PParameter parameter_stakeholder = new PParameter("stakeholder", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Classifier")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_stakeholder);
     
     private class Embedded_1_Actor extends BaseGeneratedEMFPQuery {
-      private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.mdusecases.Actor", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Actor")), PParameterDirection.INOUT);
+      private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.mdusecases.Actor", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Actor")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0);
       
@@ -540,7 +540,7 @@ public final class StakeHolderInvalidStereotype extends BaseGeneratedEMFQuerySpe
            new ExportedParameter(body, var_p0, parameter_p0)
         ));
         //  Actor(stakeholder)
-        new TypeConstraint(body, Tuples.flatTupleOf(var_p0), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Actor")));
+        new TypeConstraint(body, Tuples.flatTupleOf(var_p0), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Actor")));
         return Collections.singleton(body);
       }
     }
@@ -572,7 +572,7 @@ public final class StakeHolderInvalidStereotype extends BaseGeneratedEMFQuerySpe
           PBody body = new PBody(this);
           PVariable var_stakeholder = body.getOrCreateVariableByName("stakeholder");
           PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_stakeholder), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Classifier")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_stakeholder), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Classifier")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_stakeholder, parameter_stakeholder)
           ));

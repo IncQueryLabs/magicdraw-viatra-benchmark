@@ -511,7 +511,7 @@ public final class ItemFlowAssociationHasItemProperty extends BaseGeneratedEMFQu
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final ItemFlowAssociationHasItemProperty.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_itemFlow = new PParameter("itemFlow", "com.nomagic.uml2.ext.magicdraw.auxiliaryconstructs.mdinformationflows.InformationFlow", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "InformationFlow")), PParameterDirection.INOUT);
+    private final PParameter parameter_itemFlow = new PParameter("itemFlow", "com.nomagic.uml2.ext.magicdraw.auxiliaryconstructs.mdinformationflows.InformationFlow", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "InformationFlow")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_itemFlow);
     
@@ -544,20 +544,20 @@ public final class ItemFlowAssociationHasItemProperty extends BaseGeneratedEMFQu
           PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
           PVariable var_realization = body.getOrCreateVariableByName("realization");
           PVariable var___1_ = body.getOrCreateVariableByName("_<1>");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_itemFlow), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "InformationFlow")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_itemFlow), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "InformationFlow")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_itemFlow, parameter_itemFlow)
           ));
           // 	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow(itemFlow, _)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_itemFlow, var___0_), ItemFlow.instance().getInternalQueryRepresentation());
           // 	InformationFlow.realization(itemFlow, realization)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_itemFlow), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "InformationFlow")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_itemFlow), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "InformationFlow")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_itemFlow, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "InformationFlow", "realization")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Relationship")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_itemFlow, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "InformationFlow", "realization")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Relationship")));
           new Equality(body, var__virtual_0_, var_realization);
           // 	Association(realization)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_realization), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Association")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_realization), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Association")));
           // 	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow_itemProperty(itemFlow, _)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_itemFlow, var___1_), ItemFlow_itemProperty.instance().getInternalQueryRepresentation());
           bodies.add(body);

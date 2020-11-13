@@ -510,7 +510,7 @@ public final class ConformSpecificNotView extends BaseGeneratedEMFQuerySpecifica
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final ConformSpecificNotView.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_conform = new PParameter("conform", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Generalization", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Generalization")), PParameterDirection.INOUT);
+    private final PParameter parameter_conform = new PParameter("conform", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Generalization", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Generalization")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_conform);
     
@@ -543,17 +543,17 @@ public final class ConformSpecificNotView extends BaseGeneratedEMFQuerySpecifica
           PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
           PVariable var_specific = body.getOrCreateVariableByName("specific");
           PVariable var___1_ = body.getOrCreateVariableByName("_<1>");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_conform), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Generalization")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_conform), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Generalization")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_conform, parameter_conform)
           ));
           // 	find com.incquerylabs.magicdraw.benchmark.queries.library.Conform(conform, _)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_conform, var___0_), Conform.instance().getInternalQueryRepresentation());
           // 	Generalization.specific(conform, specific)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_conform), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Generalization")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_conform), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Generalization")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_conform, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Generalization", "specific")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Classifier")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_conform, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Generalization", "specific")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Classifier")));
           new Equality(body, var__virtual_0_, var_specific);
           // 	neg find com.incquerylabs.magicdraw.benchmark.queries.library.View(specific, _)
           new NegativePatternCall(body, Tuples.flatTupleOf(var_specific, var___1_), View.instance().getInternalQueryRepresentation());

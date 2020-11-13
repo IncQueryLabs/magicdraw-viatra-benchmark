@@ -514,7 +514,7 @@ public final class AllocateActivityPartitionActionsOnClientEnds extends BaseGene
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final AllocateActivityPartitionActionsOnClientEnds.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_activityPartition = new PParameter("activityPartition", "com.nomagic.uml2.ext.magicdraw.activities.mdintermediateactivities.ActivityPartition", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "ActivityPartition")), PParameterDirection.INOUT);
+    private final PParameter parameter_activityPartition = new PParameter("activityPartition", "com.nomagic.uml2.ext.magicdraw.activities.mdintermediateactivities.ActivityPartition", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ActivityPartition")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_activityPartition);
     
@@ -546,20 +546,20 @@ public final class AllocateActivityPartitionActionsOnClientEnds extends BaseGene
           PVariable var_activityPartition = body.getOrCreateVariableByName("activityPartition");
           PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
           PVariable var_node = body.getOrCreateVariableByName("node");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_activityPartition), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ActivityPartition")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_activityPartition), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ActivityPartition")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_activityPartition, parameter_activityPartition)
           ));
           // 	find com.incquerylabs.magicdraw.benchmark.queries.library.AllocateActivityPartition(activityPartition, _)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_activityPartition, var___0_), AllocateActivityPartition.instance().getInternalQueryRepresentation());
           // 	ActivityPartition.node(activityPartition, node)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_activityPartition), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ActivityPartition")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_activityPartition), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ActivityPartition")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_activityPartition, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ActivityPartition", "node")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ActivityNode")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_activityPartition, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ActivityPartition", "node")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ActivityNode")));
           new Equality(body, var__virtual_0_, var_node);
           // 	Action(node)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_node), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Action")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_node), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Action")));
           // 	neg find correctActPartNode(activityPartition, node)
           new NegativePatternCall(body, Tuples.flatTupleOf(var_activityPartition, var_node), CorrectActPartNode.instance().getInternalQueryRepresentation());
           bodies.add(body);

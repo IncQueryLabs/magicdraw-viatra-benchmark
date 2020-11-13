@@ -45,8 +45,7 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         pattern
- *         requirementInAssociation(association : Association, requirement : Class) {
+ *         pattern requirementInAssociation(association : Association, requirement : Class) {
  *         	Association.memberEnd(association, memberEnd);
  *         	Property.type(memberEnd, requirement);
  *         	find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(requirement, _);
@@ -262,8 +261,7 @@ public final class RequirementInAssociation extends BaseGeneratedEMFQuerySpecifi
    * 
    * <p>Original source:
    * <code><pre>
-   * pattern
-   * requirementInAssociation(association : Association, requirement : Class) {
+   * pattern requirementInAssociation(association : Association, requirement : Class) {
    * 	Association.memberEnd(association, memberEnd);
    * 	Property.type(memberEnd, requirement);
    * 	find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(requirement, _);
@@ -659,9 +657,9 @@ public final class RequirementInAssociation extends BaseGeneratedEMFQuerySpecifi
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final RequirementInAssociation.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_association = new PParameter("association", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Association", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Association")), PParameterDirection.INOUT);
+    private final PParameter parameter_association = new PParameter("association", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Association", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Association")), PParameterDirection.INOUT);
     
-    private final PParameter parameter_requirement = new PParameter("requirement", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Class")), PParameterDirection.INOUT);
+    private final PParameter parameter_requirement = new PParameter("requirement", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Class")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_association, parameter_requirement);
     
@@ -694,23 +692,23 @@ public final class RequirementInAssociation extends BaseGeneratedEMFQuerySpecifi
           PVariable var_requirement = body.getOrCreateVariableByName("requirement");
           PVariable var_memberEnd = body.getOrCreateVariableByName("memberEnd");
           PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_association), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Association")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var_requirement), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Class")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_association), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Association")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_requirement), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Class")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_association, parameter_association),
              new ExportedParameter(body, var_requirement, parameter_requirement)
           ));
           // 	Association.memberEnd(association, memberEnd)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_association), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Association")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_association), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Association")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_association, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Association", "memberEnd")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_association, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Association", "memberEnd")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Property")));
           new Equality(body, var__virtual_0_, var_memberEnd);
           // 	Property.type(memberEnd, requirement)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_memberEnd), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_memberEnd), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Property")));
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_memberEnd, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "TypedElement", "type")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Type")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_memberEnd, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "TypedElement", "type")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Type")));
           new Equality(body, var__virtual_1_, var_requirement);
           // 	find com.incquerylabs.magicdraw.benchmark.queries.library.Requirement(requirement, _)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_requirement, var___0_), Requirement.instance().getInternalQueryRepresentation());

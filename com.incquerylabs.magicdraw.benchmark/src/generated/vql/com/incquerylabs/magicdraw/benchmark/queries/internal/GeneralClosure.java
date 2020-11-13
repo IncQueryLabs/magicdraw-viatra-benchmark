@@ -86,9 +86,9 @@ public final class GeneralClosure extends BaseGeneratedEMFQuerySpecificationWith
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final GeneralClosure.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_classifier = new PParameter("classifier", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Classifier")), PParameterDirection.INOUT);
+    private final PParameter parameter_classifier = new PParameter("classifier", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Classifier")), PParameterDirection.INOUT);
     
-    private final PParameter parameter_general = new PParameter("general", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Classifier")), PParameterDirection.INOUT);
+    private final PParameter parameter_general = new PParameter("general", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Classifier")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_classifier, parameter_general);
     
@@ -119,14 +119,14 @@ public final class GeneralClosure extends BaseGeneratedEMFQuerySpecificationWith
           PBody body = new PBody(this);
           PVariable var_classifier = body.getOrCreateVariableByName("classifier");
           PVariable var_general = body.getOrCreateVariableByName("general");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_classifier), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Classifier")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var_general), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Classifier")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_classifier), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Classifier")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_general), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Classifier")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_classifier, parameter_classifier),
              new ExportedParameter(body, var_general, parameter_general)
           ));
           // 	find general *(classifier, general)
-          new BinaryReflexiveTransitiveClosure(body, Tuples.flatTupleOf(var_classifier, var_general), General.instance().getInternalQueryRepresentation(), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Classifier")));
+          new BinaryReflexiveTransitiveClosure(body, Tuples.flatTupleOf(var_classifier, var_general), General.instance().getInternalQueryRepresentation(), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Classifier")));
           bodies.add(body);
       }
       return bodies;

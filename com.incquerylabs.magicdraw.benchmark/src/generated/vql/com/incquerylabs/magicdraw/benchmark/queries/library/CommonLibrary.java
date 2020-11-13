@@ -4,12 +4,13 @@
 package com.incquerylabs.magicdraw.benchmark.queries.library;
 
 import com.incquerylabs.magicdraw.benchmark.queries.library.CompatibleClassifier;
+import com.incquerylabs.magicdraw.benchmark.queries.library.ExtractTaggedValue;
 import com.incquerylabs.magicdraw.benchmark.queries.library.GeneralizedClassifier;
 import com.incquerylabs.magicdraw.benchmark.queries.library.IndirectGeneralization;
 import com.incquerylabs.magicdraw.benchmark.queries.library.OwningPackage;
 import com.incquerylabs.magicdraw.benchmark.queries.library.OwningPackageOrSelf;
-import com.incquerylabs.magicdraw.benchmark.queries.library.SlotValue;
 import com.incquerylabs.magicdraw.benchmark.queries.library.StereotypedElement;
+import com.incquerylabs.magicdraw.benchmark.queries.library.TaggedValue;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
 import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
 
@@ -27,7 +28,8 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * <li>owningPackage</li>
  * <li>owningPackageOrSelf</li>
  * <li>stereotypedElement</li>
- * <li>slotValue</li>
+ * <li>taggedValue</li>
+ * <li>extractTaggedValue</li>
  * </ul>
  * 
  * @see IQueryGroup
@@ -58,7 +60,8 @@ public final class CommonLibrary extends BaseGeneratedPatternGroup {
     querySpecifications.add(OwningPackage.instance());
     querySpecifications.add(OwningPackageOrSelf.instance());
     querySpecifications.add(StereotypedElement.instance());
-    querySpecifications.add(SlotValue.instance());
+    querySpecifications.add(TaggedValue.instance());
+    querySpecifications.add(ExtractTaggedValue.instance());
   }
   
   public GeneralizedClassifier getGeneralizedClassifier() {
@@ -109,11 +112,19 @@ public final class CommonLibrary extends BaseGeneratedPatternGroup {
     return StereotypedElement.Matcher.on(engine);
   }
   
-  public SlotValue getSlotValue() {
-    return SlotValue.instance();
+  public TaggedValue getTaggedValue() {
+    return TaggedValue.instance();
   }
   
-  public SlotValue.Matcher getSlotValue(final ViatraQueryEngine engine) {
-    return SlotValue.Matcher.on(engine);
+  public TaggedValue.Matcher getTaggedValue(final ViatraQueryEngine engine) {
+    return TaggedValue.Matcher.on(engine);
+  }
+  
+  public ExtractTaggedValue getExtractTaggedValue() {
+    return ExtractTaggedValue.instance();
+  }
+  
+  public ExtractTaggedValue.Matcher getExtractTaggedValue(final ViatraQueryEngine engine) {
+    return ExtractTaggedValue.Matcher.on(engine);
   }
 }

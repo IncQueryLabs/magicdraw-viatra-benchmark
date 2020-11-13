@@ -4,8 +4,7 @@
 package com.incquerylabs.magicdraw.benchmark.queries.library;
 
 import com.incquerylabs.magicdraw.benchmark.queries.library.Normal;
-import com.incquerylabs.magicdraw.benchmark.queries.library.SlotValue;
-import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.LiteralReal;
+import com.incquerylabs.magicdraw.benchmark.queries.library.TaggedValue;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property;
 import java.util.Arrays;
 import java.util.Collection;
@@ -19,6 +18,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import org.eclipse.viatra.query.runtime.api.IQuerySpecification;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
@@ -27,10 +27,15 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecificat
 import org.eclipse.viatra.query.runtime.api.impl.BaseMatcher;
 import org.eclipse.viatra.query.runtime.api.impl.BasePatternMatch;
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
+import org.eclipse.viatra.query.runtime.emf.types.EDataTypeInSlotsKey;
+import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
+import org.eclipse.viatra.query.runtime.matchers.context.common.JavaTransitiveInstancesKey;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
+import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
+import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.TypeFilterConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.ConstantValue;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.PositivePatternCall;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
@@ -46,15 +51,11 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         Pattern that queries the 'standardDeviation' attribute of elements with the stereotype 'Normal'.
- *           
- *           Parameters: 
- *           	element: 'Property' object with the stereotype 'Normal'.
- *           	valuespec : LiteralReal : A value of the attribute 'standardDeviation'.
- *          
- *         pattern Normal_standardDeviation(element : Property, valuespec : LiteralReal){
- *         	find Normal(element, domainStereotypeInstance);
- *         	find slotValue(domainStereotypeInstance, "standardDeviation", valuespec);
+ *         //Pattern that queries the 'standardDeviation' attribute of elements with the stereotype 'Normal'.
+ *         pattern Normal_standardDeviation(Element : Property, Value: java Double) {
+ *         	find Normal(Element, stereotype);
+ *         	find taggedValue(Element, stereotype, "standardDeviation", taggedValue);
+ *         	RealTaggedValue.value(taggedValue, Value);
  *         }
  * </pre></code>
  * 
@@ -79,20 +80,20 @@ public final class Normal_standardDeviation extends BaseGeneratedEMFQuerySpecifi
   public static abstract class Match extends BasePatternMatch {
     private Property fElement;
     
-    private LiteralReal fValuespec;
+    private Double fValue;
     
-    private static List<String> parameterNames = makeImmutableList("element", "valuespec");
+    private static List<String> parameterNames = makeImmutableList("Element", "Value");
     
-    private Match(final Property pElement, final LiteralReal pValuespec) {
+    private Match(final Property pElement, final Double pValue) {
       this.fElement = pElement;
-      this.fValuespec = pValuespec;
+      this.fValue = pValue;
     }
     
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
-          case "element": return this.fElement;
-          case "valuespec": return this.fValuespec;
+          case "Element": return this.fElement;
+          case "Value": return this.fValue;
           default: return null;
       }
     }
@@ -101,7 +102,7 @@ public final class Normal_standardDeviation extends BaseGeneratedEMFQuerySpecifi
     public Object get(final int index) {
       switch(index) {
           case 0: return this.fElement;
-          case 1: return this.fValuespec;
+          case 1: return this.fValue;
           default: return null;
       }
     }
@@ -110,19 +111,19 @@ public final class Normal_standardDeviation extends BaseGeneratedEMFQuerySpecifi
       return this.fElement;
     }
     
-    public LiteralReal getValuespec() {
-      return this.fValuespec;
+    public Double getValue() {
+      return this.fValue;
     }
     
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      if ("element".equals(parameterName) ) {
+      if ("Element".equals(parameterName) ) {
           this.fElement = (Property) newValue;
           return true;
       }
-      if ("valuespec".equals(parameterName) ) {
-          this.fValuespec = (LiteralReal) newValue;
+      if ("Value".equals(parameterName) ) {
+          this.fValue = (Double) newValue;
           return true;
       }
       return false;
@@ -133,9 +134,9 @@ public final class Normal_standardDeviation extends BaseGeneratedEMFQuerySpecifi
       this.fElement = pElement;
     }
     
-    public void setValuespec(final LiteralReal pValuespec) {
+    public void setValue(final Double pValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      this.fValuespec = pValuespec;
+      this.fValue = pValue;
     }
     
     @Override
@@ -150,25 +151,25 @@ public final class Normal_standardDeviation extends BaseGeneratedEMFQuerySpecifi
     
     @Override
     public Object[] toArray() {
-      return new Object[]{fElement, fValuespec};
+      return new Object[]{fElement, fValue};
     }
     
     @Override
     public Normal_standardDeviation.Match toImmutable() {
-      return isMutable() ? newMatch(fElement, fValuespec) : this;
+      return isMutable() ? newMatch(fElement, fValue) : this;
     }
     
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
-      result.append("\"element\"=" + prettyPrintValue(fElement) + ", ");
-      result.append("\"valuespec\"=" + prettyPrintValue(fValuespec));
+      result.append("\"Element\"=" + prettyPrintValue(fElement) + ", ");
+      result.append("\"Value\"=" + prettyPrintValue(fValue));
       return result.toString();
     }
     
     @Override
     public int hashCode() {
-      return Objects.hash(fElement, fValuespec);
+      return Objects.hash(fElement, fValue);
     }
     
     @Override
@@ -180,7 +181,7 @@ public final class Normal_standardDeviation extends BaseGeneratedEMFQuerySpecifi
       }
       if ((obj instanceof Normal_standardDeviation.Match)) {
           Normal_standardDeviation.Match other = (Normal_standardDeviation.Match) obj;
-          return Objects.equals(fElement, other.fElement) && Objects.equals(fValuespec, other.fValuespec);
+          return Objects.equals(fElement, other.fElement) && Objects.equals(fValue, other.fValue);
       } else {
           // this should be infrequent
           if (!(obj instanceof IPatternMatch)) {
@@ -211,31 +212,31 @@ public final class Normal_standardDeviation extends BaseGeneratedEMFQuerySpecifi
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
      * 
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static Normal_standardDeviation.Match newMutableMatch(final Property pElement, final LiteralReal pValuespec) {
-      return new Mutable(pElement, pValuespec);
+    public static Normal_standardDeviation.Match newMutableMatch(final Property pElement, final Double pValue) {
+      return new Mutable(pElement, pValue);
     }
     
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public static Normal_standardDeviation.Match newMatch(final Property pElement, final LiteralReal pValuespec) {
-      return new Immutable(pElement, pValuespec);
+    public static Normal_standardDeviation.Match newMatch(final Property pElement, final Double pValue) {
+      return new Immutable(pElement, pValue);
     }
     
     private static final class Mutable extends Normal_standardDeviation.Match {
-      Mutable(final Property pElement, final LiteralReal pValuespec) {
-        super(pElement, pValuespec);
+      Mutable(final Property pElement, final Double pValue) {
+        super(pElement, pValue);
       }
       
       @Override
@@ -245,8 +246,8 @@ public final class Normal_standardDeviation extends BaseGeneratedEMFQuerySpecifi
     }
     
     private static final class Immutable extends Normal_standardDeviation.Match {
-      Immutable(final Property pElement, final LiteralReal pValuespec) {
-        super(pElement, pValuespec);
+      Immutable(final Property pElement, final Double pValue) {
+        super(pElement, pValue);
       }
       
       @Override
@@ -267,15 +268,11 @@ public final class Normal_standardDeviation extends BaseGeneratedEMFQuerySpecifi
    * 
    * <p>Original source:
    * <code><pre>
-   * Pattern that queries the 'standardDeviation' attribute of elements with the stereotype 'Normal'.
-   *   
-   *   Parameters: 
-   *   	element: 'Property' object with the stereotype 'Normal'.
-   *   	valuespec : LiteralReal : A value of the attribute 'standardDeviation'.
-   *  
-   * pattern Normal_standardDeviation(element : Property, valuespec : LiteralReal){
-   * 	find Normal(element, domainStereotypeInstance);
-   * 	find slotValue(domainStereotypeInstance, "standardDeviation", valuespec);
+   * //Pattern that queries the 'standardDeviation' attribute of elements with the stereotype 'Normal'.
+   * pattern Normal_standardDeviation(Element : Property, Value: java Double) {
+   * 	find Normal(Element, stereotype);
+   * 	find taggedValue(Element, stereotype, "standardDeviation", taggedValue);
+   * 	RealTaggedValue.value(taggedValue, Value);
    * }
    * </pre></code>
    * 
@@ -313,7 +310,7 @@ public final class Normal_standardDeviation extends BaseGeneratedEMFQuerySpecifi
     
     private static final int POSITION_ELEMENT = 0;
     
-    private static final int POSITION_VALUESPEC = 1;
+    private static final int POSITION_VALUE = 1;
     
     private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(Normal_standardDeviation.Matcher.class);
     
@@ -331,13 +328,13 @@ public final class Normal_standardDeviation extends BaseGeneratedEMFQuerySpecifi
     
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<Normal_standardDeviation.Match> getAllMatches(final Property pElement, final LiteralReal pValuespec) {
-      return rawStreamAllMatches(new Object[]{pElement, pValuespec}).collect(Collectors.toSet());
+    public Collection<Normal_standardDeviation.Match> getAllMatches(final Property pElement, final Double pValue) {
+      return rawStreamAllMatches(new Object[]{pElement, pValue}).collect(Collectors.toSet());
     }
     
     /**
@@ -346,105 +343,105 @@ public final class Normal_standardDeviation extends BaseGeneratedEMFQuerySpecifi
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
      * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<Normal_standardDeviation.Match> streamAllMatches(final Property pElement, final LiteralReal pValuespec) {
-      return rawStreamAllMatches(new Object[]{pElement, pValuespec});
+    public Stream<Normal_standardDeviation.Match> streamAllMatches(final Property pElement, final Double pValue) {
+      return rawStreamAllMatches(new Object[]{pElement, pValue});
     }
     
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<Normal_standardDeviation.Match> getOneArbitraryMatch(final Property pElement, final LiteralReal pValuespec) {
-      return rawGetOneArbitraryMatch(new Object[]{pElement, pValuespec});
+    public Optional<Normal_standardDeviation.Match> getOneArbitraryMatch(final Property pElement, final Double pValue) {
+      return rawGetOneArbitraryMatch(new Object[]{pElement, pValue});
     }
     
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return true if the input is a valid (partial) match of the pattern.
      * 
      */
-    public boolean hasMatch(final Property pElement, final LiteralReal pValuespec) {
-      return rawHasMatch(new Object[]{pElement, pValuespec});
+    public boolean hasMatch(final Property pElement, final Double pValue) {
+      return rawHasMatch(new Object[]{pElement, pValue});
     }
     
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return the number of pattern matches found.
      * 
      */
-    public int countMatches(final Property pElement, final LiteralReal pValuespec) {
-      return rawCountMatches(new Object[]{pElement, pValuespec});
+    public int countMatches(final Property pElement, final Double pValue) {
+      return rawCountMatches(new Object[]{pElement, pValue});
     }
     
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @param processor the action that will process the selected match.
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final Property pElement, final LiteralReal pValuespec, final Consumer<? super Normal_standardDeviation.Match> processor) {
-      return rawForOneArbitraryMatch(new Object[]{pElement, pValuespec}, processor);
+    public boolean forOneArbitraryMatch(final Property pElement, final Double pValue, final Consumer<? super Normal_standardDeviation.Match> processor) {
+      return rawForOneArbitraryMatch(new Object[]{pElement, pValue}, processor);
     }
     
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public Normal_standardDeviation.Match newMatch(final Property pElement, final LiteralReal pValuespec) {
-      return Normal_standardDeviation.Match.newMatch(pElement, pValuespec);
+    public Normal_standardDeviation.Match newMatch(final Property pElement, final Double pValue) {
+      return Normal_standardDeviation.Match.newMatch(pElement, pValue);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<Property> rawStreamAllValuesOfelement(final Object[] parameters) {
+    protected Stream<Property> rawStreamAllValuesOfElement(final Object[] parameters) {
       return rawStreamAllValues(POSITION_ELEMENT, parameters).map(Property.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Property> getAllValuesOfelement() {
-      return rawStreamAllValuesOfelement(emptyArray()).collect(Collectors.toSet());
+    public Set<Property> getAllValuesOfElement() {
+      return rawStreamAllValuesOfElement(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<Property> streamAllValuesOfelement() {
-      return rawStreamAllValuesOfelement(emptyArray());
+    public Stream<Property> streamAllValuesOfElement() {
+      return rawStreamAllValuesOfElement(emptyArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -453,12 +450,12 @@ public final class Normal_standardDeviation extends BaseGeneratedEMFQuerySpecifi
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Property> streamAllValuesOfelement(final Normal_standardDeviation.Match partialMatch) {
-      return rawStreamAllValuesOfelement(partialMatch.toArray());
+    public Stream<Property> streamAllValuesOfElement(final Normal_standardDeviation.Match partialMatch) {
+      return rawStreamAllValuesOfElement(partialMatch.toArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -467,57 +464,57 @@ public final class Normal_standardDeviation extends BaseGeneratedEMFQuerySpecifi
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Property> streamAllValuesOfelement(final LiteralReal pValuespec) {
-      return rawStreamAllValuesOfelement(new Object[]{null, pValuespec});
+    public Stream<Property> streamAllValuesOfElement(final Double pValue) {
+      return rawStreamAllValuesOfElement(new Object[]{null, pValue});
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Property> getAllValuesOfelement(final Normal_standardDeviation.Match partialMatch) {
-      return rawStreamAllValuesOfelement(partialMatch.toArray()).collect(Collectors.toSet());
+    public Set<Property> getAllValuesOfElement(final Normal_standardDeviation.Match partialMatch) {
+      return rawStreamAllValuesOfElement(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Property> getAllValuesOfelement(final LiteralReal pValuespec) {
-      return rawStreamAllValuesOfelement(new Object[]{null, pValuespec}).collect(Collectors.toSet());
+    public Set<Property> getAllValuesOfElement(final Double pValue) {
+      return rawStreamAllValuesOfElement(new Object[]{null, pValue}).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for valuespec.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<LiteralReal> rawStreamAllValuesOfvaluespec(final Object[] parameters) {
-      return rawStreamAllValues(POSITION_VALUESPEC, parameters).map(LiteralReal.class::cast);
+    protected Stream<Double> rawStreamAllValuesOfValue(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_VALUE, parameters).map(Double.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for valuespec.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<LiteralReal> getAllValuesOfvaluespec() {
-      return rawStreamAllValuesOfvaluespec(emptyArray()).collect(Collectors.toSet());
+    public Set<Double> getAllValuesOfValue() {
+      return rawStreamAllValuesOfValue(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for valuespec.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<LiteralReal> streamAllValuesOfvaluespec() {
-      return rawStreamAllValuesOfvaluespec(emptyArray());
+    public Stream<Double> streamAllValuesOfValue() {
+      return rawStreamAllValuesOfValue(emptyArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for valuespec.
+     * Retrieve the set of values that occur in matches for Value.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -526,12 +523,12 @@ public final class Normal_standardDeviation extends BaseGeneratedEMFQuerySpecifi
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<LiteralReal> streamAllValuesOfvaluespec(final Normal_standardDeviation.Match partialMatch) {
-      return rawStreamAllValuesOfvaluespec(partialMatch.toArray());
+    public Stream<Double> streamAllValuesOfValue(final Normal_standardDeviation.Match partialMatch) {
+      return rawStreamAllValuesOfValue(partialMatch.toArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for valuespec.
+     * Retrieve the set of values that occur in matches for Value.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -540,32 +537,32 @@ public final class Normal_standardDeviation extends BaseGeneratedEMFQuerySpecifi
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<LiteralReal> streamAllValuesOfvaluespec(final Property pElement) {
-      return rawStreamAllValuesOfvaluespec(new Object[]{pElement, null});
+    public Stream<Double> streamAllValuesOfValue(final Property pElement) {
+      return rawStreamAllValuesOfValue(new Object[]{pElement, null});
     }
     
     /**
-     * Retrieve the set of values that occur in matches for valuespec.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<LiteralReal> getAllValuesOfvaluespec(final Normal_standardDeviation.Match partialMatch) {
-      return rawStreamAllValuesOfvaluespec(partialMatch.toArray()).collect(Collectors.toSet());
+    public Set<Double> getAllValuesOfValue(final Normal_standardDeviation.Match partialMatch) {
+      return rawStreamAllValuesOfValue(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for valuespec.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<LiteralReal> getAllValuesOfvaluespec(final Property pElement) {
-      return rawStreamAllValuesOfvaluespec(new Object[]{pElement, null}).collect(Collectors.toSet());
+    public Set<Double> getAllValuesOfValue(final Property pElement) {
+      return rawStreamAllValuesOfValue(new Object[]{pElement, null}).collect(Collectors.toSet());
     }
     
     @Override
     protected Normal_standardDeviation.Match tupleToMatch(final Tuple t) {
       try {
-          return Normal_standardDeviation.Match.newMatch((Property) t.get(POSITION_ELEMENT), (LiteralReal) t.get(POSITION_VALUESPEC));
+          return Normal_standardDeviation.Match.newMatch((Property) t.get(POSITION_ELEMENT), (Double) t.get(POSITION_VALUE));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -575,7 +572,7 @@ public final class Normal_standardDeviation extends BaseGeneratedEMFQuerySpecifi
     @Override
     protected Normal_standardDeviation.Match arrayToMatch(final Object[] match) {
       try {
-          return Normal_standardDeviation.Match.newMatch((Property) match[POSITION_ELEMENT], (LiteralReal) match[POSITION_VALUESPEC]);
+          return Normal_standardDeviation.Match.newMatch((Property) match[POSITION_ELEMENT], (Double) match[POSITION_VALUE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -585,7 +582,7 @@ public final class Normal_standardDeviation extends BaseGeneratedEMFQuerySpecifi
     @Override
     protected Normal_standardDeviation.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return Normal_standardDeviation.Match.newMutableMatch((Property) match[POSITION_ELEMENT], (LiteralReal) match[POSITION_VALUESPEC]);
+          return Normal_standardDeviation.Match.newMutableMatch((Property) match[POSITION_ELEMENT], (Double) match[POSITION_VALUE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -636,7 +633,7 @@ public final class Normal_standardDeviation extends BaseGeneratedEMFQuerySpecifi
   
   @Override
   public Normal_standardDeviation.Match newMatch(final Object... parameters) {
-    return Normal_standardDeviation.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property) parameters[0], (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.LiteralReal) parameters[1]);
+    return Normal_standardDeviation.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property) parameters[0], (java.lang.Double) parameters[1]);
   }
   
   /**
@@ -668,11 +665,11 @@ public final class Normal_standardDeviation extends BaseGeneratedEMFQuerySpecifi
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final Normal_standardDeviation.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_element = new PParameter("element", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")), PParameterDirection.INOUT);
+    private final PParameter parameter_Element = new PParameter("Element", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Property")), PParameterDirection.INOUT);
     
-    private final PParameter parameter_valuespec = new PParameter("valuespec", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.LiteralReal", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "LiteralReal")), PParameterDirection.INOUT);
+    private final PParameter parameter_Value = new PParameter("Value", "java.lang.Double", new JavaTransitiveInstancesKey(java.lang.Double.class), PParameterDirection.INOUT);
     
-    private final List<PParameter> parameters = Arrays.asList(parameter_element, parameter_valuespec);
+    private final List<PParameter> parameters = Arrays.asList(parameter_Element, parameter_Value);
     
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
@@ -685,7 +682,7 @@ public final class Normal_standardDeviation extends BaseGeneratedEMFQuerySpecifi
     
     @Override
     public List<String> getParameterNames() {
-      return Arrays.asList("element","valuespec");
+      return Arrays.asList("Element","Value");
     }
     
     @Override
@@ -699,21 +696,28 @@ public final class Normal_standardDeviation extends BaseGeneratedEMFQuerySpecifi
       Set<PBody> bodies = new LinkedHashSet<>();
       {
           PBody body = new PBody(this);
-          PVariable var_element = body.getOrCreateVariableByName("element");
-          PVariable var_valuespec = body.getOrCreateVariableByName("valuespec");
-          PVariable var_domainStereotypeInstance = body.getOrCreateVariableByName("domainStereotypeInstance");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var_valuespec), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "LiteralReal")));
+          PVariable var_Element = body.getOrCreateVariableByName("Element");
+          PVariable var_Value = body.getOrCreateVariableByName("Value");
+          PVariable var_stereotype = body.getOrCreateVariableByName("stereotype");
+          PVariable var_taggedValue = body.getOrCreateVariableByName("taggedValue");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_Element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Property")));
+          new TypeFilterConstraint(body, Tuples.flatTupleOf(var_Value), new JavaTransitiveInstancesKey(java.lang.Double.class));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-             new ExportedParameter(body, var_element, parameter_element),
-             new ExportedParameter(body, var_valuespec, parameter_valuespec)
+             new ExportedParameter(body, var_Element, parameter_Element),
+             new ExportedParameter(body, var_Value, parameter_Value)
           ));
-          // 	find Normal(element, domainStereotypeInstance)
-          new PositivePatternCall(body, Tuples.flatTupleOf(var_element, var_domainStereotypeInstance), Normal.instance().getInternalQueryRepresentation());
-          // 	find slotValue(domainStereotypeInstance, "standardDeviation", valuespec)
+          // 	find Normal(Element, stereotype)
+          new PositivePatternCall(body, Tuples.flatTupleOf(var_Element, var_stereotype), Normal.instance().getInternalQueryRepresentation());
+          // 	find taggedValue(Element, stereotype, "standardDeviation", taggedValue)
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
           new ConstantValue(body, var__virtual_0_, "standardDeviation");
-          new PositivePatternCall(body, Tuples.flatTupleOf(var_domainStereotypeInstance, var__virtual_0_, var_valuespec), SlotValue.instance().getInternalQueryRepresentation());
+          new PositivePatternCall(body, Tuples.flatTupleOf(var_Element, var_stereotype, var__virtual_0_, var_taggedValue), TaggedValue.instance().getInternalQueryRepresentation());
+          // 	RealTaggedValue.value(taggedValue, Value)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_taggedValue), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "RealTaggedValue")));
+          PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_taggedValue, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "RealTaggedValue", "value")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Real")));
+          new Equality(body, var__virtual_1_, var_Value);
           bodies.add(body);
       }
       return bodies;

@@ -510,7 +510,7 @@ public final class AdjunctPropertyMultiplicityRestrictive extends BaseGeneratedE
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final AdjunctPropertyMultiplicityRestrictive.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_property = new PParameter("property", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")), PParameterDirection.INOUT);
+    private final PParameter parameter_property = new PParameter("property", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Property")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_property);
     
@@ -542,7 +542,7 @@ public final class AdjunctPropertyMultiplicityRestrictive extends BaseGeneratedE
           PVariable var_property = body.getOrCreateVariableByName("property");
           PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
           PVariable var_principal = body.getOrCreateVariableByName("principal");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_property), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_property), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Property")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_property, parameter_property)
           ));
@@ -551,7 +551,7 @@ public final class AdjunctPropertyMultiplicityRestrictive extends BaseGeneratedE
           // 	find com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty_principal(property, principal)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_property, var_principal), AdjunctProperty_principal.instance().getInternalQueryRepresentation());
           // 	MultiplicityElement(principal)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_principal), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "MultiplicityElement")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_principal), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "MultiplicityElement")));
           // 	find moreRestrictive(property)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_property), MoreRestrictive.instance().getInternalQueryRepresentation());
           bodies.add(body);

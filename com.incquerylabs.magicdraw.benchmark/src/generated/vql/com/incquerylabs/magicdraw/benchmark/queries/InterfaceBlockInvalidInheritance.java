@@ -507,7 +507,7 @@ public final class InterfaceBlockInvalidInheritance extends BaseGeneratedEMFQuer
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final InterfaceBlockInvalidInheritance.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_interfaceBlock = new PParameter("interfaceBlock", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Class")), PParameterDirection.INOUT);
+    private final PParameter parameter_interfaceBlock = new PParameter("interfaceBlock", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Class")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_interfaceBlock);
     
@@ -540,7 +540,7 @@ public final class InterfaceBlockInvalidInheritance extends BaseGeneratedEMFQuer
           PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
           PVariable var_general = body.getOrCreateVariableByName("general");
           PVariable var___1_ = body.getOrCreateVariableByName("_<1>");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_interfaceBlock), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Class")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_interfaceBlock), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Class")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_interfaceBlock, parameter_interfaceBlock)
           ));

@@ -91,9 +91,9 @@ public final class CorrectActPartNode extends BaseGeneratedEMFQuerySpecification
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final CorrectActPartNode.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_activityPartition = new PParameter("activityPartition", "com.nomagic.uml2.ext.magicdraw.activities.mdintermediateactivities.ActivityPartition", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "ActivityPartition")), PParameterDirection.INOUT);
+    private final PParameter parameter_activityPartition = new PParameter("activityPartition", "com.nomagic.uml2.ext.magicdraw.activities.mdintermediateactivities.ActivityPartition", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ActivityPartition")), PParameterDirection.INOUT);
     
-    private final PParameter parameter_action = new PParameter("action", "com.nomagic.uml2.ext.magicdraw.actions.mdbasicactions.Action", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Action")), PParameterDirection.INOUT);
+    private final PParameter parameter_action = new PParameter("action", "com.nomagic.uml2.ext.magicdraw.actions.mdbasicactions.Action", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Action")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_activityPartition, parameter_action);
     
@@ -126,8 +126,8 @@ public final class CorrectActPartNode extends BaseGeneratedEMFQuerySpecification
           PVariable var_action = body.getOrCreateVariableByName("action");
           PVariable var_allocs = body.getOrCreateVariableByName("allocs");
           PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_activityPartition), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ActivityPartition")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var_action), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Action")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_activityPartition), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ActivityPartition")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_action), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Action")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_activityPartition, parameter_activityPartition),
              new ExportedParameter(body, var_action, parameter_action)
@@ -135,10 +135,10 @@ public final class CorrectActPartNode extends BaseGeneratedEMFQuerySpecification
           // 	find com.incquerylabs.magicdraw.benchmark.queries.library.Allocate(allocs, _)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_allocs, var___0_), Allocate.instance().getInternalQueryRepresentation());
           // 	Abstraction.client(allocs, action)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_allocs), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Abstraction")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_allocs), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Abstraction")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_allocs, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Dependency", "client")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "NamedElement")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_allocs, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Dependency", "client")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "NamedElement")));
           new Equality(body, var__virtual_0_, var_action);
           // 	find representsSupplier(allocs, activityPartition)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_allocs, var_activityPartition), RepresentsSupplier.instance().getInternalQueryRepresentation());

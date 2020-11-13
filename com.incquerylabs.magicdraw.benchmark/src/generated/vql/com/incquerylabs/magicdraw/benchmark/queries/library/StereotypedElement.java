@@ -6,7 +6,7 @@ package com.incquerylabs.magicdraw.benchmark.queries.library;
 import com.incquerylabs.magicdraw.benchmark.queries.library.CompatibleClassifier;
 import com.incquerylabs.magicdraw.benchmark.queries.library.OwningPackageOrSelf;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Element;
-import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.InstanceSpecification;
+import com.nomagic.uml2.ext.magicdraw.mdprofiles.Stereotype;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -49,16 +49,14 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         Collects the InstanceSpecification of the given Element having the stereotype with the given name
- *          
- *         pattern stereotypedElement(element : Element, domainStereotypeInstance : InstanceSpecification, profileName : String, stereotypeName : String) {
- *         	Element.appliedStereotypeInstance(element, domainStereotypeInstance);
- *         	InstanceSpecification.classifier(domainStereotypeInstance, domainStereotype);
- *         	find compatibleClassifier(domainStereotype, superStereotype);
+ *         //Collects the InstanceSpecification of the given Element having the stereotype with the given name
+ *         pattern stereotypedElement(Element : Element, Stereotype : Stereotype, ProfileName : String, StereotypeName : String) {
+ *         	Element.appliedStereotype(Element, Stereotype);
+ *         	find compatibleClassifier(Stereotype, superStereotype);
  *         	Stereotype.owningPackage(superStereotype, owner);
  *         	find owningPackageOrSelf(owner, profile);
- *         	Profile.name(profile, profileName);
- *         	Stereotype.name(superStereotype, stereotypeName);
+ *         	Profile.name(profile, ProfileName);
+ *         	Stereotype.name(superStereotype, StereotypeName);
  *         }
  * </pre></code>
  * 
@@ -83,17 +81,17 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
   public static abstract class Match extends BasePatternMatch {
     private Element fElement;
     
-    private InstanceSpecification fDomainStereotypeInstance;
+    private Stereotype fStereotype;
     
     private String fProfileName;
     
     private String fStereotypeName;
     
-    private static List<String> parameterNames = makeImmutableList("element", "domainStereotypeInstance", "profileName", "stereotypeName");
+    private static List<String> parameterNames = makeImmutableList("Element", "Stereotype", "ProfileName", "StereotypeName");
     
-    private Match(final Element pElement, final InstanceSpecification pDomainStereotypeInstance, final String pProfileName, final String pStereotypeName) {
+    private Match(final Element pElement, final Stereotype pStereotype, final String pProfileName, final String pStereotypeName) {
       this.fElement = pElement;
-      this.fDomainStereotypeInstance = pDomainStereotypeInstance;
+      this.fStereotype = pStereotype;
       this.fProfileName = pProfileName;
       this.fStereotypeName = pStereotypeName;
     }
@@ -101,10 +99,10 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
-          case "element": return this.fElement;
-          case "domainStereotypeInstance": return this.fDomainStereotypeInstance;
-          case "profileName": return this.fProfileName;
-          case "stereotypeName": return this.fStereotypeName;
+          case "Element": return this.fElement;
+          case "Stereotype": return this.fStereotype;
+          case "ProfileName": return this.fProfileName;
+          case "StereotypeName": return this.fStereotypeName;
           default: return null;
       }
     }
@@ -113,7 +111,7 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
     public Object get(final int index) {
       switch(index) {
           case 0: return this.fElement;
-          case 1: return this.fDomainStereotypeInstance;
+          case 1: return this.fStereotype;
           case 2: return this.fProfileName;
           case 3: return this.fStereotypeName;
           default: return null;
@@ -124,8 +122,8 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
       return this.fElement;
     }
     
-    public InstanceSpecification getDomainStereotypeInstance() {
-      return this.fDomainStereotypeInstance;
+    public Stereotype getStereotype() {
+      return this.fStereotype;
     }
     
     public String getProfileName() {
@@ -139,19 +137,19 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      if ("element".equals(parameterName) ) {
+      if ("Element".equals(parameterName) ) {
           this.fElement = (Element) newValue;
           return true;
       }
-      if ("domainStereotypeInstance".equals(parameterName) ) {
-          this.fDomainStereotypeInstance = (InstanceSpecification) newValue;
+      if ("Stereotype".equals(parameterName) ) {
+          this.fStereotype = (Stereotype) newValue;
           return true;
       }
-      if ("profileName".equals(parameterName) ) {
+      if ("ProfileName".equals(parameterName) ) {
           this.fProfileName = (String) newValue;
           return true;
       }
-      if ("stereotypeName".equals(parameterName) ) {
+      if ("StereotypeName".equals(parameterName) ) {
           this.fStereotypeName = (String) newValue;
           return true;
       }
@@ -163,9 +161,9 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
       this.fElement = pElement;
     }
     
-    public void setDomainStereotypeInstance(final InstanceSpecification pDomainStereotypeInstance) {
+    public void setStereotype(final Stereotype pStereotype) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      this.fDomainStereotypeInstance = pDomainStereotypeInstance;
+      this.fStereotype = pStereotype;
     }
     
     public void setProfileName(final String pProfileName) {
@@ -190,27 +188,27 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
     
     @Override
     public Object[] toArray() {
-      return new Object[]{fElement, fDomainStereotypeInstance, fProfileName, fStereotypeName};
+      return new Object[]{fElement, fStereotype, fProfileName, fStereotypeName};
     }
     
     @Override
     public StereotypedElement.Match toImmutable() {
-      return isMutable() ? newMatch(fElement, fDomainStereotypeInstance, fProfileName, fStereotypeName) : this;
+      return isMutable() ? newMatch(fElement, fStereotype, fProfileName, fStereotypeName) : this;
     }
     
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
-      result.append("\"element\"=" + prettyPrintValue(fElement) + ", ");
-      result.append("\"domainStereotypeInstance\"=" + prettyPrintValue(fDomainStereotypeInstance) + ", ");
-      result.append("\"profileName\"=" + prettyPrintValue(fProfileName) + ", ");
-      result.append("\"stereotypeName\"=" + prettyPrintValue(fStereotypeName));
+      result.append("\"Element\"=" + prettyPrintValue(fElement) + ", ");
+      result.append("\"Stereotype\"=" + prettyPrintValue(fStereotype) + ", ");
+      result.append("\"ProfileName\"=" + prettyPrintValue(fProfileName) + ", ");
+      result.append("\"StereotypeName\"=" + prettyPrintValue(fStereotypeName));
       return result.toString();
     }
     
     @Override
     public int hashCode() {
-      return Objects.hash(fElement, fDomainStereotypeInstance, fProfileName, fStereotypeName);
+      return Objects.hash(fElement, fStereotype, fProfileName, fStereotypeName);
     }
     
     @Override
@@ -222,7 +220,7 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
       }
       if ((obj instanceof StereotypedElement.Match)) {
           StereotypedElement.Match other = (StereotypedElement.Match) obj;
-          return Objects.equals(fElement, other.fElement) && Objects.equals(fDomainStereotypeInstance, other.fDomainStereotypeInstance) && Objects.equals(fProfileName, other.fProfileName) && Objects.equals(fStereotypeName, other.fStereotypeName);
+          return Objects.equals(fElement, other.fElement) && Objects.equals(fStereotype, other.fStereotype) && Objects.equals(fProfileName, other.fProfileName) && Objects.equals(fStereotypeName, other.fStereotypeName);
       } else {
           // this should be infrequent
           if (!(obj instanceof IPatternMatch)) {
@@ -253,35 +251,35 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
      * 
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pDomainStereotypeInstance the fixed value of pattern parameter domainStereotypeInstance, or null if not bound.
-     * @param pProfileName the fixed value of pattern parameter profileName, or null if not bound.
-     * @param pStereotypeName the fixed value of pattern parameter stereotypeName, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pStereotype the fixed value of pattern parameter Stereotype, or null if not bound.
+     * @param pProfileName the fixed value of pattern parameter ProfileName, or null if not bound.
+     * @param pStereotypeName the fixed value of pattern parameter StereotypeName, or null if not bound.
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static StereotypedElement.Match newMutableMatch(final Element pElement, final InstanceSpecification pDomainStereotypeInstance, final String pProfileName, final String pStereotypeName) {
-      return new Mutable(pElement, pDomainStereotypeInstance, pProfileName, pStereotypeName);
+    public static StereotypedElement.Match newMutableMatch(final Element pElement, final Stereotype pStereotype, final String pProfileName, final String pStereotypeName) {
+      return new Mutable(pElement, pStereotype, pProfileName, pStereotypeName);
     }
     
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pDomainStereotypeInstance the fixed value of pattern parameter domainStereotypeInstance, or null if not bound.
-     * @param pProfileName the fixed value of pattern parameter profileName, or null if not bound.
-     * @param pStereotypeName the fixed value of pattern parameter stereotypeName, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pStereotype the fixed value of pattern parameter Stereotype, or null if not bound.
+     * @param pProfileName the fixed value of pattern parameter ProfileName, or null if not bound.
+     * @param pStereotypeName the fixed value of pattern parameter StereotypeName, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public static StereotypedElement.Match newMatch(final Element pElement, final InstanceSpecification pDomainStereotypeInstance, final String pProfileName, final String pStereotypeName) {
-      return new Immutable(pElement, pDomainStereotypeInstance, pProfileName, pStereotypeName);
+    public static StereotypedElement.Match newMatch(final Element pElement, final Stereotype pStereotype, final String pProfileName, final String pStereotypeName) {
+      return new Immutable(pElement, pStereotype, pProfileName, pStereotypeName);
     }
     
     private static final class Mutable extends StereotypedElement.Match {
-      Mutable(final Element pElement, final InstanceSpecification pDomainStereotypeInstance, final String pProfileName, final String pStereotypeName) {
-        super(pElement, pDomainStereotypeInstance, pProfileName, pStereotypeName);
+      Mutable(final Element pElement, final Stereotype pStereotype, final String pProfileName, final String pStereotypeName) {
+        super(pElement, pStereotype, pProfileName, pStereotypeName);
       }
       
       @Override
@@ -291,8 +289,8 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
     }
     
     private static final class Immutable extends StereotypedElement.Match {
-      Immutable(final Element pElement, final InstanceSpecification pDomainStereotypeInstance, final String pProfileName, final String pStereotypeName) {
-        super(pElement, pDomainStereotypeInstance, pProfileName, pStereotypeName);
+      Immutable(final Element pElement, final Stereotype pStereotype, final String pProfileName, final String pStereotypeName) {
+        super(pElement, pStereotype, pProfileName, pStereotypeName);
       }
       
       @Override
@@ -313,16 +311,14 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
    * 
    * <p>Original source:
    * <code><pre>
-   * Collects the InstanceSpecification of the given Element having the stereotype with the given name
-   *  
-   * pattern stereotypedElement(element : Element, domainStereotypeInstance : InstanceSpecification, profileName : String, stereotypeName : String) {
-   * 	Element.appliedStereotypeInstance(element, domainStereotypeInstance);
-   * 	InstanceSpecification.classifier(domainStereotypeInstance, domainStereotype);
-   * 	find compatibleClassifier(domainStereotype, superStereotype);
+   * //Collects the InstanceSpecification of the given Element having the stereotype with the given name
+   * pattern stereotypedElement(Element : Element, Stereotype : Stereotype, ProfileName : String, StereotypeName : String) {
+   * 	Element.appliedStereotype(Element, Stereotype);
+   * 	find compatibleClassifier(Stereotype, superStereotype);
    * 	Stereotype.owningPackage(superStereotype, owner);
    * 	find owningPackageOrSelf(owner, profile);
-   * 	Profile.name(profile, profileName);
-   * 	Stereotype.name(superStereotype, stereotypeName);
+   * 	Profile.name(profile, ProfileName);
+   * 	Stereotype.name(superStereotype, StereotypeName);
    * }
    * </pre></code>
    * 
@@ -360,7 +356,7 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
     
     private static final int POSITION_ELEMENT = 0;
     
-    private static final int POSITION_DOMAINSTEREOTYPEINSTANCE = 1;
+    private static final int POSITION_STEREOTYPE = 1;
     
     private static final int POSITION_PROFILENAME = 2;
     
@@ -382,15 +378,15 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
     
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pDomainStereotypeInstance the fixed value of pattern parameter domainStereotypeInstance, or null if not bound.
-     * @param pProfileName the fixed value of pattern parameter profileName, or null if not bound.
-     * @param pStereotypeName the fixed value of pattern parameter stereotypeName, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pStereotype the fixed value of pattern parameter Stereotype, or null if not bound.
+     * @param pProfileName the fixed value of pattern parameter ProfileName, or null if not bound.
+     * @param pStereotypeName the fixed value of pattern parameter StereotypeName, or null if not bound.
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<StereotypedElement.Match> getAllMatches(final Element pElement, final InstanceSpecification pDomainStereotypeInstance, final String pProfileName, final String pStereotypeName) {
-      return rawStreamAllMatches(new Object[]{pElement, pDomainStereotypeInstance, pProfileName, pStereotypeName}).collect(Collectors.toSet());
+    public Collection<StereotypedElement.Match> getAllMatches(final Element pElement, final Stereotype pStereotype, final String pProfileName, final String pStereotypeName) {
+      return rawStreamAllMatches(new Object[]{pElement, pStereotype, pProfileName, pStereotypeName}).collect(Collectors.toSet());
     }
     
     /**
@@ -399,117 +395,117 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
      * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pDomainStereotypeInstance the fixed value of pattern parameter domainStereotypeInstance, or null if not bound.
-     * @param pProfileName the fixed value of pattern parameter profileName, or null if not bound.
-     * @param pStereotypeName the fixed value of pattern parameter stereotypeName, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pStereotype the fixed value of pattern parameter Stereotype, or null if not bound.
+     * @param pProfileName the fixed value of pattern parameter ProfileName, or null if not bound.
+     * @param pStereotypeName the fixed value of pattern parameter StereotypeName, or null if not bound.
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<StereotypedElement.Match> streamAllMatches(final Element pElement, final InstanceSpecification pDomainStereotypeInstance, final String pProfileName, final String pStereotypeName) {
-      return rawStreamAllMatches(new Object[]{pElement, pDomainStereotypeInstance, pProfileName, pStereotypeName});
+    public Stream<StereotypedElement.Match> streamAllMatches(final Element pElement, final Stereotype pStereotype, final String pProfileName, final String pStereotypeName) {
+      return rawStreamAllMatches(new Object[]{pElement, pStereotype, pProfileName, pStereotypeName});
     }
     
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pDomainStereotypeInstance the fixed value of pattern parameter domainStereotypeInstance, or null if not bound.
-     * @param pProfileName the fixed value of pattern parameter profileName, or null if not bound.
-     * @param pStereotypeName the fixed value of pattern parameter stereotypeName, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pStereotype the fixed value of pattern parameter Stereotype, or null if not bound.
+     * @param pProfileName the fixed value of pattern parameter ProfileName, or null if not bound.
+     * @param pStereotypeName the fixed value of pattern parameter StereotypeName, or null if not bound.
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<StereotypedElement.Match> getOneArbitraryMatch(final Element pElement, final InstanceSpecification pDomainStereotypeInstance, final String pProfileName, final String pStereotypeName) {
-      return rawGetOneArbitraryMatch(new Object[]{pElement, pDomainStereotypeInstance, pProfileName, pStereotypeName});
+    public Optional<StereotypedElement.Match> getOneArbitraryMatch(final Element pElement, final Stereotype pStereotype, final String pProfileName, final String pStereotypeName) {
+      return rawGetOneArbitraryMatch(new Object[]{pElement, pStereotype, pProfileName, pStereotypeName});
     }
     
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pDomainStereotypeInstance the fixed value of pattern parameter domainStereotypeInstance, or null if not bound.
-     * @param pProfileName the fixed value of pattern parameter profileName, or null if not bound.
-     * @param pStereotypeName the fixed value of pattern parameter stereotypeName, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pStereotype the fixed value of pattern parameter Stereotype, or null if not bound.
+     * @param pProfileName the fixed value of pattern parameter ProfileName, or null if not bound.
+     * @param pStereotypeName the fixed value of pattern parameter StereotypeName, or null if not bound.
      * @return true if the input is a valid (partial) match of the pattern.
      * 
      */
-    public boolean hasMatch(final Element pElement, final InstanceSpecification pDomainStereotypeInstance, final String pProfileName, final String pStereotypeName) {
-      return rawHasMatch(new Object[]{pElement, pDomainStereotypeInstance, pProfileName, pStereotypeName});
+    public boolean hasMatch(final Element pElement, final Stereotype pStereotype, final String pProfileName, final String pStereotypeName) {
+      return rawHasMatch(new Object[]{pElement, pStereotype, pProfileName, pStereotypeName});
     }
     
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pDomainStereotypeInstance the fixed value of pattern parameter domainStereotypeInstance, or null if not bound.
-     * @param pProfileName the fixed value of pattern parameter profileName, or null if not bound.
-     * @param pStereotypeName the fixed value of pattern parameter stereotypeName, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pStereotype the fixed value of pattern parameter Stereotype, or null if not bound.
+     * @param pProfileName the fixed value of pattern parameter ProfileName, or null if not bound.
+     * @param pStereotypeName the fixed value of pattern parameter StereotypeName, or null if not bound.
      * @return the number of pattern matches found.
      * 
      */
-    public int countMatches(final Element pElement, final InstanceSpecification pDomainStereotypeInstance, final String pProfileName, final String pStereotypeName) {
-      return rawCountMatches(new Object[]{pElement, pDomainStereotypeInstance, pProfileName, pStereotypeName});
+    public int countMatches(final Element pElement, final Stereotype pStereotype, final String pProfileName, final String pStereotypeName) {
+      return rawCountMatches(new Object[]{pElement, pStereotype, pProfileName, pStereotypeName});
     }
     
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pDomainStereotypeInstance the fixed value of pattern parameter domainStereotypeInstance, or null if not bound.
-     * @param pProfileName the fixed value of pattern parameter profileName, or null if not bound.
-     * @param pStereotypeName the fixed value of pattern parameter stereotypeName, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pStereotype the fixed value of pattern parameter Stereotype, or null if not bound.
+     * @param pProfileName the fixed value of pattern parameter ProfileName, or null if not bound.
+     * @param pStereotypeName the fixed value of pattern parameter StereotypeName, or null if not bound.
      * @param processor the action that will process the selected match.
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final Element pElement, final InstanceSpecification pDomainStereotypeInstance, final String pProfileName, final String pStereotypeName, final Consumer<? super StereotypedElement.Match> processor) {
-      return rawForOneArbitraryMatch(new Object[]{pElement, pDomainStereotypeInstance, pProfileName, pStereotypeName}, processor);
+    public boolean forOneArbitraryMatch(final Element pElement, final Stereotype pStereotype, final String pProfileName, final String pStereotypeName, final Consumer<? super StereotypedElement.Match> processor) {
+      return rawForOneArbitraryMatch(new Object[]{pElement, pStereotype, pProfileName, pStereotypeName}, processor);
     }
     
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pDomainStereotypeInstance the fixed value of pattern parameter domainStereotypeInstance, or null if not bound.
-     * @param pProfileName the fixed value of pattern parameter profileName, or null if not bound.
-     * @param pStereotypeName the fixed value of pattern parameter stereotypeName, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pStereotype the fixed value of pattern parameter Stereotype, or null if not bound.
+     * @param pProfileName the fixed value of pattern parameter ProfileName, or null if not bound.
+     * @param pStereotypeName the fixed value of pattern parameter StereotypeName, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public StereotypedElement.Match newMatch(final Element pElement, final InstanceSpecification pDomainStereotypeInstance, final String pProfileName, final String pStereotypeName) {
-      return StereotypedElement.Match.newMatch(pElement, pDomainStereotypeInstance, pProfileName, pStereotypeName);
+    public StereotypedElement.Match newMatch(final Element pElement, final Stereotype pStereotype, final String pProfileName, final String pStereotypeName) {
+      return StereotypedElement.Match.newMatch(pElement, pStereotype, pProfileName, pStereotypeName);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<Element> rawStreamAllValuesOfelement(final Object[] parameters) {
+    protected Stream<Element> rawStreamAllValuesOfElement(final Object[] parameters) {
       return rawStreamAllValues(POSITION_ELEMENT, parameters).map(Element.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Element> getAllValuesOfelement() {
-      return rawStreamAllValuesOfelement(emptyArray()).collect(Collectors.toSet());
+    public Set<Element> getAllValuesOfElement() {
+      return rawStreamAllValuesOfElement(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<Element> streamAllValuesOfelement() {
-      return rawStreamAllValuesOfelement(emptyArray());
+    public Stream<Element> streamAllValuesOfElement() {
+      return rawStreamAllValuesOfElement(emptyArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -518,12 +514,12 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Element> streamAllValuesOfelement(final StereotypedElement.Match partialMatch) {
-      return rawStreamAllValuesOfelement(partialMatch.toArray());
+    public Stream<Element> streamAllValuesOfElement(final StereotypedElement.Match partialMatch) {
+      return rawStreamAllValuesOfElement(partialMatch.toArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -532,57 +528,57 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Element> streamAllValuesOfelement(final InstanceSpecification pDomainStereotypeInstance, final String pProfileName, final String pStereotypeName) {
-      return rawStreamAllValuesOfelement(new Object[]{null, pDomainStereotypeInstance, pProfileName, pStereotypeName});
+    public Stream<Element> streamAllValuesOfElement(final Stereotype pStereotype, final String pProfileName, final String pStereotypeName) {
+      return rawStreamAllValuesOfElement(new Object[]{null, pStereotype, pProfileName, pStereotypeName});
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Element> getAllValuesOfelement(final StereotypedElement.Match partialMatch) {
-      return rawStreamAllValuesOfelement(partialMatch.toArray()).collect(Collectors.toSet());
+    public Set<Element> getAllValuesOfElement(final StereotypedElement.Match partialMatch) {
+      return rawStreamAllValuesOfElement(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Element> getAllValuesOfelement(final InstanceSpecification pDomainStereotypeInstance, final String pProfileName, final String pStereotypeName) {
-      return rawStreamAllValuesOfelement(new Object[]{null, pDomainStereotypeInstance, pProfileName, pStereotypeName}).collect(Collectors.toSet());
+    public Set<Element> getAllValuesOfElement(final Stereotype pStereotype, final String pProfileName, final String pStereotypeName) {
+      return rawStreamAllValuesOfElement(new Object[]{null, pStereotype, pProfileName, pStereotypeName}).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for domainStereotypeInstance.
+     * Retrieve the set of values that occur in matches for Stereotype.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<InstanceSpecification> rawStreamAllValuesOfdomainStereotypeInstance(final Object[] parameters) {
-      return rawStreamAllValues(POSITION_DOMAINSTEREOTYPEINSTANCE, parameters).map(InstanceSpecification.class::cast);
+    protected Stream<Stereotype> rawStreamAllValuesOfStereotype(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_STEREOTYPE, parameters).map(Stereotype.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for domainStereotypeInstance.
+     * Retrieve the set of values that occur in matches for Stereotype.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<InstanceSpecification> getAllValuesOfdomainStereotypeInstance() {
-      return rawStreamAllValuesOfdomainStereotypeInstance(emptyArray()).collect(Collectors.toSet());
+    public Set<Stereotype> getAllValuesOfStereotype() {
+      return rawStreamAllValuesOfStereotype(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for domainStereotypeInstance.
+     * Retrieve the set of values that occur in matches for Stereotype.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<InstanceSpecification> streamAllValuesOfdomainStereotypeInstance() {
-      return rawStreamAllValuesOfdomainStereotypeInstance(emptyArray());
+    public Stream<Stereotype> streamAllValuesOfStereotype() {
+      return rawStreamAllValuesOfStereotype(emptyArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for domainStereotypeInstance.
+     * Retrieve the set of values that occur in matches for Stereotype.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -591,12 +587,12 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<InstanceSpecification> streamAllValuesOfdomainStereotypeInstance(final StereotypedElement.Match partialMatch) {
-      return rawStreamAllValuesOfdomainStereotypeInstance(partialMatch.toArray());
+    public Stream<Stereotype> streamAllValuesOfStereotype(final StereotypedElement.Match partialMatch) {
+      return rawStreamAllValuesOfStereotype(partialMatch.toArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for domainStereotypeInstance.
+     * Retrieve the set of values that occur in matches for Stereotype.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -605,57 +601,57 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<InstanceSpecification> streamAllValuesOfdomainStereotypeInstance(final Element pElement, final String pProfileName, final String pStereotypeName) {
-      return rawStreamAllValuesOfdomainStereotypeInstance(new Object[]{pElement, null, pProfileName, pStereotypeName});
+    public Stream<Stereotype> streamAllValuesOfStereotype(final Element pElement, final String pProfileName, final String pStereotypeName) {
+      return rawStreamAllValuesOfStereotype(new Object[]{pElement, null, pProfileName, pStereotypeName});
     }
     
     /**
-     * Retrieve the set of values that occur in matches for domainStereotypeInstance.
+     * Retrieve the set of values that occur in matches for Stereotype.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<InstanceSpecification> getAllValuesOfdomainStereotypeInstance(final StereotypedElement.Match partialMatch) {
-      return rawStreamAllValuesOfdomainStereotypeInstance(partialMatch.toArray()).collect(Collectors.toSet());
+    public Set<Stereotype> getAllValuesOfStereotype(final StereotypedElement.Match partialMatch) {
+      return rawStreamAllValuesOfStereotype(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for domainStereotypeInstance.
+     * Retrieve the set of values that occur in matches for Stereotype.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<InstanceSpecification> getAllValuesOfdomainStereotypeInstance(final Element pElement, final String pProfileName, final String pStereotypeName) {
-      return rawStreamAllValuesOfdomainStereotypeInstance(new Object[]{pElement, null, pProfileName, pStereotypeName}).collect(Collectors.toSet());
+    public Set<Stereotype> getAllValuesOfStereotype(final Element pElement, final String pProfileName, final String pStereotypeName) {
+      return rawStreamAllValuesOfStereotype(new Object[]{pElement, null, pProfileName, pStereotypeName}).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for profileName.
+     * Retrieve the set of values that occur in matches for ProfileName.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<String> rawStreamAllValuesOfprofileName(final Object[] parameters) {
+    protected Stream<String> rawStreamAllValuesOfProfileName(final Object[] parameters) {
       return rawStreamAllValues(POSITION_PROFILENAME, parameters).map(String.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for profileName.
+     * Retrieve the set of values that occur in matches for ProfileName.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<String> getAllValuesOfprofileName() {
-      return rawStreamAllValuesOfprofileName(emptyArray()).collect(Collectors.toSet());
+    public Set<String> getAllValuesOfProfileName() {
+      return rawStreamAllValuesOfProfileName(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for profileName.
+     * Retrieve the set of values that occur in matches for ProfileName.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<String> streamAllValuesOfprofileName() {
-      return rawStreamAllValuesOfprofileName(emptyArray());
+    public Stream<String> streamAllValuesOfProfileName() {
+      return rawStreamAllValuesOfProfileName(emptyArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for profileName.
+     * Retrieve the set of values that occur in matches for ProfileName.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -664,12 +660,12 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<String> streamAllValuesOfprofileName(final StereotypedElement.Match partialMatch) {
-      return rawStreamAllValuesOfprofileName(partialMatch.toArray());
+    public Stream<String> streamAllValuesOfProfileName(final StereotypedElement.Match partialMatch) {
+      return rawStreamAllValuesOfProfileName(partialMatch.toArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for profileName.
+     * Retrieve the set of values that occur in matches for ProfileName.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -678,57 +674,57 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<String> streamAllValuesOfprofileName(final Element pElement, final InstanceSpecification pDomainStereotypeInstance, final String pStereotypeName) {
-      return rawStreamAllValuesOfprofileName(new Object[]{pElement, pDomainStereotypeInstance, null, pStereotypeName});
+    public Stream<String> streamAllValuesOfProfileName(final Element pElement, final Stereotype pStereotype, final String pStereotypeName) {
+      return rawStreamAllValuesOfProfileName(new Object[]{pElement, pStereotype, null, pStereotypeName});
     }
     
     /**
-     * Retrieve the set of values that occur in matches for profileName.
+     * Retrieve the set of values that occur in matches for ProfileName.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<String> getAllValuesOfprofileName(final StereotypedElement.Match partialMatch) {
-      return rawStreamAllValuesOfprofileName(partialMatch.toArray()).collect(Collectors.toSet());
+    public Set<String> getAllValuesOfProfileName(final StereotypedElement.Match partialMatch) {
+      return rawStreamAllValuesOfProfileName(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for profileName.
+     * Retrieve the set of values that occur in matches for ProfileName.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<String> getAllValuesOfprofileName(final Element pElement, final InstanceSpecification pDomainStereotypeInstance, final String pStereotypeName) {
-      return rawStreamAllValuesOfprofileName(new Object[]{pElement, pDomainStereotypeInstance, null, pStereotypeName}).collect(Collectors.toSet());
+    public Set<String> getAllValuesOfProfileName(final Element pElement, final Stereotype pStereotype, final String pStereotypeName) {
+      return rawStreamAllValuesOfProfileName(new Object[]{pElement, pStereotype, null, pStereotypeName}).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for stereotypeName.
+     * Retrieve the set of values that occur in matches for StereotypeName.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<String> rawStreamAllValuesOfstereotypeName(final Object[] parameters) {
+    protected Stream<String> rawStreamAllValuesOfStereotypeName(final Object[] parameters) {
       return rawStreamAllValues(POSITION_STEREOTYPENAME, parameters).map(String.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for stereotypeName.
+     * Retrieve the set of values that occur in matches for StereotypeName.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<String> getAllValuesOfstereotypeName() {
-      return rawStreamAllValuesOfstereotypeName(emptyArray()).collect(Collectors.toSet());
+    public Set<String> getAllValuesOfStereotypeName() {
+      return rawStreamAllValuesOfStereotypeName(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for stereotypeName.
+     * Retrieve the set of values that occur in matches for StereotypeName.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<String> streamAllValuesOfstereotypeName() {
-      return rawStreamAllValuesOfstereotypeName(emptyArray());
+    public Stream<String> streamAllValuesOfStereotypeName() {
+      return rawStreamAllValuesOfStereotypeName(emptyArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for stereotypeName.
+     * Retrieve the set of values that occur in matches for StereotypeName.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -737,12 +733,12 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<String> streamAllValuesOfstereotypeName(final StereotypedElement.Match partialMatch) {
-      return rawStreamAllValuesOfstereotypeName(partialMatch.toArray());
+    public Stream<String> streamAllValuesOfStereotypeName(final StereotypedElement.Match partialMatch) {
+      return rawStreamAllValuesOfStereotypeName(partialMatch.toArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for stereotypeName.
+     * Retrieve the set of values that occur in matches for StereotypeName.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -751,32 +747,32 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<String> streamAllValuesOfstereotypeName(final Element pElement, final InstanceSpecification pDomainStereotypeInstance, final String pProfileName) {
-      return rawStreamAllValuesOfstereotypeName(new Object[]{pElement, pDomainStereotypeInstance, pProfileName, null});
+    public Stream<String> streamAllValuesOfStereotypeName(final Element pElement, final Stereotype pStereotype, final String pProfileName) {
+      return rawStreamAllValuesOfStereotypeName(new Object[]{pElement, pStereotype, pProfileName, null});
     }
     
     /**
-     * Retrieve the set of values that occur in matches for stereotypeName.
+     * Retrieve the set of values that occur in matches for StereotypeName.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<String> getAllValuesOfstereotypeName(final StereotypedElement.Match partialMatch) {
-      return rawStreamAllValuesOfstereotypeName(partialMatch.toArray()).collect(Collectors.toSet());
+    public Set<String> getAllValuesOfStereotypeName(final StereotypedElement.Match partialMatch) {
+      return rawStreamAllValuesOfStereotypeName(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for stereotypeName.
+     * Retrieve the set of values that occur in matches for StereotypeName.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<String> getAllValuesOfstereotypeName(final Element pElement, final InstanceSpecification pDomainStereotypeInstance, final String pProfileName) {
-      return rawStreamAllValuesOfstereotypeName(new Object[]{pElement, pDomainStereotypeInstance, pProfileName, null}).collect(Collectors.toSet());
+    public Set<String> getAllValuesOfStereotypeName(final Element pElement, final Stereotype pStereotype, final String pProfileName) {
+      return rawStreamAllValuesOfStereotypeName(new Object[]{pElement, pStereotype, pProfileName, null}).collect(Collectors.toSet());
     }
     
     @Override
     protected StereotypedElement.Match tupleToMatch(final Tuple t) {
       try {
-          return StereotypedElement.Match.newMatch((Element) t.get(POSITION_ELEMENT), (InstanceSpecification) t.get(POSITION_DOMAINSTEREOTYPEINSTANCE), (String) t.get(POSITION_PROFILENAME), (String) t.get(POSITION_STEREOTYPENAME));
+          return StereotypedElement.Match.newMatch((Element) t.get(POSITION_ELEMENT), (Stereotype) t.get(POSITION_STEREOTYPE), (String) t.get(POSITION_PROFILENAME), (String) t.get(POSITION_STEREOTYPENAME));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -786,7 +782,7 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
     @Override
     protected StereotypedElement.Match arrayToMatch(final Object[] match) {
       try {
-          return StereotypedElement.Match.newMatch((Element) match[POSITION_ELEMENT], (InstanceSpecification) match[POSITION_DOMAINSTEREOTYPEINSTANCE], (String) match[POSITION_PROFILENAME], (String) match[POSITION_STEREOTYPENAME]);
+          return StereotypedElement.Match.newMatch((Element) match[POSITION_ELEMENT], (Stereotype) match[POSITION_STEREOTYPE], (String) match[POSITION_PROFILENAME], (String) match[POSITION_STEREOTYPENAME]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -796,7 +792,7 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
     @Override
     protected StereotypedElement.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return StereotypedElement.Match.newMutableMatch((Element) match[POSITION_ELEMENT], (InstanceSpecification) match[POSITION_DOMAINSTEREOTYPEINSTANCE], (String) match[POSITION_PROFILENAME], (String) match[POSITION_STEREOTYPENAME]);
+          return StereotypedElement.Match.newMutableMatch((Element) match[POSITION_ELEMENT], (Stereotype) match[POSITION_STEREOTYPE], (String) match[POSITION_PROFILENAME], (String) match[POSITION_STEREOTYPENAME]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -847,7 +843,7 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
   
   @Override
   public StereotypedElement.Match newMatch(final Object... parameters) {
-    return StereotypedElement.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Element) parameters[0], (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.InstanceSpecification) parameters[1], (java.lang.String) parameters[2], (java.lang.String) parameters[3]);
+    return StereotypedElement.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Element) parameters[0], (com.nomagic.uml2.ext.magicdraw.mdprofiles.Stereotype) parameters[1], (java.lang.String) parameters[2], (java.lang.String) parameters[3]);
   }
   
   /**
@@ -879,15 +875,15 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final StereotypedElement.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_element = new PParameter("element", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Element", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Element")), PParameterDirection.INOUT);
+    private final PParameter parameter_Element = new PParameter("Element", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Element", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Element")), PParameterDirection.INOUT);
     
-    private final PParameter parameter_domainStereotypeInstance = new PParameter("domainStereotypeInstance", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.InstanceSpecification", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "InstanceSpecification")), PParameterDirection.INOUT);
+    private final PParameter parameter_Stereotype = new PParameter("Stereotype", "com.nomagic.uml2.ext.magicdraw.mdprofiles.Stereotype", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Stereotype")), PParameterDirection.INOUT);
     
-    private final PParameter parameter_profileName = new PParameter("profileName", "java.lang.String", new EDataTypeInSlotsKey((EDataType)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "String")), PParameterDirection.INOUT);
+    private final PParameter parameter_ProfileName = new PParameter("ProfileName", "java.lang.String", new EDataTypeInSlotsKey((EDataType)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "String")), PParameterDirection.INOUT);
     
-    private final PParameter parameter_stereotypeName = new PParameter("stereotypeName", "java.lang.String", new EDataTypeInSlotsKey((EDataType)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "String")), PParameterDirection.INOUT);
+    private final PParameter parameter_StereotypeName = new PParameter("StereotypeName", "java.lang.String", new EDataTypeInSlotsKey((EDataType)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "String")), PParameterDirection.INOUT);
     
-    private final List<PParameter> parameters = Arrays.asList(parameter_element, parameter_domainStereotypeInstance, parameter_profileName, parameter_stereotypeName);
+    private final List<PParameter> parameters = Arrays.asList(parameter_Element, parameter_Stereotype, parameter_ProfileName, parameter_StereotypeName);
     
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
@@ -900,7 +896,7 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
     
     @Override
     public List<String> getParameterNames() {
-      return Arrays.asList("element","domainStereotypeInstance","profileName","stereotypeName");
+      return Arrays.asList("Element","Stereotype","ProfileName","StereotypeName");
     }
     
     @Override
@@ -914,58 +910,51 @@ public final class StereotypedElement extends BaseGeneratedEMFQuerySpecification
       Set<PBody> bodies = new LinkedHashSet<>();
       {
           PBody body = new PBody(this);
-          PVariable var_element = body.getOrCreateVariableByName("element");
-          PVariable var_domainStereotypeInstance = body.getOrCreateVariableByName("domainStereotypeInstance");
-          PVariable var_profileName = body.getOrCreateVariableByName("profileName");
-          PVariable var_stereotypeName = body.getOrCreateVariableByName("stereotypeName");
-          PVariable var_domainStereotype = body.getOrCreateVariableByName("domainStereotype");
+          PVariable var_Element = body.getOrCreateVariableByName("Element");
+          PVariable var_Stereotype = body.getOrCreateVariableByName("Stereotype");
+          PVariable var_ProfileName = body.getOrCreateVariableByName("ProfileName");
+          PVariable var_StereotypeName = body.getOrCreateVariableByName("StereotypeName");
           PVariable var_superStereotype = body.getOrCreateVariableByName("superStereotype");
           PVariable var_owner = body.getOrCreateVariableByName("owner");
           PVariable var_profile = body.getOrCreateVariableByName("profile");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Element")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var_domainStereotypeInstance), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "InstanceSpecification")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var_profileName), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "String")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var_stereotypeName), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "String")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_Element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Element")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_Stereotype), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Stereotype")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_ProfileName), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "String")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_StereotypeName), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "String")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-             new ExportedParameter(body, var_element, parameter_element),
-             new ExportedParameter(body, var_domainStereotypeInstance, parameter_domainStereotypeInstance),
-             new ExportedParameter(body, var_profileName, parameter_profileName),
-             new ExportedParameter(body, var_stereotypeName, parameter_stereotypeName)
+             new ExportedParameter(body, var_Element, parameter_Element),
+             new ExportedParameter(body, var_Stereotype, parameter_Stereotype),
+             new ExportedParameter(body, var_ProfileName, parameter_ProfileName),
+             new ExportedParameter(body, var_StereotypeName, parameter_StereotypeName)
           ));
-          // 	Element.appliedStereotypeInstance(element, domainStereotypeInstance)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Element")));
+          // 	Element.appliedStereotype(Element, Stereotype)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_Element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Element")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_element, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Element", "appliedStereotypeInstance")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "InstanceSpecification")));
-          new Equality(body, var__virtual_0_, var_domainStereotypeInstance);
-          // 	InstanceSpecification.classifier(domainStereotypeInstance, domainStereotype)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_domainStereotypeInstance), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "InstanceSpecification")));
-          PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_domainStereotypeInstance, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "InstanceSpecification", "classifier")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Classifier")));
-          new Equality(body, var__virtual_1_, var_domainStereotype);
-          // 	find compatibleClassifier(domainStereotype, superStereotype)
-          new PositivePatternCall(body, Tuples.flatTupleOf(var_domainStereotype, var_superStereotype), CompatibleClassifier.instance().getInternalQueryRepresentation());
+          new TypeConstraint(body, Tuples.flatTupleOf(var_Element, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Element", "appliedStereotype")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Stereotype")));
+          new Equality(body, var__virtual_0_, var_Stereotype);
+          // 	find compatibleClassifier(Stereotype, superStereotype)
+          new PositivePatternCall(body, Tuples.flatTupleOf(var_Stereotype, var_superStereotype), CompatibleClassifier.instance().getInternalQueryRepresentation());
           // 	Stereotype.owningPackage(superStereotype, owner)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_superStereotype), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Stereotype")));
-          PVariable var__virtual_2_ = body.getOrCreateVariableByName(".virtual{2}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_superStereotype, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "PackageableElement", "owningPackage")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_2_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Package")));
-          new Equality(body, var__virtual_2_, var_owner);
+          new TypeConstraint(body, Tuples.flatTupleOf(var_superStereotype), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Stereotype")));
+          PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_superStereotype, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "PackageableElement", "owningPackage")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Package")));
+          new Equality(body, var__virtual_1_, var_owner);
           // 	find owningPackageOrSelf(owner, profile)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_owner, var_profile), OwningPackageOrSelf.instance().getInternalQueryRepresentation());
-          // 	Profile.name(profile, profileName)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_profile), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Profile")));
+          // 	Profile.name(profile, ProfileName)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_profile), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Profile")));
+          PVariable var__virtual_2_ = body.getOrCreateVariableByName(".virtual{2}");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_profile, var__virtual_2_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "NamedElement", "name")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_2_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "String")));
+          new Equality(body, var__virtual_2_, var_ProfileName);
+          // 	Stereotype.name(superStereotype, StereotypeName)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_superStereotype), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Stereotype")));
           PVariable var__virtual_3_ = body.getOrCreateVariableByName(".virtual{3}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_profile, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "NamedElement", "name")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_3_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "String")));
-          new Equality(body, var__virtual_3_, var_profileName);
-          // 	Stereotype.name(superStereotype, stereotypeName)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_superStereotype), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Stereotype")));
-          PVariable var__virtual_4_ = body.getOrCreateVariableByName(".virtual{4}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_superStereotype, var__virtual_4_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "NamedElement", "name")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_4_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "String")));
-          new Equality(body, var__virtual_4_, var_stereotypeName);
+          new TypeConstraint(body, Tuples.flatTupleOf(var_superStereotype, var__virtual_3_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "NamedElement", "name")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_3_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "String")));
+          new Equality(body, var__virtual_3_, var_StereotypeName);
           bodies.add(body);
       }
       return bodies;

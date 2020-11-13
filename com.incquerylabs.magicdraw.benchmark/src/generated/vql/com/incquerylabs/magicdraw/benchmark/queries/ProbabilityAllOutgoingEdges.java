@@ -511,7 +511,7 @@ public final class ProbabilityAllOutgoingEdges extends BaseGeneratedEMFQuerySpec
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final ProbabilityAllOutgoingEdges.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_activityEdge = new PParameter("activityEdge", "com.nomagic.uml2.ext.magicdraw.activities.mdbasicactivities.ActivityEdge", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "ActivityEdge")), PParameterDirection.INOUT);
+    private final PParameter parameter_activityEdge = new PParameter("activityEdge", "com.nomagic.uml2.ext.magicdraw.activities.mdbasicactivities.ActivityEdge", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ActivityEdge")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_activityEdge);
     
@@ -545,23 +545,23 @@ public final class ProbabilityAllOutgoingEdges extends BaseGeneratedEMFQuerySpec
           PVariable var_target = body.getOrCreateVariableByName("target");
           PVariable var_edge = body.getOrCreateVariableByName("edge");
           PVariable var___1_ = body.getOrCreateVariableByName("_<1>");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_activityEdge), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ActivityEdge")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_activityEdge), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ActivityEdge")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_activityEdge, parameter_activityEdge)
           ));
           // 	find com.incquerylabs.magicdraw.benchmark.queries.library.Probability(activityEdge, _)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_activityEdge, var___0_), Probability.instance().getInternalQueryRepresentation());
           // 	ActivityEdge.target(activityEdge, target)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_activityEdge), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ActivityEdge")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_activityEdge), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ActivityEdge")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_activityEdge, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ActivityEdge", "target")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ActivityNode")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_activityEdge, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ActivityEdge", "target")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ActivityNode")));
           new Equality(body, var__virtual_0_, var_target);
           // 	ActivityNode.incoming(target, edge)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_target), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ActivityNode")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_target), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ActivityNode")));
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_target, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ActivityNode", "incoming")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ActivityEdge")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_target, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ActivityNode", "incoming")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ActivityEdge")));
           new Equality(body, var__virtual_1_, var_edge);
           // 	neg find com.incquerylabs.magicdraw.benchmark.queries.library.Probability(edge, _)
           new NegativePatternCall(body, Tuples.flatTupleOf(var_edge, var___1_), Probability.instance().getInternalQueryRepresentation());

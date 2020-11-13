@@ -94,7 +94,7 @@ public final class GreaterThanOne extends BaseGeneratedEMFQuerySpecificationWith
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final GreaterThanOne.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_op = new PParameter("op", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.LiteralUnlimitedNatural", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "LiteralUnlimitedNatural")), PParameterDirection.INOUT);
+    private final PParameter parameter_op = new PParameter("op", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.LiteralUnlimitedNatural", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "LiteralUnlimitedNatural")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_op);
     
@@ -125,15 +125,15 @@ public final class GreaterThanOne extends BaseGeneratedEMFQuerySpecificationWith
           PBody body = new PBody(this);
           PVariable var_op = body.getOrCreateVariableByName("op");
           PVariable var_value = body.getOrCreateVariableByName("value");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_op), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "LiteralUnlimitedNatural")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_op), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "LiteralUnlimitedNatural")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_op, parameter_op)
           ));
           // 	LiteralUnlimitedNatural.value(op, value)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_op), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "LiteralUnlimitedNatural")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_op), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "LiteralUnlimitedNatural")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_op, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "LiteralUnlimitedNatural", "value")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "UnlimitedNatural")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_op, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "LiteralUnlimitedNatural", "value")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "UnlimitedNatural")));
           new Equality(body, var__virtual_0_, var_value);
           // 	check(value > 1)
           new ExpressionEvaluation(body, new IExpressionEvaluator() {
@@ -159,15 +159,15 @@ public final class GreaterThanOne extends BaseGeneratedEMFQuerySpecificationWith
           PBody body = new PBody(this);
           PVariable var_op = body.getOrCreateVariableByName("op");
           PVariable var_value = body.getOrCreateVariableByName("value");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_op), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "LiteralUnlimitedNatural")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_op), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "LiteralUnlimitedNatural")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_op, parameter_op)
           ));
           // 	LiteralUnlimitedNatural.value(op, value)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_op), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "LiteralUnlimitedNatural")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_op), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "LiteralUnlimitedNatural")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_op, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "LiteralUnlimitedNatural", "value")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "UnlimitedNatural")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_op, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "LiteralUnlimitedNatural", "value")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "UnlimitedNatural")));
           new Equality(body, var__virtual_0_, var_value);
           // 	check(value < 0)
           new ExpressionEvaluation(body, new IExpressionEvaluator() {

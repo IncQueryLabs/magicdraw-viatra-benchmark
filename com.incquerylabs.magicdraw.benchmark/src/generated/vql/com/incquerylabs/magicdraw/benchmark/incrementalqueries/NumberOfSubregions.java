@@ -658,7 +658,7 @@ public final class NumberOfSubregions extends BaseGeneratedEMFQuerySpecification
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final NumberOfSubregions.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_state = new PParameter("state", "com.nomagic.uml2.ext.magicdraw.statemachines.mdbehaviorstatemachines.State", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "State")), PParameterDirection.INOUT);
+    private final PParameter parameter_state = new PParameter("state", "com.nomagic.uml2.ext.magicdraw.statemachines.mdbehaviorstatemachines.State", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "State")), PParameterDirection.INOUT);
     
     private final PParameter parameter_regionCount = new PParameter("regionCount", "java.lang.Integer", new JavaTransitiveInstancesKey(java.lang.Integer.class), PParameterDirection.INOUT);
     
@@ -692,7 +692,7 @@ public final class NumberOfSubregions extends BaseGeneratedEMFQuerySpecification
           PVariable var_state = body.getOrCreateVariableByName("state");
           PVariable var_regionCount = body.getOrCreateVariableByName("regionCount");
           PVariable var__subregion = body.getOrCreateVariableByName("_subregion");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_state), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "State")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_state), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "State")));
           new TypeFilterConstraint(body, Tuples.flatTupleOf(var_regionCount), new JavaTransitiveInstancesKey(java.lang.Integer.class));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_state, parameter_state),

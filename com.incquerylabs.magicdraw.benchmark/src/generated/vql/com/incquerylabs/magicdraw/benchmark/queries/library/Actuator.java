@@ -4,7 +4,7 @@
 package com.incquerylabs.magicdraw.benchmark.queries.library;
 
 import com.incquerylabs.magicdraw.benchmark.queries.library.StereotypedElement;
-import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.InstanceSpecification;
+import com.nomagic.uml2.ext.magicdraw.mdprofiles.Stereotype;
 import com.nomagic.uml2.ext.magicdraw.mdusecases.Actor;
 import java.util.Arrays;
 import java.util.Collection;
@@ -45,17 +45,11 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         // Non-Normative Extensions - Actors
+ *         //Non-normative: Actors
  *         
- *         
- *           Pattern that queries elements with the stereotype 'Actuator' or other stereotypes generalizing it.
- *          
- *           Parameters:
- *           element : 'Actor' object with the stereotype Actuator.
- *           domainStereotypeInstance : Stereotype Application instance
- *          
- *         pattern Actuator(element : Actor, domainStereotypeInstance : InstanceSpecification){
- *         	find stereotypedElement(element, domainStereotypeInstance, "SysML", "Actuator");
+ *         //Pattern that queries elements with the stereotype 'Actuator' or other stereotypes generalizing it.
+ *         pattern Actuator(Element : Actor, Stereotype : Stereotype) {
+ *         	find stereotypedElement(Element, Stereotype, "SysML", "Actuator");
  *         }
  * </pre></code>
  * 
@@ -80,20 +74,20 @@ public final class Actuator extends BaseGeneratedEMFQuerySpecification<Actuator.
   public static abstract class Match extends BasePatternMatch {
     private Actor fElement;
     
-    private InstanceSpecification fDomainStereotypeInstance;
+    private Stereotype fStereotype;
     
-    private static List<String> parameterNames = makeImmutableList("element", "domainStereotypeInstance");
+    private static List<String> parameterNames = makeImmutableList("Element", "Stereotype");
     
-    private Match(final Actor pElement, final InstanceSpecification pDomainStereotypeInstance) {
+    private Match(final Actor pElement, final Stereotype pStereotype) {
       this.fElement = pElement;
-      this.fDomainStereotypeInstance = pDomainStereotypeInstance;
+      this.fStereotype = pStereotype;
     }
     
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
-          case "element": return this.fElement;
-          case "domainStereotypeInstance": return this.fDomainStereotypeInstance;
+          case "Element": return this.fElement;
+          case "Stereotype": return this.fStereotype;
           default: return null;
       }
     }
@@ -102,7 +96,7 @@ public final class Actuator extends BaseGeneratedEMFQuerySpecification<Actuator.
     public Object get(final int index) {
       switch(index) {
           case 0: return this.fElement;
-          case 1: return this.fDomainStereotypeInstance;
+          case 1: return this.fStereotype;
           default: return null;
       }
     }
@@ -111,19 +105,19 @@ public final class Actuator extends BaseGeneratedEMFQuerySpecification<Actuator.
       return this.fElement;
     }
     
-    public InstanceSpecification getDomainStereotypeInstance() {
-      return this.fDomainStereotypeInstance;
+    public Stereotype getStereotype() {
+      return this.fStereotype;
     }
     
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      if ("element".equals(parameterName) ) {
+      if ("Element".equals(parameterName) ) {
           this.fElement = (Actor) newValue;
           return true;
       }
-      if ("domainStereotypeInstance".equals(parameterName) ) {
-          this.fDomainStereotypeInstance = (InstanceSpecification) newValue;
+      if ("Stereotype".equals(parameterName) ) {
+          this.fStereotype = (Stereotype) newValue;
           return true;
       }
       return false;
@@ -134,9 +128,9 @@ public final class Actuator extends BaseGeneratedEMFQuerySpecification<Actuator.
       this.fElement = pElement;
     }
     
-    public void setDomainStereotypeInstance(final InstanceSpecification pDomainStereotypeInstance) {
+    public void setStereotype(final Stereotype pStereotype) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      this.fDomainStereotypeInstance = pDomainStereotypeInstance;
+      this.fStereotype = pStereotype;
     }
     
     @Override
@@ -151,25 +145,25 @@ public final class Actuator extends BaseGeneratedEMFQuerySpecification<Actuator.
     
     @Override
     public Object[] toArray() {
-      return new Object[]{fElement, fDomainStereotypeInstance};
+      return new Object[]{fElement, fStereotype};
     }
     
     @Override
     public Actuator.Match toImmutable() {
-      return isMutable() ? newMatch(fElement, fDomainStereotypeInstance) : this;
+      return isMutable() ? newMatch(fElement, fStereotype) : this;
     }
     
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
-      result.append("\"element\"=" + prettyPrintValue(fElement) + ", ");
-      result.append("\"domainStereotypeInstance\"=" + prettyPrintValue(fDomainStereotypeInstance));
+      result.append("\"Element\"=" + prettyPrintValue(fElement) + ", ");
+      result.append("\"Stereotype\"=" + prettyPrintValue(fStereotype));
       return result.toString();
     }
     
     @Override
     public int hashCode() {
-      return Objects.hash(fElement, fDomainStereotypeInstance);
+      return Objects.hash(fElement, fStereotype);
     }
     
     @Override
@@ -181,7 +175,7 @@ public final class Actuator extends BaseGeneratedEMFQuerySpecification<Actuator.
       }
       if ((obj instanceof Actuator.Match)) {
           Actuator.Match other = (Actuator.Match) obj;
-          return Objects.equals(fElement, other.fElement) && Objects.equals(fDomainStereotypeInstance, other.fDomainStereotypeInstance);
+          return Objects.equals(fElement, other.fElement) && Objects.equals(fStereotype, other.fStereotype);
       } else {
           // this should be infrequent
           if (!(obj instanceof IPatternMatch)) {
@@ -212,31 +206,31 @@ public final class Actuator extends BaseGeneratedEMFQuerySpecification<Actuator.
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
      * 
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pDomainStereotypeInstance the fixed value of pattern parameter domainStereotypeInstance, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pStereotype the fixed value of pattern parameter Stereotype, or null if not bound.
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static Actuator.Match newMutableMatch(final Actor pElement, final InstanceSpecification pDomainStereotypeInstance) {
-      return new Mutable(pElement, pDomainStereotypeInstance);
+    public static Actuator.Match newMutableMatch(final Actor pElement, final Stereotype pStereotype) {
+      return new Mutable(pElement, pStereotype);
     }
     
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pDomainStereotypeInstance the fixed value of pattern parameter domainStereotypeInstance, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pStereotype the fixed value of pattern parameter Stereotype, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public static Actuator.Match newMatch(final Actor pElement, final InstanceSpecification pDomainStereotypeInstance) {
-      return new Immutable(pElement, pDomainStereotypeInstance);
+    public static Actuator.Match newMatch(final Actor pElement, final Stereotype pStereotype) {
+      return new Immutable(pElement, pStereotype);
     }
     
     private static final class Mutable extends Actuator.Match {
-      Mutable(final Actor pElement, final InstanceSpecification pDomainStereotypeInstance) {
-        super(pElement, pDomainStereotypeInstance);
+      Mutable(final Actor pElement, final Stereotype pStereotype) {
+        super(pElement, pStereotype);
       }
       
       @Override
@@ -246,8 +240,8 @@ public final class Actuator extends BaseGeneratedEMFQuerySpecification<Actuator.
     }
     
     private static final class Immutable extends Actuator.Match {
-      Immutable(final Actor pElement, final InstanceSpecification pDomainStereotypeInstance) {
-        super(pElement, pDomainStereotypeInstance);
+      Immutable(final Actor pElement, final Stereotype pStereotype) {
+        super(pElement, pStereotype);
       }
       
       @Override
@@ -268,17 +262,11 @@ public final class Actuator extends BaseGeneratedEMFQuerySpecification<Actuator.
    * 
    * <p>Original source:
    * <code><pre>
-   * // Non-Normative Extensions - Actors
+   * //Non-normative: Actors
    * 
-   * 
-   *   Pattern that queries elements with the stereotype 'Actuator' or other stereotypes generalizing it.
-   *  
-   *   Parameters:
-   *   element : 'Actor' object with the stereotype Actuator.
-   *   domainStereotypeInstance : Stereotype Application instance
-   *  
-   * pattern Actuator(element : Actor, domainStereotypeInstance : InstanceSpecification){
-   * 	find stereotypedElement(element, domainStereotypeInstance, "SysML", "Actuator");
+   * //Pattern that queries elements with the stereotype 'Actuator' or other stereotypes generalizing it.
+   * pattern Actuator(Element : Actor, Stereotype : Stereotype) {
+   * 	find stereotypedElement(Element, Stereotype, "SysML", "Actuator");
    * }
    * </pre></code>
    * 
@@ -316,7 +304,7 @@ public final class Actuator extends BaseGeneratedEMFQuerySpecification<Actuator.
     
     private static final int POSITION_ELEMENT = 0;
     
-    private static final int POSITION_DOMAINSTEREOTYPEINSTANCE = 1;
+    private static final int POSITION_STEREOTYPE = 1;
     
     private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(Actuator.Matcher.class);
     
@@ -334,13 +322,13 @@ public final class Actuator extends BaseGeneratedEMFQuerySpecification<Actuator.
     
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pDomainStereotypeInstance the fixed value of pattern parameter domainStereotypeInstance, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pStereotype the fixed value of pattern parameter Stereotype, or null if not bound.
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<Actuator.Match> getAllMatches(final Actor pElement, final InstanceSpecification pDomainStereotypeInstance) {
-      return rawStreamAllMatches(new Object[]{pElement, pDomainStereotypeInstance}).collect(Collectors.toSet());
+    public Collection<Actuator.Match> getAllMatches(final Actor pElement, final Stereotype pStereotype) {
+      return rawStreamAllMatches(new Object[]{pElement, pStereotype}).collect(Collectors.toSet());
     }
     
     /**
@@ -349,105 +337,105 @@ public final class Actuator extends BaseGeneratedEMFQuerySpecification<Actuator.
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
      * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pDomainStereotypeInstance the fixed value of pattern parameter domainStereotypeInstance, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pStereotype the fixed value of pattern parameter Stereotype, or null if not bound.
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<Actuator.Match> streamAllMatches(final Actor pElement, final InstanceSpecification pDomainStereotypeInstance) {
-      return rawStreamAllMatches(new Object[]{pElement, pDomainStereotypeInstance});
+    public Stream<Actuator.Match> streamAllMatches(final Actor pElement, final Stereotype pStereotype) {
+      return rawStreamAllMatches(new Object[]{pElement, pStereotype});
     }
     
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pDomainStereotypeInstance the fixed value of pattern parameter domainStereotypeInstance, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pStereotype the fixed value of pattern parameter Stereotype, or null if not bound.
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<Actuator.Match> getOneArbitraryMatch(final Actor pElement, final InstanceSpecification pDomainStereotypeInstance) {
-      return rawGetOneArbitraryMatch(new Object[]{pElement, pDomainStereotypeInstance});
+    public Optional<Actuator.Match> getOneArbitraryMatch(final Actor pElement, final Stereotype pStereotype) {
+      return rawGetOneArbitraryMatch(new Object[]{pElement, pStereotype});
     }
     
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pDomainStereotypeInstance the fixed value of pattern parameter domainStereotypeInstance, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pStereotype the fixed value of pattern parameter Stereotype, or null if not bound.
      * @return true if the input is a valid (partial) match of the pattern.
      * 
      */
-    public boolean hasMatch(final Actor pElement, final InstanceSpecification pDomainStereotypeInstance) {
-      return rawHasMatch(new Object[]{pElement, pDomainStereotypeInstance});
+    public boolean hasMatch(final Actor pElement, final Stereotype pStereotype) {
+      return rawHasMatch(new Object[]{pElement, pStereotype});
     }
     
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pDomainStereotypeInstance the fixed value of pattern parameter domainStereotypeInstance, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pStereotype the fixed value of pattern parameter Stereotype, or null if not bound.
      * @return the number of pattern matches found.
      * 
      */
-    public int countMatches(final Actor pElement, final InstanceSpecification pDomainStereotypeInstance) {
-      return rawCountMatches(new Object[]{pElement, pDomainStereotypeInstance});
+    public int countMatches(final Actor pElement, final Stereotype pStereotype) {
+      return rawCountMatches(new Object[]{pElement, pStereotype});
     }
     
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pDomainStereotypeInstance the fixed value of pattern parameter domainStereotypeInstance, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pStereotype the fixed value of pattern parameter Stereotype, or null if not bound.
      * @param processor the action that will process the selected match.
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final Actor pElement, final InstanceSpecification pDomainStereotypeInstance, final Consumer<? super Actuator.Match> processor) {
-      return rawForOneArbitraryMatch(new Object[]{pElement, pDomainStereotypeInstance}, processor);
+    public boolean forOneArbitraryMatch(final Actor pElement, final Stereotype pStereotype, final Consumer<? super Actuator.Match> processor) {
+      return rawForOneArbitraryMatch(new Object[]{pElement, pStereotype}, processor);
     }
     
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pDomainStereotypeInstance the fixed value of pattern parameter domainStereotypeInstance, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pStereotype the fixed value of pattern parameter Stereotype, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public Actuator.Match newMatch(final Actor pElement, final InstanceSpecification pDomainStereotypeInstance) {
-      return Actuator.Match.newMatch(pElement, pDomainStereotypeInstance);
+    public Actuator.Match newMatch(final Actor pElement, final Stereotype pStereotype) {
+      return Actuator.Match.newMatch(pElement, pStereotype);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<Actor> rawStreamAllValuesOfelement(final Object[] parameters) {
+    protected Stream<Actor> rawStreamAllValuesOfElement(final Object[] parameters) {
       return rawStreamAllValues(POSITION_ELEMENT, parameters).map(Actor.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Actor> getAllValuesOfelement() {
-      return rawStreamAllValuesOfelement(emptyArray()).collect(Collectors.toSet());
+    public Set<Actor> getAllValuesOfElement() {
+      return rawStreamAllValuesOfElement(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<Actor> streamAllValuesOfelement() {
-      return rawStreamAllValuesOfelement(emptyArray());
+    public Stream<Actor> streamAllValuesOfElement() {
+      return rawStreamAllValuesOfElement(emptyArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -456,12 +444,12 @@ public final class Actuator extends BaseGeneratedEMFQuerySpecification<Actuator.
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Actor> streamAllValuesOfelement(final Actuator.Match partialMatch) {
-      return rawStreamAllValuesOfelement(partialMatch.toArray());
+    public Stream<Actor> streamAllValuesOfElement(final Actuator.Match partialMatch) {
+      return rawStreamAllValuesOfElement(partialMatch.toArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -470,57 +458,57 @@ public final class Actuator extends BaseGeneratedEMFQuerySpecification<Actuator.
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Actor> streamAllValuesOfelement(final InstanceSpecification pDomainStereotypeInstance) {
-      return rawStreamAllValuesOfelement(new Object[]{null, pDomainStereotypeInstance});
+    public Stream<Actor> streamAllValuesOfElement(final Stereotype pStereotype) {
+      return rawStreamAllValuesOfElement(new Object[]{null, pStereotype});
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Actor> getAllValuesOfelement(final Actuator.Match partialMatch) {
-      return rawStreamAllValuesOfelement(partialMatch.toArray()).collect(Collectors.toSet());
+    public Set<Actor> getAllValuesOfElement(final Actuator.Match partialMatch) {
+      return rawStreamAllValuesOfElement(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Actor> getAllValuesOfelement(final InstanceSpecification pDomainStereotypeInstance) {
-      return rawStreamAllValuesOfelement(new Object[]{null, pDomainStereotypeInstance}).collect(Collectors.toSet());
+    public Set<Actor> getAllValuesOfElement(final Stereotype pStereotype) {
+      return rawStreamAllValuesOfElement(new Object[]{null, pStereotype}).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for domainStereotypeInstance.
+     * Retrieve the set of values that occur in matches for Stereotype.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<InstanceSpecification> rawStreamAllValuesOfdomainStereotypeInstance(final Object[] parameters) {
-      return rawStreamAllValues(POSITION_DOMAINSTEREOTYPEINSTANCE, parameters).map(InstanceSpecification.class::cast);
+    protected Stream<Stereotype> rawStreamAllValuesOfStereotype(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_STEREOTYPE, parameters).map(Stereotype.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for domainStereotypeInstance.
+     * Retrieve the set of values that occur in matches for Stereotype.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<InstanceSpecification> getAllValuesOfdomainStereotypeInstance() {
-      return rawStreamAllValuesOfdomainStereotypeInstance(emptyArray()).collect(Collectors.toSet());
+    public Set<Stereotype> getAllValuesOfStereotype() {
+      return rawStreamAllValuesOfStereotype(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for domainStereotypeInstance.
+     * Retrieve the set of values that occur in matches for Stereotype.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<InstanceSpecification> streamAllValuesOfdomainStereotypeInstance() {
-      return rawStreamAllValuesOfdomainStereotypeInstance(emptyArray());
+    public Stream<Stereotype> streamAllValuesOfStereotype() {
+      return rawStreamAllValuesOfStereotype(emptyArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for domainStereotypeInstance.
+     * Retrieve the set of values that occur in matches for Stereotype.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -529,12 +517,12 @@ public final class Actuator extends BaseGeneratedEMFQuerySpecification<Actuator.
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<InstanceSpecification> streamAllValuesOfdomainStereotypeInstance(final Actuator.Match partialMatch) {
-      return rawStreamAllValuesOfdomainStereotypeInstance(partialMatch.toArray());
+    public Stream<Stereotype> streamAllValuesOfStereotype(final Actuator.Match partialMatch) {
+      return rawStreamAllValuesOfStereotype(partialMatch.toArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for domainStereotypeInstance.
+     * Retrieve the set of values that occur in matches for Stereotype.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -543,32 +531,32 @@ public final class Actuator extends BaseGeneratedEMFQuerySpecification<Actuator.
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<InstanceSpecification> streamAllValuesOfdomainStereotypeInstance(final Actor pElement) {
-      return rawStreamAllValuesOfdomainStereotypeInstance(new Object[]{pElement, null});
+    public Stream<Stereotype> streamAllValuesOfStereotype(final Actor pElement) {
+      return rawStreamAllValuesOfStereotype(new Object[]{pElement, null});
     }
     
     /**
-     * Retrieve the set of values that occur in matches for domainStereotypeInstance.
+     * Retrieve the set of values that occur in matches for Stereotype.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<InstanceSpecification> getAllValuesOfdomainStereotypeInstance(final Actuator.Match partialMatch) {
-      return rawStreamAllValuesOfdomainStereotypeInstance(partialMatch.toArray()).collect(Collectors.toSet());
+    public Set<Stereotype> getAllValuesOfStereotype(final Actuator.Match partialMatch) {
+      return rawStreamAllValuesOfStereotype(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for domainStereotypeInstance.
+     * Retrieve the set of values that occur in matches for Stereotype.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<InstanceSpecification> getAllValuesOfdomainStereotypeInstance(final Actor pElement) {
-      return rawStreamAllValuesOfdomainStereotypeInstance(new Object[]{pElement, null}).collect(Collectors.toSet());
+    public Set<Stereotype> getAllValuesOfStereotype(final Actor pElement) {
+      return rawStreamAllValuesOfStereotype(new Object[]{pElement, null}).collect(Collectors.toSet());
     }
     
     @Override
     protected Actuator.Match tupleToMatch(final Tuple t) {
       try {
-          return Actuator.Match.newMatch((Actor) t.get(POSITION_ELEMENT), (InstanceSpecification) t.get(POSITION_DOMAINSTEREOTYPEINSTANCE));
+          return Actuator.Match.newMatch((Actor) t.get(POSITION_ELEMENT), (Stereotype) t.get(POSITION_STEREOTYPE));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -578,7 +566,7 @@ public final class Actuator extends BaseGeneratedEMFQuerySpecification<Actuator.
     @Override
     protected Actuator.Match arrayToMatch(final Object[] match) {
       try {
-          return Actuator.Match.newMatch((Actor) match[POSITION_ELEMENT], (InstanceSpecification) match[POSITION_DOMAINSTEREOTYPEINSTANCE]);
+          return Actuator.Match.newMatch((Actor) match[POSITION_ELEMENT], (Stereotype) match[POSITION_STEREOTYPE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -588,7 +576,7 @@ public final class Actuator extends BaseGeneratedEMFQuerySpecification<Actuator.
     @Override
     protected Actuator.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return Actuator.Match.newMutableMatch((Actor) match[POSITION_ELEMENT], (InstanceSpecification) match[POSITION_DOMAINSTEREOTYPEINSTANCE]);
+          return Actuator.Match.newMutableMatch((Actor) match[POSITION_ELEMENT], (Stereotype) match[POSITION_STEREOTYPE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -639,7 +627,7 @@ public final class Actuator extends BaseGeneratedEMFQuerySpecification<Actuator.
   
   @Override
   public Actuator.Match newMatch(final Object... parameters) {
-    return Actuator.Match.newMatch((com.nomagic.uml2.ext.magicdraw.mdusecases.Actor) parameters[0], (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.InstanceSpecification) parameters[1]);
+    return Actuator.Match.newMatch((com.nomagic.uml2.ext.magicdraw.mdusecases.Actor) parameters[0], (com.nomagic.uml2.ext.magicdraw.mdprofiles.Stereotype) parameters[1]);
   }
   
   /**
@@ -671,11 +659,11 @@ public final class Actuator extends BaseGeneratedEMFQuerySpecification<Actuator.
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final Actuator.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_element = new PParameter("element", "com.nomagic.uml2.ext.magicdraw.mdusecases.Actor", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Actor")), PParameterDirection.INOUT);
+    private final PParameter parameter_Element = new PParameter("Element", "com.nomagic.uml2.ext.magicdraw.mdusecases.Actor", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Actor")), PParameterDirection.INOUT);
     
-    private final PParameter parameter_domainStereotypeInstance = new PParameter("domainStereotypeInstance", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.InstanceSpecification", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "InstanceSpecification")), PParameterDirection.INOUT);
+    private final PParameter parameter_Stereotype = new PParameter("Stereotype", "com.nomagic.uml2.ext.magicdraw.mdprofiles.Stereotype", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Stereotype")), PParameterDirection.INOUT);
     
-    private final List<PParameter> parameters = Arrays.asList(parameter_element, parameter_domainStereotypeInstance);
+    private final List<PParameter> parameters = Arrays.asList(parameter_Element, parameter_Stereotype);
     
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
@@ -688,7 +676,7 @@ public final class Actuator extends BaseGeneratedEMFQuerySpecification<Actuator.
     
     @Override
     public List<String> getParameterNames() {
-      return Arrays.asList("element","domainStereotypeInstance");
+      return Arrays.asList("Element","Stereotype");
     }
     
     @Override
@@ -702,20 +690,20 @@ public final class Actuator extends BaseGeneratedEMFQuerySpecification<Actuator.
       Set<PBody> bodies = new LinkedHashSet<>();
       {
           PBody body = new PBody(this);
-          PVariable var_element = body.getOrCreateVariableByName("element");
-          PVariable var_domainStereotypeInstance = body.getOrCreateVariableByName("domainStereotypeInstance");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Actor")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var_domainStereotypeInstance), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "InstanceSpecification")));
+          PVariable var_Element = body.getOrCreateVariableByName("Element");
+          PVariable var_Stereotype = body.getOrCreateVariableByName("Stereotype");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_Element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Actor")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_Stereotype), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Stereotype")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-             new ExportedParameter(body, var_element, parameter_element),
-             new ExportedParameter(body, var_domainStereotypeInstance, parameter_domainStereotypeInstance)
+             new ExportedParameter(body, var_Element, parameter_Element),
+             new ExportedParameter(body, var_Stereotype, parameter_Stereotype)
           ));
-          // 	find stereotypedElement(element, domainStereotypeInstance, "SysML", "Actuator")
+          // 	find stereotypedElement(Element, Stereotype, "SysML", "Actuator")
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
           new ConstantValue(body, var__virtual_0_, "SysML");
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
           new ConstantValue(body, var__virtual_1_, "Actuator");
-          new PositivePatternCall(body, Tuples.flatTupleOf(var_element, var_domainStereotypeInstance, var__virtual_0_, var__virtual_1_), StereotypedElement.instance().getInternalQueryRepresentation());
+          new PositivePatternCall(body, Tuples.flatTupleOf(var_Element, var_Stereotype, var__virtual_0_, var__virtual_1_), StereotypedElement.instance().getInternalQueryRepresentation());
           bodies.add(body);
       }
       return bodies;

@@ -502,7 +502,7 @@ public final class CopyCycle extends BaseGeneratedEMFQuerySpecification<CopyCycl
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final CopyCycle.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_copy = new PParameter("copy", "com.nomagic.uml2.ext.magicdraw.classes.mddependencies.Abstraction", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Abstraction")), PParameterDirection.INOUT);
+    private final PParameter parameter_copy = new PParameter("copy", "com.nomagic.uml2.ext.magicdraw.classes.mddependencies.Abstraction", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Abstraction")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_copy);
     
@@ -532,7 +532,7 @@ public final class CopyCycle extends BaseGeneratedEMFQuerySpecification<CopyCycl
       {
           PBody body = new PBody(this);
           PVariable var_copy = body.getOrCreateVariableByName("copy");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_copy), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Abstraction")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_copy), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Abstraction")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_copy, parameter_copy)
           ));

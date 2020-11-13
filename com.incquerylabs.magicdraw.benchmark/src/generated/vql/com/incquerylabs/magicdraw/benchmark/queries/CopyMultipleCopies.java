@@ -516,7 +516,7 @@ public final class CopyMultipleCopies extends BaseGeneratedEMFQuerySpecification
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final CopyMultipleCopies.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_copy = new PParameter("copy", "com.nomagic.uml2.ext.magicdraw.classes.mddependencies.Abstraction", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Abstraction")), PParameterDirection.INOUT);
+    private final PParameter parameter_copy = new PParameter("copy", "com.nomagic.uml2.ext.magicdraw.classes.mddependencies.Abstraction", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Abstraction")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_copy);
     
@@ -551,7 +551,7 @@ public final class CopyMultipleCopies extends BaseGeneratedEMFQuerySpecification
           PVariable var___1_ = body.getOrCreateVariableByName("_<1>");
           PVariable var_otherCopy = body.getOrCreateVariableByName("otherCopy");
           PVariable var___2_ = body.getOrCreateVariableByName("_<2>");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_copy), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Abstraction")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_copy), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Abstraction")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_copy, parameter_copy)
           ));
@@ -560,16 +560,16 @@ public final class CopyMultipleCopies extends BaseGeneratedEMFQuerySpecification
           // 	find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(req, _)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_req, var___1_), AbstractRequirement.instance().getInternalQueryRepresentation());
           // 	Abstraction.client(copy, req)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_copy), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Abstraction")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_copy), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Abstraction")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_copy, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Dependency", "client")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "NamedElement")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_copy, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Dependency", "client")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "NamedElement")));
           new Equality(body, var__virtual_0_, var_req);
           // 	Abstraction.client(otherCopy, req)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_otherCopy), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Abstraction")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_otherCopy), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Abstraction")));
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_otherCopy, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Dependency", "client")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "NamedElement")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_otherCopy, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Dependency", "client")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "NamedElement")));
           new Equality(body, var__virtual_1_, var_req);
           // 	copy != otherCopy
           new Inequality(body, var_copy, var_otherCopy);

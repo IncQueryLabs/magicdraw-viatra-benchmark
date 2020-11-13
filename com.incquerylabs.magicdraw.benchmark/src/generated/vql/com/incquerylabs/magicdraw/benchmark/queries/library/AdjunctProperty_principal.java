@@ -4,8 +4,8 @@
 package com.incquerylabs.magicdraw.benchmark.queries.library;
 
 import com.incquerylabs.magicdraw.benchmark.queries.library.AdjunctProperty;
-import com.incquerylabs.magicdraw.benchmark.queries.library.SlotValue;
-import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Element;
+import com.incquerylabs.magicdraw.benchmark.queries.library.TaggedValue;
+import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.NamedElement;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property;
 import java.util.Arrays;
 import java.util.Collection;
@@ -48,16 +48,11 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         Pattern that queries the 'principal' attribute of elements with the stereotype 'AdjunctProperty'.
- *           
- *           Parameters: 
- *           	element: 'Property' object with the stereotype 'AdjunctProperty'.
- *           	value : Element : A value of the attribute 'principal'.
- *          
- *         pattern AdjunctProperty_principal(element : Property, value : Element){
- *         	find AdjunctProperty(element, domainStereotypeInstance);
- *         	find slotValue(domainStereotypeInstance, "principal", valuespec);
- *         	ElementValue.element(valuespec, value);
+ *         //Pattern that queries the 'principal' attribute of elements with the stereotype 'AdjunctProperty'.
+ *         pattern AdjunctProperty_principal(Element : Property, Value: NamedElement) {
+ *         	find AdjunctProperty(Element, stereotype);
+ *         	find taggedValue(Element, stereotype, "principal", taggedValue);
+ *         	ElementTaggedValue.value(taggedValue, Value);
  *         }
  * </pre></code>
  * 
@@ -82,11 +77,11 @@ public final class AdjunctProperty_principal extends BaseGeneratedEMFQuerySpecif
   public static abstract class Match extends BasePatternMatch {
     private Property fElement;
     
-    private Element fValue;
+    private NamedElement fValue;
     
-    private static List<String> parameterNames = makeImmutableList("element", "value");
+    private static List<String> parameterNames = makeImmutableList("Element", "Value");
     
-    private Match(final Property pElement, final Element pValue) {
+    private Match(final Property pElement, final NamedElement pValue) {
       this.fElement = pElement;
       this.fValue = pValue;
     }
@@ -94,8 +89,8 @@ public final class AdjunctProperty_principal extends BaseGeneratedEMFQuerySpecif
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
-          case "element": return this.fElement;
-          case "value": return this.fValue;
+          case "Element": return this.fElement;
+          case "Value": return this.fValue;
           default: return null;
       }
     }
@@ -113,19 +108,19 @@ public final class AdjunctProperty_principal extends BaseGeneratedEMFQuerySpecif
       return this.fElement;
     }
     
-    public Element getValue() {
+    public NamedElement getValue() {
       return this.fValue;
     }
     
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      if ("element".equals(parameterName) ) {
+      if ("Element".equals(parameterName) ) {
           this.fElement = (Property) newValue;
           return true;
       }
-      if ("value".equals(parameterName) ) {
-          this.fValue = (Element) newValue;
+      if ("Value".equals(parameterName) ) {
+          this.fValue = (NamedElement) newValue;
           return true;
       }
       return false;
@@ -136,7 +131,7 @@ public final class AdjunctProperty_principal extends BaseGeneratedEMFQuerySpecif
       this.fElement = pElement;
     }
     
-    public void setValue(final Element pValue) {
+    public void setValue(final NamedElement pValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
       this.fValue = pValue;
     }
@@ -164,8 +159,8 @@ public final class AdjunctProperty_principal extends BaseGeneratedEMFQuerySpecif
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
-      result.append("\"element\"=" + prettyPrintValue(fElement) + ", ");
-      result.append("\"value\"=" + prettyPrintValue(fValue));
+      result.append("\"Element\"=" + prettyPrintValue(fElement) + ", ");
+      result.append("\"Value\"=" + prettyPrintValue(fValue));
       return result.toString();
     }
     
@@ -214,12 +209,12 @@ public final class AdjunctProperty_principal extends BaseGeneratedEMFQuerySpecif
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
      * 
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static AdjunctProperty_principal.Match newMutableMatch(final Property pElement, final Element pValue) {
+    public static AdjunctProperty_principal.Match newMutableMatch(final Property pElement, final NamedElement pValue) {
       return new Mutable(pElement, pValue);
     }
     
@@ -227,17 +222,17 @@ public final class AdjunctProperty_principal extends BaseGeneratedEMFQuerySpecif
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public static AdjunctProperty_principal.Match newMatch(final Property pElement, final Element pValue) {
+    public static AdjunctProperty_principal.Match newMatch(final Property pElement, final NamedElement pValue) {
       return new Immutable(pElement, pValue);
     }
     
     private static final class Mutable extends AdjunctProperty_principal.Match {
-      Mutable(final Property pElement, final Element pValue) {
+      Mutable(final Property pElement, final NamedElement pValue) {
         super(pElement, pValue);
       }
       
@@ -248,7 +243,7 @@ public final class AdjunctProperty_principal extends BaseGeneratedEMFQuerySpecif
     }
     
     private static final class Immutable extends AdjunctProperty_principal.Match {
-      Immutable(final Property pElement, final Element pValue) {
+      Immutable(final Property pElement, final NamedElement pValue) {
         super(pElement, pValue);
       }
       
@@ -270,16 +265,11 @@ public final class AdjunctProperty_principal extends BaseGeneratedEMFQuerySpecif
    * 
    * <p>Original source:
    * <code><pre>
-   * Pattern that queries the 'principal' attribute of elements with the stereotype 'AdjunctProperty'.
-   *   
-   *   Parameters: 
-   *   	element: 'Property' object with the stereotype 'AdjunctProperty'.
-   *   	value : Element : A value of the attribute 'principal'.
-   *  
-   * pattern AdjunctProperty_principal(element : Property, value : Element){
-   * 	find AdjunctProperty(element, domainStereotypeInstance);
-   * 	find slotValue(domainStereotypeInstance, "principal", valuespec);
-   * 	ElementValue.element(valuespec, value);
+   * //Pattern that queries the 'principal' attribute of elements with the stereotype 'AdjunctProperty'.
+   * pattern AdjunctProperty_principal(Element : Property, Value: NamedElement) {
+   * 	find AdjunctProperty(Element, stereotype);
+   * 	find taggedValue(Element, stereotype, "principal", taggedValue);
+   * 	ElementTaggedValue.value(taggedValue, Value);
    * }
    * </pre></code>
    * 
@@ -335,12 +325,12 @@ public final class AdjunctProperty_principal extends BaseGeneratedEMFQuerySpecif
     
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<AdjunctProperty_principal.Match> getAllMatches(final Property pElement, final Element pValue) {
+    public Collection<AdjunctProperty_principal.Match> getAllMatches(final Property pElement, final NamedElement pValue) {
       return rawStreamAllMatches(new Object[]{pElement, pValue}).collect(Collectors.toSet());
     }
     
@@ -350,60 +340,60 @@ public final class AdjunctProperty_principal extends BaseGeneratedEMFQuerySpecif
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
      * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<AdjunctProperty_principal.Match> streamAllMatches(final Property pElement, final Element pValue) {
+    public Stream<AdjunctProperty_principal.Match> streamAllMatches(final Property pElement, final NamedElement pValue) {
       return rawStreamAllMatches(new Object[]{pElement, pValue});
     }
     
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<AdjunctProperty_principal.Match> getOneArbitraryMatch(final Property pElement, final Element pValue) {
+    public Optional<AdjunctProperty_principal.Match> getOneArbitraryMatch(final Property pElement, final NamedElement pValue) {
       return rawGetOneArbitraryMatch(new Object[]{pElement, pValue});
     }
     
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return true if the input is a valid (partial) match of the pattern.
      * 
      */
-    public boolean hasMatch(final Property pElement, final Element pValue) {
+    public boolean hasMatch(final Property pElement, final NamedElement pValue) {
       return rawHasMatch(new Object[]{pElement, pValue});
     }
     
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return the number of pattern matches found.
      * 
      */
-    public int countMatches(final Property pElement, final Element pValue) {
+    public int countMatches(final Property pElement, final NamedElement pValue) {
       return rawCountMatches(new Object[]{pElement, pValue});
     }
     
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @param processor the action that will process the selected match.
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final Property pElement, final Element pValue, final Consumer<? super AdjunctProperty_principal.Match> processor) {
+    public boolean forOneArbitraryMatch(final Property pElement, final NamedElement pValue, final Consumer<? super AdjunctProperty_principal.Match> processor) {
       return rawForOneArbitraryMatch(new Object[]{pElement, pValue}, processor);
     }
     
@@ -411,44 +401,44 @@ public final class AdjunctProperty_principal extends BaseGeneratedEMFQuerySpecif
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public AdjunctProperty_principal.Match newMatch(final Property pElement, final Element pValue) {
+    public AdjunctProperty_principal.Match newMatch(final Property pElement, final NamedElement pValue) {
       return AdjunctProperty_principal.Match.newMatch(pElement, pValue);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<Property> rawStreamAllValuesOfelement(final Object[] parameters) {
+    protected Stream<Property> rawStreamAllValuesOfElement(final Object[] parameters) {
       return rawStreamAllValues(POSITION_ELEMENT, parameters).map(Property.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Property> getAllValuesOfelement() {
-      return rawStreamAllValuesOfelement(emptyArray()).collect(Collectors.toSet());
+    public Set<Property> getAllValuesOfElement() {
+      return rawStreamAllValuesOfElement(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<Property> streamAllValuesOfelement() {
-      return rawStreamAllValuesOfelement(emptyArray());
+    public Stream<Property> streamAllValuesOfElement() {
+      return rawStreamAllValuesOfElement(emptyArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -457,12 +447,12 @@ public final class AdjunctProperty_principal extends BaseGeneratedEMFQuerySpecif
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Property> streamAllValuesOfelement(final AdjunctProperty_principal.Match partialMatch) {
-      return rawStreamAllValuesOfelement(partialMatch.toArray());
+    public Stream<Property> streamAllValuesOfElement(final AdjunctProperty_principal.Match partialMatch) {
+      return rawStreamAllValuesOfElement(partialMatch.toArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -471,57 +461,57 @@ public final class AdjunctProperty_principal extends BaseGeneratedEMFQuerySpecif
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Property> streamAllValuesOfelement(final Element pValue) {
-      return rawStreamAllValuesOfelement(new Object[]{null, pValue});
+    public Stream<Property> streamAllValuesOfElement(final NamedElement pValue) {
+      return rawStreamAllValuesOfElement(new Object[]{null, pValue});
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Property> getAllValuesOfelement(final AdjunctProperty_principal.Match partialMatch) {
-      return rawStreamAllValuesOfelement(partialMatch.toArray()).collect(Collectors.toSet());
+    public Set<Property> getAllValuesOfElement(final AdjunctProperty_principal.Match partialMatch) {
+      return rawStreamAllValuesOfElement(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Property> getAllValuesOfelement(final Element pValue) {
-      return rawStreamAllValuesOfelement(new Object[]{null, pValue}).collect(Collectors.toSet());
+    public Set<Property> getAllValuesOfElement(final NamedElement pValue) {
+      return rawStreamAllValuesOfElement(new Object[]{null, pValue}).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<Element> rawStreamAllValuesOfvalue(final Object[] parameters) {
-      return rawStreamAllValues(POSITION_VALUE, parameters).map(Element.class::cast);
+    protected Stream<NamedElement> rawStreamAllValuesOfValue(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_VALUE, parameters).map(NamedElement.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Element> getAllValuesOfvalue() {
-      return rawStreamAllValuesOfvalue(emptyArray()).collect(Collectors.toSet());
+    public Set<NamedElement> getAllValuesOfValue() {
+      return rawStreamAllValuesOfValue(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<Element> streamAllValuesOfvalue() {
-      return rawStreamAllValuesOfvalue(emptyArray());
+    public Stream<NamedElement> streamAllValuesOfValue() {
+      return rawStreamAllValuesOfValue(emptyArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -530,12 +520,12 @@ public final class AdjunctProperty_principal extends BaseGeneratedEMFQuerySpecif
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Element> streamAllValuesOfvalue(final AdjunctProperty_principal.Match partialMatch) {
-      return rawStreamAllValuesOfvalue(partialMatch.toArray());
+    public Stream<NamedElement> streamAllValuesOfValue(final AdjunctProperty_principal.Match partialMatch) {
+      return rawStreamAllValuesOfValue(partialMatch.toArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -544,32 +534,32 @@ public final class AdjunctProperty_principal extends BaseGeneratedEMFQuerySpecif
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Element> streamAllValuesOfvalue(final Property pElement) {
-      return rawStreamAllValuesOfvalue(new Object[]{pElement, null});
+    public Stream<NamedElement> streamAllValuesOfValue(final Property pElement) {
+      return rawStreamAllValuesOfValue(new Object[]{pElement, null});
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Element> getAllValuesOfvalue(final AdjunctProperty_principal.Match partialMatch) {
-      return rawStreamAllValuesOfvalue(partialMatch.toArray()).collect(Collectors.toSet());
+    public Set<NamedElement> getAllValuesOfValue(final AdjunctProperty_principal.Match partialMatch) {
+      return rawStreamAllValuesOfValue(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Element> getAllValuesOfvalue(final Property pElement) {
-      return rawStreamAllValuesOfvalue(new Object[]{pElement, null}).collect(Collectors.toSet());
+    public Set<NamedElement> getAllValuesOfValue(final Property pElement) {
+      return rawStreamAllValuesOfValue(new Object[]{pElement, null}).collect(Collectors.toSet());
     }
     
     @Override
     protected AdjunctProperty_principal.Match tupleToMatch(final Tuple t) {
       try {
-          return AdjunctProperty_principal.Match.newMatch((Property) t.get(POSITION_ELEMENT), (Element) t.get(POSITION_VALUE));
+          return AdjunctProperty_principal.Match.newMatch((Property) t.get(POSITION_ELEMENT), (NamedElement) t.get(POSITION_VALUE));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -579,7 +569,7 @@ public final class AdjunctProperty_principal extends BaseGeneratedEMFQuerySpecif
     @Override
     protected AdjunctProperty_principal.Match arrayToMatch(final Object[] match) {
       try {
-          return AdjunctProperty_principal.Match.newMatch((Property) match[POSITION_ELEMENT], (Element) match[POSITION_VALUE]);
+          return AdjunctProperty_principal.Match.newMatch((Property) match[POSITION_ELEMENT], (NamedElement) match[POSITION_VALUE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -589,7 +579,7 @@ public final class AdjunctProperty_principal extends BaseGeneratedEMFQuerySpecif
     @Override
     protected AdjunctProperty_principal.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return AdjunctProperty_principal.Match.newMutableMatch((Property) match[POSITION_ELEMENT], (Element) match[POSITION_VALUE]);
+          return AdjunctProperty_principal.Match.newMutableMatch((Property) match[POSITION_ELEMENT], (NamedElement) match[POSITION_VALUE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -640,7 +630,7 @@ public final class AdjunctProperty_principal extends BaseGeneratedEMFQuerySpecif
   
   @Override
   public AdjunctProperty_principal.Match newMatch(final Object... parameters) {
-    return AdjunctProperty_principal.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property) parameters[0], (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Element) parameters[1]);
+    return AdjunctProperty_principal.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property) parameters[0], (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.NamedElement) parameters[1]);
   }
   
   /**
@@ -672,11 +662,11 @@ public final class AdjunctProperty_principal extends BaseGeneratedEMFQuerySpecif
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final AdjunctProperty_principal.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_element = new PParameter("element", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")), PParameterDirection.INOUT);
+    private final PParameter parameter_Element = new PParameter("Element", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Property")), PParameterDirection.INOUT);
     
-    private final PParameter parameter_value = new PParameter("value", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Element", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Element")), PParameterDirection.INOUT);
+    private final PParameter parameter_Value = new PParameter("Value", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.NamedElement", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "NamedElement")), PParameterDirection.INOUT);
     
-    private final List<PParameter> parameters = Arrays.asList(parameter_element, parameter_value);
+    private final List<PParameter> parameters = Arrays.asList(parameter_Element, parameter_Value);
     
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
@@ -689,7 +679,7 @@ public final class AdjunctProperty_principal extends BaseGeneratedEMFQuerySpecif
     
     @Override
     public List<String> getParameterNames() {
-      return Arrays.asList("element","value");
+      return Arrays.asList("Element","Value");
     }
     
     @Override
@@ -703,28 +693,28 @@ public final class AdjunctProperty_principal extends BaseGeneratedEMFQuerySpecif
       Set<PBody> bodies = new LinkedHashSet<>();
       {
           PBody body = new PBody(this);
-          PVariable var_element = body.getOrCreateVariableByName("element");
-          PVariable var_value = body.getOrCreateVariableByName("value");
-          PVariable var_domainStereotypeInstance = body.getOrCreateVariableByName("domainStereotypeInstance");
-          PVariable var_valuespec = body.getOrCreateVariableByName("valuespec");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var_value), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Element")));
+          PVariable var_Element = body.getOrCreateVariableByName("Element");
+          PVariable var_Value = body.getOrCreateVariableByName("Value");
+          PVariable var_stereotype = body.getOrCreateVariableByName("stereotype");
+          PVariable var_taggedValue = body.getOrCreateVariableByName("taggedValue");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_Element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Property")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_Value), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "NamedElement")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-             new ExportedParameter(body, var_element, parameter_element),
-             new ExportedParameter(body, var_value, parameter_value)
+             new ExportedParameter(body, var_Element, parameter_Element),
+             new ExportedParameter(body, var_Value, parameter_Value)
           ));
-          // 	find AdjunctProperty(element, domainStereotypeInstance)
-          new PositivePatternCall(body, Tuples.flatTupleOf(var_element, var_domainStereotypeInstance), AdjunctProperty.instance().getInternalQueryRepresentation());
-          // 	find slotValue(domainStereotypeInstance, "principal", valuespec)
+          // 	find AdjunctProperty(Element, stereotype)
+          new PositivePatternCall(body, Tuples.flatTupleOf(var_Element, var_stereotype), AdjunctProperty.instance().getInternalQueryRepresentation());
+          // 	find taggedValue(Element, stereotype, "principal", taggedValue)
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
           new ConstantValue(body, var__virtual_0_, "principal");
-          new PositivePatternCall(body, Tuples.flatTupleOf(var_domainStereotypeInstance, var__virtual_0_, var_valuespec), SlotValue.instance().getInternalQueryRepresentation());
-          // 	ElementValue.element(valuespec, value)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_valuespec), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ElementValue")));
+          new PositivePatternCall(body, Tuples.flatTupleOf(var_Element, var_stereotype, var__virtual_0_, var_taggedValue), TaggedValue.instance().getInternalQueryRepresentation());
+          // 	ElementTaggedValue.value(taggedValue, Value)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_taggedValue), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ElementTaggedValue")));
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_valuespec, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ElementValue", "element")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Element")));
-          new Equality(body, var__virtual_1_, var_value);
+          new TypeConstraint(body, Tuples.flatTupleOf(var_taggedValue, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ElementTaggedValue", "value")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Element")));
+          new Equality(body, var__virtual_1_, var_Value);
           bodies.add(body);
       }
       return bodies;

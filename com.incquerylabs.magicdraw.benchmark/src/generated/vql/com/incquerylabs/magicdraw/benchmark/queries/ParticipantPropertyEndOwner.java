@@ -506,7 +506,7 @@ public final class ParticipantPropertyEndOwner extends BaseGeneratedEMFQuerySpec
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final ParticipantPropertyEndOwner.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_participantProperty = new PParameter("participantProperty", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")), PParameterDirection.INOUT);
+    private final PParameter parameter_participantProperty = new PParameter("participantProperty", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Property")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_participantProperty);
     
@@ -537,7 +537,7 @@ public final class ParticipantPropertyEndOwner extends BaseGeneratedEMFQuerySpec
           PBody body = new PBody(this);
           PVariable var_participantProperty = body.getOrCreateVariableByName("participantProperty");
           PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_participantProperty), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_participantProperty), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Property")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_participantProperty, parameter_participantProperty)
           ));

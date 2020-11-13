@@ -505,7 +505,7 @@ public final class ActivityStreamingNoNStreaming extends BaseGeneratedEMFQuerySp
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final ActivityStreamingNoNStreaming.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_activity = new PParameter("activity", "com.nomagic.uml2.ext.magicdraw.activities.mdfundamentalactivities.Activity", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Activity")), PParameterDirection.INOUT);
+    private final PParameter parameter_activity = new PParameter("activity", "com.nomagic.uml2.ext.magicdraw.activities.mdfundamentalactivities.Activity", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Activity")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_activity);
     
@@ -537,7 +537,7 @@ public final class ActivityStreamingNoNStreaming extends BaseGeneratedEMFQuerySp
           PVariable var_activity = body.getOrCreateVariableByName("activity");
           PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
           PVariable var___1_ = body.getOrCreateVariableByName("_<1>");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_activity), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Activity")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_activity), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Activity")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_activity, parameter_activity)
           ));

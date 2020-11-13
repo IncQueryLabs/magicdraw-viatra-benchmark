@@ -510,7 +510,7 @@ public final class SatisfySupplierNotRequirement extends BaseGeneratedEMFQuerySp
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final SatisfySupplierNotRequirement.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_satisfy = new PParameter("satisfy", "com.nomagic.uml2.ext.magicdraw.classes.mddependencies.Abstraction", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Abstraction")), PParameterDirection.INOUT);
+    private final PParameter parameter_satisfy = new PParameter("satisfy", "com.nomagic.uml2.ext.magicdraw.classes.mddependencies.Abstraction", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Abstraction")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_satisfy);
     
@@ -543,17 +543,17 @@ public final class SatisfySupplierNotRequirement extends BaseGeneratedEMFQuerySp
           PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
           PVariable var_supplier = body.getOrCreateVariableByName("supplier");
           PVariable var___1_ = body.getOrCreateVariableByName("_<1>");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_satisfy), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Abstraction")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_satisfy), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Abstraction")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_satisfy, parameter_satisfy)
           ));
           // 	find com.incquerylabs.magicdraw.benchmark.queries.library.Satisfy(satisfy, _)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_satisfy, var___0_), Satisfy.instance().getInternalQueryRepresentation());
           // 	Abstraction.supplier(satisfy, supplier)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_satisfy), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Abstraction")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_satisfy), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Abstraction")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_satisfy, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Dependency", "supplier")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "NamedElement")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_satisfy, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Dependency", "supplier")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "NamedElement")));
           new Equality(body, var__virtual_0_, var_supplier);
           // 	neg find com.incquerylabs.magicdraw.benchmark.queries.library.AbstractRequirement(supplier, _)
           new NegativePatternCall(body, Tuples.flatTupleOf(var_supplier, var___1_), AbstractRequirement.instance().getInternalQueryRepresentation());

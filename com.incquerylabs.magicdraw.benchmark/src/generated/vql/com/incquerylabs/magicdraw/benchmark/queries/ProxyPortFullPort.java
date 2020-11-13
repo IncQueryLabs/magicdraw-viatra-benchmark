@@ -505,7 +505,7 @@ public final class ProxyPortFullPort extends BaseGeneratedEMFQuerySpecification<
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final ProxyPortFullPort.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_port = new PParameter("port", "com.nomagic.uml2.ext.magicdraw.compositestructures.mdports.Port", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Port")), PParameterDirection.INOUT);
+    private final PParameter parameter_port = new PParameter("port", "com.nomagic.uml2.ext.magicdraw.compositestructures.mdports.Port", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Port")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_port);
     
@@ -537,7 +537,7 @@ public final class ProxyPortFullPort extends BaseGeneratedEMFQuerySpecification<
           PVariable var_port = body.getOrCreateVariableByName("port");
           PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
           PVariable var___1_ = body.getOrCreateVariableByName("_<1>");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_port), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Port")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_port), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Port")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_port, parameter_port)
           ));

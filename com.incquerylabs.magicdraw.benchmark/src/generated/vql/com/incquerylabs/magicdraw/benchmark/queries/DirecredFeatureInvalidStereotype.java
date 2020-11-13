@@ -509,12 +509,12 @@ public final class DirecredFeatureInvalidStereotype extends BaseGeneratedEMFQuer
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final DirecredFeatureInvalidStereotype.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_feature = new PParameter("feature", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Feature", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Feature")), PParameterDirection.INOUT);
+    private final PParameter parameter_feature = new PParameter("feature", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Feature", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Feature")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_feature);
     
     private class Embedded_1_BehavioralFeature extends BaseGeneratedEMFPQuery {
-      private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.BehavioralFeature", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "BehavioralFeature")), PParameterDirection.INOUT);
+      private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.BehavioralFeature", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "BehavioralFeature")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0);
       
@@ -540,7 +540,7 @@ public final class DirecredFeatureInvalidStereotype extends BaseGeneratedEMFQuer
            new ExportedParameter(body, var_p0, parameter_p0)
         ));
         //  BehavioralFeature(feature)
-        new TypeConstraint(body, Tuples.flatTupleOf(var_p0), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "BehavioralFeature")));
+        new TypeConstraint(body, Tuples.flatTupleOf(var_p0), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "BehavioralFeature")));
         return Collections.singleton(body);
       }
     }
@@ -572,7 +572,7 @@ public final class DirecredFeatureInvalidStereotype extends BaseGeneratedEMFQuer
           PBody body = new PBody(this);
           PVariable var_feature = body.getOrCreateVariableByName("feature");
           PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_feature), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Feature")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_feature), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Feature")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_feature, parameter_feature)
           ));

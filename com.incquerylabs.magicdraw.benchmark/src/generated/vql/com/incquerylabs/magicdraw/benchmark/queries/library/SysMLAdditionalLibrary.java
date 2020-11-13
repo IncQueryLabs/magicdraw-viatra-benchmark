@@ -4,6 +4,9 @@
 package com.incquerylabs.magicdraw.benchmark.queries.library;
 
 import com.incquerylabs.magicdraw.benchmark.queries.library.AbstractReferenceProperty;
+import com.incquerylabs.magicdraw.benchmark.queries.library.Alternatives;
+import com.incquerylabs.magicdraw.benchmark.queries.library.Alternatives_kind;
+import com.incquerylabs.magicdraw.benchmark.queries.library.Alternatives_source;
 import com.incquerylabs.magicdraw.benchmark.queries.library.Analysis;
 import com.incquerylabs.magicdraw.benchmark.queries.library.BlackBoxICDTable;
 import com.incquerylabs.magicdraw.benchmark.queries.library.BlackBoxICDTable_query;
@@ -16,10 +19,11 @@ import com.incquerylabs.magicdraw.benchmark.queries.library.ContextSpecificDefau
 import com.incquerylabs.magicdraw.benchmark.queries.library.ContextSpecificValuesHolder;
 import com.incquerylabs.magicdraw.benchmark.queries.library.ContextSpecificValuesHolder_instances;
 import com.incquerylabs.magicdraw.benchmark.queries.library.Electrical;
+import com.incquerylabs.magicdraw.benchmark.queries.library.ExternalModel;
+import com.incquerylabs.magicdraw.benchmark.queries.library.ExternalModel_url;
 import com.incquerylabs.magicdraw.benchmark.queries.library.Fmu;
 import com.incquerylabs.magicdraw.benchmark.queries.library.Fmu_FMIVersion;
 import com.incquerylabs.magicdraw.benchmark.queries.library.Fmu_GUID;
-import com.incquerylabs.magicdraw.benchmark.queries.library.Fmu_fileName;
 import com.incquerylabs.magicdraw.benchmark.queries.library.Fmu_modelIdentifier;
 import com.incquerylabs.magicdraw.benchmark.queries.library.Fmu_modelName;
 import com.incquerylabs.magicdraw.benchmark.queries.library.Logical;
@@ -53,18 +57,14 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * in order to achieve better performance than one-by-one on-demand matcher initialization.
  * 
  * <p> From package com.incquerylabs.magicdraw.benchmark.queries.library, the group contains the definition of the following patterns: <ul>
- * <li>Conceptual</li>
- * <li>Electrical</li>
- * <li>Logical</li>
- * <li>Mechanical</li>
- * <li>Optical</li>
- * <li>Software</li>
  * <li>AbstractReferenceProperty</li>
  * <li>Analysis</li>
  * <li>BlackBoxICDTable</li>
  * <li>BlackBoxICDTable_query</li>
  * <li>BlockProperty</li>
  * <li>ConstraintParameter</li>
+ * <li>ExternalModel</li>
+ * <li>ExternalModel_url</li>
  * <li>PartProperty</li>
  * <li>Pattern</li>
  * <li>ReferenceProperty</li>
@@ -72,6 +72,9 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * <li>ValueProperty</li>
  * <li>WhiteBoxICDTable</li>
  * <li>WhiteBoxICDTable_query</li>
+ * <li>alternatives</li>
+ * <li>alternatives_kind</li>
+ * <li>alternatives_source</li>
  * <li>contextSpecificDefaultValue</li>
  * <li>contextSpecificDefaultValue_path</li>
  * <li>contextSpecificValuesHolder</li>
@@ -79,9 +82,14 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedPatternGroup;
  * <li>fmu</li>
  * <li>fmu_FMIVersion</li>
  * <li>fmu_GUID</li>
- * <li>fmu_fileName</li>
  * <li>fmu_modelIdentifier</li>
  * <li>fmu_modelName</li>
+ * <li>Conceptual</li>
+ * <li>Electrical</li>
+ * <li>Logical</li>
+ * <li>Mechanical</li>
+ * <li>Optical</li>
+ * <li>Software</li>
  * <li>ConstraintProperty</li>
  * <li>QuantityKind</li>
  * <li>QuantityKind_definitionURI</li>
@@ -116,18 +124,14 @@ public final class SysMLAdditionalLibrary extends BaseGeneratedPatternGroup {
   private static SysMLAdditionalLibrary INSTANCE;
   
   private SysMLAdditionalLibrary() {
-    querySpecifications.add(Conceptual.instance());
-    querySpecifications.add(Electrical.instance());
-    querySpecifications.add(Logical.instance());
-    querySpecifications.add(Mechanical.instance());
-    querySpecifications.add(Optical.instance());
-    querySpecifications.add(Software.instance());
     querySpecifications.add(AbstractReferenceProperty.instance());
     querySpecifications.add(Analysis.instance());
     querySpecifications.add(BlackBoxICDTable.instance());
     querySpecifications.add(BlackBoxICDTable_query.instance());
     querySpecifications.add(BlockProperty.instance());
     querySpecifications.add(ConstraintParameter.instance());
+    querySpecifications.add(ExternalModel.instance());
+    querySpecifications.add(ExternalModel_url.instance());
     querySpecifications.add(PartProperty.instance());
     querySpecifications.add(Pattern.instance());
     querySpecifications.add(ReferenceProperty.instance());
@@ -135,6 +139,9 @@ public final class SysMLAdditionalLibrary extends BaseGeneratedPatternGroup {
     querySpecifications.add(ValueProperty.instance());
     querySpecifications.add(WhiteBoxICDTable.instance());
     querySpecifications.add(WhiteBoxICDTable_query.instance());
+    querySpecifications.add(Alternatives.instance());
+    querySpecifications.add(Alternatives_kind.instance());
+    querySpecifications.add(Alternatives_source.instance());
     querySpecifications.add(ContextSpecificDefaultValue.instance());
     querySpecifications.add(ContextSpecificDefaultValue_path.instance());
     querySpecifications.add(ContextSpecificValuesHolder.instance());
@@ -142,9 +149,14 @@ public final class SysMLAdditionalLibrary extends BaseGeneratedPatternGroup {
     querySpecifications.add(Fmu.instance());
     querySpecifications.add(Fmu_FMIVersion.instance());
     querySpecifications.add(Fmu_GUID.instance());
-    querySpecifications.add(Fmu_fileName.instance());
     querySpecifications.add(Fmu_modelIdentifier.instance());
     querySpecifications.add(Fmu_modelName.instance());
+    querySpecifications.add(Conceptual.instance());
+    querySpecifications.add(Electrical.instance());
+    querySpecifications.add(Logical.instance());
+    querySpecifications.add(Mechanical.instance());
+    querySpecifications.add(Optical.instance());
+    querySpecifications.add(Software.instance());
     querySpecifications.add(ConstraintProperty.instance());
     querySpecifications.add(QuantityKind.instance());
     querySpecifications.add(QuantityKind_definitionURI.instance());
@@ -155,54 +167,6 @@ public final class SysMLAdditionalLibrary extends BaseGeneratedPatternGroup {
     querySpecifications.add(Unit_description.instance());
     querySpecifications.add(Unit_quantityKind.instance());
     querySpecifications.add(Unit_symbol.instance());
-  }
-  
-  public Conceptual getConceptual() {
-    return Conceptual.instance();
-  }
-  
-  public Conceptual.Matcher getConceptual(final ViatraQueryEngine engine) {
-    return Conceptual.Matcher.on(engine);
-  }
-  
-  public Electrical getElectrical() {
-    return Electrical.instance();
-  }
-  
-  public Electrical.Matcher getElectrical(final ViatraQueryEngine engine) {
-    return Electrical.Matcher.on(engine);
-  }
-  
-  public Logical getLogical() {
-    return Logical.instance();
-  }
-  
-  public Logical.Matcher getLogical(final ViatraQueryEngine engine) {
-    return Logical.Matcher.on(engine);
-  }
-  
-  public Mechanical getMechanical() {
-    return Mechanical.instance();
-  }
-  
-  public Mechanical.Matcher getMechanical(final ViatraQueryEngine engine) {
-    return Mechanical.Matcher.on(engine);
-  }
-  
-  public Optical getOptical() {
-    return Optical.instance();
-  }
-  
-  public Optical.Matcher getOptical(final ViatraQueryEngine engine) {
-    return Optical.Matcher.on(engine);
-  }
-  
-  public Software getSoftware() {
-    return Software.instance();
-  }
-  
-  public Software.Matcher getSoftware(final ViatraQueryEngine engine) {
-    return Software.Matcher.on(engine);
   }
   
   public AbstractReferenceProperty getAbstractReferenceProperty() {
@@ -251,6 +215,22 @@ public final class SysMLAdditionalLibrary extends BaseGeneratedPatternGroup {
   
   public ConstraintParameter.Matcher getConstraintParameter(final ViatraQueryEngine engine) {
     return ConstraintParameter.Matcher.on(engine);
+  }
+  
+  public ExternalModel getExternalModel() {
+    return ExternalModel.instance();
+  }
+  
+  public ExternalModel.Matcher getExternalModel(final ViatraQueryEngine engine) {
+    return ExternalModel.Matcher.on(engine);
+  }
+  
+  public ExternalModel_url getExternalModel_url() {
+    return ExternalModel_url.instance();
+  }
+  
+  public ExternalModel_url.Matcher getExternalModel_url(final ViatraQueryEngine engine) {
+    return ExternalModel_url.Matcher.on(engine);
   }
   
   public PartProperty getPartProperty() {
@@ -309,6 +289,30 @@ public final class SysMLAdditionalLibrary extends BaseGeneratedPatternGroup {
     return WhiteBoxICDTable_query.Matcher.on(engine);
   }
   
+  public Alternatives getAlternatives() {
+    return Alternatives.instance();
+  }
+  
+  public Alternatives.Matcher getAlternatives(final ViatraQueryEngine engine) {
+    return Alternatives.Matcher.on(engine);
+  }
+  
+  public Alternatives_kind getAlternatives_kind() {
+    return Alternatives_kind.instance();
+  }
+  
+  public Alternatives_kind.Matcher getAlternatives_kind(final ViatraQueryEngine engine) {
+    return Alternatives_kind.Matcher.on(engine);
+  }
+  
+  public Alternatives_source getAlternatives_source() {
+    return Alternatives_source.instance();
+  }
+  
+  public Alternatives_source.Matcher getAlternatives_source(final ViatraQueryEngine engine) {
+    return Alternatives_source.Matcher.on(engine);
+  }
+  
   public ContextSpecificDefaultValue getContextSpecificDefaultValue() {
     return ContextSpecificDefaultValue.instance();
   }
@@ -365,14 +369,6 @@ public final class SysMLAdditionalLibrary extends BaseGeneratedPatternGroup {
     return Fmu_GUID.Matcher.on(engine);
   }
   
-  public Fmu_fileName getFmu_fileName() {
-    return Fmu_fileName.instance();
-  }
-  
-  public Fmu_fileName.Matcher getFmu_fileName(final ViatraQueryEngine engine) {
-    return Fmu_fileName.Matcher.on(engine);
-  }
-  
   public Fmu_modelIdentifier getFmu_modelIdentifier() {
     return Fmu_modelIdentifier.instance();
   }
@@ -387,6 +383,54 @@ public final class SysMLAdditionalLibrary extends BaseGeneratedPatternGroup {
   
   public Fmu_modelName.Matcher getFmu_modelName(final ViatraQueryEngine engine) {
     return Fmu_modelName.Matcher.on(engine);
+  }
+  
+  public Conceptual getConceptual() {
+    return Conceptual.instance();
+  }
+  
+  public Conceptual.Matcher getConceptual(final ViatraQueryEngine engine) {
+    return Conceptual.Matcher.on(engine);
+  }
+  
+  public Electrical getElectrical() {
+    return Electrical.instance();
+  }
+  
+  public Electrical.Matcher getElectrical(final ViatraQueryEngine engine) {
+    return Electrical.Matcher.on(engine);
+  }
+  
+  public Logical getLogical() {
+    return Logical.instance();
+  }
+  
+  public Logical.Matcher getLogical(final ViatraQueryEngine engine) {
+    return Logical.Matcher.on(engine);
+  }
+  
+  public Mechanical getMechanical() {
+    return Mechanical.instance();
+  }
+  
+  public Mechanical.Matcher getMechanical(final ViatraQueryEngine engine) {
+    return Mechanical.Matcher.on(engine);
+  }
+  
+  public Optical getOptical() {
+    return Optical.instance();
+  }
+  
+  public Optical.Matcher getOptical(final ViatraQueryEngine engine) {
+    return Optical.Matcher.on(engine);
+  }
+  
+  public Software getSoftware() {
+    return Software.instance();
+  }
+  
+  public Software.Matcher getSoftware(final ViatraQueryEngine engine) {
+    return Software.Matcher.on(engine);
   }
   
   public ConstraintProperty getConstraintProperty() {

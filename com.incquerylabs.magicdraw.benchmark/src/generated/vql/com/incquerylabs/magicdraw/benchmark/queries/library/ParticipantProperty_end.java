@@ -4,7 +4,7 @@
 package com.incquerylabs.magicdraw.benchmark.queries.library;
 
 import com.incquerylabs.magicdraw.benchmark.queries.library.ParticipantProperty;
-import com.incquerylabs.magicdraw.benchmark.queries.library.SlotValue;
+import com.incquerylabs.magicdraw.benchmark.queries.library.TaggedValue;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property;
 import java.util.Arrays;
 import java.util.Collection;
@@ -47,16 +47,11 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         Pattern that queries the 'end' attribute of elements with the stereotype 'ParticipantProperty'.
- *           
- *           Parameters: 
- *           	element: 'Property' object with the stereotype 'ParticipantProperty'.
- *           	value : Property : A value of the attribute 'end'.
- *          
- *         pattern ParticipantProperty_end(element : Property, value : Property){
- *         	find ParticipantProperty(element, domainStereotypeInstance);
- *         	find slotValue(domainStereotypeInstance, "end", valuespec);
- *         	ElementValue.element(valuespec, value);
+ *         //Pattern that queries the 'end' attribute of elements with the stereotype 'ParticipantProperty'.
+ *         pattern ParticipantProperty_end(Element : Property, Value: Property) {
+ *         	find ParticipantProperty(Element, stereotype);
+ *         	find taggedValue(Element, stereotype, "end", taggedValue);
+ *         	ElementTaggedValue.value(taggedValue, Value);
  *         }
  * </pre></code>
  * 
@@ -83,7 +78,7 @@ public final class ParticipantProperty_end extends BaseGeneratedEMFQuerySpecific
     
     private Property fValue;
     
-    private static List<String> parameterNames = makeImmutableList("element", "value");
+    private static List<String> parameterNames = makeImmutableList("Element", "Value");
     
     private Match(final Property pElement, final Property pValue) {
       this.fElement = pElement;
@@ -93,8 +88,8 @@ public final class ParticipantProperty_end extends BaseGeneratedEMFQuerySpecific
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
-          case "element": return this.fElement;
-          case "value": return this.fValue;
+          case "Element": return this.fElement;
+          case "Value": return this.fValue;
           default: return null;
       }
     }
@@ -119,11 +114,11 @@ public final class ParticipantProperty_end extends BaseGeneratedEMFQuerySpecific
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      if ("element".equals(parameterName) ) {
+      if ("Element".equals(parameterName) ) {
           this.fElement = (Property) newValue;
           return true;
       }
-      if ("value".equals(parameterName) ) {
+      if ("Value".equals(parameterName) ) {
           this.fValue = (Property) newValue;
           return true;
       }
@@ -163,8 +158,8 @@ public final class ParticipantProperty_end extends BaseGeneratedEMFQuerySpecific
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
-      result.append("\"element\"=" + prettyPrintValue(fElement) + ", ");
-      result.append("\"value\"=" + prettyPrintValue(fValue));
+      result.append("\"Element\"=" + prettyPrintValue(fElement) + ", ");
+      result.append("\"Value\"=" + prettyPrintValue(fValue));
       return result.toString();
     }
     
@@ -213,8 +208,8 @@ public final class ParticipantProperty_end extends BaseGeneratedEMFQuerySpecific
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
      * 
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return the new, mutable (partial) match object.
      * 
      */
@@ -226,8 +221,8 @@ public final class ParticipantProperty_end extends BaseGeneratedEMFQuerySpecific
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return the (partial) match object.
      * 
      */
@@ -269,16 +264,11 @@ public final class ParticipantProperty_end extends BaseGeneratedEMFQuerySpecific
    * 
    * <p>Original source:
    * <code><pre>
-   * Pattern that queries the 'end' attribute of elements with the stereotype 'ParticipantProperty'.
-   *   
-   *   Parameters: 
-   *   	element: 'Property' object with the stereotype 'ParticipantProperty'.
-   *   	value : Property : A value of the attribute 'end'.
-   *  
-   * pattern ParticipantProperty_end(element : Property, value : Property){
-   * 	find ParticipantProperty(element, domainStereotypeInstance);
-   * 	find slotValue(domainStereotypeInstance, "end", valuespec);
-   * 	ElementValue.element(valuespec, value);
+   * //Pattern that queries the 'end' attribute of elements with the stereotype 'ParticipantProperty'.
+   * pattern ParticipantProperty_end(Element : Property, Value: Property) {
+   * 	find ParticipantProperty(Element, stereotype);
+   * 	find taggedValue(Element, stereotype, "end", taggedValue);
+   * 	ElementTaggedValue.value(taggedValue, Value);
    * }
    * </pre></code>
    * 
@@ -334,8 +324,8 @@ public final class ParticipantProperty_end extends BaseGeneratedEMFQuerySpecific
     
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return matches represented as a Match object.
      * 
      */
@@ -349,8 +339,8 @@ public final class ParticipantProperty_end extends BaseGeneratedEMFQuerySpecific
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
      * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return a stream of matches represented as a Match object.
      * 
      */
@@ -361,8 +351,8 @@ public final class ParticipantProperty_end extends BaseGeneratedEMFQuerySpecific
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
@@ -373,8 +363,8 @@ public final class ParticipantProperty_end extends BaseGeneratedEMFQuerySpecific
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return true if the input is a valid (partial) match of the pattern.
      * 
      */
@@ -384,8 +374,8 @@ public final class ParticipantProperty_end extends BaseGeneratedEMFQuerySpecific
     
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return the number of pattern matches found.
      * 
      */
@@ -396,8 +386,8 @@ public final class ParticipantProperty_end extends BaseGeneratedEMFQuerySpecific
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @param processor the action that will process the selected match.
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
@@ -410,8 +400,8 @@ public final class ParticipantProperty_end extends BaseGeneratedEMFQuerySpecific
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return the (partial) match object.
      * 
      */
@@ -420,34 +410,34 @@ public final class ParticipantProperty_end extends BaseGeneratedEMFQuerySpecific
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<Property> rawStreamAllValuesOfelement(final Object[] parameters) {
+    protected Stream<Property> rawStreamAllValuesOfElement(final Object[] parameters) {
       return rawStreamAllValues(POSITION_ELEMENT, parameters).map(Property.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Property> getAllValuesOfelement() {
-      return rawStreamAllValuesOfelement(emptyArray()).collect(Collectors.toSet());
+    public Set<Property> getAllValuesOfElement() {
+      return rawStreamAllValuesOfElement(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<Property> streamAllValuesOfelement() {
-      return rawStreamAllValuesOfelement(emptyArray());
+    public Stream<Property> streamAllValuesOfElement() {
+      return rawStreamAllValuesOfElement(emptyArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -456,12 +446,12 @@ public final class ParticipantProperty_end extends BaseGeneratedEMFQuerySpecific
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Property> streamAllValuesOfelement(final ParticipantProperty_end.Match partialMatch) {
-      return rawStreamAllValuesOfelement(partialMatch.toArray());
+    public Stream<Property> streamAllValuesOfElement(final ParticipantProperty_end.Match partialMatch) {
+      return rawStreamAllValuesOfElement(partialMatch.toArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -470,57 +460,57 @@ public final class ParticipantProperty_end extends BaseGeneratedEMFQuerySpecific
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Property> streamAllValuesOfelement(final Property pValue) {
-      return rawStreamAllValuesOfelement(new Object[]{null, pValue});
+    public Stream<Property> streamAllValuesOfElement(final Property pValue) {
+      return rawStreamAllValuesOfElement(new Object[]{null, pValue});
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Property> getAllValuesOfelement(final ParticipantProperty_end.Match partialMatch) {
-      return rawStreamAllValuesOfelement(partialMatch.toArray()).collect(Collectors.toSet());
+    public Set<Property> getAllValuesOfElement(final ParticipantProperty_end.Match partialMatch) {
+      return rawStreamAllValuesOfElement(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Property> getAllValuesOfelement(final Property pValue) {
-      return rawStreamAllValuesOfelement(new Object[]{null, pValue}).collect(Collectors.toSet());
+    public Set<Property> getAllValuesOfElement(final Property pValue) {
+      return rawStreamAllValuesOfElement(new Object[]{null, pValue}).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<Property> rawStreamAllValuesOfvalue(final Object[] parameters) {
+    protected Stream<Property> rawStreamAllValuesOfValue(final Object[] parameters) {
       return rawStreamAllValues(POSITION_VALUE, parameters).map(Property.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Property> getAllValuesOfvalue() {
-      return rawStreamAllValuesOfvalue(emptyArray()).collect(Collectors.toSet());
+    public Set<Property> getAllValuesOfValue() {
+      return rawStreamAllValuesOfValue(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<Property> streamAllValuesOfvalue() {
-      return rawStreamAllValuesOfvalue(emptyArray());
+    public Stream<Property> streamAllValuesOfValue() {
+      return rawStreamAllValuesOfValue(emptyArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -529,12 +519,12 @@ public final class ParticipantProperty_end extends BaseGeneratedEMFQuerySpecific
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Property> streamAllValuesOfvalue(final ParticipantProperty_end.Match partialMatch) {
-      return rawStreamAllValuesOfvalue(partialMatch.toArray());
+    public Stream<Property> streamAllValuesOfValue(final ParticipantProperty_end.Match partialMatch) {
+      return rawStreamAllValuesOfValue(partialMatch.toArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -543,26 +533,26 @@ public final class ParticipantProperty_end extends BaseGeneratedEMFQuerySpecific
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Property> streamAllValuesOfvalue(final Property pElement) {
-      return rawStreamAllValuesOfvalue(new Object[]{pElement, null});
+    public Stream<Property> streamAllValuesOfValue(final Property pElement) {
+      return rawStreamAllValuesOfValue(new Object[]{pElement, null});
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Property> getAllValuesOfvalue(final ParticipantProperty_end.Match partialMatch) {
-      return rawStreamAllValuesOfvalue(partialMatch.toArray()).collect(Collectors.toSet());
+    public Set<Property> getAllValuesOfValue(final ParticipantProperty_end.Match partialMatch) {
+      return rawStreamAllValuesOfValue(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Property> getAllValuesOfvalue(final Property pElement) {
-      return rawStreamAllValuesOfvalue(new Object[]{pElement, null}).collect(Collectors.toSet());
+    public Set<Property> getAllValuesOfValue(final Property pElement) {
+      return rawStreamAllValuesOfValue(new Object[]{pElement, null}).collect(Collectors.toSet());
     }
     
     @Override
@@ -671,11 +661,11 @@ public final class ParticipantProperty_end extends BaseGeneratedEMFQuerySpecific
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final ParticipantProperty_end.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_element = new PParameter("element", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")), PParameterDirection.INOUT);
+    private final PParameter parameter_Element = new PParameter("Element", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Property")), PParameterDirection.INOUT);
     
-    private final PParameter parameter_value = new PParameter("value", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")), PParameterDirection.INOUT);
+    private final PParameter parameter_Value = new PParameter("Value", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Property", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Property")), PParameterDirection.INOUT);
     
-    private final List<PParameter> parameters = Arrays.asList(parameter_element, parameter_value);
+    private final List<PParameter> parameters = Arrays.asList(parameter_Element, parameter_Value);
     
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
@@ -688,7 +678,7 @@ public final class ParticipantProperty_end extends BaseGeneratedEMFQuerySpecific
     
     @Override
     public List<String> getParameterNames() {
-      return Arrays.asList("element","value");
+      return Arrays.asList("Element","Value");
     }
     
     @Override
@@ -702,28 +692,28 @@ public final class ParticipantProperty_end extends BaseGeneratedEMFQuerySpecific
       Set<PBody> bodies = new LinkedHashSet<>();
       {
           PBody body = new PBody(this);
-          PVariable var_element = body.getOrCreateVariableByName("element");
-          PVariable var_value = body.getOrCreateVariableByName("value");
-          PVariable var_domainStereotypeInstance = body.getOrCreateVariableByName("domainStereotypeInstance");
-          PVariable var_valuespec = body.getOrCreateVariableByName("valuespec");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var_value), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")));
+          PVariable var_Element = body.getOrCreateVariableByName("Element");
+          PVariable var_Value = body.getOrCreateVariableByName("Value");
+          PVariable var_stereotype = body.getOrCreateVariableByName("stereotype");
+          PVariable var_taggedValue = body.getOrCreateVariableByName("taggedValue");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_Element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Property")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_Value), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Property")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-             new ExportedParameter(body, var_element, parameter_element),
-             new ExportedParameter(body, var_value, parameter_value)
+             new ExportedParameter(body, var_Element, parameter_Element),
+             new ExportedParameter(body, var_Value, parameter_Value)
           ));
-          // 	find ParticipantProperty(element, domainStereotypeInstance)
-          new PositivePatternCall(body, Tuples.flatTupleOf(var_element, var_domainStereotypeInstance), ParticipantProperty.instance().getInternalQueryRepresentation());
-          // 	find slotValue(domainStereotypeInstance, "end", valuespec)
+          // 	find ParticipantProperty(Element, stereotype)
+          new PositivePatternCall(body, Tuples.flatTupleOf(var_Element, var_stereotype), ParticipantProperty.instance().getInternalQueryRepresentation());
+          // 	find taggedValue(Element, stereotype, "end", taggedValue)
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
           new ConstantValue(body, var__virtual_0_, "end");
-          new PositivePatternCall(body, Tuples.flatTupleOf(var_domainStereotypeInstance, var__virtual_0_, var_valuespec), SlotValue.instance().getInternalQueryRepresentation());
-          // 	ElementValue.element(valuespec, value)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_valuespec), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ElementValue")));
+          new PositivePatternCall(body, Tuples.flatTupleOf(var_Element, var_stereotype, var__virtual_0_, var_taggedValue), TaggedValue.instance().getInternalQueryRepresentation());
+          // 	ElementTaggedValue.value(taggedValue, Value)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_taggedValue), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ElementTaggedValue")));
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_valuespec, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ElementValue", "element")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Element")));
-          new Equality(body, var__virtual_1_, var_value);
+          new TypeConstraint(body, Tuples.flatTupleOf(var_taggedValue, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ElementTaggedValue", "value")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Element")));
+          new Equality(body, var__virtual_1_, var_Value);
           bodies.add(body);
       }
       return bodies;

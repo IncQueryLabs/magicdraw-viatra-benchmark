@@ -4,9 +4,8 @@
 package com.incquerylabs.magicdraw.benchmark.queries.library;
 
 import com.incquerylabs.magicdraw.benchmark.queries.library.ElementGroup;
-import com.incquerylabs.magicdraw.benchmark.queries.library.SlotValue;
+import com.incquerylabs.magicdraw.benchmark.queries.library.TaggedValue;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Comment;
-import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.LiteralInteger;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedHashSet;
@@ -19,6 +18,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.apache.log4j.Logger;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.viatra.query.runtime.api.IPatternMatch;
 import org.eclipse.viatra.query.runtime.api.IQuerySpecification;
 import org.eclipse.viatra.query.runtime.api.ViatraQueryEngine;
@@ -27,10 +27,15 @@ import org.eclipse.viatra.query.runtime.api.impl.BaseGeneratedEMFQuerySpecificat
 import org.eclipse.viatra.query.runtime.api.impl.BaseMatcher;
 import org.eclipse.viatra.query.runtime.api.impl.BasePatternMatch;
 import org.eclipse.viatra.query.runtime.emf.types.EClassTransitiveInstancesKey;
+import org.eclipse.viatra.query.runtime.emf.types.EDataTypeInSlotsKey;
+import org.eclipse.viatra.query.runtime.emf.types.EStructuralFeatureInstancesKey;
 import org.eclipse.viatra.query.runtime.matchers.backend.QueryEvaluationHint;
+import org.eclipse.viatra.query.runtime.matchers.context.common.JavaTransitiveInstancesKey;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PBody;
 import org.eclipse.viatra.query.runtime.matchers.psystem.PVariable;
+import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.Equality;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.ExportedParameter;
+import org.eclipse.viatra.query.runtime.matchers.psystem.basicdeferred.TypeFilterConstraint;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.ConstantValue;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.PositivePatternCall;
 import org.eclipse.viatra.query.runtime.matchers.psystem.basicenumerables.TypeConstraint;
@@ -46,15 +51,11 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         Pattern that queries the 'size' attribute of elements with the stereotype 'ElementGroup'.
- *           
- *           Parameters: 
- *           	element: 'Comment' object with the stereotype 'ElementGroup'.
- *           	valuespec : LiteralInteger : A value of the attribute 'size'.
- *          
- *         pattern ElementGroup_size(element : Comment, valuespec : LiteralInteger){
- *         	find ElementGroup(element, domainStereotypeInstance);
- *         	find slotValue(domainStereotypeInstance, "size", valuespec);
+ *         //Pattern that queries the 'size' attribute of elements with the stereotype 'ElementGroup'.
+ *         pattern ElementGroup_size(Element : Comment, Value: java Integer) {
+ *         	find ElementGroup(Element, stereotype);
+ *         	find taggedValue(Element, stereotype, "size", taggedValue);
+ *         	IntegerTaggedValue.value(taggedValue, Value);
  *         }
  * </pre></code>
  * 
@@ -79,20 +80,20 @@ public final class ElementGroup_size extends BaseGeneratedEMFQuerySpecification<
   public static abstract class Match extends BasePatternMatch {
     private Comment fElement;
     
-    private LiteralInteger fValuespec;
+    private Integer fValue;
     
-    private static List<String> parameterNames = makeImmutableList("element", "valuespec");
+    private static List<String> parameterNames = makeImmutableList("Element", "Value");
     
-    private Match(final Comment pElement, final LiteralInteger pValuespec) {
+    private Match(final Comment pElement, final Integer pValue) {
       this.fElement = pElement;
-      this.fValuespec = pValuespec;
+      this.fValue = pValue;
     }
     
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
-          case "element": return this.fElement;
-          case "valuespec": return this.fValuespec;
+          case "Element": return this.fElement;
+          case "Value": return this.fValue;
           default: return null;
       }
     }
@@ -101,7 +102,7 @@ public final class ElementGroup_size extends BaseGeneratedEMFQuerySpecification<
     public Object get(final int index) {
       switch(index) {
           case 0: return this.fElement;
-          case 1: return this.fValuespec;
+          case 1: return this.fValue;
           default: return null;
       }
     }
@@ -110,19 +111,19 @@ public final class ElementGroup_size extends BaseGeneratedEMFQuerySpecification<
       return this.fElement;
     }
     
-    public LiteralInteger getValuespec() {
-      return this.fValuespec;
+    public Integer getValue() {
+      return this.fValue;
     }
     
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      if ("element".equals(parameterName) ) {
+      if ("Element".equals(parameterName) ) {
           this.fElement = (Comment) newValue;
           return true;
       }
-      if ("valuespec".equals(parameterName) ) {
-          this.fValuespec = (LiteralInteger) newValue;
+      if ("Value".equals(parameterName) ) {
+          this.fValue = (Integer) newValue;
           return true;
       }
       return false;
@@ -133,9 +134,9 @@ public final class ElementGroup_size extends BaseGeneratedEMFQuerySpecification<
       this.fElement = pElement;
     }
     
-    public void setValuespec(final LiteralInteger pValuespec) {
+    public void setValue(final Integer pValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      this.fValuespec = pValuespec;
+      this.fValue = pValue;
     }
     
     @Override
@@ -150,25 +151,25 @@ public final class ElementGroup_size extends BaseGeneratedEMFQuerySpecification<
     
     @Override
     public Object[] toArray() {
-      return new Object[]{fElement, fValuespec};
+      return new Object[]{fElement, fValue};
     }
     
     @Override
     public ElementGroup_size.Match toImmutable() {
-      return isMutable() ? newMatch(fElement, fValuespec) : this;
+      return isMutable() ? newMatch(fElement, fValue) : this;
     }
     
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
-      result.append("\"element\"=" + prettyPrintValue(fElement) + ", ");
-      result.append("\"valuespec\"=" + prettyPrintValue(fValuespec));
+      result.append("\"Element\"=" + prettyPrintValue(fElement) + ", ");
+      result.append("\"Value\"=" + prettyPrintValue(fValue));
       return result.toString();
     }
     
     @Override
     public int hashCode() {
-      return Objects.hash(fElement, fValuespec);
+      return Objects.hash(fElement, fValue);
     }
     
     @Override
@@ -180,7 +181,7 @@ public final class ElementGroup_size extends BaseGeneratedEMFQuerySpecification<
       }
       if ((obj instanceof ElementGroup_size.Match)) {
           ElementGroup_size.Match other = (ElementGroup_size.Match) obj;
-          return Objects.equals(fElement, other.fElement) && Objects.equals(fValuespec, other.fValuespec);
+          return Objects.equals(fElement, other.fElement) && Objects.equals(fValue, other.fValue);
       } else {
           // this should be infrequent
           if (!(obj instanceof IPatternMatch)) {
@@ -211,31 +212,31 @@ public final class ElementGroup_size extends BaseGeneratedEMFQuerySpecification<
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
      * 
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return the new, mutable (partial) match object.
      * 
      */
-    public static ElementGroup_size.Match newMutableMatch(final Comment pElement, final LiteralInteger pValuespec) {
-      return new Mutable(pElement, pValuespec);
+    public static ElementGroup_size.Match newMutableMatch(final Comment pElement, final Integer pValue) {
+      return new Mutable(pElement, pValue);
     }
     
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public static ElementGroup_size.Match newMatch(final Comment pElement, final LiteralInteger pValuespec) {
-      return new Immutable(pElement, pValuespec);
+    public static ElementGroup_size.Match newMatch(final Comment pElement, final Integer pValue) {
+      return new Immutable(pElement, pValue);
     }
     
     private static final class Mutable extends ElementGroup_size.Match {
-      Mutable(final Comment pElement, final LiteralInteger pValuespec) {
-        super(pElement, pValuespec);
+      Mutable(final Comment pElement, final Integer pValue) {
+        super(pElement, pValue);
       }
       
       @Override
@@ -245,8 +246,8 @@ public final class ElementGroup_size extends BaseGeneratedEMFQuerySpecification<
     }
     
     private static final class Immutable extends ElementGroup_size.Match {
-      Immutable(final Comment pElement, final LiteralInteger pValuespec) {
-        super(pElement, pValuespec);
+      Immutable(final Comment pElement, final Integer pValue) {
+        super(pElement, pValue);
       }
       
       @Override
@@ -267,15 +268,11 @@ public final class ElementGroup_size extends BaseGeneratedEMFQuerySpecification<
    * 
    * <p>Original source:
    * <code><pre>
-   * Pattern that queries the 'size' attribute of elements with the stereotype 'ElementGroup'.
-   *   
-   *   Parameters: 
-   *   	element: 'Comment' object with the stereotype 'ElementGroup'.
-   *   	valuespec : LiteralInteger : A value of the attribute 'size'.
-   *  
-   * pattern ElementGroup_size(element : Comment, valuespec : LiteralInteger){
-   * 	find ElementGroup(element, domainStereotypeInstance);
-   * 	find slotValue(domainStereotypeInstance, "size", valuespec);
+   * //Pattern that queries the 'size' attribute of elements with the stereotype 'ElementGroup'.
+   * pattern ElementGroup_size(Element : Comment, Value: java Integer) {
+   * 	find ElementGroup(Element, stereotype);
+   * 	find taggedValue(Element, stereotype, "size", taggedValue);
+   * 	IntegerTaggedValue.value(taggedValue, Value);
    * }
    * </pre></code>
    * 
@@ -313,7 +310,7 @@ public final class ElementGroup_size extends BaseGeneratedEMFQuerySpecification<
     
     private static final int POSITION_ELEMENT = 0;
     
-    private static final int POSITION_VALUESPEC = 1;
+    private static final int POSITION_VALUE = 1;
     
     private static final Logger LOGGER = ViatraQueryLoggingUtil.getLogger(ElementGroup_size.Matcher.class);
     
@@ -331,13 +328,13 @@ public final class ElementGroup_size extends BaseGeneratedEMFQuerySpecification<
     
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return matches represented as a Match object.
      * 
      */
-    public Collection<ElementGroup_size.Match> getAllMatches(final Comment pElement, final LiteralInteger pValuespec) {
-      return rawStreamAllMatches(new Object[]{pElement, pValuespec}).collect(Collectors.toSet());
+    public Collection<ElementGroup_size.Match> getAllMatches(final Comment pElement, final Integer pValue) {
+      return rawStreamAllMatches(new Object[]{pElement, pValue}).collect(Collectors.toSet());
     }
     
     /**
@@ -346,105 +343,105 @@ public final class ElementGroup_size extends BaseGeneratedEMFQuerySpecification<
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
      * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return a stream of matches represented as a Match object.
      * 
      */
-    public Stream<ElementGroup_size.Match> streamAllMatches(final Comment pElement, final LiteralInteger pValuespec) {
-      return rawStreamAllMatches(new Object[]{pElement, pValuespec});
+    public Stream<ElementGroup_size.Match> streamAllMatches(final Comment pElement, final Integer pValue) {
+      return rawStreamAllMatches(new Object[]{pElement, pValue});
     }
     
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
-    public Optional<ElementGroup_size.Match> getOneArbitraryMatch(final Comment pElement, final LiteralInteger pValuespec) {
-      return rawGetOneArbitraryMatch(new Object[]{pElement, pValuespec});
+    public Optional<ElementGroup_size.Match> getOneArbitraryMatch(final Comment pElement, final Integer pValue) {
+      return rawGetOneArbitraryMatch(new Object[]{pElement, pValue});
     }
     
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return true if the input is a valid (partial) match of the pattern.
      * 
      */
-    public boolean hasMatch(final Comment pElement, final LiteralInteger pValuespec) {
-      return rawHasMatch(new Object[]{pElement, pValuespec});
+    public boolean hasMatch(final Comment pElement, final Integer pValue) {
+      return rawHasMatch(new Object[]{pElement, pValue});
     }
     
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return the number of pattern matches found.
      * 
      */
-    public int countMatches(final Comment pElement, final LiteralInteger pValuespec) {
-      return rawCountMatches(new Object[]{pElement, pValuespec});
+    public int countMatches(final Comment pElement, final Integer pValue) {
+      return rawCountMatches(new Object[]{pElement, pValue});
     }
     
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @param processor the action that will process the selected match.
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
      */
-    public boolean forOneArbitraryMatch(final Comment pElement, final LiteralInteger pValuespec, final Consumer<? super ElementGroup_size.Match> processor) {
-      return rawForOneArbitraryMatch(new Object[]{pElement, pValuespec}, processor);
+    public boolean forOneArbitraryMatch(final Comment pElement, final Integer pValue, final Consumer<? super ElementGroup_size.Match> processor) {
+      return rawForOneArbitraryMatch(new Object[]{pElement, pValue}, processor);
     }
     
     /**
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValuespec the fixed value of pattern parameter valuespec, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return the (partial) match object.
      * 
      */
-    public ElementGroup_size.Match newMatch(final Comment pElement, final LiteralInteger pValuespec) {
-      return ElementGroup_size.Match.newMatch(pElement, pValuespec);
+    public ElementGroup_size.Match newMatch(final Comment pElement, final Integer pValue) {
+      return ElementGroup_size.Match.newMatch(pElement, pValue);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<Comment> rawStreamAllValuesOfelement(final Object[] parameters) {
+    protected Stream<Comment> rawStreamAllValuesOfElement(final Object[] parameters) {
       return rawStreamAllValues(POSITION_ELEMENT, parameters).map(Comment.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Comment> getAllValuesOfelement() {
-      return rawStreamAllValuesOfelement(emptyArray()).collect(Collectors.toSet());
+    public Set<Comment> getAllValuesOfElement() {
+      return rawStreamAllValuesOfElement(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<Comment> streamAllValuesOfelement() {
-      return rawStreamAllValuesOfelement(emptyArray());
+    public Stream<Comment> streamAllValuesOfElement() {
+      return rawStreamAllValuesOfElement(emptyArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -453,12 +450,12 @@ public final class ElementGroup_size extends BaseGeneratedEMFQuerySpecification<
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Comment> streamAllValuesOfelement(final ElementGroup_size.Match partialMatch) {
-      return rawStreamAllValuesOfelement(partialMatch.toArray());
+    public Stream<Comment> streamAllValuesOfElement(final ElementGroup_size.Match partialMatch) {
+      return rawStreamAllValuesOfElement(partialMatch.toArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -467,57 +464,57 @@ public final class ElementGroup_size extends BaseGeneratedEMFQuerySpecification<
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Comment> streamAllValuesOfelement(final LiteralInteger pValuespec) {
-      return rawStreamAllValuesOfelement(new Object[]{null, pValuespec});
+    public Stream<Comment> streamAllValuesOfElement(final Integer pValue) {
+      return rawStreamAllValuesOfElement(new Object[]{null, pValue});
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Comment> getAllValuesOfelement(final ElementGroup_size.Match partialMatch) {
-      return rawStreamAllValuesOfelement(partialMatch.toArray()).collect(Collectors.toSet());
+    public Set<Comment> getAllValuesOfElement(final ElementGroup_size.Match partialMatch) {
+      return rawStreamAllValuesOfElement(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Comment> getAllValuesOfelement(final LiteralInteger pValuespec) {
-      return rawStreamAllValuesOfelement(new Object[]{null, pValuespec}).collect(Collectors.toSet());
+    public Set<Comment> getAllValuesOfElement(final Integer pValue) {
+      return rawStreamAllValuesOfElement(new Object[]{null, pValue}).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for valuespec.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<LiteralInteger> rawStreamAllValuesOfvaluespec(final Object[] parameters) {
-      return rawStreamAllValues(POSITION_VALUESPEC, parameters).map(LiteralInteger.class::cast);
+    protected Stream<Integer> rawStreamAllValuesOfValue(final Object[] parameters) {
+      return rawStreamAllValues(POSITION_VALUE, parameters).map(Integer.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for valuespec.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<LiteralInteger> getAllValuesOfvaluespec() {
-      return rawStreamAllValuesOfvaluespec(emptyArray()).collect(Collectors.toSet());
+    public Set<Integer> getAllValuesOfValue() {
+      return rawStreamAllValuesOfValue(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for valuespec.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<LiteralInteger> streamAllValuesOfvaluespec() {
-      return rawStreamAllValuesOfvaluespec(emptyArray());
+    public Stream<Integer> streamAllValuesOfValue() {
+      return rawStreamAllValuesOfValue(emptyArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for valuespec.
+     * Retrieve the set of values that occur in matches for Value.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -526,12 +523,12 @@ public final class ElementGroup_size extends BaseGeneratedEMFQuerySpecification<
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<LiteralInteger> streamAllValuesOfvaluespec(final ElementGroup_size.Match partialMatch) {
-      return rawStreamAllValuesOfvaluespec(partialMatch.toArray());
+    public Stream<Integer> streamAllValuesOfValue(final ElementGroup_size.Match partialMatch) {
+      return rawStreamAllValuesOfValue(partialMatch.toArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for valuespec.
+     * Retrieve the set of values that occur in matches for Value.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -540,32 +537,32 @@ public final class ElementGroup_size extends BaseGeneratedEMFQuerySpecification<
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<LiteralInteger> streamAllValuesOfvaluespec(final Comment pElement) {
-      return rawStreamAllValuesOfvaluespec(new Object[]{pElement, null});
+    public Stream<Integer> streamAllValuesOfValue(final Comment pElement) {
+      return rawStreamAllValuesOfValue(new Object[]{pElement, null});
     }
     
     /**
-     * Retrieve the set of values that occur in matches for valuespec.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<LiteralInteger> getAllValuesOfvaluespec(final ElementGroup_size.Match partialMatch) {
-      return rawStreamAllValuesOfvaluespec(partialMatch.toArray()).collect(Collectors.toSet());
+    public Set<Integer> getAllValuesOfValue(final ElementGroup_size.Match partialMatch) {
+      return rawStreamAllValuesOfValue(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for valuespec.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<LiteralInteger> getAllValuesOfvaluespec(final Comment pElement) {
-      return rawStreamAllValuesOfvaluespec(new Object[]{pElement, null}).collect(Collectors.toSet());
+    public Set<Integer> getAllValuesOfValue(final Comment pElement) {
+      return rawStreamAllValuesOfValue(new Object[]{pElement, null}).collect(Collectors.toSet());
     }
     
     @Override
     protected ElementGroup_size.Match tupleToMatch(final Tuple t) {
       try {
-          return ElementGroup_size.Match.newMatch((Comment) t.get(POSITION_ELEMENT), (LiteralInteger) t.get(POSITION_VALUESPEC));
+          return ElementGroup_size.Match.newMatch((Comment) t.get(POSITION_ELEMENT), (Integer) t.get(POSITION_VALUE));
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in tuple not properly typed!",e);
           return null;
@@ -575,7 +572,7 @@ public final class ElementGroup_size extends BaseGeneratedEMFQuerySpecification<
     @Override
     protected ElementGroup_size.Match arrayToMatch(final Object[] match) {
       try {
-          return ElementGroup_size.Match.newMatch((Comment) match[POSITION_ELEMENT], (LiteralInteger) match[POSITION_VALUESPEC]);
+          return ElementGroup_size.Match.newMatch((Comment) match[POSITION_ELEMENT], (Integer) match[POSITION_VALUE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -585,7 +582,7 @@ public final class ElementGroup_size extends BaseGeneratedEMFQuerySpecification<
     @Override
     protected ElementGroup_size.Match arrayToMatchMutable(final Object[] match) {
       try {
-          return ElementGroup_size.Match.newMutableMatch((Comment) match[POSITION_ELEMENT], (LiteralInteger) match[POSITION_VALUESPEC]);
+          return ElementGroup_size.Match.newMutableMatch((Comment) match[POSITION_ELEMENT], (Integer) match[POSITION_VALUE]);
       } catch(ClassCastException e) {
           LOGGER.error("Element(s) in array not properly typed!",e);
           return null;
@@ -636,7 +633,7 @@ public final class ElementGroup_size extends BaseGeneratedEMFQuerySpecification<
   
   @Override
   public ElementGroup_size.Match newMatch(final Object... parameters) {
-    return ElementGroup_size.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Comment) parameters[0], (com.nomagic.uml2.ext.magicdraw.classes.mdkernel.LiteralInteger) parameters[1]);
+    return ElementGroup_size.Match.newMatch((com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Comment) parameters[0], (java.lang.Integer) parameters[1]);
   }
   
   /**
@@ -668,11 +665,11 @@ public final class ElementGroup_size extends BaseGeneratedEMFQuerySpecification<
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final ElementGroup_size.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_element = new PParameter("element", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Comment", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Comment")), PParameterDirection.INOUT);
+    private final PParameter parameter_Element = new PParameter("Element", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Comment", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Comment")), PParameterDirection.INOUT);
     
-    private final PParameter parameter_valuespec = new PParameter("valuespec", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.LiteralInteger", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "LiteralInteger")), PParameterDirection.INOUT);
+    private final PParameter parameter_Value = new PParameter("Value", "java.lang.Integer", new JavaTransitiveInstancesKey(java.lang.Integer.class), PParameterDirection.INOUT);
     
-    private final List<PParameter> parameters = Arrays.asList(parameter_element, parameter_valuespec);
+    private final List<PParameter> parameters = Arrays.asList(parameter_Element, parameter_Value);
     
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
@@ -685,7 +682,7 @@ public final class ElementGroup_size extends BaseGeneratedEMFQuerySpecification<
     
     @Override
     public List<String> getParameterNames() {
-      return Arrays.asList("element","valuespec");
+      return Arrays.asList("Element","Value");
     }
     
     @Override
@@ -699,21 +696,28 @@ public final class ElementGroup_size extends BaseGeneratedEMFQuerySpecification<
       Set<PBody> bodies = new LinkedHashSet<>();
       {
           PBody body = new PBody(this);
-          PVariable var_element = body.getOrCreateVariableByName("element");
-          PVariable var_valuespec = body.getOrCreateVariableByName("valuespec");
-          PVariable var_domainStereotypeInstance = body.getOrCreateVariableByName("domainStereotypeInstance");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Comment")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var_valuespec), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "LiteralInteger")));
+          PVariable var_Element = body.getOrCreateVariableByName("Element");
+          PVariable var_Value = body.getOrCreateVariableByName("Value");
+          PVariable var_stereotype = body.getOrCreateVariableByName("stereotype");
+          PVariable var_taggedValue = body.getOrCreateVariableByName("taggedValue");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_Element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Comment")));
+          new TypeFilterConstraint(body, Tuples.flatTupleOf(var_Value), new JavaTransitiveInstancesKey(java.lang.Integer.class));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-             new ExportedParameter(body, var_element, parameter_element),
-             new ExportedParameter(body, var_valuespec, parameter_valuespec)
+             new ExportedParameter(body, var_Element, parameter_Element),
+             new ExportedParameter(body, var_Value, parameter_Value)
           ));
-          // 	find ElementGroup(element, domainStereotypeInstance)
-          new PositivePatternCall(body, Tuples.flatTupleOf(var_element, var_domainStereotypeInstance), ElementGroup.instance().getInternalQueryRepresentation());
-          // 	find slotValue(domainStereotypeInstance, "size", valuespec)
+          // 	find ElementGroup(Element, stereotype)
+          new PositivePatternCall(body, Tuples.flatTupleOf(var_Element, var_stereotype), ElementGroup.instance().getInternalQueryRepresentation());
+          // 	find taggedValue(Element, stereotype, "size", taggedValue)
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
           new ConstantValue(body, var__virtual_0_, "size");
-          new PositivePatternCall(body, Tuples.flatTupleOf(var_domainStereotypeInstance, var__virtual_0_, var_valuespec), SlotValue.instance().getInternalQueryRepresentation());
+          new PositivePatternCall(body, Tuples.flatTupleOf(var_Element, var_stereotype, var__virtual_0_, var_taggedValue), TaggedValue.instance().getInternalQueryRepresentation());
+          // 	IntegerTaggedValue.value(taggedValue, Value)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_taggedValue), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "IntegerTaggedValue")));
+          PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_taggedValue, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "IntegerTaggedValue", "value")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EDataTypeInSlotsKey((EDataType)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Integer")));
+          new Equality(body, var__virtual_1_, var_Value);
           bodies.add(body);
       }
       return bodies;

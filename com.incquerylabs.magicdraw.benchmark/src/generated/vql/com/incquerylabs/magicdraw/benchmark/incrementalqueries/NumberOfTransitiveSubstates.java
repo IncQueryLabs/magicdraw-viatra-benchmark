@@ -658,7 +658,7 @@ public final class NumberOfTransitiveSubstates extends BaseGeneratedEMFQuerySpec
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final NumberOfTransitiveSubstates.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_state = new PParameter("state", "com.nomagic.uml2.ext.magicdraw.statemachines.mdbehaviorstatemachines.State", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "State")), PParameterDirection.INOUT);
+    private final PParameter parameter_state = new PParameter("state", "com.nomagic.uml2.ext.magicdraw.statemachines.mdbehaviorstatemachines.State", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "State")), PParameterDirection.INOUT);
     
     private final PParameter parameter_transitiveSubstateCount = new PParameter("transitiveSubstateCount", "java.lang.Integer", new JavaTransitiveInstancesKey(java.lang.Integer.class), PParameterDirection.INOUT);
     
@@ -692,7 +692,7 @@ public final class NumberOfTransitiveSubstates extends BaseGeneratedEMFQuerySpec
           PVariable var_state = body.getOrCreateVariableByName("state");
           PVariable var_transitiveSubstateCount = body.getOrCreateVariableByName("transitiveSubstateCount");
           PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_state), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "State")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_state), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "State")));
           new TypeFilterConstraint(body, Tuples.flatTupleOf(var_transitiveSubstateCount), new JavaTransitiveInstancesKey(java.lang.Integer.class));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_state, parameter_state),

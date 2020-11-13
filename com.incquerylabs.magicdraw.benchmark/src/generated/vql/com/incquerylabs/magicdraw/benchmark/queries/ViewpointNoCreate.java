@@ -505,7 +505,7 @@ public final class ViewpointNoCreate extends BaseGeneratedEMFQuerySpecification<
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final ViewpointNoCreate.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_viewpoint = new PParameter("viewpoint", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Class")), PParameterDirection.INOUT);
+    private final PParameter parameter_viewpoint = new PParameter("viewpoint", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Class", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Class")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_viewpoint);
     
@@ -536,7 +536,7 @@ public final class ViewpointNoCreate extends BaseGeneratedEMFQuerySpecification<
           PBody body = new PBody(this);
           PVariable var_viewpoint = body.getOrCreateVariableByName("viewpoint");
           PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_viewpoint), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Class")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_viewpoint), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Class")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_viewpoint, parameter_viewpoint)
           ));

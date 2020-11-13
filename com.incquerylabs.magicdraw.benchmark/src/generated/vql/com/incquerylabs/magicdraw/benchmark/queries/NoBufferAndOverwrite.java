@@ -505,7 +505,7 @@ public final class NoBufferAndOverwrite extends BaseGeneratedEMFQuerySpecificati
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final NoBufferAndOverwrite.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_objectNode = new PParameter("objectNode", "com.nomagic.uml2.ext.magicdraw.activities.mdbasicactivities.ObjectNode", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "ObjectNode")), PParameterDirection.INOUT);
+    private final PParameter parameter_objectNode = new PParameter("objectNode", "com.nomagic.uml2.ext.magicdraw.activities.mdbasicactivities.ObjectNode", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ObjectNode")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_objectNode);
     
@@ -537,7 +537,7 @@ public final class NoBufferAndOverwrite extends BaseGeneratedEMFQuerySpecificati
           PVariable var_objectNode = body.getOrCreateVariableByName("objectNode");
           PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
           PVariable var___1_ = body.getOrCreateVariableByName("_<1>");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_objectNode), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ObjectNode")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_objectNode), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ObjectNode")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_objectNode, parameter_objectNode)
           ));

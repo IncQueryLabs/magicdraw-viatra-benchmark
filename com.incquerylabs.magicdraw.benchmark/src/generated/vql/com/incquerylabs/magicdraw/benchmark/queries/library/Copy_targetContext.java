@@ -4,7 +4,7 @@
 package com.incquerylabs.magicdraw.benchmark.queries.library;
 
 import com.incquerylabs.magicdraw.benchmark.queries.library.Copy;
-import com.incquerylabs.magicdraw.benchmark.queries.library.SlotValue;
+import com.incquerylabs.magicdraw.benchmark.queries.library.TaggedValue;
 import com.nomagic.uml2.ext.magicdraw.classes.mddependencies.Abstraction;
 import com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier;
 import java.util.Arrays;
@@ -48,16 +48,11 @@ import org.eclipse.viatra.query.runtime.util.ViatraQueryLoggingUtil;
  * 
  * <p>Original source:
  *         <code><pre>
- *         Pattern that queries the 'targetContext' attribute of elements with the stereotype 'Copy'.
- *           
- *           Parameters: 
- *           	element: 'Abstraction' object with the stereotype 'Copy'.
- *           	value : Classifier : A value of the attribute 'targetContext'.
- *          
- *         pattern Copy_targetContext(element : Abstraction, value : Classifier){
- *         	find Copy(element, domainStereotypeInstance);
- *         	find slotValue(domainStereotypeInstance, "targetContext", valuespec);
- *         	ElementValue.element(valuespec, value);
+ *         //Pattern that queries the 'targetContext' attribute of elements with the stereotype 'Copy'.
+ *         pattern Copy_targetContext(Element : Abstraction, Value: Classifier) {
+ *         	find Copy(Element, stereotype);
+ *         	find taggedValue(Element, stereotype, "targetContext", taggedValue);
+ *         	ElementTaggedValue.value(taggedValue, Value);
  *         }
  * </pre></code>
  * 
@@ -84,7 +79,7 @@ public final class Copy_targetContext extends BaseGeneratedEMFQuerySpecification
     
     private Classifier fValue;
     
-    private static List<String> parameterNames = makeImmutableList("element", "value");
+    private static List<String> parameterNames = makeImmutableList("Element", "Value");
     
     private Match(final Abstraction pElement, final Classifier pValue) {
       this.fElement = pElement;
@@ -94,8 +89,8 @@ public final class Copy_targetContext extends BaseGeneratedEMFQuerySpecification
     @Override
     public Object get(final String parameterName) {
       switch(parameterName) {
-          case "element": return this.fElement;
-          case "value": return this.fValue;
+          case "Element": return this.fElement;
+          case "Value": return this.fValue;
           default: return null;
       }
     }
@@ -120,11 +115,11 @@ public final class Copy_targetContext extends BaseGeneratedEMFQuerySpecification
     @Override
     public boolean set(final String parameterName, final Object newValue) {
       if (!isMutable()) throw new java.lang.UnsupportedOperationException();
-      if ("element".equals(parameterName) ) {
+      if ("Element".equals(parameterName) ) {
           this.fElement = (Abstraction) newValue;
           return true;
       }
-      if ("value".equals(parameterName) ) {
+      if ("Value".equals(parameterName) ) {
           this.fValue = (Classifier) newValue;
           return true;
       }
@@ -164,8 +159,8 @@ public final class Copy_targetContext extends BaseGeneratedEMFQuerySpecification
     @Override
     public String prettyPrint() {
       StringBuilder result = new StringBuilder();
-      result.append("\"element\"=" + prettyPrintValue(fElement) + ", ");
-      result.append("\"value\"=" + prettyPrintValue(fValue));
+      result.append("\"Element\"=" + prettyPrintValue(fElement) + ", ");
+      result.append("\"Value\"=" + prettyPrintValue(fValue));
       return result.toString();
     }
     
@@ -214,8 +209,8 @@ public final class Copy_targetContext extends BaseGeneratedEMFQuerySpecification
      * Returns a mutable (partial) match.
      * Fields of the mutable match can be filled to create a partial match, usable as matcher input.
      * 
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return the new, mutable (partial) match object.
      * 
      */
@@ -227,8 +222,8 @@ public final class Copy_targetContext extends BaseGeneratedEMFQuerySpecification
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return the (partial) match object.
      * 
      */
@@ -270,16 +265,11 @@ public final class Copy_targetContext extends BaseGeneratedEMFQuerySpecification
    * 
    * <p>Original source:
    * <code><pre>
-   * Pattern that queries the 'targetContext' attribute of elements with the stereotype 'Copy'.
-   *   
-   *   Parameters: 
-   *   	element: 'Abstraction' object with the stereotype 'Copy'.
-   *   	value : Classifier : A value of the attribute 'targetContext'.
-   *  
-   * pattern Copy_targetContext(element : Abstraction, value : Classifier){
-   * 	find Copy(element, domainStereotypeInstance);
-   * 	find slotValue(domainStereotypeInstance, "targetContext", valuespec);
-   * 	ElementValue.element(valuespec, value);
+   * //Pattern that queries the 'targetContext' attribute of elements with the stereotype 'Copy'.
+   * pattern Copy_targetContext(Element : Abstraction, Value: Classifier) {
+   * 	find Copy(Element, stereotype);
+   * 	find taggedValue(Element, stereotype, "targetContext", taggedValue);
+   * 	ElementTaggedValue.value(taggedValue, Value);
    * }
    * </pre></code>
    * 
@@ -335,8 +325,8 @@ public final class Copy_targetContext extends BaseGeneratedEMFQuerySpecification
     
     /**
      * Returns the set of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return matches represented as a Match object.
      * 
      */
@@ -350,8 +340,8 @@ public final class Copy_targetContext extends BaseGeneratedEMFQuerySpecification
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
      * In such cases, either rely on {@link #getAllMatches()} or collect the results of the stream in end-user code.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return a stream of matches represented as a Match object.
      * 
      */
@@ -362,8 +352,8 @@ public final class Copy_targetContext extends BaseGeneratedEMFQuerySpecification
     /**
      * Returns an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return a match represented as a Match object, or null if no match is found.
      * 
      */
@@ -374,8 +364,8 @@ public final class Copy_targetContext extends BaseGeneratedEMFQuerySpecification
     /**
      * Indicates whether the given combination of specified pattern parameters constitute a valid pattern match,
      * under any possible substitution of the unspecified parameters (if any).
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return true if the input is a valid (partial) match of the pattern.
      * 
      */
@@ -385,8 +375,8 @@ public final class Copy_targetContext extends BaseGeneratedEMFQuerySpecification
     
     /**
      * Returns the number of all matches of the pattern that conform to the given fixed values of some parameters.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return the number of pattern matches found.
      * 
      */
@@ -397,8 +387,8 @@ public final class Copy_targetContext extends BaseGeneratedEMFQuerySpecification
     /**
      * Executes the given processor on an arbitrarily chosen match of the pattern that conforms to the given fixed values of some parameters.
      * Neither determinism nor randomness of selection is guaranteed.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @param processor the action that will process the selected match.
      * @return true if the pattern has at least one match with the given parameter values, false if the processor was not invoked
      * 
@@ -411,8 +401,8 @@ public final class Copy_targetContext extends BaseGeneratedEMFQuerySpecification
      * Returns a new (partial) match.
      * This can be used e.g. to call the matcher with a partial match.
      * <p>The returned match will be immutable. Use {@link #newEmptyMatch()} to obtain a mutable match object.
-     * @param pElement the fixed value of pattern parameter element, or null if not bound.
-     * @param pValue the fixed value of pattern parameter value, or null if not bound.
+     * @param pElement the fixed value of pattern parameter Element, or null if not bound.
+     * @param pValue the fixed value of pattern parameter Value, or null if not bound.
      * @return the (partial) match object.
      * 
      */
@@ -421,34 +411,34 @@ public final class Copy_targetContext extends BaseGeneratedEMFQuerySpecification
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<Abstraction> rawStreamAllValuesOfelement(final Object[] parameters) {
+    protected Stream<Abstraction> rawStreamAllValuesOfElement(final Object[] parameters) {
       return rawStreamAllValues(POSITION_ELEMENT, parameters).map(Abstraction.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Abstraction> getAllValuesOfelement() {
-      return rawStreamAllValuesOfelement(emptyArray()).collect(Collectors.toSet());
+    public Set<Abstraction> getAllValuesOfElement() {
+      return rawStreamAllValuesOfElement(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<Abstraction> streamAllValuesOfelement() {
-      return rawStreamAllValuesOfelement(emptyArray());
+    public Stream<Abstraction> streamAllValuesOfElement() {
+      return rawStreamAllValuesOfElement(emptyArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -457,12 +447,12 @@ public final class Copy_targetContext extends BaseGeneratedEMFQuerySpecification
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Abstraction> streamAllValuesOfelement(final Copy_targetContext.Match partialMatch) {
-      return rawStreamAllValuesOfelement(partialMatch.toArray());
+    public Stream<Abstraction> streamAllValuesOfElement(final Copy_targetContext.Match partialMatch) {
+      return rawStreamAllValuesOfElement(partialMatch.toArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -471,57 +461,57 @@ public final class Copy_targetContext extends BaseGeneratedEMFQuerySpecification
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Abstraction> streamAllValuesOfelement(final Classifier pValue) {
-      return rawStreamAllValuesOfelement(new Object[]{null, pValue});
+    public Stream<Abstraction> streamAllValuesOfElement(final Classifier pValue) {
+      return rawStreamAllValuesOfElement(new Object[]{null, pValue});
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Abstraction> getAllValuesOfelement(final Copy_targetContext.Match partialMatch) {
-      return rawStreamAllValuesOfelement(partialMatch.toArray()).collect(Collectors.toSet());
+    public Set<Abstraction> getAllValuesOfElement(final Copy_targetContext.Match partialMatch) {
+      return rawStreamAllValuesOfElement(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for element.
+     * Retrieve the set of values that occur in matches for Element.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Abstraction> getAllValuesOfelement(final Classifier pValue) {
-      return rawStreamAllValuesOfelement(new Object[]{null, pValue}).collect(Collectors.toSet());
+    public Set<Abstraction> getAllValuesOfElement(final Classifier pValue) {
+      return rawStreamAllValuesOfElement(new Object[]{null, pValue}).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    protected Stream<Classifier> rawStreamAllValuesOfvalue(final Object[] parameters) {
+    protected Stream<Classifier> rawStreamAllValuesOfValue(final Object[] parameters) {
       return rawStreamAllValues(POSITION_VALUE, parameters).map(Classifier.class::cast);
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Classifier> getAllValuesOfvalue() {
-      return rawStreamAllValuesOfvalue(emptyArray()).collect(Collectors.toSet());
+    public Set<Classifier> getAllValuesOfValue() {
+      return rawStreamAllValuesOfValue(emptyArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Stream<Classifier> streamAllValuesOfvalue() {
-      return rawStreamAllValuesOfvalue(emptyArray());
+    public Stream<Classifier> streamAllValuesOfValue() {
+      return rawStreamAllValuesOfValue(emptyArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -530,12 +520,12 @@ public final class Copy_targetContext extends BaseGeneratedEMFQuerySpecification
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Classifier> streamAllValuesOfvalue(final Copy_targetContext.Match partialMatch) {
-      return rawStreamAllValuesOfvalue(partialMatch.toArray());
+    public Stream<Classifier> streamAllValuesOfValue(final Copy_targetContext.Match partialMatch) {
+      return rawStreamAllValuesOfValue(partialMatch.toArray());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * </p>
      * <strong>NOTE</strong>: It is important not to modify the source model while the stream is being processed.
      * If the match set of the pattern changes during processing, the contents of the stream is <strong>undefined</strong>.
@@ -544,26 +534,26 @@ public final class Copy_targetContext extends BaseGeneratedEMFQuerySpecification
      * @return the Stream of all values or empty set if there are no matches
      * 
      */
-    public Stream<Classifier> streamAllValuesOfvalue(final Abstraction pElement) {
-      return rawStreamAllValuesOfvalue(new Object[]{pElement, null});
+    public Stream<Classifier> streamAllValuesOfValue(final Abstraction pElement) {
+      return rawStreamAllValuesOfValue(new Object[]{pElement, null});
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Classifier> getAllValuesOfvalue(final Copy_targetContext.Match partialMatch) {
-      return rawStreamAllValuesOfvalue(partialMatch.toArray()).collect(Collectors.toSet());
+    public Set<Classifier> getAllValuesOfValue(final Copy_targetContext.Match partialMatch) {
+      return rawStreamAllValuesOfValue(partialMatch.toArray()).collect(Collectors.toSet());
     }
     
     /**
-     * Retrieve the set of values that occur in matches for value.
+     * Retrieve the set of values that occur in matches for Value.
      * @return the Set of all values or empty set if there are no matches
      * 
      */
-    public Set<Classifier> getAllValuesOfvalue(final Abstraction pElement) {
-      return rawStreamAllValuesOfvalue(new Object[]{pElement, null}).collect(Collectors.toSet());
+    public Set<Classifier> getAllValuesOfValue(final Abstraction pElement) {
+      return rawStreamAllValuesOfValue(new Object[]{pElement, null}).collect(Collectors.toSet());
     }
     
     @Override
@@ -672,11 +662,11 @@ public final class Copy_targetContext extends BaseGeneratedEMFQuerySpecification
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final Copy_targetContext.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_element = new PParameter("element", "com.nomagic.uml2.ext.magicdraw.classes.mddependencies.Abstraction", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Abstraction")), PParameterDirection.INOUT);
+    private final PParameter parameter_Element = new PParameter("Element", "com.nomagic.uml2.ext.magicdraw.classes.mddependencies.Abstraction", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Abstraction")), PParameterDirection.INOUT);
     
-    private final PParameter parameter_value = new PParameter("value", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Classifier")), PParameterDirection.INOUT);
+    private final PParameter parameter_Value = new PParameter("Value", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Classifier", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Classifier")), PParameterDirection.INOUT);
     
-    private final List<PParameter> parameters = Arrays.asList(parameter_element, parameter_value);
+    private final List<PParameter> parameters = Arrays.asList(parameter_Element, parameter_Value);
     
     private GeneratedPQuery() {
       super(PVisibility.PUBLIC);
@@ -689,7 +679,7 @@ public final class Copy_targetContext extends BaseGeneratedEMFQuerySpecification
     
     @Override
     public List<String> getParameterNames() {
-      return Arrays.asList("element","value");
+      return Arrays.asList("Element","Value");
     }
     
     @Override
@@ -703,28 +693,28 @@ public final class Copy_targetContext extends BaseGeneratedEMFQuerySpecification
       Set<PBody> bodies = new LinkedHashSet<>();
       {
           PBody body = new PBody(this);
-          PVariable var_element = body.getOrCreateVariableByName("element");
-          PVariable var_value = body.getOrCreateVariableByName("value");
-          PVariable var_domainStereotypeInstance = body.getOrCreateVariableByName("domainStereotypeInstance");
-          PVariable var_valuespec = body.getOrCreateVariableByName("valuespec");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Abstraction")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var_value), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Classifier")));
+          PVariable var_Element = body.getOrCreateVariableByName("Element");
+          PVariable var_Value = body.getOrCreateVariableByName("Value");
+          PVariable var_stereotype = body.getOrCreateVariableByName("stereotype");
+          PVariable var_taggedValue = body.getOrCreateVariableByName("taggedValue");
+          new TypeConstraint(body, Tuples.flatTupleOf(var_Element), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Abstraction")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_Value), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Classifier")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
-             new ExportedParameter(body, var_element, parameter_element),
-             new ExportedParameter(body, var_value, parameter_value)
+             new ExportedParameter(body, var_Element, parameter_Element),
+             new ExportedParameter(body, var_Value, parameter_Value)
           ));
-          // 	find Copy(element, domainStereotypeInstance)
-          new PositivePatternCall(body, Tuples.flatTupleOf(var_element, var_domainStereotypeInstance), Copy.instance().getInternalQueryRepresentation());
-          // 	find slotValue(domainStereotypeInstance, "targetContext", valuespec)
+          // 	find Copy(Element, stereotype)
+          new PositivePatternCall(body, Tuples.flatTupleOf(var_Element, var_stereotype), Copy.instance().getInternalQueryRepresentation());
+          // 	find taggedValue(Element, stereotype, "targetContext", taggedValue)
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
           new ConstantValue(body, var__virtual_0_, "targetContext");
-          new PositivePatternCall(body, Tuples.flatTupleOf(var_domainStereotypeInstance, var__virtual_0_, var_valuespec), SlotValue.instance().getInternalQueryRepresentation());
-          // 	ElementValue.element(valuespec, value)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_valuespec), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ElementValue")));
+          new PositivePatternCall(body, Tuples.flatTupleOf(var_Element, var_stereotype, var__virtual_0_, var_taggedValue), TaggedValue.instance().getInternalQueryRepresentation());
+          // 	ElementTaggedValue.value(taggedValue, Value)
+          new TypeConstraint(body, Tuples.flatTupleOf(var_taggedValue), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ElementTaggedValue")));
           PVariable var__virtual_1_ = body.getOrCreateVariableByName(".virtual{1}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_valuespec, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "ElementValue", "element")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Element")));
-          new Equality(body, var__virtual_1_, var_value);
+          new TypeConstraint(body, Tuples.flatTupleOf(var_taggedValue, var__virtual_1_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "ElementTaggedValue", "value")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_1_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Element")));
+          new Equality(body, var__virtual_1_, var_Value);
           bodies.add(body);
       }
       return bodies;

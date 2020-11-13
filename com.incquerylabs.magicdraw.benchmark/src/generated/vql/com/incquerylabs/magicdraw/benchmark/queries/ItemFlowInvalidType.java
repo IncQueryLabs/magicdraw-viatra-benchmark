@@ -519,12 +519,12 @@ public final class ItemFlowInvalidType extends BaseGeneratedEMFQuerySpecificatio
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final ItemFlowInvalidType.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_itemFlow = new PParameter("itemFlow", "com.nomagic.uml2.ext.magicdraw.auxiliaryconstructs.mdinformationflows.InformationFlow", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "InformationFlow")), PParameterDirection.INOUT);
+    private final PParameter parameter_itemFlow = new PParameter("itemFlow", "com.nomagic.uml2.ext.magicdraw.auxiliaryconstructs.mdinformationflows.InformationFlow", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "InformationFlow")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_itemFlow);
     
     private class Embedded_1_Signal extends BaseGeneratedEMFPQuery {
-      private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.commonbehaviors.mdcommunications.Signal", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Signal")), PParameterDirection.INOUT);
+      private final PParameter parameter_p0 = new PParameter("p0", "com.nomagic.uml2.ext.magicdraw.commonbehaviors.mdcommunications.Signal", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Signal")), PParameterDirection.INOUT);
       
       private final List<PParameter> embeddedParameters = Arrays.asList(parameter_p0);
       
@@ -550,7 +550,7 @@ public final class ItemFlowInvalidType extends BaseGeneratedEMFQuerySpecificatio
            new ExportedParameter(body, var_p0, parameter_p0)
         ));
         //  Signal(type)
-        new TypeConstraint(body, Tuples.flatTupleOf(var_p0), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Signal")));
+        new TypeConstraint(body, Tuples.flatTupleOf(var_p0), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Signal")));
         return Collections.singleton(body);
       }
     }
@@ -586,7 +586,7 @@ public final class ItemFlowInvalidType extends BaseGeneratedEMFQuerySpecificatio
           PVariable var_type = body.getOrCreateVariableByName("type");
           PVariable var___1_ = body.getOrCreateVariableByName("_<1>");
           PVariable var___2_ = body.getOrCreateVariableByName("_<2>");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_itemFlow), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "InformationFlow")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_itemFlow), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "InformationFlow")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_itemFlow, parameter_itemFlow)
           ));
@@ -595,10 +595,10 @@ public final class ItemFlowInvalidType extends BaseGeneratedEMFQuerySpecificatio
           // 	find com.incquerylabs.magicdraw.benchmark.queries.library.ItemFlow_itemProperty(itemFlow, itemProperty)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_itemFlow, var_itemProperty), ItemFlow_itemProperty.instance().getInternalQueryRepresentation());
           // 	Property.type(itemProperty, type)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_itemProperty), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Property")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_itemProperty), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Property")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_itemProperty, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "TypedElement", "type")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Type")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_itemProperty, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "TypedElement", "type")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Type")));
           new Equality(body, var__virtual_0_, var_type);
           // 	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ValueType(type, _)
           new NegativePatternCall(body, Tuples.flatTupleOf(var_type, var___1_), ValueType.instance().getInternalQueryRepresentation());

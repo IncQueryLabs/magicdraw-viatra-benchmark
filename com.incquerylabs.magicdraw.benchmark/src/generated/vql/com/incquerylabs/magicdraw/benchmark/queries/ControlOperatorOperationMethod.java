@@ -511,7 +511,7 @@ public final class ControlOperatorOperationMethod extends BaseGeneratedEMFQueryS
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final ControlOperatorOperationMethod.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_method = new PParameter("method", "com.nomagic.uml2.ext.magicdraw.commonbehaviors.mdbasicbehaviors.Behavior", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Behavior")), PParameterDirection.INOUT);
+    private final PParameter parameter_method = new PParameter("method", "com.nomagic.uml2.ext.magicdraw.commonbehaviors.mdbasicbehaviors.Behavior", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Behavior")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_method);
     
@@ -544,19 +544,19 @@ public final class ControlOperatorOperationMethod extends BaseGeneratedEMFQueryS
           PVariable var_controlOpertator = body.getOrCreateVariableByName("controlOpertator");
           PVariable var___0_ = body.getOrCreateVariableByName("_<0>");
           PVariable var___1_ = body.getOrCreateVariableByName("_<1>");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_method), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Behavior")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_method), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Behavior")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_method, parameter_method)
           ));
           // 	Operation(controlOpertator)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_controlOpertator), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Operation")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_controlOpertator), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Operation")));
           // 	find com.incquerylabs.magicdraw.benchmark.queries.library.ControlOperator(controlOpertator, _)
           new PositivePatternCall(body, Tuples.flatTupleOf(var_controlOpertator, var___0_), ControlOperator.instance().getInternalQueryRepresentation());
           // 	Operation.method(controlOpertator, method)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_controlOpertator), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Operation")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_controlOpertator), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Operation")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_controlOpertator, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "BehavioralFeature", "method")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Behavior")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_controlOpertator, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "BehavioralFeature", "method")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Behavior")));
           new Equality(body, var__virtual_0_, var_method);
           // 	neg find com.incquerylabs.magicdraw.benchmark.queries.library.ControlOperator(method, _)
           new NegativePatternCall(body, Tuples.flatTupleOf(var_method, var___1_), ControlOperator.instance().getInternalQueryRepresentation());

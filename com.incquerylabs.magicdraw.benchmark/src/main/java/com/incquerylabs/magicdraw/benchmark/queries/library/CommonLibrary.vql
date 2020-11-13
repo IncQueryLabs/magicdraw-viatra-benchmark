@@ -1,67 +1,60 @@
 package com.incquerylabs.magicdraw.benchmark.queries.library
 
-import "http://www.nomagic.com/magicdraw/UML/2.5.1"
+import "http://www.nomagic.com/magicdraw/UML/2.5.1.1"
 
-//tag::queries[]
-/*
- * Matches if the parameter `general` is connected by a single
- * generalization relation to parameter `classifier`
- */
-pattern generalizedClassifier(classifier : Classifier, general: Classifier) {
-	Generalization.general(gen, general);
-	Generalization.specific(gen, classifier);
+//Matches if the parameter `general` is connected by a singlegeneralization relation to parameter `classifier`
+pattern generalizedClassifier(Classifier : Classifier, General : Classifier) {
+	Generalization.general(gen, General);
+	Generalization.specific(gen, Classifier);
 }
 
-/**
- * Matches if the parameter `general` is connected with a
- * series of generalization relations to parameter `classifier`
- */
-pattern indirectGeneralization(classifier: Classifier, general : Classifier) {
-	find generalizedClassifier+(classifier, general);
+//Matches if the parameter `general` is connected with a series of generalization relations to parameter `classifier`
+pattern indirectGeneralization(Classifier : Classifier, General : Classifier) {
+	find generalizedClassifier +(Classifier, General);
 }
 
-/* 
- * Matches if the parameter`classifier` can be substituted with the parameter
- * `classifier`: they are either the same, or there is an `indirectGeneralization`
- * relationship between them. 
- */
-pattern compatibleClassifier(classifier : Classifier, general: Classifier) {
-	find generalizedClassifier*(classifier, general);	
+//Matches if the parameter`classifier` can be substituted with the parameter`classifier`: they are either the same, or there is an `indirectGeneralization`relationship between them. 
+pattern compatibleClassifier(Classifier : Classifier, General : Classifier) {
+	find generalizedClassifier *(Classifier, General);
 }
 
-/*
- * Matches the parameter `element` and its direct owning Package
- */
-pattern owningPackage(element : Package, owner : Package){
-	Package.owningPackage(element, owner);
+//Matches the parameter `element` and its direct owning Package
+pattern owningPackage(Element : Package, Owner : Package) {
+	Package.owningPackage(Element, Owner);
 }
 
-/*
- * Matches the parameter `element` with its direct or indirect owning packages or itself
- */
-pattern owningPackageOrSelf(element : Package, owner : Package) {
-	find owningPackage*(element, owner);
+//Matches the parameter `element` with its direct or indirect owning packages or itself
+pattern owningPackageOrSelf(Element : Package, Owner : Package) {
+	find owningPackage *(Element, Owner);
 }
 
-/*
- * Collects the InstanceSpecification of the given Element having the stereotype with the given name
- */
-pattern stereotypedElement(element : Element, domainStereotypeInstance : InstanceSpecification, profileName : String, stereotypeName : String) {
-	Element.appliedStereotypeInstance(element, domainStereotypeInstance);
-	InstanceSpecification.classifier(domainStereotypeInstance, domainStereotype);
-	find compatibleClassifier(domainStereotype, superStereotype);
+//Collects the InstanceSpecification of the given Element having the stereotype with the given name
+pattern stereotypedElement(Element : Element, Stereotype : Stereotype, ProfileName : String, StereotypeName : String) {
+	Element.appliedStereotype(Element, Stereotype);
+	find compatibleClassifier(Stereotype, superStereotype);
 	Stereotype.owningPackage(superStereotype, owner);
 	find owningPackageOrSelf(owner, profile);
-	Profile.name(profile, profileName);
-	Stereotype.name(superStereotype, stereotypeName);
+	Profile.name(profile, ProfileName);
+	Stereotype.name(superStereotype, StereotypeName);
 }
 
-/*
- * Matches the value of the slot with the given name
- */
-pattern slotValue(domainStereotypeInstance : InstanceSpecification, featureName : String, valuespec: ValueSpecification) {
-	InstanceSpecification.slot(domainStereotypeInstance, slot);
-	Slot.definingFeature.name(slot, featureName);
-	Slot.value(slot, valuespec);
+//Matches the value of the slot with the given name
+pattern taggedValue(Element : Element, Stereotype : Stereotype, FeatureName : String, TaggedValue : TaggedValue) {
+	Element.taggedValue(Element, TaggedValue);
+	TaggedValue.tagDefinition(TaggedValue, tagDefinition);
+	find compatibleClassifier(Stereotype, superStereotype);
+	Stereotype.ownedAttribute(superStereotype, tagDefinition);
+	Property.name(tagDefinition, FeatureName);
 }
-// end::queries[]
+
+pattern extractTaggedValue(TaggedValue : TaggedValue, Value : java Object) {
+	StringTaggedValue.value(TaggedValue, Value);
+} or {
+	BooleanTaggedValue.value(TaggedValue, Value);
+} or {
+	IntegerTaggedValue.value(TaggedValue, Value);
+} or {
+	RealTaggedValue.value(TaggedValue, Value);
+} or {
+	ElementTaggedValue.value(TaggedValue, Value);
+}
