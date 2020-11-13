@@ -66,6 +66,11 @@ repositories {
  	maven { url "https://repo.eclipse.org/content/groups/viatra/" }
  }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
 configurations {
 	plugin
     implementation.extendsFrom plugin
@@ -91,7 +96,7 @@ dependencies {
     }
   
     
-    preCompile group: 'com.nomagic', name: 'csm', version: '190sp4', classifier: 'no_install', ext: 'zip'
+    preCompile group: 'com.nomagic', name: 'csm', version: '2021x', classifier: 'no_install', ext: 'zip'
     preCompile group: 'com.incquerylabs.v4md', name: 'com.incquerylabs.v4md', version: v4mdVersion, classifier: 'plugin', ext: 'zip'
     
     compile group: 'org.eclipse.viatra', name: 'viatra-query-language', version: viatraVersion, exclusions

@@ -506,7 +506,7 @@ public final class CircularDependencies extends BaseGeneratedEMFQuerySpecificati
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final CircularDependencies.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_dependency = new PParameter("dependency", "com.nomagic.uml2.ext.magicdraw.classes.mddependencies.Dependency", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Dependency")), PParameterDirection.INOUT);
+    private final PParameter parameter_dependency = new PParameter("dependency", "com.nomagic.uml2.ext.magicdraw.classes.mddependencies.Dependency", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Dependency")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_dependency);
     
@@ -536,7 +536,7 @@ public final class CircularDependencies extends BaseGeneratedEMFQuerySpecificati
       {
           PBody body = new PBody(this);
           PVariable var_dependency = body.getOrCreateVariableByName("dependency");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_dependency), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Dependency")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_dependency), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Dependency")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_dependency, parameter_dependency)
           ));

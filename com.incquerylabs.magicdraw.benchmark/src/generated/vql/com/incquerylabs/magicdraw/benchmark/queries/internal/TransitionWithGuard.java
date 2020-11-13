@@ -85,9 +85,9 @@ public final class TransitionWithGuard extends BaseGeneratedEMFQuerySpecificatio
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final TransitionWithGuard.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_trans = new PParameter("trans", "com.nomagic.uml2.ext.magicdraw.statemachines.mdbehaviorstatemachines.Transition", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Transition")), PParameterDirection.INOUT);
+    private final PParameter parameter_trans = new PParameter("trans", "com.nomagic.uml2.ext.magicdraw.statemachines.mdbehaviorstatemachines.Transition", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Transition")), PParameterDirection.INOUT);
     
-    private final PParameter parameter_guard = new PParameter("guard", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Constraint", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "Constraint")), PParameterDirection.INOUT);
+    private final PParameter parameter_guard = new PParameter("guard", "com.nomagic.uml2.ext.magicdraw.classes.mdkernel.Constraint", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Constraint")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_trans, parameter_guard);
     
@@ -118,17 +118,17 @@ public final class TransitionWithGuard extends BaseGeneratedEMFQuerySpecificatio
           PBody body = new PBody(this);
           PVariable var_trans = body.getOrCreateVariableByName("trans");
           PVariable var_guard = body.getOrCreateVariableByName("guard");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_trans), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Transition")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var_guard), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Constraint")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_trans), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Transition")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_guard), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Constraint")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_trans, parameter_trans),
              new ExportedParameter(body, var_guard, parameter_guard)
           ));
           // 	Transition.guard(trans, guard)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_trans), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Transition")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_trans), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Transition")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_trans, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Transition", "guard")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Constraint")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_trans, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Transition", "guard")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Constraint")));
           new Equality(body, var__virtual_0_, var_guard);
           bodies.add(body);
       }

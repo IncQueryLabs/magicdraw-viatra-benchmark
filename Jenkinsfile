@@ -42,7 +42,7 @@ pipeline {
 	}
 	
     tools { 
-        jdk 'OpenJDK 8' 
+        jdk 'AdoptOpenJDK 11' 
     }
 	 
     stages { 

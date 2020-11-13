@@ -20,21 +20,21 @@ pattern nonBlockClasses(class : Class) {
  * Querying all instances of an EClass that have a short "reference chain".
  */
 pattern blocks(class : Class) {
-    Class.appliedStereotypeInstance.classifier.name(class, "Block"); 
+    Class.appliedStereotype.name(class, "Block"); 
 }
 
 /**
  * Querying all instances of an EClass that have a short "reference chain".
  */
 pattern requirements(class : Class) {
-	Class.appliedStereotypeInstance.classifier.name(class, "Requirement"); 
+	Class.appliedStereotype.name(class, "Requirement"); 
 }
 
 /**
  * Querying all instances of an EClass that have a short "reference chain".
  */
 private pattern constraintBlocks(class : Class) {
-	Class.appliedStereotypeInstance.classifier.name(class, "Constraint"); 
+	Class.appliedStereotype.name(class, "Constraint"); 
 }
 
 /**

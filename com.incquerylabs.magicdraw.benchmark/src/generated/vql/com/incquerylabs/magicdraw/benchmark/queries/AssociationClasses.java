@@ -652,9 +652,9 @@ public final class AssociationClasses extends BaseGeneratedEMFQuerySpecification
   private static class GeneratedPQuery extends BaseGeneratedEMFPQuery {
     private static final AssociationClasses.GeneratedPQuery INSTANCE = new GeneratedPQuery();
     
-    private final PParameter parameter_associationClass = new PParameter("associationClass", "com.nomagic.uml2.ext.magicdraw.classes.mdassociationclasses.AssociationClass", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "AssociationClass")), PParameterDirection.INOUT);
+    private final PParameter parameter_associationClass = new PParameter("associationClass", "com.nomagic.uml2.ext.magicdraw.classes.mdassociationclasses.AssociationClass", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "AssociationClass")), PParameterDirection.INOUT);
     
-    private final PParameter parameter_useCase = new PParameter("useCase", "com.nomagic.uml2.ext.magicdraw.mdusecases.UseCase", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1", "UseCase")), PParameterDirection.INOUT);
+    private final PParameter parameter_useCase = new PParameter("useCase", "com.nomagic.uml2.ext.magicdraw.mdusecases.UseCase", new EClassTransitiveInstancesKey((EClass)getClassifierLiteralSafe("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "UseCase")), PParameterDirection.INOUT);
     
     private final List<PParameter> parameters = Arrays.asList(parameter_associationClass, parameter_useCase);
     
@@ -685,17 +685,17 @@ public final class AssociationClasses extends BaseGeneratedEMFQuerySpecification
           PBody body = new PBody(this);
           PVariable var_associationClass = body.getOrCreateVariableByName("associationClass");
           PVariable var_useCase = body.getOrCreateVariableByName("useCase");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_associationClass), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "AssociationClass")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var_useCase), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "UseCase")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_associationClass), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "AssociationClass")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_useCase), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "UseCase")));
           body.setSymbolicParameters(Arrays.<ExportedParameter>asList(
              new ExportedParameter(body, var_associationClass, parameter_associationClass),
              new ExportedParameter(body, var_useCase, parameter_useCase)
           ));
           // 	AssociationClass.ownedUseCase(associationClass, useCase)
-          new TypeConstraint(body, Tuples.flatTupleOf(var_associationClass), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "AssociationClass")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_associationClass), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "AssociationClass")));
           PVariable var__virtual_0_ = body.getOrCreateVariableByName(".virtual{0}");
-          new TypeConstraint(body, Tuples.flatTupleOf(var_associationClass, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "Classifier", "ownedUseCase")));
-          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1", "UseCase")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var_associationClass, var__virtual_0_), new EStructuralFeatureInstancesKey(getFeatureLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "Classifier", "ownedUseCase")));
+          new TypeConstraint(body, Tuples.flatTupleOf(var__virtual_0_), new EClassTransitiveInstancesKey((EClass)getClassifierLiteral("http://www.nomagic.com/magicdraw/UML/2.5.1.1", "UseCase")));
           new Equality(body, var__virtual_0_, var_useCase);
           bodies.add(body);
       }
