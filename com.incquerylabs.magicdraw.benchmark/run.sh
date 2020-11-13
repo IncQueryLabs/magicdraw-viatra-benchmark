@@ -95,7 +95,7 @@ do
 					
 					# Call MD
 					./gradlew -Pquery="$query" -Pmodel="${MODEL_LOCATION}/TMT$size.mdzip" -Pwarmup="${MODEL_LOCATION}/Warmup.mdzip" -Pindex="$runIndex" -Psize="$size" \
-					-Poutput="${OUTPUT_DIR}" -Pengine="$engine" -Pexclude="$BENCHMARK_QUERIES_EXCLUDE" runBenchmark
+					-Poutput="${OUTPUT_DIR}" -Pengine="$engine" -Pexclude="$BENCHMARK_QUERIES_EXCLUDE" runBenchmark -PnexusUsername=$DEPLOY_USER -PnexusPassword=$DEPLOY_PASSWORD
 				fi
 			done
 		done

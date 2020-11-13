@@ -48,28 +48,32 @@ pipeline {
     stages { 
         stage('Build') { 
 			steps {
-				sh '''
-					# WORKSPACE_BENCHMARK is used as on client-side 3rd applications (e.g. git on Windows) 
-					# overrides the $WORKSPACE variable during their execution
-					export WORKSPACE_BENCHMARK=$WORKSPACE
-					rm -rf benhmark/results
-					rm -rf benhmark/diagrams
-				    cd com.incquerylabs.magicdraw.benchmark
-				    rm -rf results
-				    rm -rf build/dependency-cache
-				    ./gradlew clean
-				    ./gradlew installDist
-				'''
+				withCredentials([usernamePassword(credentialsId: 'nexus-buildserver-deploy', passwordVariable: 'DEPLOY_PASSWORD', usernameVariable: 'DEPLOY_USER')]) {
+					sh '''
+						# WORKSPACE_BENCHMARK is used as on client-side 3rd applications (e.g. git on Windows) 
+						# overrides the $WORKSPACE variable during their execution
+						export WORKSPACE_BENCHMARK=$WORKSPACE
+						rm -rf benhmark/results
+						rm -rf benhmark/diagrams
+						cd com.incquerylabs.magicdraw.benchmark
+						rm -rf results
+						rm -rf build/dependency-cache
+						./gradlew clean -PnexusUsername=$DEPLOY_USER -PnexusPassword=$DEPLOY_PASSWORD
+						./gradlew installDist -PnexusUsername=$DEPLOY_USER -PnexusPassword=$DEPLOY_PASSWORD
+					'''
+				}
 			}
 		}
 		stage('Benchmark') {
             steps {
-            	wrap([$class: 'Xvnc']) {
-					sh '''
-						export MODEL_LOCATION=/home/jenkins/models-tmt
-				    	./com.incquerylabs.magicdraw.benchmark/run.sh
-					'''
-            	}
+				withCredentials([usernamePassword(credentialsId: 'nexus-buildserver-deploy', passwordVariable: 'DEPLOY_PASSWORD', usernameVariable: 'DEPLOY_USER')]) {
+					wrap([$class: 'Xvnc']) {
+						sh '''
+							export MODEL_LOCATION=/home/jenkins/models-tmt
+							./com.incquerylabs.magicdraw.benchmark/run.sh
+						'''
+					}
+				}
 			}
 		}
 		stage('Report') {
