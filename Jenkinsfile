@@ -58,8 +58,8 @@ pipeline {
 						cd com.incquerylabs.magicdraw.benchmark
 						rm -rf results
 						rm -rf build/dependency-cache
-						./gradlew clean
-						./gradlew installDist -PnexusUsername=$DEPLOY_USER -PnexusPassword=$DEPLOY_PASSWORD"
+						./gradlew clean -PnexusUsername=$DEPLOY_USER -PnexusPassword=$DEPLOY_PASSWORD
+						./gradlew installDist -PnexusUsername=$DEPLOY_USER -PnexusPassword=$DEPLOY_PASSWORD
 					'''
 				}
 			}
