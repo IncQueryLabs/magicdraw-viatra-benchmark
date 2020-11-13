@@ -66,12 +66,14 @@ pipeline {
 		}
 		stage('Benchmark') {
             steps {
-            	wrap([$class: 'Xvnc']) {
-					sh '''
-						export MODEL_LOCATION=/home/jenkins/models-tmt
-				    	./com.incquerylabs.magicdraw.benchmark/run.sh
-					'''
-            	}
+				withCredentials([usernamePassword(credentialsId: 'nexus-buildserver-deploy', passwordVariable: 'DEPLOY_PASSWORD', usernameVariable: 'DEPLOY_USER')]) {
+					wrap([$class: 'Xvnc']) {
+						sh '''
+							export MODEL_LOCATION=/home/jenkins/models-tmt
+							./com.incquerylabs.magicdraw.benchmark/run.sh
+						'''
+					}
+				}
 			}
 		}
 		stage('Report') {
