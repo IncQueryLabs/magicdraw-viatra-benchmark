@@ -43,7 +43,7 @@ fi
 echo "Selected engines: ${BENCHMARK_ENGINES}"
 
 if [ -z "$BENCHMARK_QUERIES" ]; then
-#BENCHMARK_QUERIES="rateNotStreaming, boundReferenceNotReferenceOrValueProperty, participantPropertyNotBlock, flowPortDeprecated, activityStreamingNoNStreaming, requirementIdNotUnique,\
+BENCHMARK_QUERIES="rateNotStreaming, boundReferenceNotReferenceOrValueProperty, participantPropertyNotBlock, flowPortDeprecated, activityStreamingNoNStreaming, requirementIdNotUnique,\
  proxyPortTypeNotInterfaceBlock, propertySpecificTypeNotOwnedByBlock, allocateNotSingleClient, interfaceBlockPortInvalidType, adjunctPropertyConnectorNotAssociationBlock,\
  viewStakeholderNotDerivedFromConform, participantPropertyAggregationKindNotNone, optionalLowerNotZero, adjunctPropertyIncorrectMultiplicity, proxyPortSubportNotProxyPort,\
  deriveReqtClientNotReqt, parameterDiscreteAndContinuous, adjunctPropertySubmachineOrInteraction, classifierBehaviorPropertyInvalidOwner, blockAssociationNotBinary, noBufferAndOverwrite,\
@@ -64,7 +64,6 @@ if [ -z "$BENCHMARK_QUERIES" ]; then
  connectionPropertyDifferentName, optionalLowerZero, requirementHasAttribute, adjunctPropertyConnectorPropertyInconsistent, probabilityInvalidStereotype, boundReferenceUnique, copyCycle,\
  boundReferenceOpposite, connectorPropertyNotComposite, requirementAsType, participantPropertyIsMemberEndOfAssociation, connectionPropertyNotTypedByAssociationBlock,\
  valuePropertyNotValueType, fullPortBoundToFullPort, probabilityAllOutgoingEdges"
-BENCHMARK_QUERIES="rateNotStreaming"
 fi
 echo "Selected queries: ${BENCHMARK_QUERIES}"
 
