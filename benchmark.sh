@@ -6,7 +6,7 @@
 # export MODEL_LOCATION=<The directory path that contains the TMT model files(*.mdzip)>
 
 if [ -z "$WORKSPACE_BENCHMARK" ]; then 
-	export WORKSPACE_BENCHMARK=$(WORKSPACE)
+	export WORKSPACE_BENCHMARK=$(pwd)
 fi
 
 # compile benchmark
